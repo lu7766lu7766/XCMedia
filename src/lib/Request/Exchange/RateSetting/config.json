@@ -1,0 +1,10 @@
+{
+  "list": {
+    "uri": "list",
+    "method": "post"
+  },
+  "update": {
+    "uri": "edit",
+    "method": "post"
+  }
+}

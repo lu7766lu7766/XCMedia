@@ -1,0 +1,14 @@
+{
+  "test": {
+    "client_id": "",
+    "client_secret": ""
+  },
+  "rc": {
+    "client_id": "",
+    "client_secret": ""
+  },
+  "stable": {
+    "client_id": "",
+    "client_secret": ""
+  }
+}
