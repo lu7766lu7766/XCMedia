@@ -115,7 +115,7 @@
           </li>
 
           <li class="has-sub "
-              v-if="hasMenu(Menu.DRAMA_SOURCE_SET, Menu.DRAMA_AREA_SET, Menu.DRAMA_TYPE_SET, Menu.DRAMA_TYPE_SET, Menu.DRAMA_LANG_SET, Menu.DRAMA_MG)">
+              v-if="hasMenu(Menu.DRAMA_SOURCE_SET, Menu.DRAMA_AREA_SET, Menu.DRAMA_TYPE_SET, Menu.DRAMA_YEAR_SET, Menu.DRAMA_LANG_SET, Menu.DRAMA_MG)">
             <a href="javascript:;">
               <b class="caret"></b>
               <i class="fa fa-television"></i>
@@ -123,7 +123,7 @@
             </a>
             <ul class="sub-menu">
               <li class="has-sub"
-                  v-if="hasMenu(Menu.DRAMA_SOURCE_SET, Menu.DRAMA_AREA_SET, Menu.DRAMA_TYPE_SET, Menu.DRAMA_TYPE_SET, Menu.DRAMA_LANG_SET)">
+                  v-if="hasMenu(Menu.DRAMA_SOURCE_SET, Menu.DRAMA_AREA_SET, Menu.DRAMA_TYPE_SET, Menu.DRAMA_YEAR_SET, Menu.DRAMA_LANG_SET)">
                 <a href="javascript:;">
                   <b class="caret"></b>
                   <span>分类管理</span>
@@ -153,7 +153,7 @@
           </li>
 
           <li class="has-sub"
-              v-if="hasMenu(Menu.MOVIE_SOURCE_SET, Menu.MOVIE_AREA_SET, Menu.MOVIE_TYPE_SET, Menu.MOVIE_TYPE_SET, Menu.MOVIE_LANG_SET, Menu.MOVIE_MG)">
+              v-if="hasMenu(Menu.MOVIE_SOURCE_SET, Menu.MOVIE_AREA_SET, Menu.MOVIE_TYPE_SET, Menu.MOVIE_YEAR_SET, Menu.MOVIE_LANG_SET, Menu.MOVIE_MG)">
             <a href="javascript:;">
               <b class="caret"></b>
               <i class="fa fa-film"></i>
@@ -161,7 +161,7 @@
             </a>
             <ul class="sub-menu">
               <li class="has-sub"
-                  v-if="hasMenu(Menu.MOVIE_SOURCE_SET, Menu.MOVIE_AREA_SET, Menu.MOVIE_TYPE_SET, Menu.MOVIE_TYPE_SET, Menu.MOVIE_LANG_SET)">
+                  v-if="hasMenu(Menu.MOVIE_SOURCE_SET, Menu.MOVIE_AREA_SET, Menu.MOVIE_TYPE_SET, Menu.MOVIE_YEAR_SET, Menu.MOVIE_LANG_SET)">
                 <a href="javascript:;">
                   <b class="caret"></b>
                   <span>分类管理</span>
@@ -191,7 +191,7 @@
           </li>
 
           <li class="has-sub "
-              v-if="hasMenu(Menu.ANIME_SOURCE_SET, Menu.ANIME_AREA_SET, Menu.ANIME_TYPE_SET, Menu.ANIME_TYPE_SET, Menu.ANIME_LANG_SET, Menu.ANIME_MG)">
+              v-if="hasMenu(Menu.ANIME_SOURCE_SET, Menu.ANIME_AREA_SET, Menu.ANIME_TYPE_SET, Menu.ANIME_YEAR_SET, Menu.ANIME_LANG_SET, Menu.ANIME_MG)">
             <a href="javascript:;">
               <b class="caret"></b>
               <i class="fa fa-play-circle"></i>
@@ -199,7 +199,7 @@
             </a>
             <ul class="sub-menu">
               <li class="has-sub"
-                  v-if="hasMenu(Menu.ANIME_SOURCE_SET, Menu.ANIME_AREA_SET, Menu.ANIME_TYPE_SET, Menu.ANIME_TYPE_SET, Menu.ANIME_LANG_SET)">
+                  v-if="hasMenu(Menu.ANIME_SOURCE_SET, Menu.ANIME_AREA_SET, Menu.ANIME_TYPE_SET, Menu.ANIME_YEAR_SET, Menu.ANIME_LANG_SET)">
                 <a href="javascript:;">
                   <b class="caret"></b>
                   <span>分类管理</span>
@@ -229,7 +229,7 @@
           </li>
 
           <li class="has-sub "
-              v-if="hasMenu(Menu.VARIETY_SOURCE_SET, Menu.VARIETY_AREA_SET, Menu.VARIETY_TYPE_SET, Menu.VARIETY_TYPE_SET, Menu.VARIETY_LANG_SET, Menu.VARIETY_MG)">
+              v-if="hasMenu(Menu.VARIETY_SOURCE_SET, Menu.VARIETY_AREA_SET, Menu.VARIETY_TYPE_SET, Menu.VARIETY_YEAR_SET, Menu.VARIETY_LANG_SET, Menu.VARIETY_MG)">
             <a href="javascript:;">
               <b class="caret"></b>
               <i class="fa fa-smile-o"></i>
@@ -237,7 +237,7 @@
             </a>
             <ul class="sub-menu">
               <li class="has-sub"
-                  v-if="hasMenu(Menu.VARIETY_SOURCE_SET, Menu.VARIETY_AREA_SET, Menu.VARIETY_TYPE_SET, Menu.VARIETY_TYPE_SET, Menu.VARIETY_LANG_SET)">
+                  v-if="hasMenu(Menu.VARIETY_SOURCE_SET, Menu.VARIETY_AREA_SET, Menu.VARIETY_TYPE_SET, Menu.VARIETY_YEAR_SET, Menu.VARIETY_LANG_SET)">
                 <a href="javascript:;">
                   <b class="caret"></b>
                   <span>分类管理</span>
