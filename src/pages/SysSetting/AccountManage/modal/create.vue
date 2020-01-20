@@ -58,10 +58,7 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">状态</label>
       <div class="col-md-10">
-        <div class="form-check-inline radio radio-css" v-for="(val, index) in options.status" :key="val">
-          <input type="radio" name="status" :id="'r' + index" :value="val" v-model="data.status" />
-          <label :for="'r' + index">{{ $translate('status', val) }}</label>
-        </div>
+        <switcher v-model="data.status" />
       </div>
     </div>
     <div class="form-group row m-b-15">

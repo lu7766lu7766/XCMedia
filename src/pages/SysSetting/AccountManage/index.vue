@@ -2,7 +2,9 @@
   <div id="content" class="content">
     <!-- begin breadcrumb -->
     <ol class="breadcrumb pull-right m-b-20">
-      <li class="breadcrumb-item"><a href="javascript:;">首页</a></li>
+      <li class="breadcrumb-item">
+        <router-link :to="{name:'welcome'}">首页</router-link>
+      </li>
       <li class="breadcrumb-item"><a href="javascript:;">系统设置</a></li>
       <li class="breadcrumb-item active">帐号管理</li>
     </ol>
@@ -25,7 +27,7 @@
             <div class="col-sm-10 form-inline justify-content-end panel-search">
               <div class="form-group width-100 m-r-10">
                 <select class="form-control" v-model="search.role_id">
-                  <option value="">权限</option>
+                  <option value="">角色</option>
                   <option v-for="role in options.roles" :key="role.id" :value="role.id">{{ role.display_name }}</option>
                 </select>
               </div>
@@ -54,7 +56,7 @@
                 <th>角色</th>
                 <th class="width-100">状态</th>
                 <th class="width-150">建立时间</th>
-                <th class="width-150">登入时间</th>
+                <th class="width-150">最后登入时间</th>
                 <th class="width-70">操作</th>
               </tr>
               </thead>
@@ -112,7 +114,7 @@
         layers: AccountManageLayers,
       },
     }),
-    api: 'account.manage',
+    api: 'system.manage',
     methods: {
       async getOptions()
       {

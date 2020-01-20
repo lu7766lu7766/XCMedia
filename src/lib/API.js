@@ -9,9 +9,10 @@ export default class API
       passport: new (require('./Request/User/Passport').default),
       pilot: new (require('./Request/User/Pilot').default),
     }
-    this.account = {
-      manage: new (require('./Request/Account/Manage').default),
-      role: new (require('./Request/Account/Role').default),
+    this.system = {
+      manage: new (require('./Request/System/Manage').default),
+      role: new (require('./Request/System/Role').default),
+      site: new (require('./Request/System/Site').default),
     }
     this.history = {
       account: new (require('./Request/History/Account').default),

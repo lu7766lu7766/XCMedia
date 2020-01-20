@@ -1,7 +1,7 @@
 import BaseRequest from 'lib/Request/BaseRequest'
 import _config from './config'
 
-export default class User extends BaseRequest
+export default class Request extends BaseRequest
 {
   get baseUrls()
   {

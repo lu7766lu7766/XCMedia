@@ -1,11 +1,11 @@
 import BaseRequest from 'lib/Request/BaseRequest'
 import _config from './config'
 
-export default class AccountManage extends BaseRequest
+export default class Request extends BaseRequest
 {
   get baseUrls()
   {
-    return super.baseUrls.concat('/company/manage')
+    return super.baseUrls.concat('/account/manage')
   }
 
   constructor()

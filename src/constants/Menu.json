@@ -1,7 +1,7 @@
 {
   "ROLE_MG": "ROLE_CUSTOM_MANAGE",
   "ACCOUNT_MG": "ACCOUNT_MANAGE",
-  "SITE_MG": "",
+  "SITE_MG": "MANAGE_BRANCH",
   "ANNOUNCE_MG": "",
   "AD_SLIDER": "",
   "QA": "",

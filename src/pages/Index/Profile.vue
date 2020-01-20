@@ -3,7 +3,9 @@
     <div id="content" class="content">
       <!-- begin breadcrumb -->
       <ol class="breadcrumb pull-right m-b-20">
-        <li class="breadcrumb-item"><a href="javascript:;">首页</a></li>
+        <li class="breadcrumb-item">
+          <router-link :to="{name:'welcome'}">首页</router-link>
+        </li>
         <li class="breadcrumb-item active">个人资料</li>
       </ol>
       <!-- end breadcrumb -->

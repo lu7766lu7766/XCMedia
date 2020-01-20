@@ -1,11 +1,11 @@
 import BaseRequest from 'lib/Request/BaseRequest'
 import _config from './config'
 
-export default class AccountManage extends BaseRequest
+export default class Request extends BaseRequest
 {
   get baseUrls()
   {
-    return super.baseUrls.concat('/exchange/manage')
+    return super.baseUrls.concat('branch/manage')
   }
 
   constructor()
@@ -22,16 +22,6 @@ export default class AccountManage extends BaseRequest
   async getTotal(data, options)
   {
     return await this.request('total', data, options)
-  }
-
-  async getOptions(data, options)
-  {
-    return await this.request('options', data, options)
-  }
-
-  async getCurrency(data, options)
-  {
-    return await this.request('currency', data, options)
   }
 
   async doCreate(data, options)

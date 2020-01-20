@@ -8,7 +8,7 @@
         <router-link :to="{
   							name: 'welcome'
   						}" class="navbar-brand">
-          <span class="navbar-logo"></span> <b>GIN</b>
+          <span class="navbar-logo"></span> <b>抖影管理系统</b>
         </router-link>
         <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
           <span class="icon-bar"></span>
@@ -81,7 +81,7 @@
                 <router-link :to="{name: 'account-manage'}">帐号管理</router-link>
               </li>
               <li v-if="hasMenu(Menu.SITE_MG)">
-                <router-link :to="{name: 'site-manage'}">帐号管理</router-link>
+                <router-link :to="{name: 'site-manage'}">站台管理</router-link>
               </li>
             </ul>
           </li>

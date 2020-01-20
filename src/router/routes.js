@@ -6,7 +6,7 @@ export default [
   },
   {
     path: '',
-    component: () => import('pages/Index'),
+    component: () => import('pages/index'),
     children: [
       {
         path: '',
@@ -19,14 +19,25 @@ export default [
         component: () => import('pages/Index/Profile'),
       },
       {
-        path: '/role-manage',
-        name: 'role-manage',
-        component: () => import('pages/SysSetting/RoleSetting'),
-      },
-      {
-        path: '/account-manage',
-        name: 'account-manage',
-        component: () => import('pages/SysSetting/AccountManage'),
+        path: '/sys-setting',
+        component: () => import('pages/SysSetting'),
+        children: [
+          {
+            path: '/role-manage',
+            name: 'role-manage',
+            component: () => import('pages/SysSetting/RoleSetting'),
+          },
+          {
+            path: '/account-manage',
+            name: 'account-manage',
+            component: () => import('pages/SysSetting/AccountManage'),
+          },
+          {
+            path: '/site-manage',
+            name: 'site-manage',
+            component: () => import('pages/SysSetting/SiteManage'),
+          },
+        ],
       },
       {
         path: '/account-login-history',

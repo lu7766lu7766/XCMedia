@@ -6,20 +6,18 @@
         <router-link :to="{name:'welcome'}">首页</router-link>
       </li>
       <li class="breadcrumb-item"><a href="javascript:;">系统设置</a></li>
-      <li class="breadcrumb-item active">角色管理</li>
+      <li class="breadcrumb-item active">站台管理</li>
     </ol>
-    <!-- end breadcrumb -->
-    <!-- begin page-header -->
-    <!-- <h1 class="page-header">帐号管理</h1> -->
-    <!-- end page-header -->
 
     <!-- begin row -->
     <div class="">
       <div class="panel panel-inverse" style="clear:both;">
         <!-- begin panel-heading -->
         <div class="panel-heading p-t-10">
-          <h4 class="text-white m-b-0">角色管理</h4>
+          <h4 class="text-white m-b-0">站台管理</h4>
         </div>
+        <!-- end panel-heading -->
+        <!-- begin panel-body -->
         <div class="panel-body">
           <alert />
           <div class="row m-b-20 justify-content-end panel-search-box">
@@ -28,45 +26,47 @@
             </div>
             <div class="col-sm-10 form-inline justify-content-end panel-search">
               <div class="form-group width-100 m-r-10">
-                <select class="form-control" v-model="search.enable">
+                <select class="form-control" v-model="search.status">
                   <option value="">状态</option>
-                  <option v-for="(name, val) in options.enable" :key="val" :value="val">{{ name }}</option>
+                  <option v-for="(val) in options.status" :key="val" :value="val">
+                    {{ $translate('status', val) }}
+                  </option>
                 </select>
+              </div>
+              <div class="form-group m-r-10">
+                <input type="text" class="form-control" placeholder="请输入站台名称" v-model="search.name">
               </div>
               <j-button type="search" @click="doSearch"></j-button>
             </div>
           </div>
           <!-- begin table-responsive -->
           <div class="table-responsive">
-            <table class="table  table-striped table-box text-center">
+            <table class="table table-striped table-box text-center">
               <thead>
               <tr>
                 <th class="width-30">#</th>
-                <th class="width-150">名称</th>
-                <th>描述</th>
+                <th class="width-150">代码</th>
+                <th>站台名称</th>
+                <th>域名</th>
                 <th class="width-100">状态</th>
                 <th class="width-150">建立时间</th>
-                <th class="width-100">操作</th>
+                <th class="width-70">操作</th>
               </tr>
               </thead>
               <tbody>
               <tr v-for="(data, index) in datas" :key="index">
                 <td>{{ startIndex + index }}</td>
-                <td>{{ data.display_name }}</td>
-                <td class="text-left">{{ data.description }}</td>
+                <td>{{ data.code }}</td>
+                <td>{{ data.name }}</td>
+                <td>{{ data.domain }}</td>
                 <td>
-                  <i class="fas fa-lg fa-check text-green" v-if="data.enable === 'Y'"></i>
-                  <i class="fas fa-lg fa-times text-danger" v-else></i>
+                  <i class="fas fa-lg fa-check text-green" v-if="data.status === 'Y'"></i>
+                  <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
                 </td>
                 <td>{{ data.created_at }}</td>
                 <td class="text-left">
-                  <j-button type="permission" :action="true" @click="$bus.emit('permission.show', data.id)"></j-button>
-                  <j-button type="edit" :action="true"
-                            @click="$bus.emit('update.show', data)"
-                            v-if="data.code === 'CUSTOM'"></j-button>
-                  <j-button type="delete" :action="true"
-                            @click="doDelete(data.id)"
-                            v-if="data.code === 'CUSTOM'"></j-button>
+                  <j-button type="edit" :action="true" @click="$bus.emit('update.show', data)"></j-button>
+                  <j-button type="delete" :action="true" @click="doDelete(data.id)"></j-button>
                 </td>
               </tr>
               </tbody>
@@ -75,36 +75,38 @@
           <!-- end table-responsive -->
           <!-- pagination -->
           <paginate :page="paginate.page" :lastPage="lastPage" @pageChange="pageChange" />
+          <!-- end pagination -->
         </div>
-        <!-- end pagination -->
       </div>
     </div>
     <create />
     <update />
-    <permission />
   </div>
 </template>
 
 <script>
   import ListMixins from 'mixins/List'
-  import Enable from 'constants/Enable'
+  import AccountManageStatus from 'constants/AccountManageStatus'
+  import AccountManageLayers from 'constants/AccountManageLayers'
 
   export default {
     mixins: [ListMixins],
     components: {
       Create: require('./modal/create').default,
       Update: require('./modal/update').default,
-      Permission: require('./modal/permission').default,
     },
     data: () => ({
       search: {
-        enable: '',
+        role_id: '',
+        status: '',
       },
-      options: {
-        enable: Enable,
+      options: {},
+      translate: {
+        status: AccountManageStatus,
+        layers: AccountManageLayers,
       },
     }),
-    api: 'system.role',
+    api: 'system.site',
     methods: {
       async getList()
       {

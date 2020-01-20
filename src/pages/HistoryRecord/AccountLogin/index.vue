@@ -2,7 +2,9 @@
   <div id="content" class="content">
     <!-- begin breadcrumb -->
     <ol class="breadcrumb pull-right m-b-20">
-      <li class="breadcrumb-item"><a href="javascript:;">首页</a></li>
+      <li class="breadcrumb-item">
+        <router-link :to="{name:'welcome'}">首页</router-link>
+      </li>
       <li class="breadcrumb-item"><a href="javascript:;">历程记录</a></li>
       <li class="breadcrumb-item active">帐号登入历程</li>
     </ol>
@@ -25,7 +27,7 @@
 
               <div class="form-group width-100 m-r-10">
                 <select class="form-control" v-model="search.role_id">
-                  <option value="">权限</option>
+                  <option value="">角色</option>
                   <option v-for="role in options.role" :key="role.id" :value="role.id">{{ role.display_name }}</option>
                 </select>
               </div>
@@ -43,7 +45,7 @@
                 <th class="width-30">#</th>
                 <th>帐号</th>
                 <th>昵称</th>
-                <th>权限</th>
+                <th>角色</th>
                 <th class="width-200">登入 IP</th>
                 <th class="width-150">登入时间</th>
               </tr>
