@@ -94,7 +94,7 @@
             </a>
             <ul class="sub-menu">
               <li v-if="hasMenu(Menu.ANNOUNCE_MG)">
-                <router-link :to="{name: 'acnounce-manage'}">公告管理</router-link>
+                <router-link :to="{name: 'announce-manage'}">公告管理</router-link>
               </li>
               <li v-if="hasMenu(Menu.AD_SLIDER)">
                 <router-link :to="{name: 'ad-slider'}">广告轮播</router-link>

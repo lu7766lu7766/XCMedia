@@ -1,7 +1,7 @@
 <template>
   <div class="switcher">
-    <input type="checkbox" name="switcher_checkbox" id="switcher_checkbox" v-model="data">
-    <label for="switcher_checkbox"></label>
+    <input type="checkbox" name="switcher_checkbox" :id="id" v-model="data">
+    <label :for="id"></label>
   </div>
 </template>
 
@@ -17,6 +17,7 @@
       value: '',
     },
     data: () => ({
+      id: '',
       data: '',
     }),
     watch: {
@@ -34,6 +35,7 @@
     },
     mounted()
     {
+      this.id = 'switcher-' + parseInt(Math.random() * 100000)
       this.data = this.value === this.enable
     },
   }

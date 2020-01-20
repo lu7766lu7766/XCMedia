@@ -40,6 +40,17 @@ export default [
         ],
       },
       {
+        path: '/website-manage',
+        component: () => import('pages/WebManage'),
+        children: [
+          {
+            path: '/announce-manage',
+            name: 'announce-manage',
+            component: () => import('pages/WebManage/AnnounceManage'),
+          },
+        ],
+      },
+      {
         path: '/account-login-history',
         name: 'account-login-history',
         component: () => import('pages/HistoryRecord/AccountLogin'),

@@ -6,7 +6,7 @@
         <router-link :to="{name:'welcome'}">首页</router-link>
       </li>
       <li class="breadcrumb-item"><a href="javascript:;">系统设置</a></li>
-      <li class="breadcrumb-item active">站台管理</li>
+      <li class="breadcrumb-item active">公告管理</li>
     </ol>
 
     <!-- begin row -->
@@ -14,7 +14,7 @@
       <div class="panel panel-inverse" style="clear:both;">
         <!-- begin panel-heading -->
         <div class="panel-heading p-t-10">
-          <h4 class="text-white m-b-0">站台管理</h4>
+          <h4 class="text-white m-b-0">公告管理</h4>
         </div>
         <!-- end panel-heading -->
         <!-- begin panel-body -->
@@ -26,10 +26,15 @@
             </div>
             <div class="col-sm-10 form-inline justify-content-end panel-search">
               <div class="form-group width-100 m-r-10">
+                <j-select title="跑马灯"
+                          :datas="options.marquee"
+                          v-model="search.marquee_switch" />
+              </div>
+              <div class="form-group width-100 m-r-10">
                 <j-select title="状态" :datas="options.status" v-model="search.status" />
               </div>
               <div class="form-group m-r-10">
-                <input type="text" class="form-control" placeholder="请输入站台名称" v-model="search.name">
+                <input type="text" class="form-control" placeholder="请输入标题" v-model="search.title">
               </div>
               <j-button type="search" @click="doSearch"></j-button>
             </div>
@@ -40,9 +45,9 @@
               <thead>
               <tr>
                 <th class="width-30">#</th>
-                <th class="width-150">代码</th>
-                <th>站台名称</th>
-                <th>域名</th>
+                <th>标题</th>
+                <th class="width-350">发布站台</th>
+                <th class="width-100">跑马灯</th>
                 <th class="width-100">状态</th>
                 <th class="width-150">建立时间</th>
                 <th class="width-70">操作</th>
@@ -51,9 +56,11 @@
               <tbody>
               <tr v-for="(data, index) in datas" :key="index">
                 <td>{{ startIndex + index }}</td>
-                <td>{{ data.code }}</td>
-                <td>{{ data.name }}</td>
-                <td>{{ data.domain }}</td>
+                <td>{{ _.map(data.branches, 'name').join(', ') }}</td>
+                <td>
+                  <i class="fas fa-lg fa-check-circle text-green" v-if="data.marquee_switch === 'Y'"></i>
+                  <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
+                </td>
                 <td>
                   <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'Y'"></i>
                   <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
@@ -91,11 +98,13 @@
     },
     data: () => ({
       search: {
-        name: '',
+        marquee_switch: '',
         status: '',
+        title: '',
       },
       options: {
         status: Enable,
+        marquee: Enable,
       },
     }),
     api: 'system.site',
