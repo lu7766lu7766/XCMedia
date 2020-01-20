@@ -67,8 +67,8 @@
                 <td>{{ data.display_name }}</td>
                 <td>{{ _(data.roles).getVal('0.display_name')}}</td>
                 <td>
-                  <i class="fas fa-lg fa-check text-green" v-if="data.status === 'enable'"></i>
-                  <i class="fas fa-lg fa-times text-danger" v-else></i>
+                  <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'enable'"></i>
+                  <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
                 </td>
                 <td>{{ data.updated_at }}</td>
                 <td>{{ data.created_at }}</td>

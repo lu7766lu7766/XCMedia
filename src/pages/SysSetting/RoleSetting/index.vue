@@ -55,8 +55,8 @@
                 <td>{{ data.display_name }}</td>
                 <td class="text-left">{{ data.description }}</td>
                 <td>
-                  <i class="fas fa-lg fa-check text-green" v-if="data.enable === 'Y'"></i>
-                  <i class="fas fa-lg fa-times text-danger" v-else></i>
+                  <i class="fas fa-lg fa-check-circle text-green" v-if="data.enable === 'Y'"></i>
+                  <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
                 </td>
                 <td>{{ data.created_at }}</td>
                 <td class="text-left">

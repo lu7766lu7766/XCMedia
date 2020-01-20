@@ -25,7 +25,7 @@ const findNode = (nodes, route) =>
 const READ_SUFFIX = '_READ'
 const CREATE_SUFFIX = '_CREATE'
 const UPDATE_SUFFIX = '_UPDATE'
-const DELETE_SUFFIX = '_DEL'
+const DELETE_SUFFIX = '_DELETE'
 
 export default {
   namespaced: true,
