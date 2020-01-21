@@ -8,7 +8,7 @@
     "method": "get"
   },
   "branch": {
-    "uri": "branch",
+    "uri": "options/branch",
     "method": "get"
   },
   "create": {
@@ -24,11 +24,11 @@
     "method": "delete"
   },
   "uploadPic": {
-    "uri": "",
-    "method": "put"
+    "uri": "image/upload",
+    "method": "post"
   },
   "deletePic": {
-    "uri": "",
-    "method": "delete"
+    "uri": "image/remove",
+    "method": "post"
   }
 }

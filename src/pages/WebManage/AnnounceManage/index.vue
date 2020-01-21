@@ -56,6 +56,7 @@
               <tbody>
               <tr v-for="(data, index) in datas" :key="index">
                 <td>{{ startIndex + index }}</td>
+                <td>{{ data.title }}</td>
                 <td>{{ _.map(data.branches, 'name').join(', ') }}</td>
                 <td>
                   <i class="fas fa-lg fa-check-circle text-green" v-if="data.marquee_switch === 'Y'"></i>
@@ -105,10 +106,16 @@
       options: {
         status: Enable,
         marquee: Enable,
+        branchs: [],
       },
     }),
-    api: 'system.site',
+    api: 'website.announce',
     methods: {
+      async getOptions()
+      {
+        const res = await this.$thisApi.getBranchs()
+        this.options.branchs = res.data
+      },
       async getList()
       {
         const res = await this.$thisApi.getList(this.reqBody)
@@ -128,6 +135,7 @@
     },
     created()
     {
+      this.getOptions()
       this.doSearch()
     },
   }

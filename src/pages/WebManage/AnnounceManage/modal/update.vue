@@ -2,55 +2,43 @@
   <detail title="编辑" @submit="doSubmit()">
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">代碼</label>
-      <div class="col-md-10">
-        <validate rules="required|min:3|max:5">
-          <input type="text" class="form-control"
-                 v-model="data.code" disabled />
-          <div class="m-t-1 form-txt text-red">
-            长度3~5字元
-          </div>
-        </validate>
-      </div>
-    </div>
-    <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">站台名称</label>
+      <label class="col-md-2 col-form-label required">标题</label>
       <div class="col-md-10">
         <validate rules="required">
           <input type="text" class="form-control"
-                 v-model="data.name" />
+                 v-model="data.title" />
         </validate>
       </div>
     </div>
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">域名</label>
+      <label class="col-md-2 col-form-label required">内容</label>
       <div class="col-md-10">
         <validate rules="required">
-          <input type="text" class="form-control"
-                 v-model="data.domain" />
-          <div class="m-t-1 form-txt text-red">
-            請輸入網址，如:abc.com
-          </div>
+          <j-editor v-model="data.contents"
+                    @image-added="doUploadPic"></j-editor>
         </validate>
       </div>
     </div>
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">会员注册</label>
+      <label class="col-md-2 col-form-label required">跑马灯</label>
       <div class="col-md-10">
-        <switcher v-model="data.is_register" />
+        <switcher v-model="data.marquee_switch" />
       </div>
     </div>
-
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">状态</label>
       <div class="col-md-10">
         <switcher v-model="data.status" />
       </div>
     </div>
+
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label">备注</label>
+      <label class="col-md-2 col-form-label required">发布站台</label>
       <div class="col-md-10">
-        <textarea cols="30" rows="5" class="form-control" v-model="data.remark"></textarea>
+        <validate rules="required">
+          <j-listbox v-model="data.branches"
+                     :options="options.branchs" />
+        </validate>
       </div>
     </div>
 
@@ -59,13 +47,15 @@
 
 <script>
   import DetailMixins from 'mixins/Detail'
+  import ThisMixins from './mixins'
 
   export default {
-    mixins: [DetailMixins],
+    mixins: [DetailMixins, ThisMixins],
     methods: {
       async doSubmit()
       {
-        await this.$thisApi.doUpdate(this.data)
+        const data = _.cloneDeep(this.data)
+        await this.$thisApi.doUpdate(data)
         this.updateSuccess()
       },
     },
@@ -73,7 +63,10 @@
     {
       this.$bus.on('update.show', data =>
       {
-        this.data = _.cloneDeep(data)
+        const tmpData = _.cloneDeep(data)
+        tmpData.branches = _.map(tmpData.branches, 'id')
+        tmpData.image_ids = _.map(tmpData.editor_files, 'id')
+        this.data = tmpData
         this.show()
       })
     },
