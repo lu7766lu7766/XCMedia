@@ -1,0 +1,34 @@
+{
+  "list": {
+    "uri": "",
+    "method": "get"
+  },
+  "total": {
+    "uri": "total",
+    "method": "get"
+  },
+  "branch": {
+    "uri": "branch",
+    "method": "get"
+  },
+  "create": {
+    "uri": "",
+    "method": "post"
+  },
+  "update": {
+    "uri": "",
+    "method": "put"
+  },
+  "delete": {
+    "uri": "",
+    "method": "delete"
+  },
+  "uploadPic": {
+    "uri": "",
+    "method": "put"
+  },
+  "deletePic": {
+    "uri": "",
+    "method": "delete"
+  }
+}

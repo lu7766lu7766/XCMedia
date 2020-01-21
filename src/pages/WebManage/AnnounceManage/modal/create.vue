@@ -37,14 +37,14 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">会员注册</label>
       <div class="col-md-10">
-        <switcher enable="Y" disable="N" v-model="data.is_register" />
+        <switcher v-model="data.is_register" />
       </div>
     </div>
 
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">状态</label>
       <div class="col-md-10">
-        <switcher enable="Y" disable="N" v-model="data.status" />
+        <switcher v-model="data.status" />
       </div>
     </div>
     <div class="form-group row m-b-15">

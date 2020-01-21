@@ -9,10 +9,10 @@
   export default {
     props: {
       enable: {
-        default: true,
+        default: 'Y',
       },
       disable: {
-        default: false,
+        default: 'N',
       },
       value: '',
     },
