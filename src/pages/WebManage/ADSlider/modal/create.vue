@@ -27,8 +27,9 @@
             <label for="file-upload" class="custom-file-upload">
               选择档案
             </label>
+            <input id="file-upload" type="file" @change="onFileChange">
             <validate rules="required">
-              <input id="file-upload" type="file" @change="onFileChange">
+              <input type="text" v-show="false" v-model="data.image">
             </validate>
           </div>
           <div class="text-red">
@@ -36,7 +37,7 @@
           </div>
         </div>
         <div class="slider-img-list">
-          <div class="slider-img-head">档案名称</div>
+          <div class="slider-img-head">{{ _.getVal(data, 'image.name', '档案名称') }}</div>
           <div class="slider-img-body">
             <img v-if="src" :src="src" />
           </div>

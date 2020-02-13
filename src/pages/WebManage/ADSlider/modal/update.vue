@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="slider-img-list">
-          <div class="slider-img-head">档案名称</div>
+          <div class="slider-img-head">{{ data.image ? _.getVal(data, 'image.name') : _.last(src.split('/')) }}</div>
           <div class="slider-img-body">
             <img v-if="src" :src="src" />
           </div>
@@ -83,8 +83,7 @@
     methods: {
       async doSubmit()
       {
-        const data = _.cloneDeep(this.data)
-        await this.$thisApi.doUpdate(data, {formData: true})
+        await this.$thisApi.doUpdate(_.pickBy(this.data, x => x !== ''), {formData: true})
         this.updateSuccess()
       },
     },
