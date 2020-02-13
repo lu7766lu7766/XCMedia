@@ -88,6 +88,7 @@
         </div>
       </div>
     </div>
+    <image-container />
     <create />
     <update />
   </div>
@@ -100,6 +101,7 @@
   export default {
     mixins: [ListMixins],
     components: {
+      ImageContainer: require('./modal/image').default,
       Create: require('./modal/create').default,
       Update: require('./modal/update').default,
     },
