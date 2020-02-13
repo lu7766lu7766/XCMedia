@@ -116,22 +116,6 @@
         const res = await this.$thisApi.getBranchs()
         this.options.branches = res.data
       },
-      async getList()
-      {
-        const res = await this.$thisApi.getList(this.reqBody)
-        this.datas = res.data
-      },
-      async getTotal()
-      {
-        const res = await this.$thisApi.getTotal(this.reqBody)
-        this.paginate.total = res.data
-      },
-      async doDelete(id)
-      {
-        await this.doDeleteConfirm()
-        await this.$thisApi.doDelete({id})
-        this.deleteSuccess()
-      },
     },
     created()
     {

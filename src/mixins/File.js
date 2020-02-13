@@ -2,9 +2,13 @@ import { JacLib } from 'jactools'
 
 export default {
   methods: {
+    getFiles(e)
+    {
+      return e.target.files || e.dataTransfer.files
+    },
     async handleImageChange(e)
     {
-      var files = e.target.files || e.dataTransfer.files
+      var files = this.getFiles(e)
       if (!files.length)
       {
         return

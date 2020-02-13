@@ -34,13 +34,15 @@ export default {
       this.getList()
       this.getTotal()
     },
-    getList()
+    async getList()
     {
-
+      const res = await this.$thisApi.getList(this.reqBody)
+      this.datas = res.data
     },
-    getTotal()
+    async getTotal()
     {
-
+      const res = await this.$thisApi.getTotal(this.reqBody)
+      this.paginate.total = res.data
     },
     doSuccess(msg)
     {
@@ -56,6 +58,12 @@ export default {
     {
       this.paginate.page = page
       this.getList()
+    },
+    async doDelete(id)
+    {
+      await this.doDeleteConfirm()
+      await this.$thisApi.doDelete({id})
+      this.deleteSuccess()
     },
     async doDeleteConfirm()
     {

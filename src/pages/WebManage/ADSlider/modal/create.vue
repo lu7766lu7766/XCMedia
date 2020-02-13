@@ -6,6 +6,7 @@
       <div class="col-md-10">
         <validate rules="required">
           <j-select :datas="options.types"
+                    valueKey="id"
                     v-model="data.type_id" />
         </validate>
       </div>
@@ -14,7 +15,7 @@
       <label class="col-md-2 col-form-label required">标题 </label>
       <div class="col-md-10">
         <validate rules="required|max:50">
-          <input type="text" v-model="data.title" />
+          <input type="text" class="form-control" v-model="data.title" />
         </validate>
       </div>
     </div>
@@ -26,7 +27,9 @@
             <label for="file-upload" class="custom-file-upload">
               选择档案
             </label>
-            <input id="file-upload" type="file">
+            <validate rules="required">
+              <input id="file-upload" type="file" @change="onFileChange">
+            </validate>
           </div>
           <div class="text-red">
             电脑上传图片限制尺寸为1920 × 550, 行动装置上传图片限制尺寸为750 × 400
@@ -35,7 +38,7 @@
         <div class="slider-img-list">
           <div class="slider-img-head">档案名称</div>
           <div class="slider-img-body">
-            <img v-if="src" :src="src" @change="onFileChange">
+            <img v-if="src" :src="src" />
           </div>
         </div>
       </div>
@@ -47,10 +50,10 @@
       </div>
     </div>
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">连结 </label>
+      <label class="col-md-2 col-form-label">连结 </label>
       <div class="col-md-10">
-        <validate rules="required|max:255">
-          <input type="text" v-model="data.url" />
+        <validate rules="max:255">
+          <input type="text" class="form-control" v-model="data.url" />
         </validate>
       </div>
     </div>
@@ -65,8 +68,9 @@
       <label class="col-md-2 col-form-label required">发布站台</label>
       <div class="col-md-10">
         <validate rules="required">
-          <j-listbox v-model="data.branches"
-                     :options="options.branchs" />
+          <j-website v-model="data.branches"
+                     :defaultAll="true"
+                     :options="options.branches" />
         </validate>
       </div>
     </div>
@@ -75,23 +79,15 @@
 </template>
 
 <script>
-  import DetailMixins from 'mixins/Detail'
-  import FileMixins from 'mixins/File'
+  import ThisMixins from './mixins'
 
   export default {
-    mixins: [DetailMixins, FileMixins],
-    data: () => ({
-      src: '',
-    }),
+    mixins: [ThisMixins],
     methods: {
-      async onFileChange(e)
-      {
-        this.src = await this.handleImageUpload(e)
-      },
       async doSubmit()
       {
         const data = _.cloneDeep(this.data)
-        await this.$thisApi.doCreate(data)
+        await this.$thisApi.doCreate(data, {formData: true})
         this.createSuccess()
       },
     },

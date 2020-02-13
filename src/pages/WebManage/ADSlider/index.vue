@@ -28,6 +28,7 @@
               <div class="form-group width-100 m-r-10">
                 <j-select title="类型"
                           :datas="options.types"
+                          valueKey="id"
                           v-model="search.type_id" />
               </div>
               <div class="form-group width-100 m-r-10">
@@ -66,7 +67,7 @@
                 <td class="text-left">{{ data.title }}</td>
                 <td>{{ data.url }}</td>
                 <td class="text-left">{{ _.map(data.branches, 'name').join(', ') }}</td>
-                <td>{{ }}</td>
+                <td>{{ data.hits }}</td>
                 <td>
                   <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'Y'"></i>
                   <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
@@ -104,14 +105,14 @@
     },
     data: () => ({
       search: {
-        type: '',
+        type_id: '',
         status: '',
         title: '',
       },
       options: {
         status: Enable,
         types: [],
-        branchs: [],
+        branches: [],
       },
     }),
     api: 'website.adslider',
@@ -122,24 +123,8 @@
           this.$thisApi.getBranchs(),
           this.$thisApi.getTypes(),
         ])
-        this.options.branchs = res[0].data
+        this.options.branches = res[0].data
         this.options.types = res[1].data
-      },
-      async getList()
-      {
-        const res = await this.$thisApi.getList(this.reqBody)
-        this.datas = res.data
-      },
-      async getTotal()
-      {
-        const res = await this.$thisApi.getTotal(this.reqBody)
-        this.paginate.total = res.data
-      },
-      async doDelete(id)
-      {
-        await this.doDeleteConfirm()
-        await this.$thisApi.doDelete({id})
-        this.deleteSuccess()
       },
     },
     created()
