@@ -1,0 +1,118 @@
+.push-app-box {
+  margin-top: 10px;
+}
+
+.push-app-box .info-container > span {
+  display: none;
+}
+
+.push-app-box .bootstrap-duallistbox-container .btn-box {
+  margin-top: 0;
+  padding-left: 9px;
+  padding-right: 10px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 65px;
+          flex: 0 0 65px;
+  max-width: 65px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.push-app-box .btn-box .btn.moveall {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+
+.push-app-box .btn-box .btn.move {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+
+.push-app-box .btn-box .btn.remove {
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
+}
+
+.push-app-box .btn-box .btn.removeall {
+  -webkit-box-ordinal-group: 6;
+      -ms-flex-order: 5;
+          order: 5;
+}
+
+.push-app-box .btn i {
+  font-family: 'Font Awesome\ 5 Free';
+  font-style: normal;
+}
+
+.push-app-box .clearfix {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+}
+
+.push-app-box .bootstrap-duallistbox-container select {
+  height: 250px !important;
+}
+
+.push-app-box .bootstrap-duallistbox-container .settingUp-btns {
+  visibility: hidden;
+}
+
+.push-app-box .glyphicon-arrow-right:before {
+  content: "\f061";
+}
+
+.push-app-box .glyphicon-arrow-left:before {
+  content: "\f060";
+}
+
+.push-app-box .glyphicon-arrow-up::before {
+  content: "\f062";
+}
+
+.push-app-box .glyphicon-arrow-down::before {
+  content: "\f063";
+}
+
+.slider-img-td {
+  cursor: pointer;
+}
+
+.slider-img-list {
+  border: 1px solid #d3d8de;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+
+.slider-img-list > div {
+  padding: 5px;
+}
+
+.slider-img-head {
+  background-color: #e8e8e8;
+}
+
+.slider-img-body img {
+  max-width: 100%;
+}
+
+.slider-img-body a {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+}
+
+.slider-img-body a:hover {
+  text-decoration: none;
+}

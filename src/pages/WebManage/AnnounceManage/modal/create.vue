@@ -36,8 +36,9 @@
       <label class="col-md-2 col-form-label required">发布站台</label>
       <div class="col-md-10">
         <validate rules="required">
-          <j-listbox v-model="data.branches"
-                     :options="options.branchs" />
+          <j-website v-model="data.branches"
+                     :defaultAll="true"
+                     :options="options.branches" />
         </validate>
       </div>
     </div>

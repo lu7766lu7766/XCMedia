@@ -1,0 +1,30 @@
+{
+  "list": {
+    "uri": "",
+    "method": "get"
+  },
+  "total": {
+    "uri": "total",
+    "method": "get"
+  },
+  "branch": {
+    "uri": "options/branch",
+    "method": "get"
+  },
+  "type": {
+    "uri": "options/type",
+    "method": "get"
+  },
+  "create": {
+    "uri": "",
+    "method": "post"
+  },
+  "update": {
+    "uri": "update",
+    "method": "post"
+  },
+  "delete": {
+    "uri": "",
+    "method": "delete"
+  }
+}

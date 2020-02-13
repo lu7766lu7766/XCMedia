@@ -1,5 +1,6 @@
 <template>
   <v-listbox
+      ref="listbox"
       class="j-dual-listbox"
       :source="source"
       :destination="data"
@@ -20,6 +21,7 @@
         type: Array,
         required: true,
       },
+      placeholder: {default: 'search'},
     },
     components: {
       vListbox: require('dual-listbox-vue'),
@@ -51,6 +53,17 @@
           ? _.map(destination, this.valueKey)
           : destination)
       },
+    },
+    mounted()
+    {
+      this.$nextTick(() =>
+      {
+        const boxes = this.$refs.listbox.$el.querySelectorAll('input')
+        for (let box of boxes)
+        {
+          box.placeholder = this.placeholder
+        }
+      })
     },
   }
 </script>

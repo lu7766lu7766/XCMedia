@@ -2,7 +2,7 @@ import jEditor from '@/Form/Editor'
 
 export default {
   components: {
-    jListbox: require('@/Form/ListBox').default,
+    jWebsite: require('@/Custom/Website').default,
     jEditor,
   },
   methods: {

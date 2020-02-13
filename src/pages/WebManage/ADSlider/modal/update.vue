@@ -36,8 +36,8 @@
       <label class="col-md-2 col-form-label required">发布站台</label>
       <div class="col-md-10">
         <validate rules="required">
-          <j-website v-model="data.branches"
-                     :options="options.branches" />
+          <j-listbox v-model="data.branches"
+                     :options="options.branchs" />
         </validate>
       </div>
     </div>
@@ -47,10 +47,10 @@
 
 <script>
   import DetailMixins from 'mixins/Detail'
-  import ThisMixins from './mixins'
+  import FileMixins from 'mixins/File'
 
   export default {
-    mixins: [DetailMixins, ThisMixins],
+    mixins: [DetailMixins, FileMixins],
     methods: {
       async doSubmit()
       {

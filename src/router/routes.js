@@ -47,6 +47,10 @@ export default [
             path: '/announce-manage',
             name: 'announce-manage',
             component: () => import('pages/WebManage/AnnounceManage'),
+          }, {
+            path: '/ad-slider',
+            name: 'ad-slider',
+            component: () => import('pages/WebManage/ADSlider'),
           },
         ],
       },
