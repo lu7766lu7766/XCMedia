@@ -6,7 +6,7 @@ export default [
   },
   {
     path: '',
-    component: () => import('pages/index'),
+    component: () => import('pages/Index'),
     children: [
       {
         path: '',
@@ -47,10 +47,16 @@ export default [
             path: '/announce-manage',
             name: 'announce-manage',
             component: () => import('pages/WebManage/AnnounceManage'),
-          }, {
+          },
+          {
             path: '/ad-slider',
             name: 'ad-slider',
             component: () => import('pages/WebManage/ADSlider'),
+          },
+          {
+            path: '/page-manage',
+            name: 'page-manage',
+            component: () => import('pages/WebManage/PageManage'),
           },
         ],
       },
