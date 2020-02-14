@@ -6,7 +6,7 @@ export default [
   },
   {
     path: '',
-    component: () => import('pages/Index'),
+    component: () => import('pages/index'),
     children: [
       {
         path: '',
