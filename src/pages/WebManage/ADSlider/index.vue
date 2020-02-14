@@ -122,7 +122,7 @@
       async getOptions()
       {
         const res = await axios.all([
-          this.$thisApi.getBranchs(),
+          this.$thisApi.getBranches(),
           this.$thisApi.getTypes(),
         ])
         this.options.branches = res[0].data

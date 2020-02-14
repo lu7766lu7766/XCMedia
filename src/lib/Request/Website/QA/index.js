@@ -5,7 +5,7 @@ export default class Request extends BaseRequest
 {
   get baseUrls()
   {
-    return super.baseUrls.concat('advertisement/manage')
+    return super.baseUrls.concat('faq/manage')
   }
 
   constructor()
@@ -29,11 +29,6 @@ export default class Request extends BaseRequest
     return await this.request('branch', data, options)
   }
 
-  async getTypes(data, options)
-  {
-    return await this.request('type', data, options)
-  }
-
   async doCreate(data, options)
   {
     return await this.request('create', data, options)
@@ -47,5 +42,15 @@ export default class Request extends BaseRequest
   async doDelete(data, options)
   {
     return await this.request('delete', data, options)
+  }
+
+  async doUploadPic(data, options)
+  {
+    return await this.request('uploadPic', data, options)
+  }
+
+  async doDeletePic(data, options)
+  {
+    return await this.request('deketePic', data, options)
   }
 }

@@ -6,7 +6,7 @@
         <router-link :to="{name:'welcome'}">首页</router-link>
       </li>
       <li class="breadcrumb-item"><a href="javascript:;">系统设置</a></li>
-      <li class="breadcrumb-item active">公告管理</li>
+      <li class="breadcrumb-item active">常见问题</li>
     </ol>
 
     <!-- begin row -->
@@ -14,7 +14,7 @@
       <div class="panel panel-inverse" style="clear:both;">
         <!-- begin panel-heading -->
         <div class="panel-heading p-t-10">
-          <h4 class="text-white m-b-0">公告管理</h4>
+          <h4 class="text-white m-b-0">常见问题</h4>
         </div>
         <!-- end panel-heading -->
         <!-- begin panel-body -->
@@ -25,11 +25,6 @@
               <j-button type="add" @click="$bus.emit('create.show')"></j-button>
             </div>
             <div class="col-sm-10 form-inline justify-content-end panel-search">
-              <div class="form-group width-100 m-r-10">
-                <j-select title="跑马灯"
-                          :datas="options.marquee"
-                          v-model="search.marquee_switch" />
-              </div>
               <div class="form-group width-100 m-r-10">
                 <j-select title="状态" :datas="options.status" v-model="search.status" />
               </div>
@@ -47,7 +42,6 @@
                 <th class="width-30">#</th>
                 <th>标题</th>
                 <th class="width-350">发布站台</th>
-                <th class="width-100">跑马灯</th>
                 <th class="width-100">状态</th>
                 <th class="width-150">建立时间</th>
                 <th class="width-70">操作</th>
@@ -58,10 +52,6 @@
                 <td>{{ startIndex + index }}</td>
                 <td>{{ data.title }}</td>
                 <td>{{ _.map(data.branches, 'name').join(', ') }}</td>
-                <td>
-                  <i class="fas fa-lg fa-check-circle text-green" v-if="data.marquee_switch === 'Y'"></i>
-                  <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
-                </td>
                 <td>
                   <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'Y'"></i>
                   <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
@@ -99,17 +89,15 @@
     },
     data: () => ({
       search: {
-        marquee_switch: '',
         status: '',
         title: '',
       },
       options: {
         status: Enable,
-        marquee: Enable,
         branches: [],
       },
     }),
-    api: 'website.announce',
+    api: 'website.qa',
     methods: {
       async getOptions()
       {
