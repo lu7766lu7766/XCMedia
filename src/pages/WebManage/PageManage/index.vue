@@ -51,7 +51,7 @@
               <tbody>
               <tr v-for="(data, index) in datas" :key="index">
                 <td>{{ startIndex + index }}</td>
-                <td>{{ data.title }}</td>
+                <td>{{ data.code }}</td>
                 <td>{{ data.title }}</td>
                 <td>{{ _.map(data.branches, 'name').join(', ') }}</td>
                 <td>
