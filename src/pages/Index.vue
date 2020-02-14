@@ -606,19 +606,11 @@
       },
       hasMenu(...codes)
       {
-        for (const code of codes)
+        return _.some(codes, code =>
         {
           const menu = _.find(this.menus, {code})
-          if (codes.length > 1)
-          {
-            return !!menu
-          }
-          else
-          {
-            return menu && _.some(menu.nodes, x => _.endsWith(x.code, '_READ'))
-          }
-        }
-        return false
+          return menu && _.some(menu.nodes, x => _.endsWith(x.code, '_READ'))
+        })
       },
     },
     mounted()
