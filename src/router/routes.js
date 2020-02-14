@@ -51,6 +51,10 @@ export default [
             path: '/ad-slider',
             name: 'ad-slider',
             component: () => import('pages/WebManage/ADSlider'),
+          }, {
+            path: '/qa',
+            name: 'qa',
+            component: () => import('pages/WebManage/QA'),
           },
         ],
       },

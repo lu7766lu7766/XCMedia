@@ -1,5 +1,5 @@
 <template>
-  <detail title="新增" @submit="doSubmit()">
+  <detail title="编辑" @submit="doSubmit()">
 
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">标题</label>
@@ -20,12 +20,6 @@
       </div>
     </div>
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">跑马灯</label>
-      <div class="col-md-10">
-        <switcher v-model="data.marquee_switch" />
-      </div>
-    </div>
-    <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">状态</label>
       <div class="col-md-10">
         <switcher v-model="data.status" />
@@ -37,7 +31,6 @@
       <div class="col-md-10">
         <validate rules="required">
           <j-website v-model="data.branches"
-                     :defaultAll="true"
                      :options="options.branches" />
         </validate>
       </div>
@@ -59,26 +52,24 @@
       async doSubmit()
       {
         const data = _.cloneDeep(this.data)
-        await this.$thisApi.doCreate(data)
-        this.createSuccess()
+        await this.$thisApi.doUpdate(data)
+        this.updateSuccess()
       },
     },
     mounted()
     {
-      this.$bus.on('create.show', () =>
+      this.$bus.on('update.show', data =>
       {
-        this.data = {
-          branches: [],
-          marquee_switch: 'Y',
-          status: 'Y',
-        }
+        const tmpData = _.cloneDeep(data)
+        tmpData.branches = _.map(tmpData.branches, 'id')
+        tmpData.image_ids = _.map(tmpData.editor_files, 'id')
+        this.data = tmpData
         this.show()
       })
-
     },
     destroyed()
     {
-      this.$bus.off('create.show')
+      this.$bus.off('update.show')
     },
   }
 </script>
