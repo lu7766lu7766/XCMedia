@@ -18,6 +18,18 @@ export default class API
       announce: new (require('./Request/Website/Announce').default),
       adslider: new (require('./Request/Website/ADSlider').default),
     }
+    this.drama = {
+      source: new (require('./Request/Drama/Source').default),
+    }
+    this.movie = {
+      source: new (require('./Request/Movie/Source').default),
+    }
+    this.anime = {
+      source: new (require('./Request/Anime/Source').default),
+    }
+    this.veriety = {
+      source: new (require('./Request/Veriety/Source').default),
+    }
     this.history = {
       account: new (require('./Request/History/Account').default),
     }
