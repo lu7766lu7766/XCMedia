@@ -606,11 +606,16 @@
       },
       hasMenu(...codes)
       {
-        for (let code of codes)
+        for (const code of codes)
         {
-          if (_.some(this.menus, {code}))
+          const menu = _.find(this.menus, {code})
+          if (codes.length > 1)
           {
-            return true
+            return !!menu
+          }
+          else
+          {
+            return menu && _.some(menu.nodes, x => _.endsWith(x.code, '_READ'))
           }
         }
         return false
