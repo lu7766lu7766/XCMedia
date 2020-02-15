@@ -1,5 +1,22 @@
 <template>
   <detail title="新增" @submit="doSubmit()">
+
+    <div class="form-group row m-b-15">
+      <label class="col-md-2 control-label required">站台</label>
+      <div class="col-md-10">
+        <validate rules="required">
+          <select class="form-control selectchange"
+                  v-model="data.branch_id">
+            <option value="">---请选择---</option>
+            <option v-for="branch in options.branch" :key="branch.id"
+                    :value="branch.id">
+              {{ branch.name }}
+            </option>
+          </select>
+        </validate>
+      </div>
+    </div>
+
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">帐号</label>
       <div class="col-md-10">
@@ -29,31 +46,37 @@
       </div>
     </div>
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">密码确认</label>
-      <div class="col-md-10">
-        <validate rules="required|confirmed:password">
-          <input type="password" class="form-control"
-                 v-model="data.password_confirmation" />
-        </validate>
-        <!--<div class="m-t-1 form-txt text-red">需英数组合, 4~16字元</div>-->
+      <label class="col-md-2 col-form-label ">电话 </label>
+      <div class="col-md-10 verification-box">
+        <div>
+          <validate rules="phone">
+            <input type="text" class="form-control" v-model="data.phone"/>
+          </validate>
+        </div>
+        <div>
+          <input class="form-check-input" type="checkbox" name="" id="" v-model="data.phone_approve" />
+          <label class="form-check-label" for="">
+            验证
+          </label>
+        </div>
       </div>
     </div>
     <div class="form-group row m-b-15">
-      <label class="col-md-2 control-label required">角色</label>
-      <div class="col-md-10">
-        <validate rules="required">
-          <select class="form-control selectchange"
-                  v-model="data.role_id">
-            <option value="">---请选择---</option>
-            <option v-for="role in options.roles" :key="role.id"
-                    :value="role.id">
-              {{ role.display_name }}
-            </option>
-          </select>
-        </validate>
+      <label class="col-md-2 col-form-label ">Email </label>
+      <div class="col-md-10 verification-box">
+        <div>
+          <validate rules="email">
+          <input type="text" class="form-control" v-model="data.mail"/>
+          </validate>
+        </div>
+        <div>
+          <input class="form-check-input" type="checkbox" name="" id="" v-model="data.mail_approve" />
+          <label class="form-check-label" for="">
+            验证
+          </label>
+        </div>
       </div>
     </div>
-
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">状态</label>
       <div class="col-md-10">
@@ -78,8 +101,10 @@
     methods: {
       async doSubmit()
       {
-        const data = _.cloneDeep(this.data)
-        data.role_id = [data.role_id]
+        let data = Object.assign({}, this.data, {
+          phone_approve: !!this.data.phone_approve ? 'Y' : 'N',
+          mail_approve: !!this.data.mail_approve ? 'Y' : 'N',
+        })
         await this.$thisApi.doCreate(data)
         this.createSuccess()
       },
@@ -89,7 +114,9 @@
       this.$bus.on('create.show', () =>
       {
         this.data = {
-          role_id: '',
+          branch_id: '',
+          account: '',
+          display_name: '',
           status: 'enable',
         }
         this.show()

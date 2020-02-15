@@ -23,6 +23,12 @@ extend('confirmed', {
 extend('url', {
   validate: value => /https?:\/\/.+\..+\..+/.test(value),
 })
+extend('email', {
+  validate: value => /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/.test(value),
+})
+extend('phone', {
+  validate: value => /^\d{11}$/.test(value),
+})
 extend('difference', {
   params: ['target'],
   validate: (value, {target}) => value !== target,
@@ -55,6 +61,8 @@ locale.messages = Object.assign(locale.messages, {
   max_value: (filed, value) => `數字需小於${value.max}`,
   confirmed: () => `需与指定欄位相同`,
   url: () => '非合法網址',
+  email: () => '非合法Email',
+  phone: () => '非合法手機號碼',
   difference: () => '需與指定欄位相異',
   required_if: () => '必填欄位',
   numeric: () => '欄位需為數字',

@@ -1,0 +1,34 @@
+{
+  "list": {
+    "uri": "manage/list",
+    "method": "post"
+  },
+  "total": {
+    "uri": "manage/total",
+    "method": "post"
+  },
+  "branch": {
+    "uri": "manage/options/branch",
+    "method": "get"
+  },
+  "status": {
+    "uri": "manage/options/status",
+    "method": "get"
+  },
+  "create": {
+    "uri": "manage/create",
+    "method": "post"
+  },
+  "update": {
+    "uri": "manage/update",
+    "method": "post"
+  },
+  "delete": {
+    "uri": "manage/delete",
+    "method": "post"
+  },
+  "loginHistory": {
+    "uri": "login/history/personal/list",
+    "method": "post"
+  }
+}

@@ -19,7 +19,12 @@ export default [
         component: () => import('pages/Index/Profile'),
       },
       {
-        path: 'sys-setting',
+        path: '/member-manage',
+        name: 'member-manage',
+        component: () => import('pages/MemberManage'),
+      },
+      {
+        path: '/sys-setting',
         component: () => import('pages/SysSetting'),
         children: [
           {
@@ -223,8 +228,5 @@ export default [
       },
     ],
   },
-  {
-    path: '*',
-    redirect: '/login',
-  },
+  {path: '*', redirect: '/login'},
 ]
