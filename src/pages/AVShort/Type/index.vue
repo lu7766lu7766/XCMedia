@@ -7,7 +7,7 @@
       </li>
       <li class="breadcrumb-item"><a href="javascript:;">影音戏剧</a></li>
       <li class="breadcrumb-item"><a href="javascript:;">分类管理</a></li>
-      <li class="breadcrumb-item active">来源设定</li>
+      <li class="breadcrumb-item active">类型设定</li>
     </ol>
 
     <!-- begin row -->
@@ -15,7 +15,7 @@
       <div class="panel panel-inverse" style="clear:both;">
         <!-- begin panel-heading -->
         <div class="panel-heading p-t-10">
-          <h4 class="text-white m-b-0">来源设定</h4>
+          <h4 class="text-white m-b-0">类型设定</h4>
         </div>
         <!-- end panel-heading -->
         <!-- begin panel-body -->
@@ -41,6 +41,7 @@
               <thead>
               <tr>
                 <th class="width-30">#</th>
+                <th class="width-200">图片</th>
                 <th>名称</th>
                 <th class="width-100">状态</th>
                 <th class="width-150">建立时间</th>
@@ -50,6 +51,8 @@
               <tbody>
               <tr v-for="(data, index) in datas" :key="index">
                 <td>{{ startIndex + index }}</td>
+                <td class="td-img slider-img-td">
+                  <img :src="data.image_url" @click="$emit('image.show', data.image_url)" /></td>
                 <td>{{ data.title }}</td>
                 <td>
                   <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'Y'"></i>
@@ -71,6 +74,7 @@
         </div>
       </div>
     </div>
+    <image-container />
     <create />
     <update />
   </div>
@@ -83,6 +87,7 @@
   export default {
     mixins: [ListMixins],
     components: {
+      ImageContainer: require('@/Container/Image').default,
       Create: require('./modal/create').default,
       Update: require('./modal/update').default,
     },
@@ -95,7 +100,7 @@
         status: Enable,
       },
     }),
-    api: 'veriety.source',
+    api: 'av_short.type',
     created()
     {
       this.doSearch()

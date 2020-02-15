@@ -5,7 +5,7 @@ export default class Request extends BaseRequest
 {
   get baseUrls()
   {
-    return super.baseUrls.concat('drama/source/setting')
+    return super.baseUrls.concat('video/genres/setting')
   }
 
   constructor()
