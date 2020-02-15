@@ -69,7 +69,7 @@ export default [
         component: () => import('pages/Drama'),
         children: [
           {
-            path: '/source',
+            path: 'source',
             name: 'drama-source-setting',
             component: () => import('pages/Drama/Source'),
           },
