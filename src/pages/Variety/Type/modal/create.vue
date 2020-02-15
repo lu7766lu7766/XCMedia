@@ -71,6 +71,7 @@
         this.data = {
           status: 'Y',
         }
+        this.src = ''
         this.show()
       })
     },
