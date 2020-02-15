@@ -5,14 +5,9 @@
       <label class="col-md-2 control-label required">站台</label>
       <div class="col-md-10">
         <validate rules="required">
-          <select class="form-control selectchange"
-                  v-model="data.branch_id">
-            <option value="">---请选择---</option>
-            <option v-for="branch in options.branch" :key="branch.id"
-                    :value="branch.id">
-              {{ branch.name }}
-            </option>
-          </select>
+          <j-select :datas="options.branch"
+                    valueKey="id"
+                    v-model="data.branch_id" />
         </validate>
       </div>
     </div>
@@ -27,7 +22,7 @@
       </div>
     </div>
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">昵称</label>
+      <label class="col-md-2 col-form-label">昵称</label>
       <div class="col-md-10">
         <validate rules="required|min:4|max:32">
           <input type="text" class="form-control"
@@ -36,7 +31,7 @@
       </div>
     </div>
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">密码</label>
+      <label class="col-md-2 col-form-label">密码</label>
       <div class="col-md-10">
         <validate rules="required|min:4|max:32" vid="password">
           <input type="password" class="form-control"
@@ -50,14 +45,11 @@
       <div class="col-md-10 verification-box">
         <div>
           <validate rules="phone">
-            <input type="text" class="form-control" v-model="data.phone"/>
+            <input type="text" class="form-control" v-model="data.phone" />
           </validate>
         </div>
         <div>
-          <input class="form-check-input" type="checkbox" name="" id="" v-model="data.phone_approve" />
-          <label class="form-check-label" for="">
-            验证
-          </label>
+          <j-checkbox v-model="data.phone_approve" title="验证" />
         </div>
       </div>
     </div>
@@ -66,14 +58,11 @@
       <div class="col-md-10 verification-box">
         <div>
           <validate rules="email">
-          <input type="text" class="form-control" v-model="data.mail"/>
+            <input type="text" class="form-control" v-model="data.mail" />
           </validate>
         </div>
         <div>
-          <input class="form-check-input" type="checkbox" name="" id="" v-model="data.mail_approve" />
-          <label class="form-check-label" for="">
-            验证
-          </label>
+          <j-checkbox v-model="data.mail_approve" title="验证" />
         </div>
       </div>
     </div>
@@ -101,10 +90,7 @@
     methods: {
       async doSubmit()
       {
-        let data = Object.assign({}, this.data, {
-          phone_approve: !!this.data.phone_approve ? 'Y' : 'N',
-          mail_approve: !!this.data.mail_approve ? 'Y' : 'N',
-        })
+        const data = _.cloneDeep(this.data)
         await this.$thisApi.doCreate(data)
         this.createSuccess()
       },
@@ -114,9 +100,6 @@
       this.$bus.on('create.show', () =>
       {
         this.data = {
-          branch_id: '',
-          account: '',
-          display_name: '',
           status: 'enable',
         }
         this.show()

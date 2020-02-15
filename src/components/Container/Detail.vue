@@ -3,7 +3,7 @@
     <b-modal ref="modal"
              header-bg-variant="black"
              header-close-variant="white"
-             :hide-footer="hieFooter"
+             :hide-footer="hideFooter"
              size="lg">
 
       <template slot="modal-title">
@@ -26,7 +26,7 @@
 
 <script>
   export default {
-    props: ['title', 'hieFooter'],
+    props: ['title', 'hideFooter'],
     methods: {
       show()
       {

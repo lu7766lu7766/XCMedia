@@ -33,6 +33,7 @@ const install = (Vue, options) =>
   Vue.component('JButton', require('@/Form/Button').default)
   Vue.component('JRadio', require('@/Form/Radio').default)
   Vue.component('JSelect', require('@/Form/Select').default)
+  Vue.component('JCheckbox', require('@/Form/Checkbox').default)
 
   Vue.component('Alert', require('@/Alert').default)
 
