@@ -115,5 +115,8 @@ export default [
       },
     ],
   },
-  {path: '*', redirect: '/login'},
+  {
+    path: '*', redirect:
+      '/login',
+  },
 ]
