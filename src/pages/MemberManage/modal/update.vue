@@ -5,14 +5,10 @@
       <label class="col-md-2 control-label required">站台</label>
       <div class="col-md-10">
         <validate rules="required">
-          <select class="form-control selectchange"
-                  v-model="data.branch_id">
-            <option value="">---请选择---</option>
-            <option v-for="branch in options.branch" :key="branch.id"
-                    :value="branch.id">
-              {{ branch.name }}
-            </option>
-          </select>
+          <j-select disabled
+                    :datas="options.branch"
+                    valueKey="id"
+                    v-model="data.branch_id" />
         </validate>
       </div>
     </div>
@@ -22,12 +18,13 @@
       <div class="col-md-10">
         <validate rules="required|min:4|max:32">
           <input type="text" class="form-control"
+                 disabled
                  v-model="data.account" />
         </validate>
       </div>
     </div>
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">昵称</label>
+      <label class="col-md-2 col-form-label">昵称</label>
       <div class="col-md-10">
         <validate rules="required|min:4|max:32">
           <input type="text" class="form-control"
@@ -40,6 +37,7 @@
       <div class="col-md-10">
         <validate rules="min:4|max:32" vid="password">
           <input type="password" class="form-control"
+                 placeholder="若需要修改密码再填入"
                  v-model="data.password" />
         </validate>
         <!--<div class="m-t-1 form-txt text-red">需英数组合, 4~16字元</div>-->
@@ -48,24 +46,18 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label ">电话 </label>
       <div class="col-md-10 verification-box">
-        <div><input type="text" class="form-control" v-model="data.phone"/></div>
+        <div><input type="text" class="form-control" v-model="data.phone" /></div>
         <div>
-          <input class="form-check-input" type="checkbox" name="" id="" v-model="data.phone_approve" />
-          <label class="form-check-label" for="">
-            验证
-          </label>
+          <j-checkbox v-model="data.phone_approve" title="验证" />
         </div>
       </div>
     </div>
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label ">Email </label>
       <div class="col-md-10 verification-box">
-        <div><input type="text" class="form-control" v-model="data.mail"/></div>
+        <div><input type="text" class="form-control" v-model="data.mail" /></div>
         <div>
-          <input class="form-check-input" type="checkbox" name="" id="" v-model="data.mail_approve" />
-          <label class="form-check-label" for="">
-            验证
-          </label>
+          <j-checkbox v-model="data.mail_approve" title="验证" />
         </div>
       </div>
     </div>
@@ -96,10 +88,7 @@
     methods: {
       async doSubmit()
       {
-        let data = Object.assign({}, this.data, {
-          phone_approve: !!this.data.phone_approve ? 'Y' : 'N',
-          mail_approve: !!this.data.mail_approve ? 'Y' : 'N',
-        })
+        const data = _.cloneDeep(this.data)
         await this.$thisApi.doUpdate(data)
         this.updateSuccess()
       },
@@ -109,10 +98,6 @@
       this.$bus.on('update.show', data =>
       {
         this.data = _.cloneDeep(data)
-        this.data = Object.assign({}, this.data, {
-          phone_approve: this.data.phone_approve === 'Y',
-          mail_approve: this.data.mail_approve === 'Y',
-        })
         this.show()
       })
     },

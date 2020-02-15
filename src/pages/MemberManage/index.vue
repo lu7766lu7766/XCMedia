@@ -26,18 +26,10 @@
             </div>
             <div class="col-sm-10 form-inline justify-content-end panel-search">
               <div class="form-group width-100 m-r-10">
-                <select class="form-control" v-model="search.branch">
-                  <option value="">站台</option>
-                  <option v-for="brnach in options.branch" :key="brnach.id" :value="brnach.id">{{ brnach.name }}</option>
-                </select>
+                <j-select title="站台" :datas="options.branch" valueKey="id" v-model="search.branch_id" />
               </div>
               <div class="form-group width-100 m-r-10">
-                <select class="form-control" v-model="search.status">
-                  <option value="">状态</option>
-                  <option v-for="(val) in options.status" :key="val" :value="val">
-                    {{ $translate('status', val) }}
-                  </option>
-                </select>
+                <j-select title="状态" :translate="translate.status" :datas="options.status" v-model="search.status" />
               </div>
               <div class="form-group m-r-10">
                 <input type="text" class="form-control" placeholder="请输入帐号/电话/email" v-model="search.keyword">
@@ -49,37 +41,37 @@
           <div class="table-responsive">
             <table class="table  table-striped table-box text-center">
               <thead>
-                <tr>
-                  <th class="width-30">#</th>
-                  <th class="width-200">站台</th>
-                  <th class="width-250">帐号</th>
-                  <th>昵称</th>
-                  <th>电话</th>
-                  <th>Email</th>
-                  <th class="width-100">状态</th>
-                  <th class="width-150">建立时间</th>
-                  <th class="width-100">操作</th>
-                </tr>
+              <tr>
+                <th class="width-30">#</th>
+                <th class="width-200">站台</th>
+                <th class="width-250">帐号</th>
+                <th>昵称</th>
+                <th>电话</th>
+                <th>Email</th>
+                <th class="width-100">状态</th>
+                <th class="width-150">建立时间</th>
+                <th class="width-100">操作</th>
+              </tr>
               </thead>
               <tbody>
-                <tr v-for="(data, index) in datas" :key="index">
-                  <td>{{ startIndex + index }}</td>
-                  <td>{{ toBranchName(data.branch_id) }}</td>
-                  <td>{{ data.account }}</td>
-                  <td>{{ data.display_name }}</td>
-                  <td>{{ data.phone || '-' }}</td>
-                  <td>{{ data.mail || '-' }}</td>
-                  <td>
-                    <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'enable'"></i>
-                    <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
-                  </td>
-                  <td>{{ data.created_at }}</td>
-                  <td class="text-left">
-                    <j-button type="log" :action="true" @click="$bus.emit('log.show', data)"></j-button>
-                    <j-button type="edit" :action="true" @click="$bus.emit('update.show', data)"></j-button>
-                    <j-button type="delete" :action="true" @click="doDelete(data.id)"></j-button>
-                  </td>
-                </tr>
+              <tr v-for="(data, index) in datas" :key="index">
+                <td>{{ startIndex + index }}</td>
+                <td>{{ _.getVal(_.find(options.branch, {id: data.branch_id}), 'name', '-') }}</td>
+                <td>{{ data.account }}</td>
+                <td>{{ data.display_name }}</td>
+                <td><span :class="data.phone_approve ==='Y' ? 'text-green': ''">{{ data.phone || '-' }}</span></td>
+                <td><span :class="data.mail_approve ==='Y' ? 'text-green': ''">{{ data.mail || '-' }}</span></td>
+                <td>
+                  <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'enable'"></i>
+                  <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
+                </td>
+                <td>{{ data.created_at }}</td>
+                <td class="text-left">
+                  <j-button type="log" :action="true" @click="$bus.emit('log.show', data)"></j-button>
+                  <j-button type="edit" :action="true" @click="$bus.emit('update.show', data)"></j-button>
+                  <j-button type="delete" :action="true" @click="doDelete(data.id)"></j-button>
+                </td>
+              </tr>
               </tbody>
             </table>
           </div>
@@ -97,51 +89,45 @@
 </template>
 
 <script>
-import ListMixins from "mixins/List";
-import AccountManageStatus from "constants/AccountManageStatus";
+  import ListMixins from 'mixins/List'
+  import Status from 'constants/AccountManageStatus'
 
-export default {
-  mixins: [ListMixins],
-  components: {
-    Create: require("./modal/create").default,
-    Update: require("./modal/update").default,
-    log: require("./modal/log").default,
-  },
-  data: () => ({
-    search: {
-      branch: "",
-      status: "",
-      keyword: "",
+  export default {
+    mixins: [ListMixins],
+    components: {
+      Create: require('./modal/create').default,
+      Update: require('./modal/update').default,
+      log: require('./modal/log').default,
     },
-    options: {
-      branch: [],
-      status: [],
+    data: () => ({
+      search: {
+        branch_id: '',
+        status: '',
+        keyword: '',
+      },
+      options: {
+        branch: [],
+        status: [],
+      },
+      translate: {
+        status: Status,
+      },
+    }),
+    api: 'member.manage',
+    methods: {
+      async getOptions()
+      {
+        const res = await axios.all([this.$thisApi.getBranches(), this.$thisApi.getStatuses()])
+        this.options = {
+          branch: res[0].data,
+          status: res[1].data,
+        }
+      },
     },
-    translate: {
-      status: AccountManageStatus,
-    }
-  }),
-  api: "member.manage",
-  methods: {
-    async getOptions() {
-      const {data: branch} = await this.$thisApi.getBranches();
-      const {data: status} = await this.$thisApi.getStatuses();
-      this.options = Object.assign({}, this.options, {
-        branch,
-        status,
-      })
+    created()
+    {
+      this.getOptions()
+      this.doSearch()
     },
-    dataInit() {
-      this.getOptions();
-    },
-    toBranchName(id) {
-      let i = _.findIndex(this.options.branch, {id})
-      return i > -1 ? this.options.branch[i].name : '?'
-    }
-  },
-  created() {
-    this.dataInit();
-    this.doSearch();
   }
-};
 </script>
