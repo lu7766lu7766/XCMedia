@@ -14,7 +14,7 @@ export default [
         component: () => import('pages/Index/Welcome'),
       },
       {
-        path: '/edit-profile',
+        path: 'edit-profile',
         name: 'edit-profile',
         component: () => import('pages/Index/Profile'),
       },
