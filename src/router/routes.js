@@ -47,7 +47,8 @@ export default [
             path: '/announce-manage',
             name: 'announce-manage',
             component: () => import('pages/WebManage/AnnounceManage'),
-          }, {
+          },
+          {
             path: '/ad-slider',
             name: 'ad-slider',
             component: () => import('pages/WebManage/ADSlider'),
@@ -55,6 +56,11 @@ export default [
             path: '/qa',
             name: 'qa',
             component: () => import('pages/WebManage/QA'),
+          },
+          {
+            path: '/page-manage',
+            name: 'page-manage',
+            component: () => import('pages/WebManage/PageManage'),
           },
         ],
       },
@@ -109,5 +115,8 @@ export default [
       },
     ],
   },
-  {path: '*', redirect: '/login'},
+  {
+    path: '*', redirect:
+      '/login',
+  },
 ]

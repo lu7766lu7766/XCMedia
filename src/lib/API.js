@@ -16,6 +16,7 @@ export default class API
     }
     this.website = {
       announce: new (require('./Request/Website/Announce').default),
+      page: new (require('./Request/Website/Page').default),
       adslider: new (require('./Request/Website/ADSlider').default),
       qa: new (require('./Request/Website/QA').default),
     }
