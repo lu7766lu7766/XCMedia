@@ -95,7 +95,7 @@
         status: Enable,
       },
     }),
-    api: 'drama.source',
+    api: 'movie.source',
     created()
     {
       this.doSearch()
