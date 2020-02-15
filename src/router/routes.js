@@ -6,7 +6,7 @@ export default [
   },
   {
     path: '',
-    component: () => import('pages/index'),
+    component: () => import('pages/Index'),
     children: [
       {
         path: '',
@@ -17,6 +17,11 @@ export default [
         path: '/edit-profile',
         name: 'edit-profile',
         component: () => import('pages/Index/Profile'),
+      },
+      {
+        path: '/member-manage',
+        name: 'member-manage',
+        component: () => import('pages/MemberManage'),
       },
       {
         path: '/sys-setting',

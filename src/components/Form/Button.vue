@@ -91,6 +91,12 @@
         //   this.btnIcon = 'fa-cloud-upload-alt'
         //   this.hasPermission = true
         //   break
+        case 'log':
+          this.name = this.iName || '纪录'
+          this.btnColor = this.iBtnColor || 'btn-green'
+          this.btnIcon = this.iBtnIcon || 'fa-history'
+          this.hasPermission = this.canRead
+          break
       }
     },
   }
