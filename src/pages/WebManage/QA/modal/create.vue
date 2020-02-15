@@ -20,12 +20,6 @@
       </div>
     </div>
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">跑马灯</label>
-      <div class="col-md-10">
-        <switcher v-model="data.marquee_switch" />
-      </div>
-    </div>
-    <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">状态</label>
       <div class="col-md-10">
         <switcher v-model="data.status" />
@@ -69,12 +63,10 @@
       {
         this.data = {
           branches: [],
-          marquee_switch: 'Y',
           status: 'Y',
         }
         this.show()
       })
-
     },
     destroyed()
     {

@@ -2,7 +2,6 @@ import jEditor from '@/Form/Editor'
 
 export default {
   components: {
-    jWebsite: require('@/Custom/Website').default,
     jEditor,
   },
   methods: {
