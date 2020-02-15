@@ -48,10 +48,13 @@
 
 <script>
   import DetailMixins from 'mixins/Detail'
-  import ThisMixins from './mixins'
+  import EditorMixins from 'mixins/Editor'
 
   export default {
-    mixins: [DetailMixins, ThisMixins],
+    mixins: [DetailMixins, EditorMixins],
+    components: {
+      jWebsite: require('@/Custom/Website').default,
+    },
     methods: {
       async doSubmit()
       {

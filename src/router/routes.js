@@ -52,10 +52,64 @@ export default [
             path: '/announce-manage',
             name: 'announce-manage',
             component: () => import('pages/WebManage/AnnounceManage'),
-          }, {
+          },
+          {
             path: '/ad-slider',
             name: 'ad-slider',
             component: () => import('pages/WebManage/ADSlider'),
+          }, {
+            path: '/qa',
+            name: 'qa',
+            component: () => import('pages/WebManage/QA'),
+          },
+          {
+            path: '/page-manage',
+            name: 'page-manage',
+            component: () => import('pages/WebManage/PageManage'),
+          },
+        ],
+      },
+      {
+        path: '/drama',
+        component: () => import('pages/Drama'),
+        children: [
+          {
+            path: '/source',
+            name: 'drama-source-setting',
+            component: () => import('pages/Drama/Source'),
+          },
+        ],
+      },
+      {
+        path: '/movie',
+        component: () => import('pages/Movie'),
+        children: [
+          {
+            path: '/source',
+            name: 'movie-source-setting',
+            component: () => import('pages/Movie/Source'),
+          },
+        ],
+      },
+      {
+        path: '/anime',
+        component: () => import('pages/Anime'),
+        children: [
+          {
+            path: '/source',
+            name: 'anime-source-setting',
+            component: () => import('pages/Anime/Source'),
+          },
+        ],
+      },
+      {
+        path: '/veriety',
+        component: () => import('pages/Veriety'),
+        children: [
+          {
+            path: '/source',
+            name: 'veriety-source-setting',
+            component: () => import('pages/Veriety/Source'),
           },
         ],
       },

@@ -24,7 +24,7 @@ export default class Request extends BaseRequest
     return await this.request('total', data, options)
   }
 
-  async getBranchs(data, options)
+  async getBranches(data, options)
   {
     return await this.request('branch', data, options)
   }

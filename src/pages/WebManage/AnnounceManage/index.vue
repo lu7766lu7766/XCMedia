@@ -113,7 +113,7 @@
     methods: {
       async getOptions()
       {
-        const res = await this.$thisApi.getBranchs()
+        const res = await this.$thisApi.getBranches()
         this.options.branches = res.data
       },
     },
