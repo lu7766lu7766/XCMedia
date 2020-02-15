@@ -619,3 +619,8 @@
     },
   }
 </script>
+
+<style lang="stylus">
+  .upload-box .img-show
+    display block
+</style>

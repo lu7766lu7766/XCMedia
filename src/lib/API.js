@@ -22,15 +22,43 @@ export default class API
     }
     this.drama = {
       source: new (require('./Request/Drama/Source').default),
+      type: new (require('./Request/Drama/Type').default),
     }
     this.movie = {
       source: new (require('./Request/Movie/Source').default),
+      type: new (require('./Request/Movie/Type').default),
     }
     this.anime = {
       source: new (require('./Request/Anime/Source').default),
+      type: new (require('./Request/Anime/Type').default),
     }
-    this.veriety = {
-      source: new (require('./Request/Veriety/Source').default),
+    this.variety = {
+      source: new (require('./Request/Variety/Source').default),
+      type: new (require('./Request/Variety/Type').default),
+    }
+    this.av_long = {
+      type: new (require('./Request/AVLong/Type').default),
+    }
+    this.av_short = {
+      type: new (require('./Request/AVShort/Type').default),
+    }
+    this.av_selfie = {
+      type: new (require('./Request/AVSelfie/Type').default),
+    }
+    this.adult_photo = {
+      type: new (require('./Request/AdultPhoto/Type').default),
+    }
+    this.av = {
+      type: new (require('./Request/AV/Type').default),
+    }
+    this.adult_comic = {
+      type: new (require('./Request/AdultComic/Type').default),
+    }
+    this.adult_literature = {
+      type: new (require('./Request/AdultLiterature/Type').default),
+    }
+    this.adult_story = {
+      type: new (require('./Request/AdultStory/Type').default),
     }
     this.history = {
       account: new (require('./Request/History/Account').default),
