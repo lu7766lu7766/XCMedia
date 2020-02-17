@@ -5,7 +5,7 @@
       <li class="breadcrumb-item">
         <router-link :to="{name:'welcome'}">首页</router-link>
       </li>
-      <li class="breadcrumb-item"><a href="javascript:;">成人视频</a></li>
+      <li class="breadcrumb-item"><a href="javascript:;">成人长片</a></li>
       <li class="breadcrumb-item"><a href="javascript:;">分类管理</a></li>
       <li class="breadcrumb-item active">罩杯设定</li>
     </ol>
