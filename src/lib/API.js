@@ -52,26 +52,31 @@ export default class API
       type: new (require('./Request/AVLong/Type').default),
       year: new (require('./Request/AVLong/Year').default),
       area: new (require('./Request/AVLong/Area').default),
+      actress: new (require('./Request/AVLong/Actress').default),
     }
     this.av_short = {
       type: new (require('./Request/AVShort/Type').default),
       year: new (require('./Request/AVShort/Year').default),
       area: new (require('./Request/AVShort/Area').default),
+      actress: new (require('./Request/AVShort/Actress').default),
     }
     this.av_selfie = {
       type: new (require('./Request/AVSelfie/Type').default),
       year: new (require('./Request/AVSelfie/Year').default),
       area: new (require('./Request/AVSelfie/Area').default),
+      actress: new (require('./Request/AVSelfie/Actress').default),
     }
     this.adult_photo = {
       type: new (require('./Request/AdultPhoto/Type').default),
       year: new (require('./Request/AdultPhoto/Year').default),
       area: new (require('./Request/AdultPhoto/Area').default),
+      actress: new (require('./Request/AdultPhoto/Actress').default),
     }
     this.av = {
       type: new (require('./Request/AV/Type').default),
       year: new (require('./Request/AV/Year').default),
       area: new (require('./Request/AV/Area').default),
+      actress: new (require('./Request/AV/Actress').default),
     }
     this.adult_comic = {
       type: new (require('./Request/AdultComic/Type').default),

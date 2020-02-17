@@ -212,6 +212,11 @@ export default [
             name: 'av-long-area-setting',
             component: () => import('pages/AVLong/Area'),
           },
+          {
+            path: 'actress',
+            name: 'av-long-actress-setting',
+            component: () => import('pages/AVLong/Actress'),
+          },
         ],
       },
       {
@@ -232,6 +237,11 @@ export default [
             path: 'area',
             name: 'av-short-area-setting',
             component: () => import('pages/AVShort/Area'),
+          },
+          {
+            path: 'actress',
+            name: 'av-short-actress-setting',
+            component: () => import('pages/AVShort/Actress'),
           },
         ],
       },
@@ -254,6 +264,11 @@ export default [
             name: 'av-selfie-area-setting',
             component: () => import('pages/AVSelfie/Area'),
           },
+          {
+            path: 'actress',
+            name: 'av-selfie-actress-setting',
+            component: () => import('pages/AVSelfie/Actress'),
+          },
         ],
       },
       {
@@ -275,6 +290,11 @@ export default [
             name: 'adult-photo-area-setting',
             component: () => import('pages/AdultPhoto/Area'),
           },
+          {
+            path: 'actress',
+            name: 'adult-photo-actress-setting',
+            component: () => import('pages/AdultPhoto/Actress'),
+          },
         ],
       },
       {
@@ -295,6 +315,11 @@ export default [
             path: 'area',
             name: 'av-area-setting',
             component: () => import('pages/AV/Area'),
+          },
+          {
+            path: 'actress',
+            name: 'av-actress-setting',
+            component: () => import('pages/AV/Actress'),
           },
         ],
       },
