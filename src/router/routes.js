@@ -93,6 +93,11 @@ export default [
             name: 'drama-year-setting',
             component: () => import('pages/Drama/Year'),
           },
+          {
+            path: 'area',
+            name: 'drama-area-setting',
+            component: () => import('pages/Drama/Area'),
+          },
         ],
       },
       {
@@ -118,6 +123,11 @@ export default [
             path: 'year',
             name: 'movie-year-setting',
             component: () => import('pages/Movie/Year'),
+          },
+          {
+            path: 'area',
+            name: 'movie-area-setting',
+            component: () => import('pages/Movie/Area'),
           },
         ],
       },
@@ -145,6 +155,11 @@ export default [
             name: 'anime-year-setting',
             component: () => import('pages/Anime/Year'),
           },
+          {
+            path: 'area',
+            name: 'anime-area-setting',
+            component: () => import('pages/Anime/Area'),
+          },
         ],
       },
       {
@@ -171,6 +186,11 @@ export default [
             name: 'variety-year-setting',
             component: () => import('pages/Variety/Year'),
           },
+          {
+            path: 'area',
+            name: 'variety-area-setting',
+            component: () => import('pages/Variety/Area'),
+          },
         ],
       },
       {
@@ -191,6 +211,11 @@ export default [
             path: 'cup',
             name: 'av-long-cup-setting',
             component: () => import('pages/AVLong/Cup'),
+          },
+          {
+            path: 'area',
+            name: 'av-long-area-setting',
+            component: () => import('pages/AVLong/Area'),
           },
         ],
       },
@@ -213,6 +238,11 @@ export default [
             name: 'av-short-cup-setting',
             component: () => import('pages/AVShort/Cup'),
           },
+          {
+            path: 'area',
+            name: 'av-short-area-setting',
+            component: () => import('pages/AVShort/Area'),
+          },
         ],
       },
       {
@@ -233,6 +263,11 @@ export default [
             path: 'cup',
             name: 'av-selfie-cup-setting',
             component: () => import('pages/AVSelfie/Cup'),
+          },
+          {
+            path: 'area',
+            name: 'av-selfie-area-setting',
+            component: () => import('pages/AVSelfie/Area'),
           },
         ],
       },
@@ -255,6 +290,11 @@ export default [
             name: 'adult-photo-cup-setting',
             component: () => import('pages/AdultPhoto/Cup'),
           },
+          {
+            path: 'area',
+            name: 'adult-photo-area-setting',
+            component: () => import('pages/AdultPhoto/Area'),
+          },
         ],
       },
       {
@@ -276,6 +316,11 @@ export default [
             name: 'av-cup-setting',
             component: () => import('pages/AV/Cup'),
           },
+          {
+            path: 'area',
+            name: 'av-area-setting',
+            component: () => import('pages/AV/Area'),
+          },
         ],
       },
       {
@@ -291,6 +336,11 @@ export default [
             path: 'year',
             name: 'adult-comic-year-setting',
             component: () => import('pages/AdultComic/Year'),
+          },
+          {
+            path: 'area',
+            name: 'adult-comic-area-setting',
+            component: () => import('pages/AdultComic/Area'),
           },
         ],
       },
@@ -308,6 +358,11 @@ export default [
             name: 'adult-literature-year-setting',
             component: () => import('pages/AdultLiterature/Year'),
           },
+          {
+            path: 'area',
+            name: 'adult-literature-area-setting',
+            component: () => import('pages/AdultLiterature/Area'),
+          },
         ],
       },
       {
@@ -323,6 +378,11 @@ export default [
             path: 'year',
             name: 'adult-story-year-setting',
             component: () => import('pages/AdultStory/Year'),
+          },
+          {
+            path: 'area',
+            name: 'adult-story-area-setting',
+            component: () => import('pages/AdultStory/Area'),
           },
         ],
       },
