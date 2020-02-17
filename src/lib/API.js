@@ -23,21 +23,25 @@ export default class API
     this.drama = {
       source: new (require('./Request/Drama/Source').default),
       type: new (require('./Request/Drama/Type').default),
+      lang: new (require('./Request/Drama/Lang').default),
       year: new (require('./Request/Drama/Year').default),
     }
     this.movie = {
       source: new (require('./Request/Movie/Source').default),
       type: new (require('./Request/Movie/Type').default),
+      lang: new (require('./Request/Movie/Lang').default),
       year: new (require('./Request/Movie/Year').default),
     }
     this.anime = {
       source: new (require('./Request/Anime/Source').default),
       type: new (require('./Request/Anime/Type').default),
+      lang: new (require('./Request/Anime/Lang').default),
       year: new (require('./Request/Anime/Year').default),
     }
     this.variety = {
       source: new (require('./Request/Variety/Source').default),
       type: new (require('./Request/Variety/Type').default),
+      lang: new (require('./Request/Variety/Lang').default),
       year: new (require('./Request/Variety/Year').default),
     }
     this.av_long = {
