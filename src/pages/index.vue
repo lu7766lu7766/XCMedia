@@ -289,7 +289,7 @@
                     <router-link :to="{name: 'av-long-atress-setting'}">女优设定</router-link>
                   </li>
                   <li v-if="hasMenu(Menu.AV_LONG_CUP_SET)">
-                    <router-link :to="{name: 'av-long-area-setting'}">罩杯设定</router-link>
+                    <router-link :to="{name: 'av-long-cup-setting'}">罩杯设定</router-link>
                   </li>
                   <li v-if="hasMenu(Menu.AV_LONG_TYPE_SET)">
                     <router-link :to="{name: 'av-long-type-setting'}">类型设定</router-link>
@@ -325,7 +325,7 @@
                     <router-link :to="{name: 'av-short-atress-setting'}">女优设定</router-link>
                   </li>
                   <li v-if="hasMenu(Menu.AV_SHORT_CUP_SET)">
-                    <router-link :to="{name: 'av-short-area-setting'}">罩杯设定</router-link>
+                    <router-link :to="{name: 'av-short-cup-setting'}">罩杯设定</router-link>
                   </li>
                   <li v-if="hasMenu(Menu.AV_SHORT_TYPE_SET)">
                     <router-link :to="{name: 'av-short-type-setting'}">类型设定</router-link>
@@ -361,7 +361,7 @@
                     <router-link :to="{name: 'av-selfie-atress-setting'}">女优设定</router-link>
                   </li>
                   <li v-if="hasMenu(Menu.AV_SELFIE_CUP_SET)">
-                    <router-link :to="{name: 'av-selfie-area-setting'}">罩杯设定</router-link>
+                    <router-link :to="{name: 'av-selfie-cup-setting'}">罩杯设定</router-link>
                   </li>
                   <li v-if="hasMenu(Menu.AV_SELFIE_TYPE_SET)">
                     <router-link :to="{name: 'av-selfie-type-setting'}">类型设定</router-link>
@@ -397,7 +397,7 @@
                     <router-link :to="{name: 'adult-photo-atress-setting'}">女优设定</router-link>
                   </li>
                   <li v-if="hasMenu(Menu.ADULT_PHOTO_CUP_SET)">
-                    <router-link :to="{name: 'adult-photo-area-setting'}">罩杯设定</router-link>
+                    <router-link :to="{name: 'adult-photo-cup-setting'}">罩杯设定</router-link>
                   </li>
                   <li v-if="hasMenu(Menu.ADULT_PHOTO_TYPE_SET)">
                     <router-link :to="{name: 'adult-photo-type-setting'}">类型设定</router-link>
@@ -433,7 +433,7 @@
                     <router-link :to="{name: 'av-atress-setting'}">女优设定</router-link>
                   </li>
                   <li v-if="hasMenu(Menu.AV_CUP_SET)">
-                    <router-link :to="{name: 'av-area-setting'}">罩杯设定</router-link>
+                    <router-link :to="{name: 'av-cup-setting'}">罩杯设定</router-link>
                   </li>
                   <li v-if="hasMenu(Menu.AV_TYPE_SET)">
                     <router-link :to="{name: 'av-type-setting'}">类型设定</router-link>

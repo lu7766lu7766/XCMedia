@@ -50,26 +50,31 @@ export default class API
     }
     this.av_long = {
       type: new (require('./Request/AVLong/Type').default),
+      cup: new (require('./Request/AVLong/Cup').default),
       year: new (require('./Request/AVLong/Year').default),
       area: new (require('./Request/AVLong/Area').default),
     }
     this.av_short = {
       type: new (require('./Request/AVShort/Type').default),
+      cup: new (require('./Request/AVShort/Cup').default),
       year: new (require('./Request/AVShort/Year').default),
       area: new (require('./Request/AVShort/Area').default),
     }
     this.av_selfie = {
       type: new (require('./Request/AVSelfie/Type').default),
+      cup: new (require('./Request/AVSelfie/Cup').default),
       year: new (require('./Request/AVSelfie/Year').default),
       area: new (require('./Request/AVSelfie/Area').default),
     }
     this.adult_photo = {
       type: new (require('./Request/AdultPhoto/Type').default),
+      cup: new (require('./Request/AdultPhoto/Cup').default),
       year: new (require('./Request/AdultPhoto/Year').default),
       area: new (require('./Request/AdultPhoto/Area').default),
     }
     this.av = {
       type: new (require('./Request/AV/Type').default),
+      cup: new (require('./Request/AV/Cup').default),
       year: new (require('./Request/AV/Year').default),
       area: new (require('./Request/AV/Area').default),
     }
