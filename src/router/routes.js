@@ -83,6 +83,11 @@ export default [
             name: 'drama-type-setting',
             component: () => import('pages/Drama/Type'),
           },
+          {
+            path: 'year',
+            name: 'drama-year-setting',
+            component: () => import('pages/Drama/Year'),
+          },
         ],
       },
       {
@@ -98,6 +103,11 @@ export default [
             path: 'type',
             name: 'movie-type-setting',
             component: () => import('pages/Movie/Type'),
+          },
+          {
+            path: 'year',
+            name: 'movie-year-setting',
+            component: () => import('pages/Movie/Year'),
           },
         ],
       },
@@ -115,6 +125,11 @@ export default [
             name: 'anime-type-setting',
             component: () => import('pages/Anime/Type'),
           },
+          {
+            path: 'year',
+            name: 'anime-year-setting',
+            component: () => import('pages/Anime/Year'),
+          },
         ],
       },
       {
@@ -131,6 +146,11 @@ export default [
             name: 'variety-type-setting',
             component: () => import('pages/Variety/Type'),
           },
+          {
+            path: 'year',
+            name: 'variety-year-setting',
+            component: () => import('pages/Variety/Year'),
+          },
         ],
       },
       {
@@ -141,6 +161,11 @@ export default [
             path: 'type',
             name: 'av-long-type-setting',
             component: () => import('pages/AVLong/Type'),
+          },
+          {
+            path: 'year',
+            name: 'av-long-year-setting',
+            component: () => import('pages/AVLong/Year'),
           },
         ],
       },
@@ -153,6 +178,11 @@ export default [
             name: 'av-short-type-setting',
             component: () => import('pages/AVShort/Type'),
           },
+          {
+            path: 'year',
+            name: 'av-short-year-setting',
+            component: () => import('pages/AVShort/Year'),
+          },
         ],
       },
       {
@@ -163,6 +193,11 @@ export default [
             path: 'type',
             name: 'av-selfie-type-setting',
             component: () => import('pages/AVSelfie/Type'),
+          },
+          {
+            path: 'year',
+            name: 'av-selfie-year-setting',
+            component: () => import('pages/AVSelfie/Year'),
           },
         ],
       },
@@ -175,6 +210,11 @@ export default [
             name: 'adult-photo-type-setting',
             component: () => import('pages/AdultPhoto/Type'),
           },
+          {
+            path: 'year',
+            name: 'adult-photo-year-setting',
+            component: () => import('pages/AdultPhoto/Year'),
+          },
         ],
       },
       {
@@ -185,6 +225,11 @@ export default [
             path: 'type',
             name: 'av-type-setting',
             component: () => import('pages/AV/Type'),
+          },
+          {
+            path: 'year',
+            name: 'av-year-setting',
+            component: () => import('pages/AV/Year'),
           },
         ],
       },
@@ -197,6 +242,11 @@ export default [
             name: 'adult-comic-type-setting',
             component: () => import('pages/AdultComic/Type'),
           },
+          {
+            path: 'year',
+            name: 'adult-comic-year-setting',
+            component: () => import('pages/AdultComic/Year'),
+          },
         ],
       },
       {
@@ -208,6 +258,11 @@ export default [
             name: 'adult-literature-type-setting',
             component: () => import('pages/AdultLiterature/Type'),
           },
+          {
+            path: 'year',
+            name: 'adult-literature-year-setting',
+            component: () => import('pages/AdultLiterature/Year'),
+          },
         ],
       },
       {
@@ -218,6 +273,11 @@ export default [
             path: 'type',
             name: 'adult-story-type-setting',
             component: () => import('pages/AdultStory/Type'),
+          },
+          {
+            path: 'year',
+            name: 'adult-story-year-setting',
+            component: () => import('pages/AdultStory/Year'),
           },
         ],
       },
