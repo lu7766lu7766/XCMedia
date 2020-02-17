@@ -63,6 +63,9 @@ export default class API
     this.history = {
       account: new (require('./Request/History/Account').default),
     }
+    this.member = {
+      manage: new (require('./Request/Member/Manage').default)
+    }
   }
 
   static get hosts()

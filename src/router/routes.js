@@ -19,6 +19,11 @@ export default [
         component: () => import('pages/Index/Profile'),
       },
       {
+        path: 'member-manage',
+        name: 'member-manage',
+        component: () => import('pages/MemberManage'),
+      },
+      {
         path: 'sys-setting',
         component: () => import('pages/SysSetting'),
         children: [
