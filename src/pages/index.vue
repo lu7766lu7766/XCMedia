@@ -217,8 +217,8 @@
                   <li v-if="hasMenu(Menu.ANIME_YEAR_SET)">
                     <router-link :to="{name: 'anime-year-setting'}">年份设定</router-link>
                   </li>
-                  <li v-if="hasMenu(Menu.ANIME_SOURCE_SET)">
-                    <router-link :to="{name: 'anime-source-setting'}">语言设定</router-link>
+                  <li v-if="hasMenu(Menu.ANIME_LANG_SET)">
+                    <router-link :to="{name: 'anime-language-setting'}">语言设定</router-link>
                   </li>
                 </ul>
               </li>
@@ -255,8 +255,8 @@
                   <li v-if="hasMenu(Menu.VARIETY_YEAR_SET)">
                     <router-link :to="{name: 'variety-year-setting'}">年份设定</router-link>
                   </li>
-                  <li v-if="hasMenu(Menu.VARIETY_SOURCE_SET)">
-                    <router-link :to="{name: 'variety-source-setting'}">语言设定</router-link>
+                  <li v-if="hasMenu(Menu.VARIETY_LANG_SET)">
+                    <router-link :to="{name: 'variety-language-setting'}">语言设定</router-link>
                   </li>
                 </ul>
               </li>
@@ -623,4 +623,8 @@
 <style lang="stylus">
   .upload-box .img-show
     display block
+<<<<<<< HEAD:src/pages/index.vue
 </style>
+=======
+</style>
+>>>>>>> summer#18:src/pages/Index.vue

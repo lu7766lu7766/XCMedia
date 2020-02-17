@@ -83,6 +83,11 @@ export default [
             name: 'drama-type-setting',
             component: () => import('pages/Drama/Type'),
           },
+          {
+            path: 'language',
+            name: 'drama-language-setting',
+            component: () => import('pages/Drama/Lang'),
+          },
         ],
       },
       {
@@ -98,6 +103,11 @@ export default [
             path: 'type',
             name: 'movie-type-setting',
             component: () => import('pages/Movie/Type'),
+          },
+          {
+            path: 'language',
+            name: 'movie-language-setting',
+            component: () => import('pages/Movie/Lang'),
           },
         ],
       },
@@ -115,6 +125,11 @@ export default [
             name: 'anime-type-setting',
             component: () => import('pages/Anime/Type'),
           },
+          {
+            path: 'language',
+            name: 'anime-language-setting',
+            component: () => import('pages/Anime/Lang'),
+          },
         ],
       },
       {
@@ -130,6 +145,11 @@ export default [
             path: 'type',
             name: 'variety-type-setting',
             component: () => import('pages/Variety/Type'),
+          },
+          {
+            path: 'language',
+            name: 'variety-language-setting',
+            component: () => import('pages/Variety/Lang'),
           },
         ],
       },
@@ -228,5 +248,8 @@ export default [
       },
     ],
   },
-  {path: '*', redirect: '/login'},
+  {
+    path: '*',
+    redirect: '/login',
+  },
 ]
