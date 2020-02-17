@@ -5,7 +5,7 @@
       <li class="breadcrumb-item">
         <router-link :to="{name:'welcome'}">首页</router-link>
       </li>
-      <li class="breadcrumb-item"><a href="javascript:;">成人说书</a></li>
+      <li class="breadcrumb-item"><a href="javascript:;">分类管理</a></li>
       <li class="breadcrumb-item"><a href="javascript:;">分类管理</a></li>
       <li class="breadcrumb-item active">地區設定</li>
     </ol>
@@ -30,7 +30,7 @@
                 <j-select title="状态" :datas="options.status" v-model="search.status" />
               </div>
               <div class="form-group m-r-10">
-                <input type="text" class="form-control" placeholder="请输入名称" v-model="search.title">
+                <input type="text" class="form-control" placeholder="请输入名称" v-model="search.name">
               </div>
               <j-button type="search" @click="doSearch"></j-button>
             </div>
@@ -50,7 +50,7 @@
               <tbody>
               <tr v-for="(data, index) in datas" :key="index">
                 <td>{{ startIndex + index }}</td>
-                <td>{{ data.title }}</td>
+                <td>{{ data.name }}</td>
                 <td>
                   <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'Y'"></i>
                   <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
@@ -89,7 +89,7 @@
     data: () => ({
       search: {
         status: '',
-        title: '',
+        name: '',
       },
       options: {
         status: Enable,

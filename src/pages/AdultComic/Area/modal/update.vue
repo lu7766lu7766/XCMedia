@@ -6,7 +6,7 @@
       <div class="col-md-10">
         <validate rules="required">
           <input type="text" class="form-control"
-                 v-model="data.title" />
+                 v-model="data.name" />
         </validate>
       </div>
     </div>
@@ -21,7 +21,7 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label ">备注 </label>
       <div class="col-md-10">
-        <textarea class="form-control" rows="5" v-model="data.remark"></textarea>
+        <textarea class="form-control" rows="5" v-model="data.note"></textarea>
       </div>
     </div>
 
