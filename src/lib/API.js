@@ -38,18 +38,23 @@ export default class API
     }
     this.av_long = {
       type: new (require('./Request/AVLong/Type').default),
+      cup: new (require('./Request/AVLong/Cup').default),
     }
     this.av_short = {
       type: new (require('./Request/AVShort/Type').default),
+      cup: new (require('./Request/AVShort/Cup').default),
     }
     this.av_selfie = {
       type: new (require('./Request/AVSelfie/Type').default),
+      cup: new (require('./Request/AVSelfie/Cup').default),
     }
     this.adult_photo = {
       type: new (require('./Request/AdultPhoto/Type').default),
+      cup: new (require('./Request/AdultPhoto/Cup').default),
     }
     this.av = {
       type: new (require('./Request/AV/Type').default),
+      cup: new (require('./Request/AV/Cup').default),
     }
     this.adult_comic = {
       type: new (require('./Request/AdultComic/Type').default),

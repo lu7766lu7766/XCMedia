@@ -142,6 +142,11 @@ export default [
             name: 'av-long-type-setting',
             component: () => import('pages/AVLong/Type'),
           },
+          {
+            path: 'cup',
+            name: 'av-long-cup-setting',
+            component: () => import('pages/AVLong/Cup'),
+          },
         ],
       },
       {
@@ -152,6 +157,11 @@ export default [
             path: 'type',
             name: 'av-short-type-setting',
             component: () => import('pages/AVShort/Type'),
+          },
+          {
+            path: 'cup',
+            name: 'av-short-cup-setting',
+            component: () => import('pages/AVShort/Cup'),
           },
         ],
       },
@@ -164,6 +174,11 @@ export default [
             name: 'av-selfie-type-setting',
             component: () => import('pages/AVSelfie/Type'),
           },
+          {
+            path: 'cup',
+            name: 'av-selfie-cup-setting',
+            component: () => import('pages/AVSelfie/Cup'),
+          },
         ],
       },
       {
@@ -175,6 +190,11 @@ export default [
             name: 'adult-photo-type-setting',
             component: () => import('pages/AdultPhoto/Type'),
           },
+          {
+            path: 'cup',
+            name: 'adult-photo-cup-setting',
+            component: () => import('pages/AdultPhoto/Cup'),
+          },
         ],
       },
       {
@@ -185,6 +205,11 @@ export default [
             path: 'type',
             name: 'av-type-setting',
             component: () => import('pages/AV/Type'),
+          },
+          {
+            path: 'cup',
+            name: 'av-cup-setting',
+            component: () => import('pages/AV/Cup'),
           },
         ],
       },
