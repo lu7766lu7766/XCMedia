@@ -623,8 +623,4 @@
 <style lang="stylus">
   .upload-box .img-show
     display block
-<<<<<<< HEAD:src/pages/index.vue
 </style>
-=======
-</style>
->>>>>>> summer#18:src/pages/Index.vue
