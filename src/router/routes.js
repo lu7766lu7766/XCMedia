@@ -187,6 +187,11 @@ export default [
             name: 'av-long-year-setting',
             component: () => import('pages/AVLong/Year'),
           },
+          {
+            path: 'cup',
+            name: 'av-long-cup-setting',
+            component: () => import('pages/AVLong/Cup'),
+          },
         ],
       },
       {
@@ -202,6 +207,11 @@ export default [
             path: 'year',
             name: 'av-short-year-setting',
             component: () => import('pages/AVShort/Year'),
+          },
+          {
+            path: 'cup',
+            name: 'av-short-cup-setting',
+            component: () => import('pages/AVShort/Cup'),
           },
         ],
       },
@@ -219,6 +229,11 @@ export default [
             name: 'av-selfie-year-setting',
             component: () => import('pages/AVSelfie/Year'),
           },
+          {
+            path: 'cup',
+            name: 'av-selfie-cup-setting',
+            component: () => import('pages/AVSelfie/Cup'),
+          },
         ],
       },
       {
@@ -235,6 +250,11 @@ export default [
             name: 'adult-photo-year-setting',
             component: () => import('pages/AdultPhoto/Year'),
           },
+          {
+            path: 'cup',
+            name: 'adult-photo-cup-setting',
+            component: () => import('pages/AdultPhoto/Cup'),
+          },
         ],
       },
       {
@@ -250,6 +270,11 @@ export default [
             path: 'year',
             name: 'av-year-setting',
             component: () => import('pages/AV/Year'),
+          },
+          {
+            path: 'cup',
+            name: 'av-cup-setting',
+            component: () => import('pages/AV/Cup'),
           },
         ],
       },

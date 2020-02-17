@@ -47,22 +47,27 @@ export default class API
     this.av_long = {
       type: new (require('./Request/AVLong/Type').default),
       year: new (require('./Request/AVLong/Year').default),
+      cup: new (require('./Request/AVLong/Cup').default),
     }
     this.av_short = {
       type: new (require('./Request/AVShort/Type').default),
       year: new (require('./Request/AVShort/Year').default),
+      cup: new (require('./Request/AVShort/Cup').default),
     }
     this.av_selfie = {
       type: new (require('./Request/AVSelfie/Type').default),
       year: new (require('./Request/AVSelfie/Year').default),
+      cup: new (require('./Request/AVSelfie/Cup').default),
     }
     this.adult_photo = {
       type: new (require('./Request/AdultPhoto/Type').default),
       year: new (require('./Request/AdultPhoto/Year').default),
+      cup: new (require('./Request/AdultPhoto/Cup').default),
     }
     this.av = {
       type: new (require('./Request/AV/Type').default),
       year: new (require('./Request/AV/Year').default),
+      cup: new (require('./Request/AV/Cup').default),
     }
     this.adult_comic = {
       type: new (require('./Request/AdultComic/Type').default),
