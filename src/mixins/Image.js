@@ -18,10 +18,10 @@ export default {
       }
       return await JacLib.readImage(files[0])
     },
-    async onFileChange(e)
+    async onFileChange(e, key = 'image')
     {
       this.src = await this.handleImageChange(e)
-      this.data.image = this.getFiles(e)[0]
+      this.data[key] = this.getFiles(e)[0]
     },
   },
 }
