@@ -5,12 +5,20 @@ export default {
     jEditor,
   },
   methods: {
-    async doUploadPic(image, Editor, cursorLocation, resetUploader)
+    async doUploadPic(image, Editor, cursorLocation, resetUploader, key = 'image_ids')
     {
       const res = await this.$thisApi.doUploadPic({image}, {formData: true})
-      jEditor.methods.handleImageUpload(image, Editor, cursorLocation, resetUploader, res.data.file_url)
-      this.data.image_ids = this.data.image_ids || []
-      this.data.image_ids.push(res.data.id)
+      this.insertImage(image, Editor, cursorLocation, resetUploader, res.data.file_url)
+      this.add2Data(key, res.data.id)
+    },
+    insertImage(image, Editor, cursorLocation, resetUploader, url)
+    {
+      jEditor.methods.handleImageUpload(image, Editor, cursorLocation, resetUploader, url)
+    },
+    add2Data(key, id)
+    {
+      this.data[key] = this.data[key] || []
+      this.data[key].push(id)
     },
   },
 }

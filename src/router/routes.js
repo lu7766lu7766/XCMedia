@@ -98,6 +98,16 @@ export default [
             name: 'drama-area-setting',
             component: () => import('pages/Drama/Area'),
           },
+          {
+            path: 'manage',
+            name: 'drama-manage',
+            component: () => import('pages/Drama/Manage'),
+          },
+          {
+            path: 'episode/:id',
+            name: 'drama-episode',
+            component: () => import('pages/Drama/Episode'),
+          },
         ],
       },
       {
@@ -203,11 +213,6 @@ export default [
             component: () => import('pages/AVLong/Type'),
           },
           {
-            path: 'cup',
-            name: 'av-long-cup-setting',
-            component: () => import('pages/AVLong/Cup'),
-          },
-          {
             path: 'year',
             name: 'av-long-year-setting',
             component: () => import('pages/AVLong/Year'),
@@ -227,11 +232,6 @@ export default [
             path: 'type',
             name: 'av-short-type-setting',
             component: () => import('pages/AVShort/Type'),
-          },
-          {
-            path: 'cup',
-            name: 'av-short-cup-setting',
-            component: () => import('pages/AVShort/Cup'),
           },
           {
             path: 'year',
@@ -255,11 +255,6 @@ export default [
             component: () => import('pages/AVSelfie/Type'),
           },
           {
-            path: 'cup',
-            name: 'av-selfie-cup-setting',
-            component: () => import('pages/AVSelfie/Cup'),
-          },
-          {
             path: 'year',
             name: 'av-selfie-year-setting',
             component: () => import('pages/AVSelfie/Year'),
@@ -281,11 +276,6 @@ export default [
             component: () => import('pages/AdultPhoto/Type'),
           },
           {
-            path: 'cup',
-            name: 'adult-photo-cup-setting',
-            component: () => import('pages/AdultPhoto/Cup'),
-          },
-          {
             path: 'year',
             name: 'adult-photo-year-setting',
             component: () => import('pages/AdultPhoto/Year'),
@@ -305,11 +295,6 @@ export default [
             path: 'type',
             name: 'av-type-setting',
             component: () => import('pages/AV/Type'),
-          },
-          {
-            path: 'cup',
-            name: 'av-cup-setting',
-            component: () => import('pages/AV/Cup'),
           },
           {
             path: 'year',
