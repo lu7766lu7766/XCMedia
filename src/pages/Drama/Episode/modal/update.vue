@@ -5,7 +5,7 @@
       <label class="col-md-2 col-form-label required">名称 </label>
       <div class="col-md-10">
         <validate rules="required">
-          <input type="text" class="form-control"
+          <input type="text" class="form-control" placeholder="请输入名称"
                  v-model="data.title" />
         </validate>
       </div>
@@ -14,7 +14,7 @@
     <div class="form-group row m-b-15" v-if="data.sources_url" v-for="(source, index) in options.source" :key="index">
       <label class="col-md-2 col-form-label">{{ source.title }} </label>
       <div class="col-md-10">
-        <input type="text" class="form-control" v-model="data.sources_url[source.id]" />
+        <input type="text" class="form-control" placeholder="请输入网址" v-model="data.sources_url[source.id]" />
       </div>
     </div>
 
