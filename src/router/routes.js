@@ -227,6 +227,11 @@ export default [
             name: 'av-long-actress-setting',
             component: () => import('pages/AVLong/Actress'),
           },
+          {
+            path: 'cup',
+            name: 'av-long-cup-setting',
+            component: () => import('pages/AVLong/Cup'),
+          },
         ],
       },
       {
@@ -252,6 +257,11 @@ export default [
             path: 'actress',
             name: 'av-short-actress-setting',
             component: () => import('pages/AVShort/Actress'),
+          },
+          {
+            path: 'cup',
+            name: 'av-short-cup-setting',
+            component: () => import('pages/AVShort/Cup'),
           },
         ],
       },
@@ -279,6 +289,11 @@ export default [
             name: 'av-selfie-actress-setting',
             component: () => import('pages/AVSelfie/Actress'),
           },
+          {
+            path: 'cup',
+            name: 'av-selfie-cup-setting',
+            component: () => import('pages/AVSelfie/Cup'),
+          },
         ],
       },
       {
@@ -305,6 +320,11 @@ export default [
             name: 'adult-photo-actress-setting',
             component: () => import('pages/AdultPhoto/Actress'),
           },
+          {
+            path: 'cup',
+            name: 'adult-photo-cup-setting',
+            component: () => import('pages/AdultPhoto/Cup'),
+          },
         ],
       },
       {
@@ -330,6 +350,11 @@ export default [
             path: 'actress',
             name: 'av-actress-setting',
             component: () => import('pages/AV/Actress'),
+          },
+          {
+            path: 'cup',
+            name: 'av-cup-setting',
+            component: () => import('pages/AV/Cup'),
           },
         ],
       },

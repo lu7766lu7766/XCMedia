@@ -70,9 +70,18 @@
                 <td class="td-img slider-img-td">
                   <img :src="data.image_url" @click="$emit('image.show', data.image_url)" /></td>
                 <td>{{ data.title }}</td>
-                <td>{{ options.episode[data.episode_status] }}</td>
-                <td>{{ data.region.title }}</td>
-                <td>{{ _.map(data.genres, 'title').join(', ') }}</td>
+                <td>
+                  <span class="label"
+                        :class="data.episode_status ==='end' ? 'label-pink' : 'label-primary'">
+                     {{ options.episode[data.episode_status] }}
+                  </span>
+                </td>
+                <td>{{ data.region.name }}</td>
+                <td>
+                  <span class="label label-warning"
+                        style="margin-right:5px"
+                        v-for="(area, index) in data.genres"
+                        :key="index">{{ area.title }}</span>
                 <td>{{ data.years.title }}</td>
                 <td>{{ data.views }}</td>
                 <td>
@@ -82,7 +91,7 @@
                 <td>{{ data.created_at }}</td>
                 <td class="text-left">
                   <j-button type="episode" :action="true"
-                            @click="$router.push({name: 'drama-episode', params: {id: data.id}})"></j-button>
+                            @click="$router.push({name: 'drama-episode', params: {id: data.id}, query:{name: data.title}})"></j-button>
                   <j-button type="edit" :action="true" @click="$bus.emit('update.show', data)"></j-button>
                   <j-button type="delete" :action="true" @click="doDelete(data.id)"></j-button>
                 </td>

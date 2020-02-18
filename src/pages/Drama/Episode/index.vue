@@ -14,7 +14,7 @@
       <div class="panel panel-inverse" style="clear:both;">
         <!-- begin panel-heading -->
         <div class="panel-heading p-t-10">
-          <h4 class="text-white m-b-0">集数设定-标题标题</h4>
+          <h4 class="text-white m-b-0">集数设定-{{ $route.query.name }}</h4>
         </div>
         <!-- end panel-heading -->
         <!-- begin panel-body -->
@@ -103,6 +103,12 @@
       {
         const res = await this.$thisApi.getSources()
         this.options.source = res.data
+      },
+      async doDelete(id)
+      {
+        await this.doDeleteConfirm()
+        await this.$thisApi.doDelete({episode_owner_id: this.$route.params.id, episode_id: id})
+        this.deleteSuccess()
       },
     },
     created()
