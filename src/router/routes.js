@@ -98,6 +98,16 @@ export default [
             name: 'drama-area-setting',
             component: () => import('pages/Drama/Area'),
           },
+          {
+            path: 'manage',
+            name: 'drama-manage',
+            component: () => import('pages/Drama/Manage'),
+          },
+          {
+            path: 'episode/:id',
+            name: 'drama-episode',
+            component: () => import('pages/Drama/Episode'),
+          },
         ],
       },
       {
@@ -203,11 +213,6 @@ export default [
             component: () => import('pages/AVLong/Type'),
           },
           {
-            path: 'cup',
-            name: 'av-long-cup-setting',
-            component: () => import('pages/AVLong/Cup'),
-          },
-          {
             path: 'year',
             name: 'av-long-year-setting',
             component: () => import('pages/AVLong/Year'),
@@ -222,6 +227,11 @@ export default [
             name: 'av-long-actress-setting',
             component: () => import('pages/AVLong/Actress'),
           },
+          {
+            path: 'cup',
+            name: 'av-long-cup-setting',
+            component: () => import('pages/AVLong/Cup'),
+          },
         ],
       },
       {
@@ -232,11 +242,6 @@ export default [
             path: 'type',
             name: 'av-short-type-setting',
             component: () => import('pages/AVShort/Type'),
-          },
-          {
-            path: 'cup',
-            name: 'av-short-cup-setting',
-            component: () => import('pages/AVShort/Cup'),
           },
           {
             path: 'year',
@@ -253,6 +258,11 @@ export default [
             name: 'av-short-actress-setting',
             component: () => import('pages/AVShort/Actress'),
           },
+          {
+            path: 'cup',
+            name: 'av-short-cup-setting',
+            component: () => import('pages/AVShort/Cup'),
+          },
         ],
       },
       {
@@ -263,11 +273,6 @@ export default [
             path: 'type',
             name: 'av-selfie-type-setting',
             component: () => import('pages/AVSelfie/Type'),
-          },
-          {
-            path: 'cup',
-            name: 'av-selfie-cup-setting',
-            component: () => import('pages/AVSelfie/Cup'),
           },
           {
             path: 'year',
@@ -284,6 +289,11 @@ export default [
             name: 'av-selfie-actress-setting',
             component: () => import('pages/AVSelfie/Actress'),
           },
+          {
+            path: 'cup',
+            name: 'av-selfie-cup-setting',
+            component: () => import('pages/AVSelfie/Cup'),
+          },
         ],
       },
       {
@@ -294,11 +304,6 @@ export default [
             path: 'type',
             name: 'adult-photo-type-setting',
             component: () => import('pages/AdultPhoto/Type'),
-          },
-          {
-            path: 'cup',
-            name: 'adult-photo-cup-setting',
-            component: () => import('pages/AdultPhoto/Cup'),
           },
           {
             path: 'year',
@@ -315,6 +320,11 @@ export default [
             name: 'adult-photo-actress-setting',
             component: () => import('pages/AdultPhoto/Actress'),
           },
+          {
+            path: 'cup',
+            name: 'adult-photo-cup-setting',
+            component: () => import('pages/AdultPhoto/Cup'),
+          },
         ],
       },
       {
@@ -325,11 +335,6 @@ export default [
             path: 'type',
             name: 'av-type-setting',
             component: () => import('pages/AV/Type'),
-          },
-          {
-            path: 'cup',
-            name: 'av-cup-setting',
-            component: () => import('pages/AV/Cup'),
           },
           {
             path: 'year',
@@ -345,6 +350,11 @@ export default [
             path: 'actress',
             name: 'av-actress-setting',
             component: () => import('pages/AV/Actress'),
+          },
+          {
+            path: 'cup',
+            name: 'av-cup-setting',
+            component: () => import('pages/AV/Cup'),
           },
         ],
       },

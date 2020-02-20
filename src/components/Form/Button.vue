@@ -91,6 +91,12 @@
         //   this.btnIcon = 'fa-cloud-upload-alt'
         //   this.hasPermission = true
         //   break
+        case 'episode':
+          this.name = this.iName || '集数设定'
+          this.btnColor = this.iBtnColor || 'btn-success'
+          this.btnIcon = this.iBtnIcon || 'fa-video'
+          this.hasPermission = this.canRead
+          break
         case 'log':
           this.name = this.iName || '纪录'
           this.btnColor = this.iBtnColor || 'btn-green'

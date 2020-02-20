@@ -26,6 +26,8 @@ export default class API
       lang: new (require('./Request/Drama/Lang').default),
       year: new (require('./Request/Drama/Year').default),
       area: new (require('./Request/Drama/Area').default),
+      manage: new (require('./Request/Drama/Manage').default),
+      episode: new (require('./Request/Drama/Episode').default),
     }
     this.movie = {
       source: new (require('./Request/Movie/Source').default),
