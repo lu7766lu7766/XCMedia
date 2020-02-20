@@ -29,7 +29,7 @@
                 <j-select title="站台" :datas="options.branches" valueKey="id" v-model="search.branch_id" />
               </div>
               <div class="form-group m-r-10">
-                <input type="text" class="form-control" placeholder="关键字" v-model="search.keyword">
+                <input type="text" class="form-control" placeholder="关键字" v-model="search.account">
               </div>
               <j-button type="search" @click="doSearch"></j-button>
             </div>
@@ -53,7 +53,10 @@
                 <td>{{ data.owner.branch.name }}</td>
                 <td>{{ data.owner.account }}</td>
                 <td>{{ data.owner.display_name }}</td>
-                <td>{{ data.login_ip }}</td>
+                <td>
+                  <a class="text-primary" href="javascript:;"
+                     @click="$bus.emit('ip.show', data)">{{ data.login_ip }}</a>
+                </td>
                 <td>{{ data.updated_at }}</td>
               </tr>
               </tbody>
@@ -66,6 +69,7 @@
         </div>
       </div>
     </div>
+    <ip />
   </div>
 </template>
 
@@ -75,6 +79,7 @@
   export default {
     mixins: [ListMixins],
     components: {
+      ip: require('./modal/ip').default,
       DateTimeSearchBar: require('@/DateTimeSearchBar').default,
     },
     data: () => ({
@@ -82,7 +87,7 @@
         start: moment().startOf('day').getDateTime(),
         end: moment().endOf('day').getDateTime(),
         branch_id: '',
-        keyword: '',
+        account: '',
       },
       options: {
         branches: [],
