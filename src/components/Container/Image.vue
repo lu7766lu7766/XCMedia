@@ -1,7 +1,8 @@
 <template>
   <b-modal ref="modal"
            header-close-variant="black"
-           size="lg">
+           size="lg"
+           hideFooter>
 
     <div id="img-dialog">
       <div class="img">
