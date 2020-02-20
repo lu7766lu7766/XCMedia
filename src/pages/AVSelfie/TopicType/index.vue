@@ -5,9 +5,9 @@
       <li class="breadcrumb-item">
         <router-link :to="{name:'welcome'}">首页</router-link>
       </li>
-      <li class="breadcrumb-item"><a href="javascript:;">成人说书</a></li>
-      <li class="breadcrumb-item"><a href="javascript:;">分类管理</a></li>
-      <li class="breadcrumb-item active">地區設定</li>
+      <li class="breadcrumb-item"><a href="javascript:;">成人自拍</a></li>
+      <li class="breadcrumb-item"><a href="javascript:;">专题管理</a></li>
+      <li class="breadcrumb-item active">专题分类</li>
     </ol>
 
     <!-- begin row -->
@@ -15,7 +15,7 @@
       <div class="panel panel-inverse" style="clear:both;">
         <!-- begin panel-heading -->
         <div class="panel-heading p-t-10">
-          <h4 class="text-white m-b-0">地區設定</h4>
+          <h4 class="text-white m-b-0">专题分类</h4>
         </div>
         <!-- end panel-heading -->
         <!-- begin panel-body -->
@@ -23,14 +23,14 @@
           <alert />
           <div class="row m-b-20 justify-content-end panel-search-box">
             <div class="col-sm-2">
-              <j-button type="add" @click="$bus.emit('create.show')"></j-button>
+              <j-button type="add" class="add-btn" @click="$bus.emit('create.show')"></j-button>
             </div>
             <div class="col-sm-10 form-inline justify-content-end panel-search">
               <div class="form-group width-100 m-r-10">
                 <j-select title="状态" :datas="options.status" v-model="search.status" />
               </div>
               <div class="form-group m-r-10">
-                <input type="text" class="form-control" placeholder="请输入名称" v-model="search.name">
+                <input type="text" class="form-control" placeholder="请输入名称" v-model="search.title">
               </div>
               <j-button type="search" @click="doSearch"></j-button>
             </div>
@@ -41,6 +41,7 @@
               <thead>
               <tr>
                 <th class="width-30">#</th>
+                <th class="width-200">图片</th>
                 <th>名称</th>
                 <th class="width-100">状态</th>
                 <th class="width-150">建立时间</th>
@@ -50,7 +51,9 @@
               <tbody>
               <tr v-for="(data, index) in datas" :key="index">
                 <td>{{ startIndex + index }}</td>
-                <td>{{ data.name }}</td>
+                <td class="td-img slider-img-td">
+                  <img :src="data.image_url" @click="$emit('image.show', data.image_url)" /></td>
+                <td>{{ data.title }}</td>
                 <td>
                   <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'Y'"></i>
                   <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
@@ -71,6 +74,7 @@
         </div>
       </div>
     </div>
+    <image-container />
     <create />
     <update />
   </div>
@@ -83,19 +87,20 @@
   export default {
     mixins: [ListMixins],
     components: {
+      ImageContainer: require('@/Container/Image').default,
       Create: require('./modal/create').default,
       Update: require('./modal/update').default,
     },
     data: () => ({
       search: {
         status: '',
-        name: '',
+        title: '',
       },
       options: {
         status: Enable,
       },
     }),
-    api: 'adult_story.area',
+    api: 'av_selfie.topicType',
     created()
     {
       this.doSearch()
