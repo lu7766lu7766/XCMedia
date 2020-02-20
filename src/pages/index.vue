@@ -115,7 +115,7 @@
           </li>
 
           <li class="has-sub "
-              v-if="hasMenu(Menu.DRAMA_SOURCE_SET, Menu.DRAMA_AREA_SET, Menu.DRAMA_TYPE_SET, Menu.DRAMA_YEAR_SET, Menu.DRAMA_LANG_SET, Menu.DRAMA_MG)">
+              v-if="hasMenu(Menu.DRAMA_SOURCE_SET, Menu.DRAMA_AREA_SET, Menu.DRAMA_TYPE_SET, Menu.DRAMA_YEAR_SET, Menu.DRAMA_LANG_SET, Menu.DRAMA_TOPIC_TYPE, Menu.DRAMA_MG)">
             <a href="javascript:;">
               <b class="caret"></b>
               <i class="fa fa-television"></i>
@@ -146,6 +146,18 @@
                   </li>
                 </ul>
               </li>
+               <li class="has-sub"
+                  v-if="hasMenu(Menu.DRAMA_TOPIC_TYPE)">
+                <a href="javascript:;">
+                  <b class="caret"></b>
+                  <span>专题管理</span>
+                </a>
+                <ul class="sub-menu">
+                  <li v-if="hasMenu(Menu.DRAMA_TOPIC_TYPE)">
+                    <router-link :to="{name: 'drama-topic-type-setting'}">专题分类</router-link>
+                  </li>
+                </ul>
+              </li>
               <li v-if="hasMenu(Menu.DRAMA_MG)">
                 <router-link :to="{name: 'drama-manage'}"><span>戏剧管理</span></router-link>
               </li>
@@ -153,7 +165,7 @@
           </li>
 
           <li class="has-sub"
-              v-if="hasMenu(Menu.MOVIE_SOURCE_SET, Menu.MOVIE_AREA_SET, Menu.MOVIE_TYPE_SET, Menu.MOVIE_YEAR_SET, Menu.MOVIE_LANG_SET, Menu.MOVIE_MG)">
+              v-if="hasMenu(Menu.MOVIE_SOURCE_SET, Menu.MOVIE_AREA_SET, Menu.MOVIE_TYPE_SET, Menu.MOVIE_YEAR_SET, Menu.MOVIE_LANG_SET, Menu.MOVIE_MG, Menu.MOVIE_TOPIC_TYPE)">
             <a href="javascript:;">
               <b class="caret"></b>
               <i class="fa fa-film"></i>
@@ -184,6 +196,18 @@
                   </li>
                 </ul>
               </li>
+              <li class="has-sub"
+                  v-if="hasMenu(Menu.MOVIE_TOPIC_TYPE)">
+                <a href="javascript:;">
+                  <b class="caret"></b>
+                  <span>专题管理</span>
+                </a>
+                <ul class="sub-menu">
+                  <li v-if="hasMenu(Menu.MOVIE_TOPIC_TYPE)">
+                    <router-link :to="{name: 'movie-topic-type-setting'}">专题分类</router-link>
+                  </li>
+                </ul>
+              </li>
               <li v-if="hasMenu(Menu.MOVIE_MG)">
                 <router-link :to="{name: 'movie-manage'}"><span>电影管理</span></router-link>
               </li>
@@ -191,7 +215,7 @@
           </li>
 
           <li class="has-sub "
-              v-if="hasMenu(Menu.ANIME_SOURCE_SET, Menu.ANIME_AREA_SET, Menu.ANIME_TYPE_SET, Menu.ANIME_YEAR_SET, Menu.ANIME_LANG_SET, Menu.ANIME_MG)">
+              v-if="hasMenu(Menu.ANIME_SOURCE_SET, Menu.ANIME_AREA_SET, Menu.ANIME_TYPE_SET, Menu.ANIME_YEAR_SET, Menu.ANIME_LANG_SET, Menu.ANIME_MG, Menu.ANIME_TOPIC_TYPE)">
             <a href="javascript:;">
               <b class="caret"></b>
               <i class="fa fa-play-circle"></i>
@@ -222,6 +246,18 @@
                   </li>
                 </ul>
               </li>
+              <li class="has-sub"
+                  v-if="hasMenu(Menu.ANIME_TOPIC_TYPE)">
+                <a href="javascript:;">
+                  <b class="caret"></b>
+                  <span>专题管理</span>
+                </a>
+                <ul class="sub-menu">
+                  <li v-if="hasMenu(Menu.ANIME_TOPIC_TYPE)">
+                    <router-link :to="{name: 'anime-topic-type-setting'}">专题分类</router-link>
+                  </li>
+                </ul>
+              </li>
               <li v-if="hasMenu(Menu.ANIME_MG)">
                 <router-link :to="{name: 'anime-manage'}"><span>动漫管理</span></router-link>
               </li>
@@ -229,7 +265,7 @@
           </li>
 
           <li class="has-sub "
-              v-if="hasMenu(Menu.VARIETY_SOURCE_SET, Menu.VARIETY_AREA_SET, Menu.VARIETY_TYPE_SET, Menu.VARIETY_YEAR_SET, Menu.VARIETY_LANG_SET, Menu.VARIETY_MG)">
+              v-if="hasMenu(Menu.VARIETY_SOURCE_SET, Menu.VARIETY_AREA_SET, Menu.VARIETY_TYPE_SET, Menu.VARIETY_YEAR_SET, Menu.VARIETY_LANG_SET, Menu.VARIETY_MG, Menu.VARIETY_TOPIC_TYPE)">
             <a href="javascript:;">
               <b class="caret"></b>
               <i class="fa fa-smile-o"></i>
@@ -260,6 +296,18 @@
                   </li>
                 </ul>
               </li>
+              <li class="has-sub"
+                  v-if="hasMenu(Menu.VARIETY_TOPIC_TYPE)">
+                <a href="javascript:;">
+                  <b class="caret"></b>
+                  <span>专题管理</span>
+                </a>
+                <ul class="sub-menu">
+                  <li v-if="hasMenu(Menu.VARIETY_TOPIC_TYPE)">
+                    <router-link :to="{name: 'variety-topic-type-setting'}">专题分类</router-link>
+                  </li>
+                </ul>
+              </li>
               <li v-if="hasMenu(Menu.VARIETY_MG)">
                 <router-link :to="{name: 'variety-manage'}"><span>综艺管理</span></router-link>
               </li>
@@ -267,7 +315,7 @@
           </li>
 
           <li class="has-sub "
-              v-if="hasMenu(Menu.AV_LONG_AREA_SET, Menu.AV_LONG_ACTRESS_SET, Menu.AV_LONG_CUP_SET, Menu.AV_LONG_TYPE_SET, Menu.AV_LONG_YEAR_SET)">
+              v-if="hasMenu(Menu.AV_LONG_AREA_SET, Menu.AV_LONG_ACTRESS_SET, Menu.AV_LONG_CUP_SET, Menu.AV_LONG_TYPE_SET, Menu.AV_LONG_YEAR_SET, Menu.AV_LONG_TOPIC_TYPE)">
             <a href="javascript:;">
               <b class="caret"></b>
               <i class="fa fa-youtube-play"></i>
@@ -299,11 +347,23 @@
                   </li>
                 </ul>
               </li>
+              <li class="has-sub"
+                  v-if="hasMenu(Menu.AV_LONG_TOPIC_TYPE)">
+                <a href="javascript:;">
+                  <b class="caret"></b>
+                  <span>专题管理</span>
+                </a>
+                <ul class="sub-menu">
+                  <li v-if="hasMenu(Menu.AV_LONG_TOPIC_TYPE)">
+                    <router-link :to="{name: 'av-long-topic-type-setting'}">专题分类</router-link>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </li>
 
           <li class="has-sub "
-              v-if="hasMenu(Menu.AV_SHORT_AREA_SET, Menu.AV_SHORT_ACTRESS_SET, Menu.AV_SHORT_CUP_SET, Menu.AV_SHORT_TYPE_SET, Menu.AV_SHORT_YEAR_SET)">
+              v-if="hasMenu(Menu.AV_SHORT_AREA_SET, Menu.AV_SHORT_ACTRESS_SET, Menu.AV_SHORT_CUP_SET, Menu.AV_SHORT_TYPE_SET, Menu.AV_SHORT_YEAR_SET, Menu.AV_SHORT_TOPIC_TYPE)">
             <a href="javascript:;">
               <b class="caret"></b>
               <i class="fa fa-file-video-o"></i>
@@ -335,11 +395,23 @@
                   </li>
                 </ul>
               </li>
+              <li class="has-sub"
+                  v-if="hasMenu(Menu.AV_SHORT_TOPIC_TYPE)">
+                <a href="javascript:;">
+                  <b class="caret"></b>
+                  <span>专题管理</span>
+                </a>
+                <ul class="sub-menu">
+                  <li v-if="hasMenu(Menu.AV_SHORT_TOPIC_TYPE)">
+                    <router-link :to="{name: 'av-short-topic-type-setting'}">专题分类</router-link>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </li>
 
           <li class="has-sub "
-              v-if="hasMenu(Menu.AV_SELFIE_AREA_SET, Menu.AV_SELFIE_ACTRESS_SET, Menu.AV_SELFIE_CUP_SET, Menu.AV_SELFIE_TYPE_SET, Menu.AV_SELFIE_YEAR_SET)">
+              v-if="hasMenu(Menu.AV_SELFIE_AREA_SET, Menu.AV_SELFIE_ACTRESS_SET, Menu.AV_SELFIE_CUP_SET, Menu.AV_SELFIE_TYPE_SET, Menu.AV_SELFIE_YEAR_SET, Menu.AV_SELFIE_TOPIC_TYPE)">
             <a href="javascript:;">
               <b class="caret"></b>
               <i class="fa fa-camera"></i>
@@ -371,11 +443,23 @@
                   </li>
                 </ul>
               </li>
+              <li class="has-sub"
+                  v-if="hasMenu(Menu.AV_SELFIE_TOPIC_TYPE)">
+                <a href="javascript:;">
+                  <b class="caret"></b>
+                  <span>专题管理</span>
+                </a>
+                <ul class="sub-menu">
+                  <li v-if="hasMenu(Menu.AV_SELFIE_TOPIC_TYPE)">
+                    <router-link :to="{name: 'av-selfie-topic-type-setting'}">专题分类</router-link>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </li>
 
           <li class="has-sub "
-              v-if="hasMenu(Menu.ADULT_PHOTO_AREA_SET, Menu.ADULT_PHOTO_ACTRESS_SET, Menu.ADULT_PHOTO_CUP_SET, Menu.ADULT_PHOTO_TYPE_SET, Menu.ADULT_PHOTO_YEAR_SET)">
+              v-if="hasMenu(Menu.ADULT_PHOTO_AREA_SET, Menu.ADULT_PHOTO_ACTRESS_SET, Menu.ADULT_PHOTO_CUP_SET, Menu.ADULT_PHOTO_TYPE_SET, Menu.ADULT_PHOTO_YEAR_SET, Menu.ADULT_PHOTO_TOPIC_TYPE)">
             <a href="javascript:;">
               <b class="caret"></b>
               <i class="fa fa-file-image-o"></i>
@@ -407,11 +491,23 @@
                   </li>
                 </ul>
               </li>
+              <li class="has-sub"
+                  v-if="hasMenu(Menu.ADULT_PHOTO_TOPIC_TYPE)">
+                <a href="javascript:;">
+                  <b class="caret"></b>
+                  <span>专题管理</span>
+                </a>
+                <ul class="sub-menu">
+                  <li v-if="hasMenu(Menu.ADULT_PHOTO_TOPIC_TYPE)">
+                    <router-link :to="{name: 'adult-photo-topic-type-setting'}">专题分类</router-link>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </li>
 
           <li class="has-sub "
-              v-if="hasMenu(Menu.AV_AREA_SET, Menu.AV_ACTRESS_SET, Menu.AV_CUP_SET, Menu.AV_TYPE_SET, Menu.AV_YEAR_SET)">
+              v-if="hasMenu(Menu.AV_AREA_SET, Menu.AV_ACTRESS_SET, Menu.AV_CUP_SET, Menu.AV_TYPE_SET, Menu.AV_YEAR_SET, Menu.AV_TOPIC_TYPE)">
             <a href="javascript:;">
               <b class="caret"></b>
               <i class="fa fa-video-camera"></i>
@@ -443,11 +539,23 @@
                   </li>
                 </ul>
               </li>
+              <li class="has-sub"
+                  v-if="hasMenu(Menu.AV_TOPIC_TYPE)">
+                <a href="javascript:;">
+                  <b class="caret"></b>
+                  <span>专题管理</span>
+                </a>
+                <ul class="sub-menu">
+                  <li v-if="hasMenu(Menu.AV_TOPIC_TYPE)">
+                    <router-link :to="{name: 'av-topic-type-setting'}">专题分类</router-link>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </li>
 
           <li class="has-sub "
-              v-if="hasMenu(Menu.ADULT_COMIC_AREA_SET, Menu.ADULT_COMIC_TYPE_SET, Menu.ADULT_COMIC_YEAR_SET)">
+              v-if="hasMenu(Menu.ADULT_COMIC_AREA_SET, Menu.ADULT_COMIC_TYPE_SET, Menu.ADULT_COMIC_YEAR_SET, Menu.ADULT_COMIC_TOPIC_TYPE)">
             <a href="javascript:;">
               <b class="caret"></b>
               <i class="fa fa-video-camera"></i>
@@ -473,11 +581,23 @@
                   </li>
                 </ul>
               </li>
+              <li class="has-sub"
+                  v-if="hasMenu(Menu.ADULT_COMIC_TOPIC_TYPE)">
+                <a href="javascript:;">
+                  <b class="caret"></b>
+                  <span>专题管理</span>
+                </a>
+                <ul class="sub-menu">
+                  <li v-if="hasMenu(Menu.ADULT_COMIC_TOPIC_TYPE)">
+                    <router-link :to="{name: 'adult-comic-topic-type-setting'}">专题分类</router-link>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </li>
 
           <li class="has-sub "
-              v-if="hasMenu(Menu.ADULT_LITERATURE_AREA_SET, Menu.ADULT_LITERATURE_TYPE_SET, Menu.ADULT_LITERATURE_YEAR_SET)">
+              v-if="hasMenu(Menu.ADULT_LITERATURE_AREA_SET, Menu.ADULT_LITERATURE_TYPE_SET, Menu.ADULT_LITERATURE_YEAR_SET, Menu.ADULT_LITERATURE_TOPIC_TYPE)">
             <a href="javascript:;">
               <b class="caret"></b>
               <i class="fa fa-file"></i>
@@ -503,11 +623,23 @@
                   </li>
                 </ul>
               </li>
+              <li class="has-sub"
+                  v-if="hasMenu(Menu.ADULT_LITERATURE_TOPIC_TYPE)">
+                <a href="javascript:;">
+                  <b class="caret"></b>
+                  <span>专题管理</span>
+                </a>
+                <ul class="sub-menu">
+                  <li v-if="hasMenu(Menu.ADULT_LITERATURE_TOPIC_TYPE)">
+                    <router-link :to="{name: 'adult-literature-topic-type-setting'}">专题分类</router-link>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </li>
 
           <li class="has-sub "
-              v-if="hasMenu(Menu.ADULT_STORY_AREA_SET, Menu.ADULT_STORY_TYPE_SET, Menu.ADULT_STORY_YEAR_SET)">
+              v-if="hasMenu(Menu.ADULT_STORY_AREA_SET, Menu.ADULT_STORY_TYPE_SET, Menu.ADULT_STORY_YEAR_SET, Menu.ADULT_STORY_TOPIC_TYPE)">
             <a href="javascript:;">
               <b class="caret"></b>
               <i class="fa fa-book"></i>
@@ -530,6 +662,18 @@
                   </li>
                   <li v-if="hasMenu(Menu.ADULT_STORY_YEAR_SET)">
                     <router-link :to="{name: 'adult-story-year-setting'}">年份设定</router-link>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-sub"
+                  v-if="hasMenu(Menu.ADULT_STORY_TOPIC_TYPE)">
+                <a href="javascript:;">
+                  <b class="caret"></b>
+                  <span>专题管理</span>
+                </a>
+                <ul class="sub-menu">
+                  <li v-if="hasMenu(Menu.ADULT_STORY_TOPIC_TYPE)">
+                    <router-link :to="{name: 'adult-story-topic-type-setting'}">专题分类</router-link>
                   </li>
                 </ul>
               </li>
