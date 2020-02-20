@@ -46,7 +46,7 @@
                        v-model="data.nodes" />
 
       <!-- 影音戏剧' -->
-      <li v-if="inAllNodes(Menu.DRAMA_SOURCE_SET, Menu.DRAMA_AREA_SET, Menu.DRAMA_TYPE_SET, Menu.DRAMA_YEAR_SET, Menu.DRAMA_LANG_SET, Menu.DRAMA_MG)">
+      <li v-if="inAllNodes(Menu.DRAMA_SOURCE_SET, Menu.DRAMA_AREA_SET, Menu.DRAMA_TYPE_SET, Menu.DRAMA_YEAR_SET, Menu.DRAMA_LANG_SET, Menu.DRAMA_TOPIC_TYPE, Menu.DRAMA_MG)">
         <permission-node title="影音戏剧"
                          className="fas fa-television text-black"
                          :values="getAllSubNodeID([
@@ -55,6 +55,7 @@
                             findNode(Menu.DRAMA_TYPE_SET),
                             findNode(Menu.DRAMA_YEAR_SET),
                             findNode(Menu.DRAMA_LANG_SET),
+                            findNode(Menu.DRAMA_TOPIC_TYPE),
                             findNode(Menu.DRAMA_MG),
                          ])"
                          v-model="data.nodes" />
@@ -75,13 +76,21 @@
             <permission-tree :node="findNode(Menu.DRAMA_YEAR_SET)" v-model="data.nodes" />
             <permission-tree :node="findNode(Menu.DRAMA_LANG_SET)" v-model="data.nodes" />
           </ul>
+          <permission-node title="专题管理"
+                           :values="getAllSubNodeID([
+                            findNode(Menu.DRAMA_TOPIC_TYPE),
+                           ])"
+                           v-model="data.nodes" />
+          <ul class="limit-sub">
+            <permission-tree :node="findNode(Menu.DRAMA_TOPIC_TYPE)" v-model="data.nodes" />
+          </ul>
           <permission-tree :node="findNode(Menu.DRAMA_MG)" v-model="data.nodes" />
         </ul>
         <!-- limit-sub end -->
       </li>
 
       <!-- 影音电影' -->
-      <li v-if="inAllNodes(Menu.MOVIE_SOURCE_SET, Menu.MOVIE_AREA_SET, Menu.MOVIE_TYPE_SET, Menu.MOVIE_YEAR_SET, Menu.MOVIE_LANG_SET, Menu.MOVIE_MG)">
+      <li v-if="inAllNodes(Menu.MOVIE_SOURCE_SET, Menu.MOVIE_AREA_SET, Menu.MOVIE_TYPE_SET, Menu.MOVIE_YEAR_SET, Menu.MOVIE_LANG_SET, Menu.MOVIE_MG, Menu.MOVIE_TOPIC_TYPE)">
         <permission-node title="影音电影"
                          className="fas fa-film text-black"
                          :values="getAllSubNodeID([
@@ -91,6 +100,7 @@
                             findNode(Menu.MOVIE_YEAR_SET),
                             findNode(Menu.MOVIE_LANG_SET),
                             findNode(Menu.MOVIE_MG),
+                            findNode(Menu.MOVIE_TOPIC_TYPE),
                          ])"
                          v-model="data.nodes" />
         <ul class="limit-sub">
@@ -110,13 +120,21 @@
             <permission-tree :node="findNode(Menu.MOVIE_TYPE_SET)" v-model="data.nodes" />
             <permission-tree :node="findNode(Menu.MOVIE_LANG_SET)" v-model="data.nodes" />
           </ul>
+          <permission-node title="专题管理"
+                           :values="getAllSubNodeID([
+                            findNode(Menu.MOVIE_TOPIC_TYPE),
+                           ])"
+                           v-model="data.nodes" />
+          <ul class="limit-sub">
+            <permission-tree :node="findNode(Menu.MOVIE_TOPIC_TYPE)" v-model="data.nodes" />
+          </ul>
           <permission-tree :node="findNode(Menu.MOVIE_MG)" v-model="data.nodes" />
         </ul>
         <!-- limit-sub end -->
       </li>
 
       <!-- 影音动漫' -->
-      <li v-if="inAllNodes(Menu.ANIME_SOURCE_SET, Menu.ANIME_AREA_SET, Menu.ANIME_TYPE_SET, Menu.ANIME_YEAR_SET, Menu.ANIME_LANG_SET, Menu.ANIME_MG)">
+      <li v-if="inAllNodes(Menu.ANIME_SOURCE_SET, Menu.ANIME_AREA_SET, Menu.ANIME_TYPE_SET, Menu.ANIME_YEAR_SET, Menu.ANIME_LANG_SET, Menu.ANIME_MG, Menu.ANIME_TOPIC_TYPE)">
         <permission-node title="影音动漫"
                          className="fas fa-play-circle text-black"
                          :values="getAllSubNodeID([
@@ -126,6 +144,7 @@
                             findNode(Menu.ANIME_YEAR_SET),
                             findNode(Menu.ANIME_LANG_SET),
                             findNode(Menu.ANIME_MG),
+                            findNode(Menu.ANIME_TOPIC_TYPE),
                          ])"
                          v-model="data.nodes" />
         <ul class="limit-sub">
@@ -145,13 +164,21 @@
             <permission-tree :node="findNode(Menu.ANIME_YEAR_SET)" v-model="data.nodes" />
             <permission-tree :node="findNode(Menu.ANIME_LANG_SET)" v-model="data.nodes" />
           </ul>
+          <permission-node title="专题管理"
+                           :values="getAllSubNodeID([
+                            findNode(Menu.ANIME_TOPIC_TYPE),
+                           ])"
+                           v-model="data.nodes" />
+          <ul class="limit-sub">
+            <permission-tree :node="findNode(Menu.ANIME_TOPIC_TYPE)" v-model="data.nodes" />
+          </ul>
           <permission-tree :node="findNode(Menu.ANIME_MG)" v-model="data.nodes" />
         </ul>
         <!-- limit-sub end -->
       </li>
 
       <!-- 影音综艺' -->
-      <li v-if="inAllNodes(Menu.VARIETY_SOURCE_SET, Menu.VARIETY_AREA_SET, Menu.VARIETY_TYPE_SET, Menu.VARIETY_YEAR_SET, Menu.VARIETY_LANG_SET, Menu.VARIETY_MG)">
+      <li v-if="inAllNodes(Menu.VARIETY_SOURCE_SET, Menu.VARIETY_AREA_SET, Menu.VARIETY_TYPE_SET, Menu.VARIETY_YEAR_SET, Menu.VARIETY_LANG_SET, Menu.VARIETY_MG, Menu.VARIETY_TOPIC_TYPE)">
         <permission-node title="影音综艺"
                          className="fas fa-smile-o text-black"
                          :values="getAllSubNodeID([
@@ -161,6 +188,7 @@
                             findNode(Menu.VARIETY_TYPE_SET),
                             findNode(Menu.VARIETY_LANG_SET),
                             findNode(Menu.VARIETY_MG),
+                            findNode(Menu.VARIETY_TOPIC_TYPE),
                          ])"
                          v-model="data.nodes" />
         <ul class="limit-sub">
@@ -180,13 +208,21 @@
             <permission-tree :node="findNode(Menu.VARIETY_TYPE_SET)" v-model="data.nodes" />
             <permission-tree :node="findNode(Menu.VARIETY_LANG_SET)" v-model="data.nodes" />
           </ul>
+          <permission-node title="专题管理"
+                           :values="getAllSubNodeID([
+                            findNode(Menu.VARIETY_TOPIC_TYPE),
+                           ])"
+                           v-model="data.nodes" />
+          <ul class="limit-sub">
+            <permission-tree :node="findNode(Menu.VARIETY_TOPIC_TYPE)" v-model="data.nodes" />
+          </ul>
           <permission-tree :node="findNode(Menu.VARIETY_MG)" v-model="data.nodes" />
         </ul>
         <!-- limit-sub end -->
       </li>
 
       <!-- 成人长片' -->
-      <li v-if="inAllNodes(Menu.AV_LONG_AREA_SET, Menu.AV_LONG_ACTRESS_SET, Menu.AV_LONG_CUP_SET, Menu.AV_LONG_TYPE_SET, Menu.AV_LONG_YEAR_SET)">
+      <li v-if="inAllNodes(Menu.AV_LONG_AREA_SET, Menu.AV_LONG_ACTRESS_SET, Menu.AV_LONG_CUP_SET, Menu.AV_LONG_TYPE_SET, Menu.AV_LONG_YEAR_SET, Menu.AV_LONG_TOPIC_TYPE)">
         <permission-node title="成人长片"
                          className="fas fa-youtube-play text-black"
                          :values="getAllSubNodeID([
@@ -195,6 +231,7 @@
                             findNode(Menu.AV_LONG_CUP_SET),
                             findNode(Menu.AV_LONG_TYPE_SET),
                             findNode(Menu.AV_LONG_YEAR_SET),
+                            findNode(Menu.AV_LONG_TOPIC_TYPE),
                          ])"
                          v-model="data.nodes" />
         <ul class="limit-sub">
@@ -214,12 +251,20 @@
             <permission-tree :node="findNode(Menu.AV_LONG_TYPE_SET)" v-model="data.nodes" />
             <permission-tree :node="findNode(Menu.AV_LONG_YEAR_SET)" v-model="data.nodes" />
           </ul>
+          <permission-node title="专题管理"
+                           :values="getAllSubNodeID([
+                            findNode(Menu.AV_LONG_TOPIC_TYPE),
+                           ])"
+                           v-model="data.nodes" />
+          <ul class="limit-sub">
+            <permission-tree :node="findNode(Menu.AV_LONG_TOPIC_TYPE)" v-model="data.nodes" />
+          </ul>
         </ul>
         <!-- limit-sub end -->
       </li>
 
       <!-- 成人短片' -->
-      <li v-if="inAllNodes(Menu.AV_SHORT_AREA_SET, Menu.AV_SHORT_ACTRESS_SET, Menu.AV_SHORT_CUP_SET, Menu.AV_SHORT_TYPE_SET, Menu.AV_SHORT_YEAR_SET)">
+      <li v-if="inAllNodes(Menu.AV_SHORT_AREA_SET, Menu.AV_SHORT_ACTRESS_SET, Menu.AV_SHORT_CUP_SET, Menu.AV_SHORT_TYPE_SET, Menu.AV_SHORT_YEAR_SET, Menu.AV_SHORT_TOPIC_TYPE)">
         <permission-node title="成人短片"
                          className="fas fa-youtube-play text-black"
                          :values="getAllSubNodeID([
@@ -228,6 +273,7 @@
                             findNode(Menu.AV_SHORT_CUP_SET),
                             findNode(Menu.AV_SHORT_TYPE_SET),
                             findNode(Menu.AV_SHORT_YEAR_SET),
+                            findNode(Menu.AV_SHORT_TOPIC_TYPE),
                          ])"
                          v-model="data.nodes" />
         <ul class="limit-sub">
@@ -247,12 +293,20 @@
             <permission-tree :node="findNode(Menu.AV_SHORT_TYPE_SET)" v-model="data.nodes" />
             <permission-tree :node="findNode(Menu.AV_SHORT_YEAR_SET)" v-model="data.nodes" />
           </ul>
+          <permission-node title="专题管理"
+                           :values="getAllSubNodeID([
+                            findNode(Menu.AV_SHORT_TOPIC_TYPE),
+                           ])"
+                           v-model="data.nodes" />
+          <ul class="limit-sub">
+            <permission-tree :node="findNode(Menu.AV_SHORT_TOPIC_TYPE)" v-model="data.nodes" />
+          </ul>
         </ul>
         <!-- limit-sub end -->
       </li>
 
       <!-- 成人自拍' -->
-      <li v-if="inAllNodes(Menu.AV_SELFIE_AREA_SET, Menu.AV_SELFIE_ACTRESS_SET, Menu.AV_SELFIE_CUP_SET, Menu.AV_SELFIE_TYPE_SET, Menu.AV_SELFIE_YEAR_SET)">
+      <li v-if="inAllNodes(Menu.AV_SELFIE_AREA_SET, Menu.AV_SELFIE_ACTRESS_SET, Menu.AV_SELFIE_CUP_SET, Menu.AV_SELFIE_TYPE_SET, Menu.AV_SELFIE_YEAR_SET, Menu.AV_SELFIE_TOPIC_TYPE)">
         <permission-node title="成人自拍"
                          className="fas fa-camera text-black"
                          :values="getAllSubNodeID([
@@ -261,6 +315,7 @@
                             findNode(Menu.AV_SELFIE_CUP_SET),
                             findNode(Menu.AV_SELFIE_TYPE_SET),
                             findNode(Menu.AV_SELFIE_YEAR_SET),
+                            findNode(Menu.AV_SELFIE_TOPIC_TYPE),
                          ])"
                          v-model="data.nodes" />
         <ul class="limit-sub">
@@ -280,12 +335,20 @@
             <permission-tree :node="findNode(Menu.AV_SELFIE_TYPE_SET)" v-model="data.nodes" />
             <permission-tree :node="findNode(Menu.AV_SELFIE_YEAR_SET)" v-model="data.nodes" />
           </ul>
+          <permission-node title="专题管理"
+                           :values="getAllSubNodeID([
+                            findNode(Menu.AV_SELFIE_TOPIC_TYPE),
+                           ])"
+                           v-model="data.nodes" />
+          <ul class="limit-sub">
+            <permission-tree :node="findNode(Menu.AV_SELFIE_TOPIC_TYPE)" v-model="data.nodes" />
+          </ul>
         </ul>
         <!-- limit-sub end -->
       </li>
 
       <!-- 成人写真' -->
-      <li v-if="inAllNodes(Menu.ADULT_PHOTO_AREA_SET, Menu.ADULT_PHOTO_ACTRESS_SET, Menu.ADULT_PHOTO_CUP_SET, Menu.ADULT_PHOTO_TYPE_SET, Menu.ADULT_PHOTO_YEAR_SET)">
+      <li v-if="inAllNodes(Menu.ADULT_PHOTO_AREA_SET, Menu.ADULT_PHOTO_ACTRESS_SET, Menu.ADULT_PHOTO_CUP_SET, Menu.ADULT_PHOTO_TYPE_SET, Menu.ADULT_PHOTO_YEAR_SET, Menu.ADULT_PHOTO_TOPIC_TYPE)">
         <permission-node title="成人写真"
                          className="fas fa-file-image-o text-black"
                          :values="getAllSubNodeID([
@@ -294,6 +357,7 @@
                             findNode(Menu.ADULT_PHOTO_CUP_SET),
                             findNode(Menu.ADULT_PHOTO_TYPE_SET),
                             findNode(Menu.ADULT_PHOTO_YEAR_SET),
+                            findNode(Menu.ADULT_PHOTO_TOPIC_TYPE),
                          ])"
                          v-model="data.nodes" />
         <ul class="limit-sub">
@@ -313,12 +377,20 @@
             <permission-tree :node="findNode(Menu.ADULT_PHOTO_TYPE_SET)" v-model="data.nodes" />
             <permission-tree :node="findNode(Menu.ADULT_PHOTO_YEAR_SET)" v-model="data.nodes" />
           </ul>
+          <permission-node title="专题管理"
+                           :values="getAllSubNodeID([
+                            findNode(Menu.ADULT_PHOTO_TOPIC_TYPE),
+                           ])"
+                           v-model="data.nodes" />
+          <ul class="limit-sub">
+            <permission-tree :node="findNode(Menu.ADULT_PHOTO_TOPIC_TYPE)" v-model="data.nodes" />
+          </ul>
         </ul>
         <!-- limit-sub end -->
       </li>
 
       <!-- 成人视频' -->
-      <li v-if="inAllNodes(Menu.AV_AREA_SET, Menu.AV_ACTRESS_SET, Menu.AV_CUP_SET, Menu.AV_TYPE_SET, Menu.AV_YEAR_SET)">
+      <li v-if="inAllNodes(Menu.AV_AREA_SET, Menu.AV_ACTRESS_SET, Menu.AV_CUP_SET, Menu.AV_TYPE_SET, Menu.AV_YEAR_SET, Menu.AV_TOPIC_TYPE)">
         <permission-node title="成人视频"
                          className="fas fa-video-camera text-black"
                          :values="getAllSubNodeID([
@@ -327,6 +399,7 @@
                             findNode(Menu.AV_CUP_SET),
                             findNode(Menu.AV_TYPE_SET),
                             findNode(Menu.AV_YEAR_SET),
+                            findNode(Menu.AV_TOPIC_TYPE),
                          ])"
                          v-model="data.nodes" />
         <ul class="limit-sub">
@@ -346,18 +419,27 @@
             <permission-tree :node="findNode(Menu.AV_TYPE_SET)" v-model="data.nodes" />
             <permission-tree :node="findNode(Menu.AV_YEAR_SET)" v-model="data.nodes" />
           </ul>
+          <permission-node title="专题管理"
+                           :values="getAllSubNodeID([
+                            findNode(Menu.AV_TOPIC_TYPE),
+                           ])"
+                           v-model="data.nodes" />
+          <ul class="limit-sub">
+            <permission-tree :node="findNode(Menu.AV_TOPIC_TYPE)" v-model="data.nodes" />
+          </ul>
         </ul>
         <!-- limit-sub end -->
       </li>
 
       <!-- 成人漫画' -->
-      <li v-if="inAllNodes(Menu.ADULT_COMIC_AREA_SET, Menu.ADULT_COMIC_TYPE_SET, Menu.ADULT_COMIC_YEAR_SET)">
+      <li v-if="inAllNodes(Menu.ADULT_COMIC_AREA_SET, Menu.ADULT_COMIC_TYPE_SET, Menu.ADULT_COMIC_YEAR_SET, Menu.ADULT_COMIC_TOPIC_TYPE)">
         <permission-node title="成人漫画"
                          className="fas fa-video-camera text-black"
                          :values="getAllSubNodeID([
                             findNode(Menu.ADULT_COMIC_AREA_SET),
                             findNode(Menu.ADULT_COMIC_TYPE_SET),
                             findNode(Menu.ADULT_COMIC_YEAR_SET),
+                            findNode(Menu.ADULT_COMIC_TOPIC_TYPE),
                          ])"
                          v-model="data.nodes" />
         <ul class="limit-sub">
@@ -373,18 +455,27 @@
             <permission-tree :node="findNode(Menu.ADULT_COMIC_TYPE_SET)" v-model="data.nodes" />
             <permission-tree :node="findNode(Menu.ADULT_COMIC_YEAR_SET)" v-model="data.nodes" />
           </ul>
+          <permission-node title="专题管理"
+                           :values="getAllSubNodeID([
+                            findNode(Menu.ADULT_COMIC_TOPIC_TYPE),
+                           ])"
+                           v-model="data.nodes" />
+          <ul class="limit-sub">
+            <permission-tree :node="findNode(Menu.ADULT_COMIC_TOPIC_TYPE)" v-model="data.nodes" />
+          </ul>
         </ul>
         <!-- limit-sub end -->
       </li>
 
       <!-- 成人文学' -->
-      <li v-if="inAllNodes(Menu.ADULT_LITERATURE_AREA_SET, Menu.ADULT_LITERATURE_TYPE_SET, Menu.ADULT_LITERATURE_YEAR_SET)">
+      <li v-if="inAllNodes(Menu.ADULT_LITERATURE_AREA_SET, Menu.ADULT_LITERATURE_TYPE_SET, Menu.ADULT_LITERATURE_YEAR_SET, Menu.ADULT_LITERATURE_TOPIC_TYPE)">
         <permission-node title="成人文学"
                          className="fas fa-file text-black"
                          :values="getAllSubNodeID([
                             findNode(Menu.ADULT_LITERATURE_AREA_SET),
                             findNode(Menu.ADULT_LITERATURE_TYPE_SET),
                             findNode(Menu.ADULT_LITERATURE_YEAR_SET),
+                            findNode(Menu.ADULT_LITERATURE_TOPIC_TYPE),
                          ])"
                          v-model="data.nodes" />
         <ul class="limit-sub">
@@ -400,18 +491,27 @@
             <permission-tree :node="findNode(Menu.ADULT_LITERATURE_TYPE_SET)" v-model="data.nodes" />
             <permission-tree :node="findNode(Menu.ADULT_LITERATURE_YEAR_SET)" v-model="data.nodes" />
           </ul>
+          <permission-node title="专题管理"
+                           :values="getAllSubNodeID([
+                            findNode(Menu.ADULT_LITERATURE_TOPIC_TYPE),
+                           ])"
+                           v-model="data.nodes" />
+          <ul class="limit-sub">
+            <permission-tree :node="findNode(Menu.ADULT_LITERATURE_TOPIC_TYPE)" v-model="data.nodes" />
+          </ul>
         </ul>
         <!-- limit-sub end -->
       </li>
 
       <!-- 成人说书' -->
-      <li v-if="inAllNodes(Menu.ADULT_STORYAREA_SET, Menu.ADULT_STORYTYPE_SET, Menu.ADULT_STORYYEAR_SET)">
+      <li v-if="inAllNodes(Menu.ADULT_STORYAREA_SET, Menu.ADULT_STORYTYPE_SET, Menu.ADULT_STORYYEAR_SET, Menu.ADULT_STORY_TOPIC_TYPE)">
         <permission-node title="成人说书"
                          className="fas fa-book text-black"
                          :values="getAllSubNodeID([
                             findNode(Menu.ADULT_STORYAREA_SET),
                             findNode(Menu.ADULT_STORYTYPE_SET),
                             findNode(Menu.ADULT_STORYYEAR_SET),
+                            findNode(Menu.ADULT_STORY_TOPIC_TYPE),
                          ])"
                          v-model="data.nodes" />
         <ul class="limit-sub">
@@ -426,6 +526,14 @@
             <permission-tree :node="findNode(Menu.ADULT_STORYAREA_SET)" v-model="data.nodes" />
             <permission-tree :node="findNode(Menu.ADULT_STORYTYPE_SET)" v-model="data.nodes" />
             <permission-tree :node="findNode(Menu.ADULT_STORYYEAR_SET)" v-model="data.nodes" />
+          </ul>
+          <permission-node title="专题管理"
+                           :values="getAllSubNodeID([
+                            findNode(Menu.ADULT_STORY_TOPIC_TYPE),
+                           ])"
+                           v-model="data.nodes" />
+          <ul class="limit-sub">
+            <permission-tree :node="findNode(Menu.ADULT_STORY_TOPIC_TYPE)" v-model="data.nodes" />
           </ul>
         </ul>
         <!-- limit-sub end -->
