@@ -53,7 +53,7 @@
               <tr v-for="(data, index) in datas" :key="index">
                 <td>{{ startIndex + index }}</td>
                 <td class="td-img slider-img-td">
-                  <img :src="data.image_url" @click="$emit('image.show', data.image_url)" /></td>
+                  <img :src="data.image_url" @click="$bus.emit('image.show', data.image_url)" /></td>
                 <td>{{ data.name }}</td>
                 <td>{{ data.alias }}</td>
                 <td>
