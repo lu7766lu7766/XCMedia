@@ -66,5 +66,6 @@
   "adult-story-area-setting": "ADULT_STORY_AREA_SET",
   "adult-story-type-setting": "ADULT_STORY_TYPE_SET",
   "adult-story-year-setting": "ADULT_STORY_YEAR_SET",
-  "account-login-history": "ACCOUNT_LOGIN_HISTORY"
+  "account-login-history": "ACCOUNT_LOGIN_HISTORY",
+  "member-login-history": "MEMBER_LOGIN_HISTORY"
 }
