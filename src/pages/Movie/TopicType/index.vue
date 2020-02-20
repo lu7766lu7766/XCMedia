@@ -52,7 +52,7 @@
               <tr v-for="(data, index) in datas" :key="index">
                 <td>{{ startIndex + index }}</td>
                 <td class="td-img slider-img-td">
-                  <img :src="data.image_url" @click="$emit('image.show', data.image_url)" /></td>
+                  <img :src="data.image_url" @click="$bus.emit('image.show', data.image_url)" /></td>
                 <td>{{ data.title }}</td>
                 <td>
                   <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'Y'"></i>
