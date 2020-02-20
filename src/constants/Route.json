@@ -53,7 +53,7 @@
   "adult-photo-type-setting": "ADULT_PHOTO_TYPE_SET",
   "adult-photo-year-setting": "ADULT_PHOTO_YEAR_SET",
   "av-area-setting": "AV_AREA_SET",
-  "av-artress-setting": "AV_ACTRESS_SET",
+  "av-actress-setting": "AV_ACTRESS_SET",
   "av-cup-setting": "AV_CUP_SET",
   "av-type-setting": "AV_TYPE_SET",
   "av-year-setting": "AV_YEAR_SET",
@@ -66,5 +66,6 @@
   "adult-story-area-setting": "ADULT_STORY_AREA_SET",
   "adult-story-type-setting": "ADULT_STORY_TYPE_SET",
   "adult-story-year-setting": "ADULT_STORY_YEAR_SET",
-  "account-login-history": "ACCOUNT_LOGIN_HISTORY"
+  "account-login-history": "ACCOUNT_LOGIN_HISTORY",
+  "member-login-history": "MEMBER_LOGIN_HISTORY"
 }
