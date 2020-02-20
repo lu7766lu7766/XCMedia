@@ -100,7 +100,7 @@
         status: Enable,
       },
     }),
-    api: 'adult_photo.topicType',
+    api: 'adult_photo.topic_ype',
     created()
     {
       this.doSearch()

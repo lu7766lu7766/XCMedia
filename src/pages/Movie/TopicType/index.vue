@@ -100,7 +100,7 @@
         status: Enable,
       },
     }),
-    api: 'movie.topicType',
+    api: 'movie.topic_ype',
     created()
     {
       this.doSearch()

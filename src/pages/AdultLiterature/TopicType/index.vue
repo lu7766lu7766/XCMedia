@@ -100,7 +100,7 @@
         status: Enable,
       },
     }),
-    api: 'adult_literature.topicType',
+    api: 'adult_literature.topic_ype',
     created()
     {
       this.doSearch()

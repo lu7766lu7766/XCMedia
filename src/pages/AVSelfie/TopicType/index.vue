@@ -100,7 +100,7 @@
         status: Enable,
       },
     }),
-    api: 'av_selfie.topicType',
+    api: 'av_selfie.topic_ype',
     created()
     {
       this.doSearch()

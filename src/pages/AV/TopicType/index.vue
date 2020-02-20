@@ -100,7 +100,7 @@
         status: Enable,
       },
     }),
-    api: 'av.topicType',
+    api: 'av.topic_ype',
     created()
     {
       this.doSearch()
