@@ -482,9 +482,20 @@ export default [
         ],
       },
       {
-        path: 'account-login-history',
-        name: 'account-login-history',
-        component: () => import('pages/HistoryRecord/AccountLogin'),
+        path: 'history',
+        component: () => import('pages/HistoryRecord'),
+        children: [
+          {
+            path: 'account-login',
+            name: 'account-login-history',
+            component: () => import('pages/HistoryRecord/AccountLogin'),
+          },
+          {
+            path: 'member-login',
+            name: 'member-login-history',
+            component: () => import('pages/HistoryRecord/MemberLogin'),
+          },
+        ],
       },
     ],
   },

@@ -41,39 +41,35 @@ export default {
   getters: {
     menus: state => _.filter(state.nodes, {display: 'Y', enable: 'Y'}),
     menu: (state, getters) => code => _.find(getters.menus, {code}),
-    canRead: (state, getters, rootState) =>
+    node: (state, getters, rootState) => findNode(state.nodes, rootState.route),
+    canRead: (state, getters) =>
     {
-      const res = findNode(state.nodes, rootState.route)
-      return res
-        ? _.some(res.nodes, {code: res.code + READ_SUFFIX})
+      return getters.node
+        ? _.some(getters.node.nodes, {code: getters.node.code + READ_SUFFIX})
         : false
     },
-    canCreate: (state, getters, rootState) =>
+    canCreate: (state, getters) =>
     {
-      const res = findNode(state.nodes, rootState.route)
-      return res
-        ? _.some(res.nodes, {code: res.code + CREATE_SUFFIX})
+      return getters.node
+        ? _.some(getters.node.nodes, {code: getters.node.code + CREATE_SUFFIX})
         : false
     },
-    canUpdate: (state, getters, rootState) =>
+    canUpdate: (state, getters) =>
     {
-      const res = findNode(state.nodes, rootState.route)
-      return res
-        ? _.some(res.nodes, {code: res.code + UPDATE_SUFFIX})
+      return getters.node
+        ? _.some(getters.node.nodes, {code: getters.node.code + UPDATE_SUFFIX})
         : false
     },
-    canDelete: (state, getters, rootState) =>
+    canDelete: (state, getters) =>
     {
-      const res = findNode(state.nodes, rootState.route)
-      return res
-        ? _.some(res.nodes, {code: res.code + DELETE_SUFFIX})
+      return getters.node
+        ? _.some(getters.node.nodes, {code: getters.node.code + DELETE_SUFFIX})
         : false
     },
-    canPermission: (state, getters, rootState) =>
+    canPermission: (state, getters) =>
     {
-      const res = findNode(state.nodes, rootState.route)
-      return res
-        ? _.some(res.nodes, {code: 'ROLE_PUBLIC_AUTHORIZATION'})
+      return getters.node
+        ? _.some(getters.node.nodes, {code: 'ROLE_PUBLIC_AUTHORIZATION'})
         : false
     },
   },

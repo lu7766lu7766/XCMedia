@@ -114,6 +114,7 @@ export default class API
     }
     this.history = {
       account: new (require('./Request/History/Account').default),
+      member: new (require('./Request/History/Member').default),
     }
     this.member = {
       manage: new (require('./Request/Member/Manage').default),

@@ -680,7 +680,7 @@
             </ul>
           </li>
 
-          <li class="has-sub" v-if="hasMenu(Menu.ACCOUNT_LOGIN_HISTORY)">
+          <li class="has-sub" v-if="hasMenu(Menu.ACCOUNT_LOGIN_HISTORY, Menu.ACCOUNT_LOGIN_HISTORY)">
             <a href="javascript:;">
               <b class="caret"></b>
               <i class="fas fa-history"></i>
@@ -689,6 +689,9 @@
             <ul class="sub-menu">
               <li v-if="hasMenu(Menu.ACCOUNT_LOGIN_HISTORY)">
                 <router-link :to="{name: 'account-login-history'}">帐号登入历程</router-link>
+              </li>
+              <li v-if="hasMenu(Menu.MEMBER_LOGIN_HISTORY)">
+                <router-link :to="{name: 'member-login-history'}">会员登入历程</router-link>
               </li>
             </ul>
           </li>
