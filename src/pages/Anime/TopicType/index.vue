@@ -100,7 +100,7 @@
         status: Enable,
       },
     }),
-    api: 'anime.topicType',
+    api: 'anime.topic_ype',
     created()
     {
       this.doSearch()

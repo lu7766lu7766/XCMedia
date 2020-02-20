@@ -100,7 +100,7 @@
         status: Enable,
       },
     }),
-    api: 'variety.topicType',
+    api: 'variety.topic_ype',
     created()
     {
       this.doSearch()

@@ -100,7 +100,7 @@
         status: Enable,
       },
     }),
-    api: 'drama.topicType',
+    api: 'drama.topic_ype',
     created()
     {
       this.doSearch()
