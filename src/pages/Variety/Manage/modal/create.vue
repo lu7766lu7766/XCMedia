@@ -51,16 +51,16 @@
     </div>
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label ">主演 </label>
+      <label class="col-md-2 col-form-label ">主持 </label>
       <div class="col-md-10">
-        <j-input-tag v-model="data.starring" />
+        <j-input-tag v-model="data.host" />
       </div>
     </div>
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label ">导演 </label>
+      <label class="col-md-2 col-form-label ">来宾 </label>
       <div class="col-md-10">
-        <j-input-tag v-model="data.director" />
+        <j-input-tag v-model="data.guest" />
       </div>
     </div>
 
@@ -138,8 +138,8 @@
       async doSubmit()
       {
         const data = _.cloneDeep(this.data)
-        data.starring = data.starring.join(',')
-        data.director = data.director.join(',')
+        data.host = data.host.join(',')
+        data.guest = data.guest.join(',')
         data.genre_ids = _.map(data.genre_ids, 'id')
         await this.$thisApi.doCreate(data, {formData: true})
         this.createSuccess()
