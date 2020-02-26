@@ -231,6 +231,16 @@ export default [
             name: 'variety-topic-type-setting',
             component: () => import('pages/Variety/TopicType'),
           },
+          {
+            path: 'manage',
+            name: 'variety-manage',
+            component: () => import('pages/Variety/Manage'),
+          },
+          {
+            path: 'episode/:id',
+            name: 'variety-episode',
+            component: () => import('pages/Variety/Episode'),
+          },
         ],
       },
       {

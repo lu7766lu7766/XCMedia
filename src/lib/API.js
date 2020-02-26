@@ -55,6 +55,8 @@ export default class API
       year: new (require('./Request/Variety/Year').default),
       area: new (require('./Request/Variety/Area').default),
       topic_ype: new (require('./Request/Variety/TopicType').default),
+      manage: new (require('./Request/Variety/Manage').default),
+      episode: new (require('./Request/Variety/Episode').default),
     }
     this.av_long = {
       type: new (require('./Request/AVLong/Type').default),
