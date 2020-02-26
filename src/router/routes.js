@@ -185,6 +185,16 @@ export default [
             name: 'anime-topic-type-setting',
             component: () => import('pages/Anime/TopicType'),
           },
+          {
+            path: 'manage',
+            name: 'anime-manage',
+            component: () => import('pages/Anime/Manage'),
+          },
+          {
+            path: 'episode/:id',
+            name: 'anime-episode',
+            component: () => import('pages/Anime/Episode'),
+          },
         ],
       },
       {

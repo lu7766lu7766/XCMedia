@@ -45,6 +45,8 @@ export default class API
       year: new (require('./Request/Anime/Year').default),
       area: new (require('./Request/Anime/Area').default),
       topic_ype: new (require('./Request/Anime/TopicType').default),
+      manage: new (require('./Request/Anime/Manage').default),
+      episode: new (require('./Request/Anime/Episode').default),
     }
     this.variety = {
       source: new (require('./Request/Variety/Source').default),
