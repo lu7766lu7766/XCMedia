@@ -5,7 +5,7 @@
       <li class="breadcrumb-item">
         <router-link :to="{name:'welcome'}">首页</router-link>
       </li>
-      <li class="breadcrumb-item"><a href="javascript:;">分类管理</a></li>
+      <li class="breadcrumb-item"><a href="javascript:;">成人说书</a></li>
       <li class="breadcrumb-item"><a href="javascript:;">分类管理</a></li>
       <li class="breadcrumb-item active">地區設定</li>
     </ol>

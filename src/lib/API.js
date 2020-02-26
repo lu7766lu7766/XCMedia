@@ -28,6 +28,7 @@ export default class API
       area: new (require('./Request/Drama/Area').default),
       manage: new (require('./Request/Drama/Manage').default),
       episode: new (require('./Request/Drama/Episode').default),
+      topic_ype: new (require('./Request/Drama/TopicType').default),
     }
     this.movie = {
       source: new (require('./Request/Movie/Source').default),
@@ -35,6 +36,7 @@ export default class API
       lang: new (require('./Request/Movie/Lang').default),
       year: new (require('./Request/Movie/Year').default),
       area: new (require('./Request/Movie/Area').default),
+      topic_ype: new (require('./Request/Movie/TopicType').default),
     }
     this.anime = {
       source: new (require('./Request/Anime/Source').default),
@@ -42,6 +44,9 @@ export default class API
       lang: new (require('./Request/Anime/Lang').default),
       year: new (require('./Request/Anime/Year').default),
       area: new (require('./Request/Anime/Area').default),
+      topic_ype: new (require('./Request/Anime/TopicType').default),
+      manage: new (require('./Request/Anime/Manage').default),
+      episode: new (require('./Request/Anime/Episode').default),
     }
     this.variety = {
       source: new (require('./Request/Variety/Source').default),
@@ -49,6 +54,9 @@ export default class API
       lang: new (require('./Request/Variety/Lang').default),
       year: new (require('./Request/Variety/Year').default),
       area: new (require('./Request/Variety/Area').default),
+      topic_ype: new (require('./Request/Variety/TopicType').default),
+      manage: new (require('./Request/Variety/Manage').default),
+      episode: new (require('./Request/Variety/Episode').default),
     }
     this.av_long = {
       type: new (require('./Request/AVLong/Type').default),
@@ -57,6 +65,7 @@ export default class API
       cup: new (require('./Request/AVLong/Cup').default),
       area: new (require('./Request/AVLong/Area').default),
       actress: new (require('./Request/AVLong/Actress').default),
+      topic_ype: new (require('./Request/AVLong/TopicType').default),
     }
     this.av_short = {
       type: new (require('./Request/AVShort/Type').default),
@@ -65,6 +74,7 @@ export default class API
       cup: new (require('./Request/AVShort/Cup').default),
       area: new (require('./Request/AVShort/Area').default),
       actress: new (require('./Request/AVShort/Actress').default),
+      topic_ype: new (require('./Request/AVShort/TopicType').default),
     }
     this.av_selfie = {
       type: new (require('./Request/AVSelfie/Type').default),
@@ -73,6 +83,7 @@ export default class API
       cup: new (require('./Request/AVSelfie/Cup').default),
       area: new (require('./Request/AVSelfie/Area').default),
       actress: new (require('./Request/AVSelfie/Actress').default),
+      topic_ype: new (require('./Request/AVSelfie/TopicType').default),
     }
     this.adult_photo = {
       type: new (require('./Request/AdultPhoto/Type').default),
@@ -81,6 +92,7 @@ export default class API
       cup: new (require('./Request/AdultPhoto/Cup').default),
       area: new (require('./Request/AdultPhoto/Area').default),
       actress: new (require('./Request/AdultPhoto/Actress').default),
+      topic_ype: new (require('./Request/AdultPhoto/TopicType').default),
     }
     this.av = {
       type: new (require('./Request/AV/Type').default),
@@ -89,24 +101,29 @@ export default class API
       cup: new (require('./Request/AV/Cup').default),
       area: new (require('./Request/AV/Area').default),
       actress: new (require('./Request/AV/Actress').default),
+      topic_ype: new (require('./Request/AV/TopicType').default),
     }
     this.adult_comic = {
       type: new (require('./Request/AdultComic/Type').default),
       year: new (require('./Request/AdultComic/Year').default),
       area: new (require('./Request/AdultComic/Area').default),
+      topic_ype: new (require('./Request/AdultComic/TopicType').default),
     }
     this.adult_literature = {
       type: new (require('./Request/AdultLiterature/Type').default),
       year: new (require('./Request/AdultLiterature/Year').default),
       area: new (require('./Request/AdultLiterature/Area').default),
+      topic_ype: new (require('./Request/AdultLiterature/TopicType').default),
     }
     this.adult_story = {
       type: new (require('./Request/AdultStory/Type').default),
       year: new (require('./Request/AdultStory/Year').default),
       area: new (require('./Request/AdultStory/Area').default),
+      topic_ype: new (require('./Request/AdultStory/TopicType').default),
     }
     this.history = {
       account: new (require('./Request/History/Account').default),
+      member: new (require('./Request/History/Member').default),
     }
     this.member = {
       manage: new (require('./Request/Member/Manage').default),

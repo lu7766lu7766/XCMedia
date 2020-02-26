@@ -108,6 +108,11 @@ export default [
             name: 'drama-episode',
             component: () => import('pages/Drama/Episode'),
           },
+          {
+            path: 'topic-type',
+            name: 'drama-topic-type-setting',
+            component: () => import('pages/Drama/TopicType'),
+          },
         ],
       },
       {
@@ -138,6 +143,11 @@ export default [
             path: 'area',
             name: 'movie-area-setting',
             component: () => import('pages/Movie/Area'),
+          },
+          {
+            path: 'topic-type',
+            name: 'movie-topic-type-setting',
+            component: () => import('pages/Movie/TopicType'),
           },
         ],
       },
@@ -170,6 +180,21 @@ export default [
             name: 'anime-area-setting',
             component: () => import('pages/Anime/Area'),
           },
+          {
+            path: 'topic-type',
+            name: 'anime-topic-type-setting',
+            component: () => import('pages/Anime/TopicType'),
+          },
+          {
+            path: 'manage',
+            name: 'anime-manage',
+            component: () => import('pages/Anime/Manage'),
+          },
+          {
+            path: 'episode/:id',
+            name: 'anime-episode',
+            component: () => import('pages/Anime/Episode'),
+          },
         ],
       },
       {
@@ -200,6 +225,21 @@ export default [
             path: 'area',
             name: 'variety-area-setting',
             component: () => import('pages/Variety/Area'),
+          },
+          {
+            path: 'topic-type',
+            name: 'variety-topic-type-setting',
+            component: () => import('pages/Variety/TopicType'),
+          },
+          {
+            path: 'manage',
+            name: 'variety-manage',
+            component: () => import('pages/Variety/Manage'),
+          },
+          {
+            path: 'episode/:id',
+            name: 'variety-episode',
+            component: () => import('pages/Variety/Episode'),
           },
         ],
       },
@@ -232,6 +272,16 @@ export default [
             name: 'av-long-actress-setting',
             component: () => import('pages/AVLong/Actress'),
           },
+          {
+            path: 'cup',
+            name: 'av-long-cup-setting',
+            component: () => import('pages/AVLong/Cup'),
+          },
+          {
+            path: 'topic-type',
+            name: 'av-long-topic-type-setting',
+            component: () => import('pages/AVLong/TopicType'),
+          },
         ],
       },
       {
@@ -262,6 +312,16 @@ export default [
             path: 'actress',
             name: 'av-short-actress-setting',
             component: () => import('pages/AVShort/Actress'),
+          },
+          {
+            path: 'cup',
+            name: 'av-short-cup-setting',
+            component: () => import('pages/AVShort/Cup'),
+          },
+          {
+            path: 'topic-type',
+            name: 'av-short-topic-type-setting',
+            component: () => import('pages/AVShort/TopicType'),
           },
         ],
       },
@@ -294,6 +354,16 @@ export default [
             name: 'av-selfie-actress-setting',
             component: () => import('pages/AVSelfie/Actress'),
           },
+          {
+            path: 'cup',
+            name: 'av-selfie-cup-setting',
+            component: () => import('pages/AVSelfie/Cup'),
+          },
+          {
+            path: 'topic-type',
+            name: 'av-selfie-topic-type-setting',
+            component: () => import('pages/AVSelfie/TopicType'),
+          },
         ],
       },
       {
@@ -324,6 +394,16 @@ export default [
             path: 'actress',
             name: 'adult-photo-actress-setting',
             component: () => import('pages/AdultPhoto/Actress'),
+          },
+          {
+            path: 'cup',
+            name: 'adult-photo-cup-setting',
+            component: () => import('pages/AdultPhoto/Cup'),
+          },
+          {
+            path: 'topic-type',
+            name: 'adult-photo-topic-type-setting',
+            component: () => import('pages/AdultPhoto/TopicType'),
           },
         ],
       },
@@ -356,6 +436,16 @@ export default [
             name: 'av-actress-setting',
             component: () => import('pages/AV/Actress'),
           },
+          {
+            path: 'cup',
+            name: 'av-cup-setting',
+            component: () => import('pages/AV/Cup'),
+          },
+          {
+            path: 'topic-type',
+            name: 'av-topic-type-setting',
+            component: () => import('pages/AV/TopicType'),
+          },
         ],
       },
       {
@@ -376,6 +466,11 @@ export default [
             path: 'area',
             name: 'adult-comic-area-setting',
             component: () => import('pages/AdultComic/Area'),
+          },
+          {
+            path: 'topic-type',
+            name: 'adult-comic-topic-type-setting',
+            component: () => import('pages/AdultComic/TopicType'),
           },
         ],
       },
@@ -398,6 +493,11 @@ export default [
             name: 'adult-literature-area-setting',
             component: () => import('pages/AdultLiterature/Area'),
           },
+          {
+            path: 'topic-type',
+            name: 'adult-literature-topic-type-setting',
+            component: () => import('pages/AdultLiterature/TopicType'),
+          },
         ],
       },
       {
@@ -419,12 +519,28 @@ export default [
             name: 'adult-story-area-setting',
             component: () => import('pages/AdultStory/Area'),
           },
+          {
+            path: 'topic-type',
+            name: 'adult-story-topic-type-setting',
+            component: () => import('pages/AdultStory/TopicType'),
+          },
         ],
       },
       {
-        path: 'account-login-history',
-        name: 'account-login-history',
-        component: () => import('pages/HistoryRecord/AccountLogin'),
+        path: 'history',
+        component: () => import('pages/HistoryRecord'),
+        children: [
+          {
+            path: 'account-login',
+            name: 'account-login-history',
+            component: () => import('pages/HistoryRecord/AccountLogin'),
+          },
+          {
+            path: 'member-login',
+            name: 'member-login-history',
+            component: () => import('pages/HistoryRecord/MemberLogin'),
+          },
+        ],
       },
     ],
   },
