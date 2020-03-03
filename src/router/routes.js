@@ -149,6 +149,16 @@ export default [
             name: 'movie-topic-type-setting',
             component: () => import('pages/Movie/TopicType'),
           },
+          {
+            path: 'manage',
+            name: 'movie-manage',
+            component: () => import('pages/Movie/Manage'),
+          },
+          {
+            path: 'episode/:id',
+            name: 'movie-episode',
+            component: () => import('pages/Movie/Episode'),
+          },
         ],
       },
       {
