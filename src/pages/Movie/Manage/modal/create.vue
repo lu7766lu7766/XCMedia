@@ -43,15 +43,6 @@
     </div>
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">集数状态 </label>
-      <div class="col-md-10">
-        <validate rules="required">
-          <j-radio :datas="options.episode" v-model="data.episode_status" />
-        </validate>
-      </div>
-    </div>
-
-    <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label ">主演 </label>
       <div class="col-md-10">
         <j-input-tag v-model="data.starring" />

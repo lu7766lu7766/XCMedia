@@ -25,7 +25,7 @@
               <j-button type="add" @click="$bus.emit('create.show')"></j-button>
             </div>
             <div class="col-sm-10 form-inline justify-content-end panel-search">
-              <router-link class="btn btn-white" :to="{name: 'variety-manage'}">
+              <router-link class="btn btn-white" :to="{name: 'movie-manage'}">
                 <i class="fas fa-angle-left"></i>
                 返回
               </router-link>
