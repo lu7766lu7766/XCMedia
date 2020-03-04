@@ -1,12 +1,12 @@
 <template>
   <detail title="新增" @submit="doSubmit()">
-
+<pre>{{data}}</pre>
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">名称 </label>
       <div class="col-md-10">
         <validate rules="required">
           <input type="text" class="form-control"
-                 v-model="data.title" />
+                 v-model="data.name" />
         </validate>
       </div>
     </div>
@@ -20,7 +20,7 @@
               <label for="imgupload" class="custom-file-upload">
                 选择档案
               </label>
-              <input class="imgupload" type="file" id="imgupload" @change="onFileChange">
+              <input class="imgupload" type="file" id="imgupload" @change="onFileChange($event, 'cover')">
             </div>
             <div class="img-show" v-if="src">
               <img class="OpenImgUpload" :src="src">
@@ -51,16 +51,16 @@
     </div>
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label ">主持 </label>
+      <label class="col-md-2 col-form-label ">主演 </label>
       <div class="col-md-10">
-        <j-input-tag v-model="data.host" />
+        <j-input-tag v-model="data.starring" />
       </div>
     </div>
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label ">来宾 </label>
+      <label class="col-md-2 col-form-label ">导演 </label>
       <div class="col-md-10">
-        <j-input-tag v-model="data.guest" />
+        <j-input-tag v-model="data.director" />
       </div>
     </div>
 
@@ -138,15 +138,15 @@
       async doSubmit()
       {
         const data = _.cloneDeep(this.data)
-        data.host = data.host.join(',')
-        data.guest = data.guest.join(',')
+        data.starring = data.starring && data.starring.join(',')
+        data.director = data.director && data.director.join(',')
         data.genre_ids = _.map(data.genre_ids, 'id')
         await this.$thisApi.doCreate(data, {formData: true})
         this.createSuccess()
       },
       myUploadPic(...args)
       {
-        this.doUploadPic(...args, 'editor_image_ids')
+        this.doUploadPic(...args, 'image_ids')
       },
     },
     mounted()
