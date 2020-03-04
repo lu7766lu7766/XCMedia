@@ -1,6 +1,5 @@
 <template>
   <detail title="新增" @submit="doSubmit()">
-<pre>{{data}}</pre>
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">名称 </label>
       <div class="col-md-10">
@@ -10,7 +9,6 @@
         </validate>
       </div>
     </div>
-
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label ">图片 </label>
       <div class="col-md-10">
@@ -23,10 +21,13 @@
               <input class="imgupload" type="file" id="imgupload" @change="onFileChange($event, 'cover')">
             </div>
             <div class="img-show" v-if="src">
-              <img class="OpenImgUpload" :src="src">
+              <img ref="cover" class="OpenImgUpload" :src="src">
             </div>
           </div>
-          <div class="text-red">
+          <b class="text-red" v-if="src && !isImeSizeOK({width: 263, height: 300, size: 1024})">
+            ＊图片尺寸大小不符合规范（上传图片限制尺寸为263 × 300, 上限為1MB）
+          </b>
+          <div v-else-if="!src" class="text-red">
             上传图片限制尺寸为263 × 300
           </div>
         </div>
@@ -163,6 +164,7 @@
         }
 
         this.src = ''
+        this.imgInfo = {}
         this.show()
       })
     },
