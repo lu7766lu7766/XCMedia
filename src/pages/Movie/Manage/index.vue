@@ -26,9 +26,6 @@
             </div>
             <div class="col-sm-10 form-inline justify-content-end panel-search">
               <div class="form-group width-100 m-r-10">
-                <j-select title="集数状态" :datas="options.episode" v-model="search.episode_status" />
-              </div>
-              <div class="form-group width-100 m-r-10">
                 <j-select title="地区"
                           :datas="options.area"
                           valueKey="id"
@@ -41,7 +38,7 @@
                 <j-select title="状态" :datas="options.status" v-model="search.status" />
               </div>
               <div class="form-group m-r-10">
-                <input type="text" class="form-control" placeholder="请输入名称" v-model="search.title">
+                <input type="text" class="form-control" placeholder="请输入名称" v-model="search.name">
               </div>
               <j-button type="search" @click="doSearch"></j-button>
             </div>
@@ -54,7 +51,6 @@
                 <th class="width-30">#</th>
                 <th class="width-200">图片</th>
                 <th>名称</th>
-                <th>集数状态</th>
                 <th class="width-100">地区</th>
                 <th>类型</th>
                 <th class="width-100">年份</th>
@@ -70,12 +66,6 @@
                 <td class="td-img slider-img-td">
                   <img :src="data.image_url" @click="$bus.emit('image.show', data.image_url)" /></td>
                 <td>{{ data.name }}</td>
-                <td>
-                  <span class="label"
-                        :class="data.episode_status ==='end' ? 'label-pink' : 'label-primary'">
-                     {{ options.episode[data.episode_status] }}
-                  </span>
-                </td>
                 <td>{{ data.region.name }}</td>
                 <td>
                   <span class="label label-warning"
@@ -127,7 +117,7 @@
     data: () => ({
       search: {
         status: '',
-        title: '',
+        name: '',
         episode_status: '',
         region_id: '',
         years_id: '',
