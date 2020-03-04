@@ -37,6 +37,8 @@ export default class API
       year: new (require('./Request/Movie/Year').default),
       area: new (require('./Request/Movie/Area').default),
       topic_ype: new (require('./Request/Movie/TopicType').default),
+      manage: new (require('./Request/Movie/Manage').default),
+      episode: new (require('./Request/Movie/Episode').default),
     }
     this.anime = {
       source: new (require('./Request/Anime/Source').default),
