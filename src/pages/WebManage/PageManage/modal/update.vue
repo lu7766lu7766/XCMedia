@@ -57,6 +57,7 @@
     mixins: [DetailMixins, EditorMixins],
     components: {
       TinymceEditor: require('@/Form/tinymce-editor').default,
+      jWebsite: require('@/Custom/Website').default,
     },
     methods: {
       async doSubmit()
