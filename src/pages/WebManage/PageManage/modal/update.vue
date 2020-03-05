@@ -23,8 +23,9 @@
       <label class="col-md-2 col-form-label required">内容</label>
       <div class="col-md-10">
         <validate rules="required">
-          <j-editor v-model="data.contents"
-                    @image-added="doUploadPic"></j-editor>
+          <tinymce-editor
+            v-model="data.contents">
+          </tinymce-editor>
         </validate>
       </div>
     </div>
@@ -55,7 +56,7 @@
   export default {
     mixins: [DetailMixins, EditorMixins],
     components: {
-      jWebsite: require('@/Custom/Website').default,
+      TinymceEditor: require('@/Form/tinymce-editor').default,
     },
     methods: {
       async doSubmit()
