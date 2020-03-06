@@ -41,7 +41,7 @@ export default {
     },
     toolbar: {
       type: [String, Array],
-      default: 'undo redo |  formatselect | bold italic underline forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media table | removeformat'
+      default: 'undo redo |  formatselect | bold italic underline forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media table tablecellprops | removeformat'
     },
     upload: {
         type: Function
@@ -71,6 +71,8 @@ export default {
             // media_dimensions: false,
             media_poster: false,
             images_upload_handler: this.upload,
+            table_default_attributes:{ 'border': '1','cellpadding':"10" },
+            table_style_by_css:true,
         }
       }
   },
