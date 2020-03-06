@@ -1,5 +1,4 @@
 import jEditor from '@/Form/Editor'
-var announceApi= new (require('../lib/Request/Website/Announce').default)
 
 export default {
   components: {
@@ -8,7 +7,7 @@ export default {
   methods: {
     async doUploadTinymcePic(image)
     {
-      const res = await announceApi.doUploadPic({image}, {formData: true})
+      const res = await this.$thisApi.doUploadPic({image}, {formData: true})
       return res.data.file_url
     },
     async doUploadPic(image, Editor, cursorLocation, resetUploader, key = 'image_ids')
