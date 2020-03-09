@@ -14,10 +14,12 @@
       <label class="col-md-2 col-form-label required">内容</label>
       <div class="col-md-10">
         <validate rules="required">
-          <tinymce-editor
+          <j-editor v-model="data.contents"
+                    @image-added="doUploadPic"></j-editor>
+          <!-- <tinymce-editor
             :upload="uploadImg"
             v-model="data.contents">
-          </tinymce-editor>
+          </tinymce-editor> -->
         </validate>
       </div>
     </div>
