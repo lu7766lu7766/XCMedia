@@ -24,6 +24,7 @@
       <div class="col-md-10">
         <validate rules="required">
           <tinymce-editor
+            :upload="uploadImg"
             v-model="data.contents">
           </tinymce-editor>
         </validate>
@@ -66,6 +67,12 @@
         await this.$thisApi.doUpdate(data)
         this.updateSuccess()
       },
+      uploadImg(blobInfo, success, failure) {
+        var file = blobInfo.blob();
+        this.doUploadTinymcePic(file).then(img => {
+          success(img)
+        })
+      }
     },
     mounted()
     {

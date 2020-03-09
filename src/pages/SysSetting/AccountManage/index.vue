@@ -70,8 +70,8 @@
                   <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'enable'"></i>
                   <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
                 </td>
-                <td>{{ data.updated_at }}</td>
                 <td>{{ data.created_at }}</td>
+                <td>{{ data.updated_at }}</td>
                 <td class="text-left">
                   <j-button type="edit" :action="true" @click="$bus.emit('update.show', data)"></j-button>
                   <j-button type="delete" :action="true" @click="doDelete(data.id)"></j-button>

@@ -41,35 +41,40 @@ export default {
     },
     toolbar: {
       type: [String, Array],
-      default: 'undo redo |  formatselect | bold italic underline forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media table | removeformat'
+      default: 'undo redo |  formatselect | bold italic underline forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media table tablecellprops | removeformat'
+    },
+    upload: {
+        type: Function
     }
   },
   data () {
     return {
       tinymceEditor: 'tinymce-editor',
-      init: {
-        language_url: `${this.baseUrl}/tinymce/langs/zh_CN.js`,
-        language: 'zh_CN',
-        skin_url: `${this.baseUrl}/tinymce/skins/ui/oxide`,
-        content_css: `${this.baseUrl}/tinymce/skins/content/default/content.css`,
-        height: 300,
-        plugins: this.plugins,
-        toolbar: this.toolbar,
-        branding: false,
-        menubar: false,
-        image_description: false,
-        // image_dimensions: false,
-        media_alt_source: false,
-        // media_dimensions: false,
-        media_poster: false,
-        images_upload_handler:async (blobInfo, success, failure) => {
-            var file = blobInfo.blob();
-            var img = this.doUploadTinymcePic(file);
-            success(img)
-        },
-      },
       data: ''
     }
+  },
+  computed: {
+      init() {
+          return {
+            language_url: `${this.baseUrl}/tinymce/langs/zh_CN.js`,
+            language: 'zh_CN',
+            skin_url: `${this.baseUrl}/tinymce/skins/ui/oxide`,
+            content_css: `${this.baseUrl}/tinymce/skins/content/default/content.css`,
+            height: 300,
+            plugins: this.plugins,
+            toolbar: this.toolbar,
+            branding: false,
+            menubar: false,
+            image_description: false,
+            // image_dimensions: false,
+            media_alt_source: false,
+            // media_dimensions: false,
+            media_poster: false,
+            images_upload_handler: this.upload,
+            table_default_attributes:{ 'border': '1','cellpadding':"10" },
+            table_style_by_css:true,
+        }
+      }
   },
   mounted () {
     this.data = this.value
