@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label">昵称</label>
+      <label class="col-md-2 col-form-label required">昵称</label>
       <div class="col-md-10">
         <validate rules="required|min:4|max:32">
           <input type="text" class="form-control"
