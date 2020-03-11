@@ -4387,10 +4387,10 @@ jac-s3-sync-aws@^2.0.1:
     readdirp "^3.0.2"
     xtend "~4.0.0"
 
-jactools@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/jactools/-/jactools-3.2.0.tgz#b1bcf86089c736deafa0d72bdd2d18ceb4d08266"
-  integrity sha512-oxK4cwHfTTLydW29+PvO9x6oKsqc9S5I4Ttvm+nKiqDLkZF3kG6a/30EjOx/W+OY/3kgHkGk68eUnaZEEBYm+g==
+jactools@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/jactools/-/jactools-3.4.0.tgz#252bbde8a3404721c3e89e0572badc97bb45a298"
+  integrity sha512-HozcxdaWn4K2zl6KrB12q0VxzfZQhUgdaCUsOeD9UQAcOLbN5FiBmg74NaZfyQ18sl3LGg8vvroUBWIQk+/awA==
   dependencies:
     axios "^0.19.0"
     decimal.js "^10.2.0"
