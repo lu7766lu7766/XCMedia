@@ -1,6 +1,6 @@
 <template>
-  <validation-provider :rules="rules" v-slot="{errors, invalid}" :vid="vid">
-    <slot></slot>
+  <validation-provider :rules="rules" v-slot="{errors, invalid, validate}" :vid="vid">
+    <slot :errors="errors" :invalid="invalid" :validate="validate"></slot>
     <span v-if="showError && invalid" class="parsley-errors-list filled" v-show="errors[0]">{{ errors[0] }}</span>
   </validation-provider>
 </template>
