@@ -23,7 +23,7 @@
     "bytes": "^3.1.0",
     "core-js": "^3.4.3",
     "dual-listbox-vue": "^1.0.2",
-    "jactools": "^3.2.0",
+    "jactools": "^3.4.0",
     "numeral": "^2.0.6",
     "tinymce": "^5.2.0",
     "vee-validate": "^3.2.5",
