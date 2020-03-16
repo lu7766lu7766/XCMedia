@@ -12,7 +12,12 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label">图片 </label>
       <div class="col-md-10">
-        <mutipleUpload @onImageUpload="onImageUpload" @onImageDelete="onImageDelete" :imageList="imageList"></mutipleUpload>
+        <mutipleUpload
+          @onImageUpload="onImageUpload"
+          @onImageDelete="onImageDelete"
+          :dataImageIds="data.image_ids"
+          :imageList="imageList"
+        ></mutipleUpload>
       </div>
     </div>
 
@@ -92,6 +97,7 @@ export default {
         status: 'Y',
         image_ids: [],
       }
+      this.imageList = []
       this.show()
     })
   },

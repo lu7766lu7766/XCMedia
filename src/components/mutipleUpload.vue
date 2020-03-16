@@ -63,6 +63,7 @@ const megaByte = 1024 * 1024
 export default {
   mixins: [ImageMixins],
   props: {
+    dataImageIds: Array,
     imageList: Array,
     subtitle: String,
   },
@@ -101,6 +102,13 @@ export default {
     doDelete: function(id) {
       this.$emit('onImageDelete', id)
     },
+  },
+  async destroyed() {
+    var imageList = this.imageList.forEach(x => x.id)
+    let delImageList = [...new Set([...new Set(imageList)].filter(x => !new Set(this.dataImageIds).has(x)))]
+    _.forEach(delImageList, async image => {
+      await this.doDelete(image.id)
+    })
   },
 }
 </script>
@@ -233,7 +241,7 @@ export default {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 140px;
+  font-size: 100px;
   color: #d2d2d2;
   transition-duration: 0.2s;
 }
