@@ -1,3 +1,4 @@
+import menuRoutes from './menuRoutes'
 export default [
   {
     path: '/login',
@@ -18,6 +19,7 @@ export default [
         name: 'edit-profile',
         component: () => import('pages/Index/Profile'),
       },
+<<<<<<< HEAD
       {
         path: 'member-manage',
         name: 'member-manage',
@@ -552,6 +554,9 @@ export default [
           },
         ],
       },
+=======
+      ...menuRoutes
+>>>>>>> Cindy#53
     ],
   },
   {

@@ -73,6 +73,8 @@
   "adult-comic-type-setting": "ADULT_COMIC_TYPE_SET",
   "adult-comic-year-setting": "ADULT_COMIC_YEAR_SET",
   "adult-comic-topic-type-setting": "ADULT_COMIC_TOPIC_TYPE",
+  "adult-comic-manage": "ADULT_COMIC_MG",
+  "adult-comic-episode": "ADULT_COMIC_EPISODE_MG",
   "adult-literature-area-setting": "ADULT_LITERATURE_AREA_SET",
   "adult-literature-type-setting": "ADULT_LITERATURE_TYPE_SET",
   "adult-literature-year-setting": "ADULT_LITERATURE_YEAR_SET",
