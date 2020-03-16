@@ -213,7 +213,7 @@ export default [
               path: 'manage',
               name: 'movie-manage',
               label:'电影管理',
-              hasMenu:'电影管理',
+              hasMenu:'MOVIE_MG',
               component: () => import('pages/Movie/Manage'),
             },
             {
@@ -775,6 +775,18 @@ export default [
                 component: () => import('pages/AdultComic/TopicType'),
               },
             ]
+          },
+          {
+            path: 'manage',
+            name: 'adult-comic-manage',
+            label:'漫画管理',
+            hasMenu:'ADULT_COMIC_MG',
+            component: () => import('pages/AdultComic/Manage'),
+          },
+          {
+            path: 'episode/:id',
+            name: 'adult-comic-episode',
+            component: () => import('pages/AdultComic/Episode'),
           },
         ],
       },
