@@ -105,6 +105,8 @@ export default class API
       year: new (require('./Request/AdultComic/Year').default),
       area: new (require('./Request/AdultComic/Area').default),
       topic_ype: new (require('./Request/AdultComic/TopicType').default),
+      manage: new (require('./Request/AdultComic/Manage').default),
+      episode: new (require('./Request/AdultComic/Episode').default),
     }
     this.adult_literature = {
       type: new (require('./Request/AdultLiterature/Type').default),
