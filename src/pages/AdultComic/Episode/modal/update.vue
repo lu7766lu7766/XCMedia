@@ -16,7 +16,6 @@
           @onImageUpload="onImageUpload"
           @onImageDelete="onImageDelete"
           :dataImageIds="data.image_ids"
-          :onSubmit="onSubmit"
           :imageList="imageList"
         ></mutipleUpload>
       </div>
@@ -56,12 +55,10 @@ export default {
   data() {
     return {
       imageList: [],
-      onSubmit: false,
     }
   },
   methods: {
     async doSubmit() {
-      this.onSubmit = true
       this.data.image_ids = this.imageList.map(x => x.id)
       const data = Object.assign(this.data)
       await this.$thisApi.doUpdate(data)
@@ -88,6 +85,13 @@ export default {
         if (x == res.data.id) {
           this.data.image_ids.splice(i, 1)
         }
+      })
+    },
+    doDelImageList() {
+      var imageList = this.imageList.map(x => x.id)
+      let delImageList = imageList.filter(x => this.data.image_ids.indexOf(x) == -1)
+      _.forEach(delImageList, id => {
+        this.onImageDelete(id)
       })
     },
   },

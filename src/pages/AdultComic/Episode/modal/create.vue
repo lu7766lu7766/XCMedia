@@ -90,6 +90,13 @@ export default {
         }
       })
     },
+    doDelImageList() {
+      var imageList = this.imageList.map(x => x.id)
+      let delImageList = imageList.filter(x => this.data.image_ids.indexOf(x) == -1)
+      _.forEach(delImageList, id => {
+        this.onImageDelete(id)
+      })
+    },
   },
   mounted() {
     this.$bus.on('create.show', () => {

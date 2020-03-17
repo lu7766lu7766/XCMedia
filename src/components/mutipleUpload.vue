@@ -67,7 +67,6 @@ export default {
       type: Array,
       default: [],
     },
-    onSubmit: { type: Boolean, default: false },
     imageList: { type: Array, required: true },
     subtitle: { type: String, default: '' },
   },
@@ -108,13 +107,7 @@ export default {
     },
   },
   async destroyed() {
-    // if (!this.onSubmit) {
-    var imageList = this.imageList.map(x => x.id)
-    let delImageList = imageList.filter(x => this.dataImageIds.indexOf(x) == -1)
-    _.forEach(delImageList, id => {
-      this.doDelete(id)
-    })
-    // }
+    this.$emit('doDelImageList')
   },
 }
 </script>
