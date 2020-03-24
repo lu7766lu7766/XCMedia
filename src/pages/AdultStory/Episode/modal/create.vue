@@ -1,8 +1,6 @@
 <template>
   <detail title="新增" @submit="doSubmit()">
     <div class="dropzone-box">
-      <!-- <div id="dropzone" @drop.prevent="onDrop" @dragover.prevent="dragOver = true" @dragleave.prevent="dragOver = false"> -->
-
       <div id="dropzone">
         <form class="dropzone dz-clickable" id="my-awesome-dropzone">
           <label for="avatar" style="width:100%">
@@ -20,7 +18,7 @@
                 <span data-dz-name="">{{ item.name }}</span>
               </div>
             </div>
-            <a class="dz-remove" @click="doDelete()">Delete</a>
+            <a class="dz-remove" @click="doDelete(index)">Delete</a>
           </div>
         </form>
 
@@ -50,58 +48,32 @@ export default {
     onDrop: function(event) {
       let data = event.dataTransfer
       if (data) {
-        this.uploadImage(data.files)
+        this.uploadAudio(data.files)
       }
     },
     async onChoice(event) {
-      this.uploadImage(event.target.files)
+      this.uploadAudio(event.target.files)
     },
-    uploadImage: function(file) {
-      // debugger
-      this.onAudioUpload([...file])
-      // this.$emit('onAudioUpload', [...file])
+    uploadAudio: function(file) {
+      this.pushAudioList([...file])
     },
-    doDelete: function(id) {
-      // this.$emit('onAudioDelete', id)
-      debugger
+    doDelete: function(i) {
+      this.audioList.splice(i, 1)
     },
-    //
     async doSubmit() {
-      // const data = Object.assign({ comic_id: this.$route.params.id }, this.data)
-      await this.$thisApi.doCreate(data)
-      this.createSuccess()
-    },
-    onAudioUpload(files) {
-      _.forEach(files, async audio => {
-        const data = Object.assign({ audio }, this.data)
-        // debugger
+      _.forEach(this.audioList, async audio => {
+        const data = Object.assign({ audio: audio.file }, this.data)
         const res = await this.$thisApi.doCreate(data, { formData: true })
-        // debugger
+      })
+      this.createSuccess()
+      this.$emit('doSearch')
+    },
+    pushAudioList(files) {
+      _.forEach(files, async audio => {
         this.audioList.push({
-          name: res.data.original_file_name,
-          id: res.data.file_url,
-          src: res.data.storytelling_id,
+          file: audio,
+          name: audio.name,
         })
-      })
-    },
-    async onAudioDelete(image_id) {
-      const res = await this.$thisApi.doDeletePic({ image_id })
-      this.audioList.forEach((x, i) => {
-        if (x.id == res.data.id) {
-          this.audioList.splice(i, 1)
-        }
-      })
-      this.data.image_ids.forEach((x, i) => {
-        if (x == res.data.id) {
-          this.data.image_ids.splice(i, 1)
-        }
-      })
-    },
-    doDelAudioList() {
-      var audioList = this.audioList.map(x => x.id)
-      let delAudioList = audioList.filter(x => this.data.image_ids.indexOf(x) == -1)
-      _.forEach(delAudioList, id => {
-        this.onImageDelete(id)
       })
     },
   },
@@ -114,7 +86,7 @@ export default {
       this.show()
     })
   },
-  destroyed() {
+  async destroyed() {
     this.$bus.off('create.show')
   },
 }

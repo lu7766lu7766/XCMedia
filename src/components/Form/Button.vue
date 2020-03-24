@@ -96,6 +96,12 @@ export default {
         this.btnIcon = this.iBtnIcon || 'fa-picture-o'
         this.hasPermission = this.canRead
         break
+      case 'episode-audio':
+        this.name = this.iName || '语音管理'
+        this.btnColor = this.iBtnColor || 'btn-success'
+        this.btnIcon = this.iBtnIcon || 'fas fa-file-code'
+        this.hasPermission = this.canRead
+        break
       case 'log':
         this.name = this.iName || '纪录'
         this.btnColor = this.iBtnColor || 'btn-green'

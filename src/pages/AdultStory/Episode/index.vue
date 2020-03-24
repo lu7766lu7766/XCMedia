@@ -14,7 +14,7 @@
       <div class="panel panel-inverse" style="clear:both;">
         <!-- begin panel-heading -->
         <div class="panel-heading p-t-10">
-          <h4 class="text-white m-b-0">集数管理-{{ $route.query.name }}</h4>
+          <h4 class="text-white m-b-0">语音管理-{{ $route.query.name }}</h4>
         </div>
         <!-- end panel-heading -->
         <!-- begin panel-body -->
@@ -25,7 +25,7 @@
               <j-button type="add" @click="$bus.emit('create.show')"></j-button>
             </div>
             <div class="col-sm-10 form-inline justify-content-end panel-search">
-              <router-link class="btn btn-white" :to="{ name: 'adult-comic-manage' }">
+              <router-link class="btn btn-white" :to="{ name: 'adult-story-manage' }">
                 <i class="fas fa-angle-left"></i>
                 返回
               </router-link>
@@ -34,7 +34,7 @@
           <!-- begin table-responsive -->
           <div class="dropzone-box page-dropzone-box">
             <div class="photo-list">
-              <audioItem v-for="(data, index) in datas" :item="data" :key="index"> </audioItem>
+              <audioItem v-for="(data, index) in datas" :item="data" :key="index" @onDelete="onDelete"> </audioItem>
             </div>
           </div>
           <!-- begin table-responsive -->
@@ -45,13 +45,13 @@
       </div>
     </div>
     <image-container />
-    <create />
-    <update />
+    <create @doSearch="doSearch" />
+    <!-- <update /> -->
   </div>
 </template>
 
 <script>
-import audioItem from '@/audioItem.vue'
+// import audioItem from '@/audioItem.vue'
 import ListMixins from 'mixins/List'
 import Enable from 'constants/Enable'
 
@@ -61,11 +61,11 @@ export default {
     ImageContainer: require('@/Container/Image').default,
     Create: require('./modal/create').default,
     Update: require('./modal/update').default,
-    audioItem,
+    audioItem: require('@/audioItem.vue').default,
   },
   data: () => ({
     search: {
-      comic_id: '',
+      storytelling_id: '',
     },
     options: {
       status: Enable,
@@ -74,9 +74,10 @@ export default {
   }),
   api: 'adult_story.episode',
   methods: {
-    async doDelete(id) {
+    async onDelete(audio_id) {
       await this.doDeleteConfirm()
-      await this.$thisApi.doDelete({ id: id })
+      var data = { audio_id: audio_id, storytelling_id: this.$route.params.id }
+      await this.$thisApi.doDelete(data)
       this.deleteSuccess()
     },
   },

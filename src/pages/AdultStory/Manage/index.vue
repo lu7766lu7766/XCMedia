@@ -80,7 +80,7 @@
                   <td>{{ data.created_at }}</td>
                   <td class="text-left">
                     <j-button
-                      type="episode-img"
+                      type="episode-audio"
                       :action="true"
                       @click="$router.push({ name: 'adult-story-episode', params: { id: data.id }, query: { name: data.title } })"
                     ></j-button>

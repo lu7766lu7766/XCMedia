@@ -23,61 +23,50 @@ export default {
     },
   }),
   methods: {
-    doSearch()
-    {
+    doSearch() {
       this.paginate.page = 1
       this.getList()
       this.getTotal()
     },
-    doRefresh()
-    {
+    doRefresh() {
       this.getList()
       this.getTotal()
     },
-    async getList()
-    {
+    async getList() {
       const res = await this.$thisApi.getList(this.reqBody)
       this.datas = res.data
     },
-    async getTotal()
-    {
+    async getTotal() {
       const res = await this.$thisApi.getTotal(this.reqBody)
       this.paginate.total = res.data
     },
-    doSuccess(msg)
-    {
+    doSuccess(msg) {
       // alert(`${msg}成功`)
       this.$alert.success(`${msg}成功`)
       this.doRefresh()
     },
-    deleteSuccess()
-    {
+    deleteSuccess() {
       this.doSuccess('删除')
     },
-    pageChange(page)
-    {
+    pageChange(page) {
       this.paginate.page = page
       this.getList()
     },
-    async doDelete(id)
-    {
+    async doDelete(id) {
       await this.doDeleteConfirm()
-      await this.$thisApi.doDelete({id})
+      await this.$thisApi.doDelete({ id })
       this.deleteSuccess()
     },
-    async doDeleteConfirm()
-    {
+    async doDeleteConfirm() {
       const res = await this.$swal(this.config.swal.delete)
       if (!res.value) throw 'delete cancel'
     },
   },
   computed: {
-    startIndex()
-    {
+    startIndex() {
       return (this.paginate.page - 1) * this.paginate.perpage + 1
     },
-    reqBody()
-    {
+    reqBody() {
       return _.pickBy(Object.assign({}, this.paginate, this.search), x => x !== '')
     },
   },
