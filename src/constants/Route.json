@@ -83,6 +83,8 @@
   "adult-story-type-setting": "ADULT_STORY_TYPE_SET",
   "adult-story-year-setting": "ADULT_STORY_YEAR_SET",
   "adult-story-topic-type-setting": "ADULT_STORY_TOPIC_TYPE",
+  "adult-story-manage": "ADULT_STORY_MG",
+  "adult-story-episode": "ADULT_STORY_EPISODE_MG",
   "account-login-history": "ACCOUNT_LOGIN_HISTORY",
   "member-login-history": "MEMBER_LOGIN_HISTORY"
 }

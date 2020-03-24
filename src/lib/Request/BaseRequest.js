@@ -7,56 +7,39 @@ import store from 'src/store'
 import API from 'lib/API'
 import Vue from 'vue'
 
-export default class BaseRequest extends iBaseRequest
-{
-  get host()
-  {
+export default class BaseRequest extends iBaseRequest {
+  get host() {
     return API.host
   }
 
-  get header()
-  {
+  get header() {
     const access = store.state.Login.access
     return access
       ? {
-        Authorization: access.token_type + ' ' + access.access_token,
-      }
+          Authorization: access.token_type + ' ' + access.access_token,
+        }
       : {}
   }
 
-  constructor()
-  {
+  constructor() {
     super({
       SuccessCodes,
       ErrorCodes,
     })
   }
 
-  errorHandle(res, errorMessages)
-  {
+  errorHandle(res, errorMessages) {
     const msg = errorMessages.join('\n')
-    if (res.status === 401)
-    {
+    if (res.status === 401) {
       router.replace('login')
-    }
-    else
-    {
-      if (res.data.code.indexOf('00001-5') > -1)
-      {
-        Vue.prototype.$alert.danger(_.map(res.data.data.msg, msg =>
-          ErrorMessages[msg]
-            ? ErrorMessages[msg]
-            : msg,
-        ).join('\n'))
-      }
-      else
-      {
-        Vue.prototype.$alert.danger(msg
-          ? msg
-          : '操作失败')
+    } else {
+      if (res.data.code.indexOf('00001-5') > -1) {
+        Vue.prototype.$alert.danger(_.map(res.data.data.msg, msg => (ErrorMessages[msg] ? ErrorMessages[msg] : msg)).join('\n'))
+      } else {
+        Vue.prototype.$alert.danger(msg ? msg : '操作失败')
       }
       Vue.prototype.$modal.hide()
     }
-    throw {message: msg, ...res}
+    throw { message: msg, ...res }
   }
 }

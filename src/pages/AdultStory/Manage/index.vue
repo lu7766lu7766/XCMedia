@@ -5,8 +5,8 @@
       <li class="breadcrumb-item">
         <router-link :to="{ name: 'welcome' }">首页</router-link>
       </li>
-      <li class="breadcrumb-item"><a href="javascript:;">成人漫画</a></li>
-      <li class="breadcrumb-item active">漫画管理</li>
+      <li class="breadcrumb-item"><a href="javascript:;">成人说书</a></li>
+      <li class="breadcrumb-item active">说书管理</li>
     </ol>
 
     <!-- begin row -->
@@ -14,7 +14,7 @@
       <div class="panel panel-inverse" style="clear:both;">
         <!-- begin panel-heading -->
         <div class="panel-heading p-t-10">
-          <h4 class="text-white m-b-0">漫画管理</h4>
+          <h4 class="text-white m-b-0">说书管理</h4>
         </div>
         <!-- end panel-heading -->
         <!-- begin panel-body -->
@@ -61,9 +61,9 @@
                 <tr v-for="(data, index) in datas" :key="index">
                   <td>{{ startIndex + index }}</td>
                   <td class="td-img slider-img-td">
-                    <img :src="data.image_url" @click="$bus.emit('image.show', data.image_url)" />
+                    <img :src="data.cover_url" @click="$bus.emit('image.show', data.cover_url)" />
                   </td>
-                  <td>{{ data.name }}</td>
+                  <td>{{ data.title }}</td>
                   <td>{{ data.region.name }}</td>
                   <td>
                     <span class="label label-warning" style="margin-right:5px" v-for="(area, index) in data.genres" :key="index">{{
@@ -80,9 +80,9 @@
                   <td>{{ data.created_at }}</td>
                   <td class="text-left">
                     <j-button
-                      type="episode-img"
+                      type="episode-audio"
                       :action="true"
-                      @click="$router.push({ name: 'adult-comic-episode', params: { id: data.id }, query: { name: data.name } })"
+                      @click="$router.push({ name: 'adult-story-episode', params: { id: data.id }, query: { name: data.title } })"
                     ></j-button>
                     <j-button type="edit" :action="true" @click="$bus.emit('update.show', data)"></j-button>
                     <j-button type="delete" :action="true" @click="doDelete(data.id)"></j-button>
@@ -134,7 +134,7 @@ export default {
       source: [],
     },
   }),
-  api: 'adult_comic.manage',
+  api: 'adult_story.manage',
   methods: {
     async getOptions() {
       const res = await axios.all([this.$thisApi.getAreas(), this.$thisApi.getYears(), this.$thisApi.getTypes()])
