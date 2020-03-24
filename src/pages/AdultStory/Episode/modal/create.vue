@@ -1,7 +1,7 @@
 <template>
   <detail title="新增" @submit="doSubmit()">
     <div class="dropzone-box">
-      <div id="dropzone">
+      <div id="dropzone" @drop.prevent="onDrop" @dragover.prevent="dragOver = true" @dragleave.prevent="dragOver = false">
         <form class="dropzone dz-clickable" id="my-awesome-dropzone">
           <label for="avatar" style="width:100%">
             <div class="dz-default dz-message"><span>將檔案拖放到<b>此處</b>或<b>點擊</b>上傳。</span></div>
@@ -61,12 +61,16 @@ export default {
       this.audioList.splice(i, 1)
     },
     async doSubmit() {
-      _.forEach(this.audioList, async audio => {
+      await this.onAudioUpload()
+      await this.createSuccess()
+      await this.$emit('doSearch')
+    },
+    async onAudioUpload() {
+      const promiseArr = this.audioList.map(audio => {
         const data = Object.assign({ audio: audio.file }, this.data)
-        const res = await this.$thisApi.doCreate(data, { formData: true })
+        return this.$thisApi.doCreate(data, { formData: true })
       })
-      this.createSuccess()
-      this.$emit('doSearch')
+      await Promise.all(promiseArr)
     },
     pushAudioList(files) {
       _.forEach(files, async audio => {

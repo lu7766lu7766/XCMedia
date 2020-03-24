@@ -35,7 +35,7 @@
                 <j-select title="状态" :datas="options.status" v-model="search.status" />
               </div>
               <div class="form-group m-r-10">
-                <input type="text" class="form-control" placeholder="请输入名称" v-model="search.name" />
+                <input type="text" class="form-control" placeholder="请输入名称" v-model="search.title" />
               </div>
               <j-button type="search" @click="doSearch"></j-button>
             </div>
@@ -119,8 +119,7 @@ export default {
   data: () => ({
     search: {
       status: '',
-      name: '',
-      episode_status: '',
+      title: '',
       region_id: '',
       years_id: '',
     },
@@ -129,9 +128,7 @@ export default {
       status: Enable,
       area: [],
       year: [],
-      lang: [],
       type: [],
-      source: [],
     },
   }),
   api: 'adult_story.manage',
@@ -139,13 +136,11 @@ export default {
     async getOptions() {
       const res = await axios.all([this.$thisApi.getAreas(), this.$thisApi.getYears(), this.$thisApi.getTypes()])
 
-      this.options =
-        (this.options,
-        {
-          area: res[0].data,
-          year: res[1].data,
-          type: res[2].data,
-        })
+      this.options = Object.assign({}, this.options, {
+        area: res[0].data,
+        year: res[1].data,
+        type: res[2].data,
+      })
     },
   },
   created() {
