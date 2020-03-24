@@ -233,7 +233,7 @@ export default [
     children: [
       {
         path: '',
-        label: '专题管理',
+        label: '分类管理',
         component: () => import('pages/Anime'),
         children: [
           {
