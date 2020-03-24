@@ -47,10 +47,6 @@ export default class Request extends BaseRequest {
     return await this.request('year', data, options)
   }
 
-  async getLangs(data, options) {
-    return await this.request('lang', data, options)
-  }
-
   async getTypes(data, options) {
     return await this.request('type', data, options)
   }
