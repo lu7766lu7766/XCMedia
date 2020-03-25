@@ -60,10 +60,15 @@
                 "
               />
             </div>
-            <div class="img-show" v-if="videoName">
-              <video class="OpenImgUpload" width="250" controls>
-                <source :src="videoName" />
-              </video>
+            <div class="img-show" v-if="videoName && videoName !== ''">
+              <span>{{ this.videoName }}</span>
+            </div>
+            <div v-else>
+              <div class="img-show" v-if="videoUrl">
+                <video class="OpenImgUpload" width="250" controls>
+                  <source :src="videoUrl" />
+                </video>
+              </div>
             </div>
           </div>
         </div>
@@ -111,7 +116,9 @@ export default {
     this.$bus.on('update.show', data => {
       this.data = _.cloneDeep(data)
       this.src = data.cover_url
-      this.videoName = data.video_url
+      this.videoName = ''
+      this.videoUrl = data.video_url
+
       this.show()
     })
   },
