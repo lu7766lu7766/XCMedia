@@ -81,6 +81,8 @@ export default class API {
       area: new (require('./Request/AVSelfie/Area').default)(),
       actress: new (require('./Request/AVSelfie/Actress').default)(),
       topic_ype: new (require('./Request/AVSelfie/TopicType').default)(),
+      manage: new (require('./Request/AVSelfie/Manage').default)(),
+      episode: new (require('./Request/AVSelfie/Episode').default)(),
     }
     this.adult_photo = {
       type: new (require('./Request/AdultPhoto/Type').default)(),

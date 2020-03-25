@@ -51,7 +51,6 @@
 </template>
 
 <script>
-// import audioItem from '@/audioItem.vue'
 import ListMixins from 'mixins/List'
 import Enable from 'constants/Enable'
 
@@ -60,7 +59,6 @@ export default {
   components: {
     ImageContainer: require('@/Container/Image').default,
     Create: require('./modal/create').default,
-    Update: require('./modal/update').default,
     audioItem: require('@/audioItem.vue').default,
   },
   data: () => ({

@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import mutipleUpload from '@/mutipleUpload.vue'
 import DetailMixins from 'mixins/Detail'
 import ImageMixins from 'mixins/Image'
 
@@ -37,7 +36,6 @@ export default {
   mixins: [DetailMixins, ImageMixins],
   components: {
     DateTimePicker: require('@/DateTimePicker').default,
-    mutipleUpload,
   },
   data() {
     return {
