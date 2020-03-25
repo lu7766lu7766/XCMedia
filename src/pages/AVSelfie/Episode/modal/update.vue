@@ -61,7 +61,9 @@
               />
             </div>
             <div class="img-show" v-if="videoName">
-              <span>{{ this.videoName }}</span>
+              <video class="OpenImgUpload" width="250" controls>
+                <source :src="videoName" />
+              </video>
             </div>
           </div>
         </div>
@@ -101,7 +103,7 @@ export default {
   methods: {
     async doSubmit() {
       const data = Object.assign({ selfie_schedule_id: this.$route.params.id }, this.data)
-      await this.$thisApi.doUpdate(data)
+      await this.$thisApi.doUpdate(data, { formData: true })
       this.updateSuccess()
     },
   },
@@ -109,7 +111,7 @@ export default {
     this.$bus.on('update.show', data => {
       this.data = _.cloneDeep(data)
       this.src = data.cover_url
-      this.videoName = ''
+      this.videoName = data.video_url
       this.show()
     })
   },

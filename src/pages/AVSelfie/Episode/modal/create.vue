@@ -101,7 +101,7 @@ export default {
   methods: {
     async doSubmit() {
       const data = Object.assign({ selfie_schedule_id: this.$route.params.id }, this.data)
-      await this.$thisApi.doCreate(data)
+      await this.$thisApi.doCreate(data, { formData: true })
       this.createSuccess()
     },
   },
