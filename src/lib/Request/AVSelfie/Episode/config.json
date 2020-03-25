@@ -13,14 +13,10 @@
   },
   "update": {
     "uri": "update",
-    "method": "put"
+    "method": "post"
   },
   "delete": {
     "uri": "",
     "method": "delete"
-  },
-  "source": {
-    "uri": "options/get_source",
-    "method": "get"
   }
 }

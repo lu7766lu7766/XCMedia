@@ -3,7 +3,7 @@ import _config from './config'
 
 export default class Request extends BaseRequest {
   get baseUrls() {
-    return super.baseUrls.concat('drama/manage/episode')
+    return super.baseUrls.concat('manage/selfie/video')
   }
 
   constructor() {
@@ -29,9 +29,5 @@ export default class Request extends BaseRequest {
 
   async doDelete(data, options) {
     return await this.request('delete', data, options)
-  }
-
-  async getSources(data, options) {
-    return await this.request('source', data, options)
   }
 }

@@ -103,7 +103,7 @@
                     <j-button
                       type="episode"
                       :action="true"
-                      @click="$router.push({ name: 'drama-episode', params: { id: data.id }, query: { name: data.title } })"
+                      @click="$router.push({ name: 'adult-selfie-episode', params: { id: data.id }, query: { name: data.title } })"
                     ></j-button>
                     <j-button type="edit" :action="true" @click="$bus.emit('update.show', data)"></j-button>
                     <j-button type="delete" :action="true" @click="doDelete(data.id)"></j-button>
