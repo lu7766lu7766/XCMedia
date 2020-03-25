@@ -1,13 +1,18 @@
 <template>
   <detail title="新增" @submit="doSubmit()">
-
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">名称 </label>
       <div class="col-md-10">
         <validate rules="required">
-          <input type="text" class="form-control"
-                 v-model="data.title" />
+          <input type="text" class="form-control" v-model="data.title" />
         </validate>
+      </div>
+    </div>
+
+    <div class="form-group row m-b-15">
+      <label class="col-md-2 col-form-label">解析地址 </label>
+      <div class="col-md-10">
+        <input type="text" class="form-control" v-model="data.analyze_address" />
       </div>
     </div>
 
@@ -24,37 +29,31 @@
         <textarea class="form-control" rows="5" v-model="data.remark"></textarea>
       </div>
     </div>
-
   </detail>
 </template>
 
 <script>
-  import DetailMixins from 'mixins/Detail'
+import DetailMixins from 'mixins/Detail'
 
-  export default {
-    mixins: [DetailMixins],
-    methods: {
-      async doSubmit()
-      {
-        const data = _.cloneDeep(this.data)
-        await this.$thisApi.doCreate(data)
-        this.createSuccess()
-      },
+export default {
+  mixins: [DetailMixins],
+  methods: {
+    async doSubmit() {
+      const data = _.cloneDeep(this.data)
+      await this.$thisApi.doCreate(data)
+      this.createSuccess()
     },
-    mounted()
-    {
-      this.$bus.on('create.show', () =>
-      {
-        this.data = {
-          status: 'Y',
-        }
-        this.show()
-      })
-
-    },
-    destroyed()
-    {
-      this.$bus.off('create.show')
-    },
-  }
+  },
+  mounted() {
+    this.$bus.on('create.show', () => {
+      this.data = {
+        status: 'Y',
+      }
+      this.show()
+    })
+  },
+  destroyed() {
+    this.$bus.off('create.show')
+  },
+}
 </script>
