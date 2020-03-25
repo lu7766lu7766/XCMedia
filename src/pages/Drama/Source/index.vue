@@ -3,7 +3,7 @@
     <!-- begin breadcrumb -->
     <ol class="breadcrumb pull-right m-b-20">
       <li class="breadcrumb-item">
-        <router-link :to="{name:'welcome'}">首页</router-link>
+        <router-link :to="{ name: 'welcome' }">首页</router-link>
       </li>
       <li class="breadcrumb-item"><a href="javascript:;">影音戏剧</a></li>
       <li class="breadcrumb-item"><a href="javascript:;">分类管理</a></li>
@@ -30,7 +30,7 @@
                 <j-select title="状态" :datas="options.status" v-model="search.status" />
               </div>
               <div class="form-group m-r-10">
-                <input type="text" class="form-control" placeholder="请输入名称" v-model="search.title">
+                <input type="text" class="form-control" placeholder="请输入名称" v-model="search.title" />
               </div>
               <j-button type="search" @click="doSearch"></j-button>
             </div>
@@ -39,28 +39,30 @@
           <div class="table-responsive">
             <table class="table table-striped table-box text-center">
               <thead>
-              <tr>
-                <th class="width-30">#</th>
-                <th>名称</th>
-                <th class="width-100">状态</th>
-                <th class="width-150">建立时间</th>
-                <th class="width-70">操作</th>
-              </tr>
+                <tr>
+                  <th class="width-30">#</th>
+                  <th>名称</th>
+                  <th>解析地址</th>
+                  <th class="width-100">状态</th>
+                  <th class="width-150">建立时间</th>
+                  <th class="width-70">操作</th>
+                </tr>
               </thead>
               <tbody>
-              <tr v-for="(data, index) in datas" :key="index">
-                <td>{{ startIndex + index }}</td>
-                <td>{{ data.title }}</td>
-                <td>
-                  <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'Y'"></i>
-                  <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
-                </td>
-                <td>{{ data.created_at }}</td>
-                <td class="text-left">
-                  <j-button type="edit" :action="true" @click="$bus.emit('update.show', data)"></j-button>
-                  <j-button type="delete" :action="true" @click="doDelete(data.id)"></j-button>
-                </td>
-              </tr>
+                <tr v-for="(data, index) in datas" :key="index">
+                  <td>{{ startIndex + index }}</td>
+                  <td>{{ data.title }}</td>
+                  <td>{{ data.analyze_address }}</td>
+                  <td>
+                    <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'Y'"></i>
+                    <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
+                  </td>
+                  <td>{{ data.created_at }}</td>
+                  <td class="text-left">
+                    <j-button type="edit" :action="true" @click="$bus.emit('update.show', data)"></j-button>
+                    <j-button type="delete" :action="true" @click="doDelete(data.id)"></j-button>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -77,28 +79,27 @@
 </template>
 
 <script>
-  import ListMixins from 'mixins/List'
-  import Enable from 'constants/Enable'
+import ListMixins from 'mixins/List'
+import Enable from 'constants/Enable'
 
-  export default {
-    mixins: [ListMixins],
-    components: {
-      Create: require('./modal/create').default,
-      Update: require('./modal/update').default,
+export default {
+  mixins: [ListMixins],
+  components: {
+    Create: require('./modal/create').default,
+    Update: require('./modal/update').default,
+  },
+  data: () => ({
+    search: {
+      status: '',
+      title: '',
     },
-    data: () => ({
-      search: {
-        status: '',
-        title: '',
-      },
-      options: {
-        status: Enable,
-      },
-    }),
-    api: 'drama.source',
-    created()
-    {
-      this.doSearch()
+    options: {
+      status: Enable,
     },
-  }
+  }),
+  api: 'drama.source',
+  created() {
+    this.doSearch()
+  },
+}
 </script>
