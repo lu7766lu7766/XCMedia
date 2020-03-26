@@ -32,7 +32,7 @@
                 <j-select title="地区" :datas="options.area" valueKey="id" v-model="search.region_id" />
               </div>
               <div class="form-group width-100 m-r-10">
-                <j-select title="女优" :datas="options.actress" displayKey="name" v-model="search.av_actress" />
+                <j-select title="女优" :datas="options.actress" valueKey="id" displayKey="name" v-model="av_actress_id" />
               </div>
               <div class="form-group width-100 m-r-10">
                 <j-select title="罩杯" :datas="options.cup" valueKey="id" displayKey="size" v-model="search.cup_id" />
@@ -46,7 +46,7 @@
               <div class="form-group m-r-10">
                 <input type="text" class="form-control" placeholder="请输入名称" v-model="search.keyword" />
               </div>
-              <j-button type="search" @click="doSearch"></j-button>
+              <j-button type="search" @click="doSubmit"></j-button>
             </div>
           </div>
           <!-- begin table-responsive -->
@@ -138,10 +138,11 @@ export default {
     Update: require('./modal/update').default,
   },
   data: () => ({
+    av_actress_id: '',
     search: {
       is_censored: '',
       region_id: '',
-      av_actress: '',
+      av_actress: [],
       cup_id: '',
       years_id: '',
       status: '',
@@ -159,6 +160,14 @@ export default {
   }),
   api: 'av_selfie.manage',
   methods: {
+    async doSubmit() {
+      this.search.av_actress = []
+      if (this.av_actress_id !== '') {
+        this.search.av_actress.push(this.av_actress_id)
+      }
+      this.av_actress_id = ''
+      this.doSearch()
+    },
     async getOptions() {
       const res = await axios.all([
         this.$thisApi.getAreas(),
