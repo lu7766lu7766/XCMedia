@@ -1,5 +1,6 @@
 var webpack = require('webpack')
 var path = require('path')
+var copy = require('copy-webpack-plugin')
 var resolve = (dir) =>
 {
   return path.join(__dirname, dir)
@@ -23,6 +24,7 @@ module.exports = {
     }
   },
   plugins: [
+    new copy([{from:'resource', to:'resource'}]),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
