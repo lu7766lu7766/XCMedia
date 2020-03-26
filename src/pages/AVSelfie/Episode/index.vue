@@ -5,9 +5,8 @@
       <li class="breadcrumb-item">
         <router-link :to="{ name: 'welcome' }">首页</router-link>
       </li>
-      <li class="breadcrumb-item"><a href="javascript:;">影音综艺</a></li>
-      <li class="breadcrumb-item"><a href="javascript:;">分类管理</a></li>
-      <li class="breadcrumb-item active">来源设定</li>
+      <li class="breadcrumb-item"><a href="javascript:;">成人自拍</a></li>
+      <li class="breadcrumb-item active">自拍管理</li>
     </ol>
 
     <!-- begin row -->
@@ -15,7 +14,7 @@
       <div class="panel panel-inverse" style="clear:both;">
         <!-- begin panel-heading -->
         <div class="panel-heading p-t-10">
-          <h4 class="text-white m-b-0">来源设定</h4>
+          <h4 class="text-white m-b-0">影片管理-{{ $route.query.name }}</h4>
         </div>
         <!-- end panel-heading -->
         <!-- begin panel-body -->
@@ -26,13 +25,10 @@
               <j-button type="add" @click="$bus.emit('create.show')"></j-button>
             </div>
             <div class="col-sm-10 form-inline justify-content-end panel-search">
-              <div class="form-group width-100 m-r-10">
-                <j-select title="状态" :datas="options.status" v-model="search.status" />
-              </div>
-              <div class="form-group m-r-10">
-                <input type="text" class="form-control" placeholder="请输入名称" v-model="search.title" />
-              </div>
-              <j-button type="search" @click="doSearch"></j-button>
+              <router-link class="btn btn-white" :to="{ name: 'adult-selfie-manage' }">
+                <i class="fas fa-angle-left"></i>
+                返回
+              </router-link>
             </div>
           </div>
           <!-- begin table-responsive -->
@@ -41,8 +37,10 @@
               <thead>
                 <tr>
                   <th class="width-30">#</th>
+                  <th class="width-200">图片</th>
                   <th>名称</th>
-                  <th>解析地址</th>
+                  <th class="width-150">开放时间</th>
+                  <th class="width-100">浏览次数</th>
                   <th class="width-100">状态</th>
                   <th class="width-150">建立时间</th>
                   <th class="width-70">操作</th>
@@ -51,8 +49,12 @@
               <tbody>
                 <tr v-for="(data, index) in datas" :key="index">
                   <td>{{ startIndex + index }}</td>
+                  <td class="td-img slider-img-td">
+                    <img :src="data.cover_url" @click="$bus.emit('image.show', data.cover_url)" />
+                  </td>
                   <td>{{ data.title }}</td>
-                  <td>{{ data.analyze_address }}</td>
+                  <td>{{ data.release_date }}</td>
+                  <td>{{ data.views }}</td>
                   <td>
                     <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'Y'"></i>
                     <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
@@ -73,6 +75,7 @@
         </div>
       </div>
     </div>
+    <image-container />
     <create />
     <update />
   </div>
@@ -85,20 +88,28 @@ import Enable from 'constants/Enable'
 export default {
   mixins: [ListMixins],
   components: {
+    ImageContainer: require('@/Container/Image').default,
     Create: require('./modal/create').default,
     Update: require('./modal/update').default,
   },
   data: () => ({
     search: {
-      status: '',
-      title: '',
+      selfie_schedule_id: '',
     },
     options: {
       status: Enable,
     },
   }),
-  api: 'variety.source',
+  api: 'av_selfie.episode',
+  methods: {
+    async doDelete(id) {
+      await this.doDeleteConfirm()
+      await this.$thisApi.doDelete({ id: id })
+      this.deleteSuccess()
+    },
+  },
   created() {
+    this.search.selfie_schedule_id = this.$route.params.id
     this.doSearch()
   },
 }

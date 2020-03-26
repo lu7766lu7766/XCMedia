@@ -12,12 +12,12 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label">图片 </label>
       <div class="col-md-10">
-        <mutipleUpload
+        <mutipleImageUpload
           @onImageUpload="onImageUpload"
           @onImageDelete="onImageDelete"
           :dataImageIds="data.image_ids"
           :imageList="imageList"
-        ></mutipleUpload>
+        ></mutipleImageUpload>
       </div>
     </div>
 
@@ -45,13 +45,13 @@
 </template>
 
 <script>
-import mutipleUpload from '@/mutipleUpload.vue'
+import mutipleImageUpload from '@/mutipleImageUpload.vue'
 import DetailMixins from 'mixins/Detail'
 import ImageMixins from 'mixins/Image'
 
 export default {
   mixins: [DetailMixins, ImageMixins],
-  components: { DateTimePicker: require('@/DateTimePicker').default, mutipleUpload },
+  components: { DateTimePicker: require('@/DateTimePicker').default, mutipleImageUpload },
   data() {
     return {
       imageList: [],

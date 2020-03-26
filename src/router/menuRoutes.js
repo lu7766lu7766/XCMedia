@@ -590,6 +590,18 @@ export default [
           },
         ],
       },
+      {
+        path: 'manage',
+        name: 'adult-selfie-manage',
+        label: '自拍管理',
+        hasMenu: 'AV_SELFIE_MG',
+        component: () => import('pages/AVSelfie/Manage'),
+      },
+      {
+        path: 'episode/:id',
+        name: 'adult-selfie-episode',
+        component: () => import('pages/AVSelfie/Episode'),
+      },
     ],
   },
   {
