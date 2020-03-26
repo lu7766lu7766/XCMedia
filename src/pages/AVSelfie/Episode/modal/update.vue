@@ -105,6 +105,9 @@ import ImageMixins from 'mixins/Image'
 export default {
   mixins: [DetailMixins, ImageMixins],
   components: { DateTimePicker: require('@/DateTimePicker').default },
+  data: () => ({
+    videoUrl: null,
+  }),
   methods: {
     async doSubmit() {
       const data = Object.assign({ selfie_schedule_id: this.$route.params.id }, this.data)
