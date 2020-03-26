@@ -3,12 +3,8 @@
     "client_id": "1b34ab88-2328-4347-81f9-d95e4bbf0566",
     "client_secret": "L0JY9tKDOTWioEH2fBynU2nAqHHGAjoVy5M9F9tj"
   },
-  "rc": {
-    "client_id": "",
-    "client_secret": ""
-  },
   "stable": {
-    "client_id": "",
-    "client_secret": ""
+    "client_id": "45501057-0d13-4860-ad5f-619e813ba1d0",
+    "client_secret": "r1vgEV5X7FKQzWnUj13I040m1NxpZmihEPxK1PEy"
   }
 }
