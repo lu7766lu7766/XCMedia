@@ -16,15 +16,19 @@ export { type as NodeType }
 import RouteConstants from 'constants/Route'
 import MenuConstants from 'constants/Menu'
 
-const findNode = (nodes, route) =>
-{
+const findNode = (nodes, route) => {
   const MenuCode = RouteConstants[route.name]
   const code = MenuConstants[MenuCode]
-  return _.find(nodes, {code})
+  return _.find(nodes, { code })
 }
+// const READ_SUFFIX = '_READ'
+// const CREATE_SUFFIX = '_CREATE'
+// const UPDATE_SUFFIX = '_UPDATE'
+// const DELETE_SUFFIX = '_DELETE'
+
 const READ_SUFFIX = '_READ'
-const CREATE_SUFFIX = '_CREATE'
-const UPDATE_SUFFIX = '_UPDATE'
+const CREATE_SUFFIX = '_ADD'
+const UPDATE_SUFFIX = '_EDIT'
 const DELETE_SUFFIX = '_DELETE'
 
 export default {
@@ -33,44 +37,28 @@ export default {
     nodes: null,
   },
   mutations: {
-    setNodes(state, context)
-    {
+    setNodes(state, context) {
       state.nodes = context
     },
   },
   getters: {
-    menus: state => _.filter(state.nodes, {display: 'Y', enable: 'Y'}),
-    menu: (state, getters) => code => _.find(getters.menus, {code}),
+    menus: state => _.filter(state.nodes, { display: 'Y', enable: 'Y' }),
+    menu: (state, getters) => code => _.find(getters.menus, { code }),
     node: (state, getters, rootState) => findNode(state.nodes, rootState.route),
-    canRead: (state, getters) =>
-    {
-      return getters.node
-        ? _.some(getters.node.nodes, {code: getters.node.code + READ_SUFFIX})
-        : false
+    canRead: (state, getters) => {
+      return getters.node ? _.some(getters.node.nodes, { code: getters.node.code + READ_SUFFIX }) : false
     },
-    canCreate: (state, getters) =>
-    {
-      return getters.node
-        ? _.some(getters.node.nodes, {code: getters.node.code + CREATE_SUFFIX})
-        : false
+    canCreate: (state, getters) => {
+      return getters.node ? _.some(getters.node.nodes, { code: getters.node.code + CREATE_SUFFIX }) : false
     },
-    canUpdate: (state, getters) =>
-    {
-      return getters.node
-        ? _.some(getters.node.nodes, {code: getters.node.code + UPDATE_SUFFIX})
-        : false
+    canUpdate: (state, getters) => {
+      return getters.node ? _.some(getters.node.nodes, { code: getters.node.code + UPDATE_SUFFIX }) : false
     },
-    canDelete: (state, getters) =>
-    {
-      return getters.node
-        ? _.some(getters.node.nodes, {code: getters.node.code + DELETE_SUFFIX})
-        : false
+    canDelete: (state, getters) => {
+      return getters.node ? _.some(getters.node.nodes, { code: getters.node.code + DELETE_SUFFIX }) : false
     },
-    canPermission: (state, getters) =>
-    {
-      return getters.node
-        ? _.some(getters.node.nodes, {code: 'ROLE_PUBLIC_AUTHORIZATION'})
-        : false
+    canPermission: (state, getters) => {
+      return getters.node ? _.some(getters.node.nodes, { code: 'ROLE_PUBLIC_AUTHORIZATION' }) : false
     },
   },
 }

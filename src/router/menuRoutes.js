@@ -518,6 +518,18 @@ export default [
           },
         ],
       },
+      {
+        path: 'manage',
+        name: 'av-short-manage',
+        label: '短片管理',
+        hasMenu: 'AV_SHORT_MG',
+        component: () => import('pages/AVShort/Manage'),
+      },
+      {
+        path: 'episode/:id',
+        name: 'av-short-episode',
+        component: () => import('pages/AVShort/Episode'),
+      },
     ],
   },
   {
