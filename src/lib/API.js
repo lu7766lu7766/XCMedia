@@ -92,6 +92,7 @@ export default class API {
       area: new (require('./Request/AdultPhoto/Area').default)(),
       actress: new (require('./Request/AdultPhoto/Actress').default)(),
       topic_ype: new (require('./Request/AdultPhoto/TopicType').default)(),
+      manage: new (require('./Request/AdultPhoto/Manage').default)(),
     }
     this.av = {
       type: new (require('./Request/AV/Type').default)(),
