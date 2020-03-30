@@ -1,5 +1,5 @@
 <template>
-  <detail title="新增" @submit="doSubmit()">
+  <detail title="编辑" @submit="doSubmit()">
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">名称 </label>
       <div class="col-md-10">

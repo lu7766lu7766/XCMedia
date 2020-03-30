@@ -47,12 +47,7 @@
       <label class="col-md-2 col-form-label required">地区</label>
       <div class="col-md-10">
         <validate rules="required">
-          <model-list-select
-            :list="options.area"
-            v-model="data.region_id"
-            optionValue="id"
-            optionText="name"
-          />
+          <model-list-select :list="options.area" v-model="data.region_id" optionValue="id" optionText="name" />
         </validate>
       </div>
     </div>
@@ -77,12 +72,7 @@
       <label class="col-md-2 col-form-label required">年份</label>
       <div class="col-md-10">
         <validate rules="required">
-          <model-list-select
-            :list="options.year"
-            v-model="data.year_id"
-            optionValue="id"
-            optionText="title"
-          />
+          <model-list-select :list="options.year" v-model="data.year_id" optionValue="id" optionText="title" />
         </validate>
       </div>
     </div>
@@ -111,49 +101,49 @@
 </template>
 
 <script>
-import DetailMixins from "mixins/Detail";
-import ImageMixins from "mixins/Image";
-import EditorMixins from "mixins/Editor";
-import JInputTag from "@/Form/InputTag";
-import { ModelListSelect, MultiListSelect } from "vue-search-select";
+import DetailMixins from 'mixins/Detail'
+import ImageMixins from 'mixins/Image'
+import EditorMixins from 'mixins/Editor'
+import JInputTag from '@/Form/InputTag'
+import { ModelListSelect, MultiListSelect } from 'vue-search-select'
 
 export default {
   mixins: [DetailMixins, ImageMixins, EditorMixins],
   components: {
     JInputTag,
     ModelListSelect,
-    MultiListSelect
+    MultiListSelect,
   },
   methods: {
     async doSubmit() {
-      const data = _.cloneDeep(this.data);
-      data.genres_ids = _.map(data.genres_ids, "id");
-      data.tags = data.tags && data.tags.join(",");
-      // data.tags = data.tags.split(',')
-      // debugger
-      await this.$thisApi.doCreate(data, { formData: true });
-      this.createSuccess();
+      const data = _.cloneDeep(this.data)
+      data.genres_ids = _.map(data.genres_ids, 'id')
+      if (data.tags.length > 0) {
+        data.tags = data.tags && data.tags.join(',')
+      }
+      await this.$thisApi.doCreate(data, { formData: true })
+      this.createSuccess()
     },
     myUploadPic(...args) {
-      this.doUploadPic(...args, "image_id");
-    }
+      this.doUploadPic(...args, 'image_id')
+    },
   },
   mounted() {
-    this.$bus.on("create.show", () => {
+    this.$bus.on('create.show', () => {
       this.data = {
-        status: "Y",
+        status: 'Y',
         genres_ids: [],
-        region_id: "",
-        year_id: "",
-        tags: []
-      };
+        region_id: '',
+        year_id: '',
+        tags: [],
+      }
 
-      this.src = "";
-      this.show();
-    });
+      this.src = ''
+      this.show()
+    })
   },
   destroyed() {
-    this.$bus.off("create.show");
-  }
-};
+    this.$bus.off('create.show')
+  },
+}
 </script>

@@ -160,6 +160,8 @@ export default {
         region_id: '',
         years_id: '',
         language_id: '',
+        starring: [],
+        director: [],
       }
       this.show()
     })

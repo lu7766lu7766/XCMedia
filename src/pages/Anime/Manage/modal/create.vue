@@ -1,12 +1,10 @@
 <template>
   <detail title="新增" @submit="doSubmit()">
-
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">名称 </label>
       <div class="col-md-10">
         <validate rules="required">
-          <input type="text" class="form-control"
-                 v-model="data.title" />
+          <input type="text" class="form-control" v-model="data.title" />
         </validate>
       </div>
     </div>
@@ -20,10 +18,10 @@
               <label for="imgupload" class="custom-file-upload">
                 选择档案
               </label>
-              <input class="imgupload" type="file" id="imgupload" @change="onFileChange">
+              <input class="imgupload" type="file" id="imgupload" @change="onFileChange" />
             </div>
             <div class="img-show" v-if="src">
-              <img class="OpenImgUpload" :src="src">
+              <img class="OpenImgUpload" :src="src" />
             </div>
           </div>
           <div class="text-red">
@@ -36,8 +34,7 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label ">別名 </label>
       <div class="col-md-10">
-        <input type="text" class="form-control"
-               v-model="data.alias" />
+        <input type="text" class="form-control" v-model="data.alias" />
       </div>
     </div>
 
@@ -77,12 +74,14 @@
       <label class="col-md-2 col-form-label required">类型 </label>
       <div class="col-md-10">
         <validate rules="required">
-          <multi-list-select :list="options.type"
-                             optionValue="id"
-                             optionText="title"
-                             :selectedItems="data.genre_ids"
-                             @select="item => data.genre_ids = item"
-                             v-model="data.genre_ids" />
+          <multi-list-select
+            :list="options.type"
+            optionValue="id"
+            optionText="title"
+            :selectedItems="data.genre_ids"
+            @select="item => (data.genre_ids = item)"
+            v-model="data.genre_ids"
+          />
         </validate>
       </div>
     </div>
@@ -118,57 +117,59 @@
         <switcher v-model="data.status" />
       </div>
     </div>
-
   </detail>
 </template>
 
 <script>
-  import DetailMixins from 'mixins/Detail'
-  import ImageMixins from 'mixins/Image'
-  import EditorMixins from 'mixins/Editor'
-  import JInputTag from '@/Form/InputTag'
-  import { ModelListSelect, MultiListSelect } from 'vue-search-select'
+import DetailMixins from 'mixins/Detail'
+import ImageMixins from 'mixins/Image'
+import EditorMixins from 'mixins/Editor'
+import JInputTag from '@/Form/InputTag'
+import { ModelListSelect, MultiListSelect } from 'vue-search-select'
 
-  export default {
-    mixins: [DetailMixins, ImageMixins, EditorMixins],
-    components: {
-      JInputTag, ModelListSelect, MultiListSelect,
+export default {
+  mixins: [DetailMixins, ImageMixins, EditorMixins],
+  components: {
+    JInputTag,
+    ModelListSelect,
+    MultiListSelect,
+  },
+  methods: {
+    async doSubmit() {
+      const data = _.cloneDeep(this.data)
+      if (data.starring.length > 0) {
+        data.starring = data.starring && data.starring.join(',')
+      }
+      if (data.director.length > 0) {
+        data.director = data.director && data.director.join(',')
+      }
+      data.genre_ids = _.map(data.genre_ids, 'id')
+      await this.$thisApi.doCreate(data, { formData: true })
+      this.createSuccess()
     },
-    methods: {
-      async doSubmit()
-      {
-        const data = _.cloneDeep(this.data)
-        data.starring = data.starring.join(',')
-        data.director = data.director.join(',')
-        data.genre_ids = _.map(data.genre_ids, 'id')
-        await this.$thisApi.doCreate(data, {formData: true})
-        this.createSuccess()
-      },
-      myUploadPic(...args)
-      {
-        this.doUploadPic(...args, 'editor_image_ids')
-      },
+    myUploadPic(...args) {
+      this.doUploadPic(...args, 'editor_image_ids')
     },
-    mounted()
-    {
-      this.$bus.on('create.show', () =>
-      {
-        this.data = {
-          episode_status: 'serializing',
-          status: 'Y',
-          genre_ids: [],
-          region_id: '',
-          years_id: '',
-          language_id: '',
-        }
+  },
+  mounted() {
+    this.$bus.on('create.show', () => {
+      this.data = {
+        episode_status: 'serializing',
+        status: 'Y',
+        genre_ids: [],
+        region_id: '',
+        years_id: '',
+        language_id: '',
+        starring: [],
+        director: [],
+      }
 
-        this.src = ''
-        this.show()
-      })
-    },
-    destroyed()
-    {
-      this.$bus.off('create.show')
-    },
-  }
+      this.src = ''
+      this.show()
+    })
+  },
+  destroyed() {
+    this.$bus.off('create.show')
+  },
+}
 </script>

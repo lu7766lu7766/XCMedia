@@ -1,5 +1,5 @@
 <template>
-  <detail title="新增" @submit="doSubmit()">
+  <detail title="编辑" @submit="doSubmit()">
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">名称</label>
       <div class="col-md-10">
@@ -47,12 +47,7 @@
       <label class="col-md-2 col-form-label required">地区</label>
       <div class="col-md-10">
         <validate rules="required">
-          <model-list-select
-            :list="options.area"
-            v-model="data.region_id"
-            optionValue="id"
-            optionText="name"
-          />
+          <model-list-select :list="options.area" v-model="data.region_id" optionValue="id" optionText="name" />
         </validate>
       </div>
     </div>
@@ -77,12 +72,7 @@
       <label class="col-md-2 col-form-label required">年份</label>
       <div class="col-md-10">
         <validate rules="required">
-          <model-list-select
-            :list="options.year"
-            v-model="data.year_id"
-            optionValue="id"
-            optionText="title"
-          />
+          <model-list-select :list="options.year" v-model="data.year_id" optionValue="id" optionText="title" />
         </validate>
       </div>
     </div>
@@ -111,42 +101,48 @@
 </template>
 
 <script>
-import DetailMixins from "mixins/Detail";
-import ImageMixins from "mixins/Image";
-import EditorMixins from "mixins/Editor";
-import JInputTag from "@/Form/InputTag";
-import { ModelListSelect, MultiListSelect } from "vue-search-select";
+import DetailMixins from 'mixins/Detail'
+import ImageMixins from 'mixins/Image'
+import EditorMixins from 'mixins/Editor'
+import JInputTag from '@/Form/InputTag'
+import { ModelListSelect, MultiListSelect } from 'vue-search-select'
 
 export default {
   mixins: [DetailMixins, ImageMixins, EditorMixins],
   components: {
     JInputTag,
     ModelListSelect,
-    MultiListSelect
+    MultiListSelect,
   },
   methods: {
     async doSubmit() {
-      const data = _.cloneDeep(this.data);
-      data.genres_ids = _.map(data.genres_ids, "id");
-      data.tags = data.tags && data.tags.join(",");
-      await this.$thisApi.doUpdate(data, { formData: true });
-      this.updateSuccess();
+      const data = _.cloneDeep(this.data)
+      data.genres_ids = _.map(data.genres_ids, 'id')
+      if (data.tags.length > 0) {
+        data.tags = data.tags && data.tags.join(',')
+      }
+      await this.$thisApi.doUpdate(data, { formData: true })
+      this.updateSuccess()
     },
     myUploadPic(...args) {
-      this.doUploadPic(...args, "image_id");
-    }
+      this.doUploadPic(...args, 'image_id')
+    },
   },
   mounted() {
-    this.$bus.on("update.show", data => {
-      this.data = Object.assign({ genres_ids: [] }, data);
-      this.data.genres_ids = data.genres;
-      this.data.tags = data.tags.split(",");
-      this.src = data.cover_url;
-      this.show();
-    });
+    this.$bus.on('update.show', data => {
+      this.data = Object.assign({ genres_ids: [] }, data)
+      this.data.genres_ids = data.genres
+      if (this.data.tags && data.tags.length > 0) {
+        this.data.tags = (this.data.tags || '').split(',')
+      } else {
+        this.data.tags = []
+      }
+      this.src = data.cover_url
+      this.show()
+    })
   },
   destroyed() {
-    this.$bus.off("update.show");
-  }
-};
+    this.$bus.off('update.show')
+  },
+}
 </script>
