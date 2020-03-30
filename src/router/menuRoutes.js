@@ -856,6 +856,18 @@ export default [
           },
         ],
       },
+      {
+        path: 'manage',
+        name: 'adult-literature-manage',
+        label: '文学管理',
+        hasMenu: 'ADULT_LITERATURE_MG',
+        component: () => import('pages/AdultLiterature/Manage'),
+      },
+      {
+        path: 'episode/:id',
+        name: 'adult-literature-episode',
+        component: () => import('pages/AdultLiterature/Episode'),
+      },
     ],
   },
   {

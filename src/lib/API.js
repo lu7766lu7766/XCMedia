@@ -113,6 +113,8 @@ export default class API {
       year: new (require('./Request/AdultLiterature/Year').default)(),
       area: new (require('./Request/AdultLiterature/Area').default)(),
       topic_ype: new (require('./Request/AdultLiterature/TopicType').default)(),
+      manage: new (require('./Request/AdultLiterature/Manage').default)(),
+      episode: new (require('./Request/AdultLiterature/Episode').default)(),
     }
     this.adult_story = {
       type: new (require('./Request/AdultStory/Type').default)(),

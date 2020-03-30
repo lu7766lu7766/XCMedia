@@ -81,6 +81,8 @@
   "adult-literature-type-setting": "ADULT_LITERATURE_TYPE_SET",
   "adult-literature-year-setting": "ADULT_LITERATURE_YEAR_SET",
   "adult-literature-topic-type-setting": "ADULT_LITERATURE_TOPIC_TYPE",
+  "adult-literature-manage": "ADULT_LITERATURE_MG",
+  "adult-literature-episode": "ADULT_LITERATURE_EPISODE_MG",
   "adult-story-area-setting": "ADULT_STORY_AREA_SET",
   "adult-story-type-setting": "ADULT_STORY_TYPE_SET",
   "adult-story-year-setting": "ADULT_STORY_YEAR_SET",
