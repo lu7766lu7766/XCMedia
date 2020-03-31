@@ -756,6 +756,18 @@ export default [
           },
         ],
       },
+      {
+        path: 'manage',
+        name: 'av-manage',
+        label: '视频管理',
+        hasMenu: 'AV_MG',
+        component: () => import('pages/AV/Manage'),
+      },
+      {
+        path: 'episode/:id',
+        name: 'av-episode',
+        component: () => import('pages/AV/Episode'),
+      },
     ],
   },
   {
