@@ -1,0 +1,26 @@
+{
+  "list": {
+    "uri": "",
+    "method": "get"
+  },
+  "total": {
+    "uri": "count",
+    "method": "get"
+  },
+  "create": {
+    "uri": "",
+    "method": "post"
+  },
+  "update": {
+    "uri": "update",
+    "method": "post"
+  },
+  "uploadPic": {
+    "uri": "image",
+    "method": "post"
+  },
+  "delete": {
+    "uri": "",
+    "method": "delete"
+  }
+}

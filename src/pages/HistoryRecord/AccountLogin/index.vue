@@ -3,7 +3,7 @@
     <!-- begin breadcrumb -->
     <ol class="breadcrumb pull-right m-b-20">
       <li class="breadcrumb-item">
-        <router-link :to="{name:'welcome'}">首页</router-link>
+        <router-link :to="{ name: 'welcome' }">首页</router-link>
       </li>
       <li class="breadcrumb-item"><a href="javascript:;">历程记录</a></li>
       <li class="breadcrumb-item active">帐号登入历程</li>
@@ -32,7 +32,7 @@
                 </select>
               </div>
               <div class="form-group m-r-10">
-                <input type="text" class="form-control" placeholder="关键字" v-model="search.keyword">
+                <input type="text" class="form-control" placeholder="关键字" v-model="search.keyword" />
               </div>
               <j-button type="search" @click="doSearch"></j-button>
             </div>
@@ -41,24 +41,26 @@
           <div class="table-responsive">
             <table class="table  table-striped table-box text-center">
               <thead>
-              <tr>
-                <th class="width-30">#</th>
-                <th>帐号</th>
-                <th>昵称</th>
-                <th>角色</th>
-                <th class="width-200">登入 IP</th>
-                <th class="width-150">登入时间</th>
-              </tr>
+                <tr>
+                  <th class="width-30">#</th>
+                  <th>帐号</th>
+                  <th>昵称</th>
+                  <th>角色</th>
+                  <th class="width-200">登入 IP</th>
+                  <th class="width-150">登入时间</th>
+                </tr>
               </thead>
               <tbody>
-              <tr v-for="(data, index) in datas" :key="index">
-                <td>{{ startIndex + index }}</td>
-                <td>{{ data.account.account }}</td>
-                <td>{{ data.account.display_name }}</td>
-                <td class="text-blue">{{ _.first(data.account.roles).display_name }}</td>
-                <td>{{ data.login_ip }}</td>
-                <td>{{ data.updated_at }}</td>
-              </tr>
+                <tr v-for="(data, index) in datas" :key="index">
+                  <td>{{ startIndex + index }}</td>
+                  <td>{{ data.account.account }}</td>
+                  <td>{{ data.account.display_name }}</td>
+                  <td>
+                    <span style="margin-right:5px" v-for="(i, index) in data.account.roles" :key="index">{{ i.display_name }}</span>
+                  </td>
+                  <td>{{ data.login_ip }}</td>
+                  <td>{{ data.updated_at }}</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -73,44 +75,44 @@
 </template>
 
 <script>
-  import ListMixins from 'mixins/List'
+import ListMixins from 'mixins/List'
 
-  export default {
-    mixins: [ListMixins],
-    components: {
-      DateTimeSearchBar: require('@/DateTimeSearchBar').default,
+export default {
+  mixins: [ListMixins],
+  components: {
+    DateTimeSearchBar: require('@/DateTimeSearchBar').default,
+  },
+  data: () => ({
+    search: {
+      start: moment()
+        .startOf('day')
+        .getDateTime(),
+      end: moment()
+        .endOf('day')
+        .getDateTime(),
+      role_id: '',
+      keyword: '',
     },
-    data: () => ({
-      search: {
-        start: moment().startOf('day').getDateTime(),
-        end: moment().endOf('day').getDateTime(),
-        role_id: '',
-        keyword: '',
-      },
-      options: {},
-    }),
-    api: 'history.account',
-    methods: {
-      async getOptions()
-      {
-        const res = await this.$thisApi.getOptions()
-        this.options = Object.assign({}, this.options, res.data)
-      },
-      async getList()
-      {
-        const res = await this.$thisApi.getList(this.reqBody)
-        this.datas = res.data
-      },
-      async getTotal()
-      {
-        const res = await this.$thisApi.getTotal(this.reqBody)
-        this.paginate.total = res.data
-      },
+    options: {},
+  }),
+  api: 'history.account',
+  methods: {
+    async getOptions() {
+      const res = await this.$thisApi.getOptions()
+      this.options = Object.assign({}, this.options, res.data)
     },
-    created()
-    {
-      this.getOptions()
-      this.doSearch()
+    async getList() {
+      const res = await this.$thisApi.getList(this.reqBody)
+      this.datas = res.data
     },
-  }
+    async getTotal() {
+      const res = await this.$thisApi.getTotal(this.reqBody)
+      this.paginate.total = res.data
+    },
+  },
+  created() {
+    this.getOptions()
+    this.doSearch()
+  },
+}
 </script>

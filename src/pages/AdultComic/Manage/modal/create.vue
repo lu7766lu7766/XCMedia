@@ -135,11 +135,7 @@ export default {
   methods: {
     async doSubmit() {
       const data = _.cloneDeep(this.data)
-      // data.starring = data.starring && data.starring.join(',')
-      // data.director = data.director && data.director.join(',')
       data.genre_ids = _.map(data.genre_ids, 'id')
-      data.tags = data.tags && data.tags.join(',')
-      data.tags = data.tags.split(',')
       await this.$thisApi.doCreate(data, { formData: true })
       this.createSuccess()
     },

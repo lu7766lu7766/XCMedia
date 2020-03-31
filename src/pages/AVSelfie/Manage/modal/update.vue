@@ -1,5 +1,5 @@
 <template>
-  <detail title="新增" @submit="doSubmit()">
+  <detail title="编辑" @submit="doSubmit()">
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">名称 </label>
       <div class="col-md-10">
@@ -157,8 +157,6 @@ export default {
       const data = _.cloneDeep(this.data)
       data.genres_ids = _.map(data.genres_ids, 'id')
       data.av_actress_ids = _.map(data.av_actress_ids, 'id')
-      data.tags = data.tags && data.tags.join(',')
-      data.tags = data.tags.split(',')
       await this.$thisApi.doUpdate(data, { formData: true })
       this.updateSuccess()
     },

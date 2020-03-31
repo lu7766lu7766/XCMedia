@@ -1,0 +1,38 @@
+{
+  "list": {
+    "uri": "",
+    "method": "get"
+  },
+  "total": {
+    "uri": "count",
+    "method": "get"
+  },
+  "create": {
+    "uri": "",
+    "method": "post"
+  },
+  "update": {
+    "uri": "update",
+    "method": "post"
+  },
+  "delete": {
+    "uri": "",
+    "method": "delete"
+  },
+  "uploadPic": {
+    "uri": "image/upload",
+    "method": "post"
+  },
+  "area": {
+    "uri": "options/get_region",
+    "method": "get"
+  },
+  "year": {
+    "uri": "options/get_year",
+    "method": "get"
+  },
+  "type": {
+    "uri": "options/get_genres",
+    "method": "get"
+  }
+}

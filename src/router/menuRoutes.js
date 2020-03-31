@@ -518,6 +518,18 @@ export default [
           },
         ],
       },
+      {
+        path: 'manage',
+        name: 'av-short-manage',
+        label: '短片管理',
+        hasMenu: 'AV_SHORT_MG',
+        component: () => import('pages/AVShort/Manage'),
+      },
+      // {
+      //   path: 'episode/:id',
+      //   name: 'av-short-episode',
+      //   component: () => import('pages/AVShort/Episode'),
+      // },
     ],
   },
   {
@@ -744,6 +756,18 @@ export default [
           },
         ],
       },
+      {
+        path: 'manage',
+        name: 'av-manage',
+        label: '视频管理',
+        hasMenu: 'AV_MG',
+        component: () => import('pages/AV/Manage'),
+      },
+      {
+        path: 'episode/:id',
+        name: 'av-episode',
+        component: () => import('pages/AV/Episode'),
+      },
     ],
   },
   {
@@ -855,6 +879,18 @@ export default [
             component: () => import('pages/AdultLiterature/TopicType'),
           },
         ],
+      },
+      {
+        path: 'manage',
+        name: 'adult-literature-manage',
+        label: '文学管理',
+        hasMenu: 'ADULT_LITERATURE_MG',
+        component: () => import('pages/AdultLiterature/Manage'),
+      },
+      {
+        path: 'episode/:id',
+        name: 'adult-literature-episode',
+        component: () => import('pages/AdultLiterature/Episode'),
       },
     ],
   },
