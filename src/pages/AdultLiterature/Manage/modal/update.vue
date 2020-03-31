@@ -125,7 +125,7 @@ export default {
       this.updateSuccess()
     },
     myUploadPic(...args) {
-      this.doUploadPic(...args, 'image_id')
+      this.doUploadPic(...args, 'image_ids')
     },
   },
   mounted() {

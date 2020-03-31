@@ -102,7 +102,7 @@ export default {
       status: Enable
     }
   }),
-  api: "av_selfie.episode",
+  api: "av_short.episode",
   methods: {
     async doDelete(id) {
       await this.doDeleteConfirm();
