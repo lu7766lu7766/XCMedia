@@ -73,6 +73,7 @@ export default class API {
       area: new (require('./Request/AVShort/Area').default)(),
       actress: new (require('./Request/AVShort/Actress').default)(),
       topic_ype: new (require('./Request/AVShort/TopicType').default)(),
+      manage: new (require('./Request/AVShort/Manage').default)(),
     }
     this.av_selfie = {
       type: new (require('./Request/AVSelfie/Type').default)(),
@@ -99,6 +100,8 @@ export default class API {
       area: new (require('./Request/AV/Area').default)(),
       actress: new (require('./Request/AV/Actress').default)(),
       topic_ype: new (require('./Request/AV/TopicType').default)(),
+      manage: new (require('./Request/AV/Manage').default)(),
+      episode: new (require('./Request/AV/Episode').default)(),
     }
     this.adult_comic = {
       type: new (require('./Request/AdultComic/Type').default)(),
@@ -113,6 +116,8 @@ export default class API {
       year: new (require('./Request/AdultLiterature/Year').default)(),
       area: new (require('./Request/AdultLiterature/Area').default)(),
       topic_ype: new (require('./Request/AdultLiterature/TopicType').default)(),
+      manage: new (require('./Request/AdultLiterature/Manage').default)(),
+      episode: new (require('./Request/AdultLiterature/Episode').default)(),
     }
     this.adult_story = {
       type: new (require('./Request/AdultStory/Type').default)(),
@@ -150,6 +155,10 @@ export default class API {
 
   static get host() {
     return '//' + [this.hosts[this.target].prefix, this.hosts[this.target].host].join('.')
+  }
+
+  static resourceBaseUrl() {
+    return this.hosts[this.target].resourceBaseUrl + '/'
   }
 
   static async getPassport() {

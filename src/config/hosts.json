@@ -1,10 +1,12 @@
 {
   "test": {
     "host": "media.xing99.cc",
-    "prefix": "api"
+    "prefix": "api",
+    "resourceBaseUrl": "test-media-api.s3-website-ap-southeast-1.amazonaws.com"
   },
   "stable": {
     "host": "dy178.cc",
-    "prefix": "api"
+    "prefix": "api",
+    "resourceBaseUrl": "http://resource.dy178.cc"
   }
 }

@@ -157,8 +157,6 @@ export default {
       const data = _.cloneDeep(this.data)
       data.genres_ids = _.map(data.genres_ids, 'id')
       data.av_actress_ids = _.map(data.av_actress_ids, 'id')
-      data.tags = data.tags && data.tags.join(',')
-      data.tags = data.tags.split(',')
       await this.$thisApi.doCreate(data, { formData: true })
       this.createSuccess()
     },
