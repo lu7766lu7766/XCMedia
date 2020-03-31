@@ -103,7 +103,10 @@
                 <tr v-for="(data, index) in datas" :key="index">
                   <td>{{ startIndex + index }}</td>
                   <td class="td-img slider-img-td">
-                    <img :src="data.cover_url" @click="$bus.emit('image.show', data.cover_url)" />
+                    <img
+                      :src="$resourceBaseUrl+data.cover_path"
+                      @click="$bus.emit('image.show', $resourceBaseUrl+data.cover_path)"
+                    />
                   </td>
                   <td>{{ data.title }}</td>
                   <td>
@@ -143,9 +146,9 @@
                   <td>{{ data.created_at }}</td>
                   <td class="text-left">
                     <j-button
-                      type="episode"
+                      type="episode-video"
                       :action="true"
-                      @click="$router.push({ name: 'av-short-episode', params: { id: data.id }, query: { name: data.title } })"
+                      @click="$bus.emit('video_update.show', data)"
                     ></j-button>
                     <j-button type="edit" :action="true" @click="$bus.emit('update.show', data)"></j-button>
                     <j-button type="delete" :action="true" @click="doDelete(data.id)"></j-button>
@@ -164,6 +167,7 @@
     <image-container />
     <create />
     <update />
+    <VideoUpdate />
   </div>
 </template>
 
@@ -177,7 +181,8 @@ export default {
   components: {
     ImageContainer: require("@/Container/Image").default,
     Create: require("./modal/create").default,
-    Update: require("./modal/update").default
+    Update: require("./modal/update").default,
+    VideoUpdate: require("./modal/videoUpdate").default
   },
   data: () => ({
     av_actress_id: "",
@@ -211,6 +216,7 @@ export default {
       this.doSearch();
     },
     async getOptions() {
+      var tt = this.$resourceBaseUrl;
       const res = await axios.all([
         this.$thisApi.getAreas(),
         this.$thisApi.getYears(),

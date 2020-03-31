@@ -27,6 +27,14 @@ export default class Request extends BaseRequest {
     return await this.request('update', data, options)
   }
 
+  async doGetVideo(data, options) {
+    return await this.request('getVideo', data, options)
+  }
+
+  async doUpdateVideo(data, options) {
+    return await this.request('updateVideo', data, options)
+  }
+
   async doDelete(data, options) {
     return await this.request('delete', data, options)
   }

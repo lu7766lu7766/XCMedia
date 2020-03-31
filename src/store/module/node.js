@@ -7,6 +7,7 @@ const type = {
   canRead: 'Node/canRead',
   canCreate: 'Node/canCreate',
   canUpdate: 'Node/canUpdate',
+  canUpdateVideo: 'Node/canUpdateVideo',
   canDelete: 'Node/canDelete',
   canPermission: 'Node/canPermission',
 }
@@ -24,12 +25,8 @@ const findNode = (nodes, route) => {
 const READ_SUFFIX = '_READ'
 const CREATE_SUFFIX = '_CREATE'
 const UPDATE_SUFFIX = '_UPDATE'
+const UPDATEVIDEO_SUFFIX = '_VIDEO'
 const DELETE_SUFFIX = '_DELETE'
-
-// const READ_SUFFIX = '_READ'
-// const CREATE_SUFFIX = '_ADD'
-// const UPDATE_SUFFIX = '_EDIT'
-// const DELETE_SUFFIX = '_DELETE'
 
 export default {
   namespaced: true,
@@ -53,6 +50,9 @@ export default {
     },
     canUpdate: (state, getters) => {
       return getters.node ? _.some(getters.node.nodes, { code: getters.node.code + UPDATE_SUFFIX }) : false
+    },
+    canUpdateVideo: (state, getters) => {
+      return getters.node ? _.some(getters.node.nodes, { code: getters.node.code + UPDATEVIDEO_SUFFIX }) : false
     },
     canDelete: (state, getters) => {
       return getters.node ? _.some(getters.node.nodes, { code: getters.node.code + DELETE_SUFFIX }) : false

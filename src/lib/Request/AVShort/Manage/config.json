@@ -15,6 +15,10 @@
     "uri": "edit",
     "method": "post"
   },
+  "updateVideo": {
+    "uri": "video_manage",
+    "method": "post"
+  },
   "delete": {
     "uri": "",
     "method": "delete"

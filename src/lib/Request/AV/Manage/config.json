@@ -15,6 +15,18 @@
     "uri": "update",
     "method": "post"
   },
+  "getVideo": {
+    "uri": "bucket",
+    "method": "get"
+  },
+  "createVideo": {
+    "uri": "bucket",
+    "method": "post"
+  },
+  "updateVideo": {
+    "uri": "bucket/update",
+    "method": "post"
+  },
   "delete": {
     "uri": "",
     "method": "delete"

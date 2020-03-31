@@ -141,10 +141,15 @@
                   </td>
                   <td>{{ data.created_at }}</td>
                   <td class="text-left">
-                    <j-button
+                    <!--   <j-button
                       type="episode"
                       :action="true"
                       @click="$router.push({ name: 'av-episode', params: { id: data.id }, query: { name: data.title } })"
+                    ></j-button>-->
+                    <j-button
+                      type="episode"
+                      :action="true"
+                      @click="$bus.emit('video_update.show', data)"
                     ></j-button>
                     <j-button type="edit" :action="true" @click="$bus.emit('update.show', data)"></j-button>
                     <j-button type="delete" :action="true" @click="doDelete(data.id)"></j-button>
@@ -163,6 +168,7 @@
     <image-container />
     <create />
     <update />
+    <VideoUpdate />
   </div>
 </template>
 
@@ -176,7 +182,8 @@ export default {
   components: {
     ImageContainer: require("@/Container/Image").default,
     Create: require("./modal/create").default,
-    Update: require("./modal/update").default
+    Update: require("./modal/update").default,
+    VideoUpdate: require("./modal/videoUpdate").default
   },
   data: () => ({
     av_actress_id: "",

@@ -15,9 +15,9 @@ export default class Request extends BaseRequest {
     return await this.request('list', data, options)
   }
 
-  async getTotal(data, options) {
-    return await this.request('total', data, options)
-  }
+  // async getTotal(data, options) {
+  //   return await this.request('total', data, options)
+  // }
 
   async doCreate(data, options) {
     return await this.request('create', data, options)
@@ -27,7 +27,7 @@ export default class Request extends BaseRequest {
     return await this.request('update', data, options)
   }
 
-  async doDelete(data, options) {
-    return await this.request('delete', data, options)
-  }
+  // async doDelete(data, options) {
+  //   return await this.request('delete', data, options)
+  // }
 }

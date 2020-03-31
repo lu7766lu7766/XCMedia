@@ -74,7 +74,6 @@ export default class API {
       actress: new (require('./Request/AVShort/Actress').default)(),
       topic_ype: new (require('./Request/AVShort/TopicType').default)(),
       manage: new (require('./Request/AVShort/Manage').default)(),
-      episode: new (require('./Request/AVShort/Episode').default)(),
     }
     this.av_selfie = {
       type: new (require('./Request/AVSelfie/Type').default)(),
@@ -156,6 +155,10 @@ export default class API {
 
   static get host() {
     return '//' + [this.hosts[this.target].prefix, this.hosts[this.target].host].join('.')
+  }
+
+  static resourceBaseUrl() {
+    return this.hosts[this.target].resourceBaseUrl + '/'
   }
 
   static async getPassport() {
