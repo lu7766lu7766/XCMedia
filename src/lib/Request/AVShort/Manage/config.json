@@ -1,0 +1,54 @@
+{
+  "list": {
+    "uri": "",
+    "method": "get"
+  },
+  "total": {
+    "uri": "total",
+    "method": "get"
+  },
+  "create": {
+    "uri": "",
+    "method": "post"
+  },
+  "update": {
+    "uri": "edit",
+    "method": "post"
+  },
+  "delete": {
+    "uri": "",
+    "method": "delete"
+  },
+  "uploadPic": {
+    "uri": "image",
+    "method": "post"
+  },
+  "episode": {
+    "uri": "options/episode_status",
+    "method": "get"
+  },
+  "area": {
+    "uri": "options/get_region",
+    "method": "get"
+  },
+  "year": {
+    "uri": "options/get_year",
+    "method": "get"
+  },
+  "type": {
+    "uri": "options/get_genres",
+    "method": "get"
+  },
+  "actress": {
+    "uri": "options/get_av_actress",
+    "method": "get"
+  },
+  "cup": {
+    "uri": "options/get_cup",
+    "method": "get"
+  },
+  "status": {
+    "uri": "status",
+    "method": "get"
+  }
+}
