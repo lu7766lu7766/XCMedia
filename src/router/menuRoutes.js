@@ -525,11 +525,11 @@ export default [
         hasMenu: 'AV_SHORT_MG',
         component: () => import('pages/AVShort/Manage'),
       },
-      {
-        path: 'episode/:id',
-        name: 'av-short-episode',
-        component: () => import('pages/AVShort/Episode'),
-      },
+      // {
+      //   path: 'episode/:id',
+      //   name: 'av-short-episode',
+      //   component: () => import('pages/AVShort/Episode'),
+      // },
     ],
   },
   {
