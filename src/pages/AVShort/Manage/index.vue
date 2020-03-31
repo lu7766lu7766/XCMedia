@@ -79,13 +79,13 @@
                   </td>
                   <td>{{ data.title }}</td>
                   <td>
-                    <span class="label" :class="data.mosaic_type === 'with_mosaic' ? 'text-green' : 'text-danger'">{{
+                    <span class="label" :class="data.mosaic_type === 'WITH_MOSAIC' ? 'text-green' : 'text-danger'">{{
                       options.episode[data.mosaic_type]
                     }}</span>
                   </td>
                   <td>{{ data.region.name }}</td>
                   <td>
-                    <span style="margin-right:5px" v-for="(i, index) in data.actress" :key="index">{{ i.name }}</span>
+                    <span style="margin-right:5px" v-for="(i, index) in data.av_actress" :key="index">{{ i.name }}</span>
                   </td>
                   <td>{{ data.cup.size }}</td>
                   <td>
@@ -94,7 +94,7 @@
                     </span>
                   </td>
 
-                  <td>{{ data.years.title }}</td>
+                  <td>{{ data.year.title }}</td>
                   <td>{{ data.views }}</td>
                   <td>
                     <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'Y'"></i>

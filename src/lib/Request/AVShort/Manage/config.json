@@ -20,7 +20,7 @@
     "method": "delete"
   },
   "uploadPic": {
-    "uri": "image/upload",
+    "uri": "image",
     "method": "post"
   },
   "episode": {

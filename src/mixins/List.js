@@ -35,6 +35,7 @@ export default {
     async getList() {
       const res = await this.$thisApi.getList(this.reqBody)
       this.datas = res.data
+      console.log(this.datas)
       // debugger
     },
     async getTotal() {

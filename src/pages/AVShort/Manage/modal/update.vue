@@ -110,7 +110,7 @@
       <label class="col-md-2 col-form-label required">年份 </label>
       <div class="col-md-10">
         <validate rules="required">
-          <model-list-select :list="options.year" v-model="data.years_id" optionValue="id" optionText="title" />
+          <model-list-select :list="options.year" v-model="data.year_id" optionValue="id" optionText="title" />
         </validate>
       </div>
     </div>
@@ -157,19 +157,26 @@ export default {
       const data = _.cloneDeep(this.data)
       data.genres_ids = _.map(data.genres_ids, 'id')
       data.av_actress_ids = _.map(data.av_actress_ids, 'id')
+      if (data.tags.length > 0) {
+        data.tags = data.tags && data.tags.join(',')
+      }
       await this.$thisApi.doUpdate(data, { formData: true })
       this.updateSuccess()
     },
     myUploadPic(...args) {
-      this.doUploadPic(...args, 'editor_image_ids')
+      this.doUploadPic(...args, 'image_ids')
     },
   },
   mounted() {
     this.$bus.on('update.show', data => {
       this.data = Object.assign({ genres_ids: [], av_actress_ids: [] }, data)
       this.data.genres_ids = data.genres
-      this.data.av_actress_ids = data.actress
-      this.data.tags = data.tags
+      this.data.av_actress_ids = data.av_actress
+      if (data.tags) {
+        this.data.tags = data.tags.split(',')
+      } else {
+        this.data.tags = []
+      }
       this.src = data.cover_url
       this.show()
     })

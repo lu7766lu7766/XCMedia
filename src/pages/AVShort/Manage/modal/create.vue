@@ -171,7 +171,7 @@ export default {
   mounted() {
     this.$bus.on('create.show', () => {
       this.data = {
-        mosaic_type: 'with_mosaic',
+        mosaic_type: 'WITH_MOSAIC',
         // is_censored: 'Y',
         status: 'Y',
         av_actress_ids: [],
