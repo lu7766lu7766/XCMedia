@@ -62,19 +62,14 @@
                   :datas="options.year"
                   valueKey="id"
                   displayKey="title"
-                  v-model="search.years_id"
+                  v-model="search.year_id"
                 />
               </div>
               <div class="form-group width-100 m-r-10">
                 <j-select title="状态" :datas="options.status" v-model="search.status" />
               </div>
               <div class="form-group m-r-10">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="请输入名称"
-                  v-model="search.keyword"
-                />
+                <input type="text" class="form-control" placeholder="请输入名称" v-model="search.title" />
               </div>
               <j-button type="search" @click="doSubmit"></j-button>
             </div>
@@ -91,10 +86,10 @@
                   <th class="width-100">地区</th>
                   <th>女优</th>
                   <th class="width-100">罩杯</th>
-                  <th class="width-100">类型</th>
+                  <th class="width-200">类型</th>
                   <th class="width-100">年份</th>
                   <th class="width-100">浏览次数</th>
-                  <th class="width-100">状态</th>
+                  <th class="width-80">状态</th>
                   <th class="width-150">建立时间</th>
                   <th class="width-100">操作</th>
                 </tr>
@@ -190,11 +185,11 @@ export default {
     search: {
       mosaic_type: "",
       region_id: "",
-      av_actress: [],
+      av_actress_ids: [],
       cup_id: "",
-      years_id: "",
+      year_id: "",
       status: "",
-      keyword: ""
+      title: ""
     },
     options: {
       episode: CensoredStatus,
@@ -209,11 +204,16 @@ export default {
   api: "av_short.manage",
   methods: {
     async doSubmit() {
-      this.search.av_actress_ids = [];
-      if (this.av_actress_id !== "") {
-        this.search.av_actress_ids.push(this.av_actress_id);
+      if (this.av_actress_id) {
+        if (this.search.av_actress_ids.length > 1) {
+          this.search.av_actress_ids = [];
+          this.search.av_actress_ids.push(this.av_actress_id);
+        } else {
+          this.search.av_actress_ids.push(this.av_actress_id);
+        }
+      } else {
+        this.search.av_actress_ids = [];
       }
-      this.av_actress_id = "";
       this.doSearch();
     },
     async getOptions() {
