@@ -1,6 +1,8 @@
 import jEditor from '@/Form/Editor'
+import ImageMixins from 'mixins/Image'
 
 export default {
+  mixins: [ImageMixins],
   components: {
     jEditor,
   },
@@ -11,7 +13,7 @@ export default {
     },
     async doUploadPic(image, Editor, cursorLocation, resetUploader, key = 'image_ids') {
       const res = await this.$thisApi.doUploadPic({ image }, { formData: true })
-      const url = this.$resourceBaseUrl + res.data.file_path
+      const url = this.toResourceUrl(res.data.file_path)
       this.insertImage(image, Editor, cursorLocation, resetUploader, url)
       this.add2Data(key, res.data.id)
     },

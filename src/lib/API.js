@@ -92,6 +92,8 @@ export default class API {
       area: new (require('./Request/AdultPhoto/Area').default)(),
       actress: new (require('./Request/AdultPhoto/Actress').default)(),
       topic_ype: new (require('./Request/AdultPhoto/TopicType').default)(),
+      manage: new (require('./Request/AdultPhoto/Manage').default)(),
+      photo: new (require('./Request/AdultPhoto/Photo').default)(),
     }
     this.av = {
       type: new (require('./Request/AV/Type').default)(),
@@ -152,12 +154,12 @@ export default class API {
     return target
   }
 
-  static get host() {
-    return '//' + [this.hosts[this.target].prefix, this.hosts[this.target].host].join('.')
+  static get resourceUrl() {
+    return this.hosts[this.target].resourceBaseUrl
   }
 
-  static resourceBaseUrl() {
-    return this.hosts[this.target].resourceBaseUrl + '/'
+  static get host() {
+    return '//' + [this.hosts[this.target].prefix, this.hosts[this.target].host].join('.')
   }
 
   static async getPassport() {

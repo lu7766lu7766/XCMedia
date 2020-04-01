@@ -32,8 +32,8 @@
               <input type="text" v-show="false" v-model="data.image">
             </validate>
           </div>
-          <div class="text-red">
-            电脑上传图片限制尺寸为1920 × 550, 行动装置上传图片限制尺寸为750 × 400
+          <div v-if="imgSizeHint" class="text-red">
+            电脑上传图片限制尺寸为{{ imgSizeHint }}
           </div>
         </div>
         <div class="slider-img-list">
@@ -84,6 +84,12 @@
 
   export default {
     mixins: [ThisMixins],
+    computed: {
+      imgSizeHint() {
+        const i = this.options.types.findIndex(t => t.id === this.data.type_id)
+        return i > -1 ? this.options.types[i].size_hint : ''
+      }
+    },
     methods: {
       async doSubmit()
       {

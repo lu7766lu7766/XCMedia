@@ -76,8 +76,8 @@
                   <td class="td-img slider-img-td">
                     <img
                       v-if="data.image_path"
-                      :src="$resourceBaseUrl+data.image_path"
-                      @click="$bus.emit('image.show', $resourceBaseUrl+data.image_path)"
+                      :src="toResourceUrl(data.image_path)"
+                      @click="$bus.emit('image.show', toResourceUrl(data.image_path))"
                     />
                   </td>
                   <td>{{ data.name }}</td>
@@ -130,11 +130,12 @@
 
 <script>
 import ListMixins from "mixins/List";
+import ImageMixins from "mixins/Image";
 import Enable from "constants/Enable";
 import EpisodeStatus from "constants/EpisodeStatus";
 
 export default {
-  mixins: [ListMixins],
+  mixins: [ListMixins, ImageMixins],
   components: {
     ImageContainer: require("@/Container/Image").default,
     Create: require("./modal/create").default,

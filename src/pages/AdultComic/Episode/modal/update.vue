@@ -79,7 +79,7 @@ export default {
           name: res.data.name,
           id: res.data.id,
           src: res.data.file_path
-            ? this.$resourceBaseUrl + res.data.file_path
+            ? this.toResourceUrl(res.data.file_path)
             : res.data.file_path
         });
       });
@@ -114,7 +114,7 @@ export default {
         return {
           name: x.name,
           id: x.id,
-          src: x.file_path ? this.$resourceBaseUrl + x.file_path : x.file_path
+          src: x.file_path ? this.toResourceUrl(x.file_path) : x.file_path
         };
       });
 

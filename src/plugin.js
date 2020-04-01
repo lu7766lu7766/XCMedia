@@ -24,7 +24,6 @@ const install = (Vue, options) => {
 
   Vue.use(VueSweetalert2)
 
-  Vue.prototype.$resourceBaseUrl = API.resourceBaseUrl()
   Vue.prototype.$api = new API()
   Vue.prototype.$jaclib = JacLib
 

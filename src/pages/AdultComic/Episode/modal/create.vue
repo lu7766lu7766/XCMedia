@@ -82,7 +82,7 @@ export default {
           name: res.data.name,
           id: res.data.id,
           src: res.data.file_path
-            ? this.$resourceBaseUrl + res.data.file_path
+            ? this.toResourceUrl(res.data.file_path)
             : res.data.file_path
         });
       });
