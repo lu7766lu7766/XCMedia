@@ -525,11 +525,6 @@ export default [
         hasMenu: 'AV_SHORT_MG',
         component: () => import('pages/AVShort/Manage'),
       },
-      // {
-      //   path: 'episode/:id',
-      //   name: 'av-short-episode',
-      //   component: () => import('pages/AVShort/Episode'),
-      // },
     ],
   },
   {
@@ -762,11 +757,6 @@ export default [
         label: '视频管理',
         hasMenu: 'AV_MG',
         component: () => import('pages/AV/Manage'),
-      },
-      {
-        path: 'episode/:id',
-        name: 'av-episode',
-        component: () => import('pages/AV/Episode'),
       },
     ],
   },

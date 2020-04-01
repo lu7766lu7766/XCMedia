@@ -11,7 +11,8 @@ export default {
     },
     async doUploadPic(image, Editor, cursorLocation, resetUploader, key = 'image_ids') {
       const res = await this.$thisApi.doUploadPic({ image }, { formData: true })
-      this.insertImage(image, Editor, cursorLocation, resetUploader, res.data.file_url)
+      const url = this.$resourceBaseUrl + res.data.file_path
+      this.insertImage(image, Editor, cursorLocation, resetUploader, url)
       this.add2Data(key, res.data.id)
     },
     insertImage(image, Editor, cursorLocation, resetUploader, url) {
