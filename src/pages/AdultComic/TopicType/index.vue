@@ -57,8 +57,8 @@
                   <td>{{ startIndex + index }}</td>
                   <td class="td-img slider-img-td">
                     <img
-                      :src="data.image_path?$resourceBaseUrl+data.image_path:$data.image_path"
-                      @click="$bus.emit('image.show', data.image_path?$resourceBaseUrl+data.image_path:$data.image_path)"
+                      :src="data.image_path ? toResourceUrl(data.image_path) : $data.image_path"
+                      @click="$bus.emit('image.show', data.image_path ? toResourceUrl(data.image_path) : $data.image_path)"
                     />
                   </td>
                   <td>{{ data.title }}</td>
@@ -90,10 +90,11 @@
 
 <script>
 import ListMixins from "mixins/List";
+import ImageMixins from "mixins/Image";
 import Enable from "constants/Enable";
 
 export default {
-  mixins: [ListMixins],
+  mixins: [ListMixins, ImageMixins],
   components: {
     ImageContainer: require("@/Container/Image").default,
     Create: require("./modal/create").default,
