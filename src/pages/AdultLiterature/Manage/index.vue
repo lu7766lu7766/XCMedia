@@ -41,7 +41,7 @@
                   :datas="options.year"
                   valueKey="id"
                   displayKey="title"
-                  v-model="search.years_id"
+                  v-model="search.year_id"
                 />
               </div>
               <div class="form-group width-100 m-r-10">
@@ -101,7 +101,7 @@
                   <td>{{ data.created_at }}</td>
                   <td class="text-left">
                     <j-button
-                      type="episode"
+                      type="episode-book"
                       :action="true"
                       @click="$router.push({ name: 'adult-literature-episode', params: { id: data.id }, query: { name: data.title } })"
                     ></j-button>
@@ -142,7 +142,7 @@ export default {
       status: "",
       title: "",
       region_id: "",
-      years_id: ""
+      year_id: ""
     },
     options: {
       status: Enable,
