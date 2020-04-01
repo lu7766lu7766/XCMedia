@@ -101,10 +101,6 @@ export default {
   }),
   api: "adult_literature.episode",
   methods: {
-    async getOptions() {
-      const res = await this.$thisApi.getSources();
-      this.options.source = res.data;
-    },
     async doDelete(id) {
       await this.doDeleteConfirm();
       await this.$thisApi.doDelete({
@@ -116,7 +112,6 @@ export default {
   },
   created() {
     this.search.literature_id = this.$route.params.id;
-    this.getOptions();
     this.doSearch();
   }
 };
