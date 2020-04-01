@@ -40,8 +40,7 @@
               <div v-for="(item, index) in datas" class="photo-item">
                 <div
                   class="img"
-                  href="#img-dialog"
-                  data-toggle="modal"
+                  @click="$bus.emit('image.show', toResourceUrl(item.file_path))"
                   :style="`background-image: url('${toResourceUrl(item.file_path)}');`"
                 ></div>
                 <div class="txt">

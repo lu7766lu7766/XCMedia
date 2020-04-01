@@ -57,7 +57,7 @@
                   <th class="width-100">地区</th>
                   <!-- <th>女优</th> -->
                   <th class="width-100">罩杯</th>
-                  <!-- <th class="width-100">类型</th> -->
+                  <th class="width-100">类型</th>
                   <th class="width-100">年份</th>
                   <th class="width-100">浏览次数</th>
                   <th class="width-100">状态</th>
@@ -77,11 +77,11 @@
                     <span style="margin-right:5px" v-for="(i, index) in data.actress" :key="index">{{ i.name }}</span>
                   </td> -->
                   <td>{{ data.cup.title }}</td>
-                  <!-- <td>
-                    <span class="label label-warning" style="margin-right:5px" v-for="(area, index) in data.genres" :key="index">{{
-                      area.title
+                  <td>
+                    <span class="label label-warning" style="margin-right:5px" v-for="(item, index) in data.types" :key="index">{{
+                      item.title
                     }}</span>
-                  </td> -->
+                  </td>
 
                   <td>{{ data.year.title }}</td>
                   <td>{{ data.views }}</td>
@@ -92,7 +92,7 @@
                   <td>{{ data.createdAt }}</td>
                   <td class="text-left">
                     <j-button
-                      type="episode-img"
+                      type="image"
                       :action="true"
                       @click="$router.push({ name: 'adult-photo-photo', params: { id: data.id }, query: { name: data.title } })"
                     ></j-button>
@@ -118,11 +118,12 @@
 
 <script>
 import ListMixins from 'mixins/List'
+import ImageMixins from 'mixins/Image'
 import Enable from 'constants/Enable'
 import CensoredStatus from 'constants/CensoredStatus'
 
 export default {
-  mixins: [ListMixins],
+  mixins: [ListMixins, ImageMixins],
   components: {
     ImageContainer: require('@/Container/Image').default,
     Create: require('./modal/create').default,
@@ -151,7 +152,7 @@ export default {
       return this.datas.map(t => ({
         id: t.id,
         title: t.title,
-        imgUrl: t.cover_url,
+        imgUrl: this.toResourceUrl(t.cover_path),
         alias: t.alias,
         area: {
           id: t.region.id,
