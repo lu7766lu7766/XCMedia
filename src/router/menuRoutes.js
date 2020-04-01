@@ -692,6 +692,13 @@ export default [
         hasMenu: 'ADULT_PHOTO_MG',
         component: () => import('pages/AdultPhoto/Manage'),
       },
+      {
+        path: 'photo/:id',
+        name: 'adult-photo-photo',
+        label: '图片管理',
+        // hasMenu: 'ADULT_PHOTO_PIC_MG',
+        component: () => import('pages/AdultPhoto/Photo'),
+      },
     ],
   },
   {

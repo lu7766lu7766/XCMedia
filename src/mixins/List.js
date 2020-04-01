@@ -38,6 +38,7 @@ export default {
       // console.log(this.datas)
     },
     async getTotal(data) {
+      if(!this.$thisApi.getTotal) { return }
       const res = await this.$thisApi.getTotal(data || this.reqBody)
       this.paginate.total = res.data
     },
