@@ -1,0 +1,108 @@
+@import "mixin";
+// 公告管理
+.push-app-box {
+    margin-top: 10px;
+    .info-container {
+        > span{
+            display: none;
+        }
+    }
+    .bootstrap-duallistbox-container {
+        .btn-box{
+            margin-top: 0;
+            padding-left: 9px;
+            padding-right: 10px;
+            flex: 0 0 65px;
+            max-width: 65px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+    .btn-box {
+        .btn.moveall{
+            order: 1;
+        }
+        .btn.move{
+            order: 2;
+        }
+        .btn.remove{
+            order: 4;
+        }
+        .btn.removeall{
+            order: 5;
+        }
+    }
+    .btn {
+        i{
+            font-family: 'Font Awesome\ 5 Free';
+            font-style: normal;
+        }
+    }
+    .clearfix{
+        order: 3;
+    }
+    .bootstrap-duallistbox-container {
+        select{
+            height: 250px !important;
+        }
+        .settingUp-btns{
+            visibility: hidden;
+        }
+    }
+    .glyphicon-arrow-right:before{
+        content: "\f061";
+    }
+    .glyphicon-arrow-left:before{
+        content: "\f060";
+    }
+    .glyphicon-arrow-up::before{
+        content: "\f062";
+    }
+    .glyphicon-arrow-down::before{
+        content: "\f063";
+    }
+}
+// 輪播管理
+.slider-img{
+    &-td{
+        cursor: pointer;
+    }
+    &-list{
+        border: 1px solid #d3d8de;
+        border-radius: 3px;
+        margin-top: 10px;
+        > div{
+            padding: 5px;
+        }
+    }
+    &-head{
+        background-color: #e8e8e8;
+    }
+    &-body{
+        img{
+            max-width: 100%;
+        }
+        a{
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            &:hover{
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+// .modal {
+//     width: 100%;
+//     height: 100%;
+//     bottom: auto;
+//     padding: 0;
+//     background-color: rgba(0,0,0,.5);
+//     background-clip: padding-box;
+//     overflow-y: auto;
+// }
+// .modal-backdrop{
+//     background: transparent;
+// }

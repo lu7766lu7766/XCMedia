@@ -1,0 +1,50 @@
+{
+  "list": {
+    "uri": "",
+    "method": "get"
+  },
+  "total": {
+    "uri": "total",
+    "method": "get"
+  },
+  "create": {
+    "uri": "",
+    "method": "post"
+  },
+  "update": {
+    "uri": "update",
+    "method": "post"
+  },
+  "info": {
+    "uri": "info",
+    "method": "get"
+  },
+  "delete": {
+    "uri": "",
+    "method": "delete"
+  },
+  "area": {
+    "uri": "region",
+    "method": "get"
+  },
+  "year": {
+    "uri": "years",
+    "method": "get"
+  },
+  "type": {
+    "uri": "genres",
+    "method": "get"
+  },
+  "actress": {
+    "uri": "actress",
+    "method": "get"
+  },
+  "cup": {
+    "uri": "cup",
+    "method": "get"
+  },
+  "status": {
+    "uri": "status",
+    "method": "get"
+  }
+}

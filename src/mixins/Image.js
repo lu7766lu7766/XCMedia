@@ -1,4 +1,6 @@
 import { JacLib } from 'jactools'
+import API from 'lib/API'
+import { join } from 'path'
 
 export default {
   data: () => ({
@@ -8,6 +10,9 @@ export default {
   methods: {
     getFiles(e) {
       return e.target.files || e.dataTransfer.files
+    },
+    toResourceUrl(path) {
+      return '//' + join(API.resourceUrl, path)
     },
     async handleImageChange(e) {
       var files = this.getFiles(e)

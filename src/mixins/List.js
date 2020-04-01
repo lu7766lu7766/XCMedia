@@ -23,22 +23,23 @@ export default {
     },
   }),
   methods: {
-    doSearch() {
+    async doSearch(data) {
       this.paginate.page = 1
-      this.getList()
-      this.getTotal()
+      await this.getList(data)
+      await this.getTotal(data)
     },
-    doRefresh() {
-      this.getList()
-      this.getTotal()
+    async doRefresh(data) {
+      await this.getList(data)
+      await this.getTotal(data)
     },
-    async getList() {
-      const res = await this.$thisApi.getList(this.reqBody)
+    async getList(data) {
+      const res = await this.$thisApi.getList(data || this.reqBody)
       this.datas = res.data
       // console.log(this.datas)
     },
-    async getTotal() {
-      const res = await this.$thisApi.getTotal(this.reqBody)
+    async getTotal(data) {
+      if(!this.$thisApi.getTotal) { return }
+      const res = await this.$thisApi.getTotal(data || this.reqBody)
       this.paginate.total = res.data
     },
     doSuccess(msg) {
