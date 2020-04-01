@@ -217,7 +217,6 @@ export default {
       this.doSearch();
     },
     async getOptions() {
-      var tt = this.$resourceBaseUrl;
       const res = await axios.all([
         this.$thisApi.getAreas(),
         this.$thisApi.getYears(),

@@ -111,7 +111,7 @@
                       :class="data.is_censored === 'Y' ? 'text-green' : 'text-danger'"
                     >{{ options.episode[data.is_censored] }}</span>
                   </td>-->
-                  <td>{{ data.region_id }}</td>
+                  <td>{{ data.source.name }}</td>
                   <td>
                     <span
                       style="margin-right:5px"
@@ -119,7 +119,7 @@
                       :key="index"
                     >{{ i.name }}</span>
                   </td>
-                  <td>{{ data.cup_id }}</td>
+                  <td>{{ data.cup.size }}</td>
                   <td>
                     <span
                       class="label label-warning"
@@ -133,7 +133,7 @@
                     </span>
                   </td>
 
-                  <td>{{ data.years_id }}</td>
+                  <td>{{ data.years.title }}</td>
                   <td>{{ data.views }}</td>
                   <td>
                     <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'Y'"></i>
@@ -209,9 +209,9 @@ export default {
   api: "av.manage",
   methods: {
     async doSubmit() {
-      this.search.av_actress = [];
+      this.search.av_actress_ids = [];
       if (this.av_actress_id !== "") {
-        this.search.av_actress.push(this.av_actress_id);
+        this.search.av_actress_ids.push(this.av_actress_id);
       }
       this.av_actress_id = "";
       this.doSearch();

@@ -12,8 +12,8 @@
     "method": "post"
   },
   "update": {
-    "uri": "update",
-    "method": "post"
+    "uri": "",
+    "method": "put"
   },
   "uploadPic": {
     "uri": "image",

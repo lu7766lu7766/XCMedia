@@ -77,7 +77,7 @@
                     <img :src="data.cover_url" @click="$bus.emit('image.show', data.cover_url)" />
                   </td>
                   <td>{{ data.title }}</td>
-                  <td>{{ data.region_id }}</td>
+                  <td>{{ data.region.name}}</td>
                   <!-- <td>{{ data.region.title }}</td> -->
                   <td>
                     <span
