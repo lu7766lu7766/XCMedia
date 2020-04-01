@@ -102,6 +102,12 @@ export default {
         this.btnIcon = this.iBtnIcon || "fa-video";
         this.hasPermission = this.canRead;
         break;
+      case "image":
+        this.name = this.iName || "图片管理";
+        this.btnColor = this.iBtnColor || "btn-success";
+        this.btnIcon = this.iBtnIcon || "fa-picture-o";
+        this.hasPermission = this.canRead;
+        break;
       case "episode-video":
         this.name = this.iName || "影片管理";
         this.btnColor = this.iBtnColor || "btn-success";
