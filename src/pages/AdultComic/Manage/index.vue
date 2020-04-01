@@ -5,12 +5,14 @@
       <li class="breadcrumb-item">
         <router-link :to="{ name: 'welcome' }">首页</router-link>
       </li>
-      <li class="breadcrumb-item"><a href="javascript:;">成人漫画</a></li>
+      <li class="breadcrumb-item">
+        <a href="javascript:;">成人漫画</a>
+      </li>
       <li class="breadcrumb-item active">漫画管理</li>
     </ol>
 
     <!-- begin row -->
-    <div class="">
+    <div class>
       <div class="panel panel-inverse" style="clear:both;">
         <!-- begin panel-heading -->
         <div class="panel-heading p-t-10">
@@ -26,10 +28,21 @@
             </div>
             <div class="col-sm-10 form-inline justify-content-end panel-search">
               <div class="form-group width-100 m-r-10">
-                <j-select title="地区" :datas="options.area" valueKey="id" v-model="search.region_id" />
+                <j-select
+                  title="地区"
+                  :datas="options.area"
+                  valueKey="id"
+                  v-model="search.region_id"
+                />
               </div>
               <div class="form-group width-100 m-r-10">
-                <j-select title="年份" :datas="options.year" valueKey="id" displayKey="title" v-model="search.years_id" />
+                <j-select
+                  title="年份"
+                  :datas="options.year"
+                  valueKey="id"
+                  displayKey="title"
+                  v-model="search.years_id"
+                />
               </div>
               <div class="form-group width-100 m-r-10">
                 <j-select title="状态" :datas="options.status" v-model="search.status" />
@@ -61,14 +74,25 @@
                 <tr v-for="(data, index) in datas" :key="index">
                   <td>{{ startIndex + index }}</td>
                   <td class="td-img slider-img-td">
-                    <img :src="data.image_url" @click="$bus.emit('image.show', data.image_url)" />
+                    <img
+                      v-if="data.image_path"
+                      :src="$resourceBaseUrl+data.image_path"
+                      @click="$bus.emit('image.show', $resourceBaseUrl+data.image_path)"
+                    />
                   </td>
                   <td>{{ data.name }}</td>
                   <td>{{ data.region.name }}</td>
                   <td>
-                    <span class="label label-warning" style="margin-right:5px" v-for="(area, index) in data.genres" :key="index">{{
+                    <span
+                      class="label label-warning"
+                      style="margin-right:5px"
+                      v-for="(area, index) in data.genres"
+                      :key="index"
+                    >
+                      {{
                       area.title
-                    }}</span>
+                      }}
+                    </span>
                   </td>
 
                   <td>{{ data.years.title }}</td>
@@ -105,24 +129,24 @@
 </template>
 
 <script>
-import ListMixins from 'mixins/List'
-import Enable from 'constants/Enable'
-import EpisodeStatus from 'constants/EpisodeStatus'
+import ListMixins from "mixins/List";
+import Enable from "constants/Enable";
+import EpisodeStatus from "constants/EpisodeStatus";
 
 export default {
   mixins: [ListMixins],
   components: {
-    ImageContainer: require('@/Container/Image').default,
-    Create: require('./modal/create').default,
-    Update: require('./modal/update').default,
+    ImageContainer: require("@/Container/Image").default,
+    Create: require("./modal/create").default,
+    Update: require("./modal/update").default
   },
   data: () => ({
     search: {
-      status: '',
-      name: '',
-      episode_status: '',
-      region_id: '',
-      years_id: '',
+      status: "",
+      name: "",
+      episode_status: "",
+      region_id: "",
+      years_id: ""
     },
     options: {
       episode: EpisodeStatus,
@@ -131,26 +155,30 @@ export default {
       year: [],
       lang: [],
       type: [],
-      source: [],
-    },
+      source: []
+    }
   }),
-  api: 'adult_comic.manage',
+  api: "adult_comic.manage",
   methods: {
     async getOptions() {
-      const res = await axios.all([this.$thisApi.getAreas(), this.$thisApi.getYears(), this.$thisApi.getTypes()])
+      const res = await axios.all([
+        this.$thisApi.getAreas(),
+        this.$thisApi.getYears(),
+        this.$thisApi.getTypes()
+      ]);
 
       this.options =
         (this.options,
         {
           area: res[0].data,
           year: res[1].data,
-          type: res[2].data,
-        })
-    },
+          type: res[2].data
+        });
+    }
   },
   created() {
-    this.getOptions()
-    this.doSearch()
-  },
-}
+    this.getOptions();
+    this.doSearch();
+  }
+};
 </script>

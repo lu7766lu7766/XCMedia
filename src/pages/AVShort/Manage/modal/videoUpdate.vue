@@ -79,7 +79,9 @@ export default {
     this.$bus.on("video_update.show", data => {
       this.data = _.cloneDeep(data);
       this.videoName = "";
-      this.videoUrl = this.$resourceBaseUrl + data.video_path;
+      this.videoUrl = data.video_path
+        ? this.$resourceBaseUrl + data.video_path
+        : data.video_path;
       this.show();
     });
   },

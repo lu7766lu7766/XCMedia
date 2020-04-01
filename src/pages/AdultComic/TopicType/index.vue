@@ -5,13 +5,17 @@
       <li class="breadcrumb-item">
         <router-link :to="{name:'welcome'}">首页</router-link>
       </li>
-      <li class="breadcrumb-item"><a href="javascript:;">成人漫画</a></li>
-      <li class="breadcrumb-item"><a href="javascript:;">专题管理</a></li>
+      <li class="breadcrumb-item">
+        <a href="javascript:;">成人漫画</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="javascript:;">专题管理</a>
+      </li>
       <li class="breadcrumb-item active">专题分类</li>
     </ol>
 
     <!-- begin row -->
-    <div class="">
+    <div class>
       <div class="panel panel-inverse" style="clear:both;">
         <!-- begin panel-heading -->
         <div class="panel-heading p-t-10">
@@ -30,7 +34,7 @@
                 <j-select title="状态" :datas="options.status" v-model="search.status" />
               </div>
               <div class="form-group m-r-10">
-                <input type="text" class="form-control" placeholder="请输入名称" v-model="search.title">
+                <input type="text" class="form-control" placeholder="请输入名称" v-model="search.title" />
               </div>
               <j-button type="search" @click="doSearch"></j-button>
             </div>
@@ -39,31 +43,35 @@
           <div class="table-responsive">
             <table class="table table-striped table-box text-center">
               <thead>
-              <tr>
-                <th class="width-30">#</th>
-                <th class="width-200">图片</th>
-                <th>名称</th>
-                <th class="width-100">状态</th>
-                <th class="width-150">建立时间</th>
-                <th class="width-70">操作</th>
-              </tr>
+                <tr>
+                  <th class="width-30">#</th>
+                  <th class="width-200">图片</th>
+                  <th>名称</th>
+                  <th class="width-100">状态</th>
+                  <th class="width-150">建立时间</th>
+                  <th class="width-70">操作</th>
+                </tr>
               </thead>
               <tbody>
-              <tr v-for="(data, index) in datas" :key="index">
-                <td>{{ startIndex + index }}</td>
-                <td class="td-img slider-img-td">
-                  <img :src="data.image_url" @click="$bus.emit('image.show', data.image_url)" /></td>
-                <td>{{ data.title }}</td>
-                <td>
-                  <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'Y'"></i>
-                  <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
-                </td>
-                <td>{{ data.created_at }}</td>
-                <td class="text-left">
-                  <j-button type="edit" :action="true" @click="$bus.emit('update.show', data)"></j-button>
-                  <j-button type="delete" :action="true" @click="doDelete(data.id)"></j-button>
-                </td>
-              </tr>
+                <tr v-for="(data, index) in datas" :key="index">
+                  <td>{{ startIndex + index }}</td>
+                  <td class="td-img slider-img-td">
+                    <img
+                      :src="data.image_path?$resourceBaseUrl+data.image_path:$data.image_path"
+                      @click="$bus.emit('image.show', data.image_path?$resourceBaseUrl+data.image_path:$data.image_path)"
+                    />
+                  </td>
+                  <td>{{ data.title }}</td>
+                  <td>
+                    <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'Y'"></i>
+                    <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
+                  </td>
+                  <td>{{ data.created_at }}</td>
+                  <td class="text-left">
+                    <j-button type="edit" :action="true" @click="$bus.emit('update.show', data)"></j-button>
+                    <j-button type="delete" :action="true" @click="doDelete(data.id)"></j-button>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -81,29 +89,28 @@
 </template>
 
 <script>
-  import ListMixins from 'mixins/List'
-  import Enable from 'constants/Enable'
+import ListMixins from "mixins/List";
+import Enable from "constants/Enable";
 
-  export default {
-    mixins: [ListMixins],
-    components: {
-      ImageContainer: require('@/Container/Image').default,
-      Create: require('./modal/create').default,
-      Update: require('./modal/update').default,
+export default {
+  mixins: [ListMixins],
+  components: {
+    ImageContainer: require("@/Container/Image").default,
+    Create: require("./modal/create").default,
+    Update: require("./modal/update").default
+  },
+  data: () => ({
+    search: {
+      status: "",
+      title: ""
     },
-    data: () => ({
-      search: {
-        status: '',
-        title: '',
-      },
-      options: {
-        status: Enable,
-      },
-    }),
-    api: 'adult_comic.topic_ype',
-    created()
-    {
-      this.doSearch()
-    },
+    options: {
+      status: Enable
+    }
+  }),
+  api: "adult_comic.topic_ype",
+  created() {
+    this.doSearch();
   }
+};
 </script>

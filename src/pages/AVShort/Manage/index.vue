@@ -104,6 +104,7 @@
                   <td>{{ startIndex + index }}</td>
                   <td class="td-img slider-img-td">
                     <img
+                      v-if="data.cover_path"
                       :src="$resourceBaseUrl+data.cover_path"
                       @click="$bus.emit('image.show', $resourceBaseUrl+data.cover_path)"
                     />
@@ -208,15 +209,14 @@ export default {
   api: "av_short.manage",
   methods: {
     async doSubmit() {
-      this.search.av_actress = [];
+      this.search.av_actress_ids = [];
       if (this.av_actress_id !== "") {
-        this.search.av_actress.push(this.av_actress_id);
+        this.search.av_actress_ids.push(this.av_actress_id);
       }
       this.av_actress_id = "";
       this.doSearch();
     },
     async getOptions() {
-      var tt = this.$resourceBaseUrl;
       const res = await axios.all([
         this.$thisApi.getAreas(),
         this.$thisApi.getYears(),

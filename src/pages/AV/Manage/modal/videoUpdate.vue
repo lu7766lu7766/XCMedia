@@ -70,6 +70,11 @@ export default {
   }),
   methods: {
     async doSubmit() {
+      if (this.data.id) {
+        await this.$thisApi.doGetVideo({ id: data.id });
+      } else {
+        await this.$thisApi.doGetVideo({ id: data.id });
+      }
       const data = Object.assign({ id: this.$route.params.id }, this.data);
       await this.$thisApi.doUpdateVideo(data, { formData: true });
       this.updateSuccess();
@@ -77,8 +82,13 @@ export default {
   },
   mounted() {
     this.$bus.on("video_update.show", async data => {
-      var tt = await this.$thisApi.doGetVideo({ id: data.id });
-      debugger;
+      this.data.id = data.bucket;
+      if (data.bucket) {
+        await this.$thisApi.doGetVideo({ id: data.bucket });
+      } else {
+        // await this.$thisApi.doGetVideo({ id: data.id });
+      }
+      // debugger;
       this.data = _.cloneDeep(data);
       this.videoName = "";
       this.videoUrl = data.video_url;

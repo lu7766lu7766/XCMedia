@@ -101,7 +101,6 @@ export default class API {
       actress: new (require('./Request/AV/Actress').default)(),
       topic_ype: new (require('./Request/AV/TopicType').default)(),
       manage: new (require('./Request/AV/Manage').default)(),
-      episode: new (require('./Request/AV/Episode').default)(),
     }
     this.adult_comic = {
       type: new (require('./Request/AdultComic/Type').default)(),
