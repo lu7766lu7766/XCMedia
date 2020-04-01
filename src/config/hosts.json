@@ -7,6 +7,6 @@
   "stable": {
     "host": "dy178.cc",
     "prefix": "api",
-    "resourceBaseUrl": "http://resource.dy178.cc"
+    "resourceBaseUrl": "resource.dy178.cc"
   }
 }

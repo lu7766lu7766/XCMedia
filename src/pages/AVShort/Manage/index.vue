@@ -104,8 +104,8 @@
                   <td>{{ startIndex + index }}</td>
                   <td class="td-img slider-img-td">
                     <img
-                      :src="$resourceBaseUrl+data.cover_path"
-                      @click="$bus.emit('image.show', $resourceBaseUrl+data.cover_path)"
+                      :src="toResourceUrl(data.cover_path)"
+                      @click="$bus.emit('image.show', toResourceUrl(data.cover_path))"
                     />
                   </td>
                   <td>{{ data.title }}</td>
@@ -173,11 +173,12 @@
 
 <script>
 import ListMixins from "mixins/List";
+import ImageMixins from 'mixins/Image'
 import Enable from "constants/Enable";
 import CensoredStatus from "constants/CensoredStatus2";
 
 export default {
-  mixins: [ListMixins],
+  mixins: [ListMixins, ImageMixins],
   components: {
     ImageContainer: require("@/Container/Image").default,
     Create: require("./modal/create").default,
@@ -216,7 +217,6 @@ export default {
       this.doSearch();
     },
     async getOptions() {
-      var tt = this.$resourceBaseUrl;
       const res = await axios.all([
         this.$thisApi.getAreas(),
         this.$thisApi.getYears(),
