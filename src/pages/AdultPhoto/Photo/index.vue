@@ -42,7 +42,7 @@
                   class="img"
                   href="#img-dialog"
                   data-toggle="modal"
-                  :style="`background-image: url(${toResourceUrl(item.file_path)});`"
+                  :style="`background-image: url('${toResourceUrl(item.file_path)}');`"
                 ></div>
                 <div class="txt">
                   <h5>{{ item.name }}</h5>

@@ -12,7 +12,7 @@ export default {
       return e.target.files || e.dataTransfer.files
     },
     toResourceUrl(path) {
-      return '//' + join(API.resourceUrl, path)
+      return path ? '//' + join(API.resourceUrl, path) : null
     },
     async handleImageChange(e) {
       var files = this.getFiles(e)

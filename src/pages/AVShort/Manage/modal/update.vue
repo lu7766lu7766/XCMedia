@@ -188,7 +188,7 @@ export default {
       } else {
         this.data.tags = [];
       }
-      this.src = data.cover_path ? this.toResourceUrl(data.cover_path) : data.cover_path;
+      this.src = this.toResourceUrl(data.cover_path);
       this.show();
     });
   },

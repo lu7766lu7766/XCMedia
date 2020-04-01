@@ -159,9 +159,7 @@ export default {
     this.$bus.on("update.show", data => {
       this.data = Object.assign({ genre_ids: [] }, data);
       this.data.genre_ids = this.data.genres;
-      this.src = data.image_path
-        ? this.toResourceUrl(data.image_path)
-        : data.image_path;
+      this.src = this.toResourceUrl(data.image_path);
       this.data.image_ids = data.editor_files.map(t => t.id);
       this.show();
     });

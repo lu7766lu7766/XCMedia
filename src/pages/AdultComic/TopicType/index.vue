@@ -57,8 +57,8 @@
                   <td>{{ startIndex + index }}</td>
                   <td class="td-img slider-img-td">
                     <img
-                      :src="data.image_path ? toResourceUrl(data.image_path) : $data.image_path"
-                      @click="$bus.emit('image.show', data.image_path ? toResourceUrl(data.image_path) : $data.image_path)"
+                      :src="toResourceUrl(data.image_path)"
+                      @click="$bus.emit('image.show', toResourceUrl(data.image_path))"
                     />
                   </td>
                   <td>{{ data.title }}</td>
