@@ -3,6 +3,7 @@
     <b-modal ref="modal"
              header-bg-variant="black"
              header-close-variant="white"
+             no-close-on-backdrop
              :hide-footer="hideFooter"
              size="lg">
 
