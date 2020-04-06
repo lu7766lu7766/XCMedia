@@ -1,13 +1,14 @@
 <template>
   <detail title="新增" @submit="doSubmit()">
-
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">类型</label>
       <div class="col-md-10">
         <validate rules="required">
-          <j-select :datas="options.types"
-                    valueKey="id"
-                    v-model="data.type_id" />
+          <j-select
+            v-model="data.type_id"
+            :datas="options.types"
+            value-key="id"
+          />
         </validate>
       </div>
     </div>
@@ -15,7 +16,7 @@
       <label class="col-md-2 col-form-label required">标题 </label>
       <div class="col-md-10">
         <validate rules="required|max:50">
-          <input type="text" class="form-control" v-model="data.title" />
+          <input v-model="data.title" type="text" class="form-control">
         </validate>
       </div>
     </div>
@@ -29,7 +30,7 @@
             </label>
             <input id="file-upload" type="file" @change="onFileChange">
             <validate rules="required">
-              <input type="text" v-show="false" v-model="data.image">
+              <input v-show="false" v-model="data.image" type="text">
             </validate>
           </div>
           <div v-if="imgSizeHint" class="text-red">
@@ -37,9 +38,11 @@
           </div>
         </div>
         <div class="slider-img-list">
-          <div class="slider-img-head">{{ _.getVal(data, 'image.name', '档案名称') }}</div>
+          <div class="slider-img-head">
+            {{ _.getVal(data, 'image.name', '档案名称') }}
+          </div>
           <div class="slider-img-body">
-            <img v-if="src" :src="src" />
+            <img v-if="src" :src="src">
           </div>
         </div>
       </div>
@@ -54,7 +57,7 @@
       <label class="col-md-2 col-form-label">连结 </label>
       <div class="col-md-10">
         <validate rules="max:255">
-          <input type="text" class="form-control" v-model="data.url" />
+          <input v-model="data.url" type="text" class="form-control">
         </validate>
       </div>
     </div>
@@ -69,51 +72,47 @@
       <label class="col-md-2 col-form-label required">发布站台</label>
       <div class="col-md-10">
         <validate rules="required">
-          <j-website v-model="data.branches"
-                     :defaultAll="true"
-                     :options="options.branches" />
+          <j-website
+            v-model="data.branches"
+            :default-all="true"
+            :options="options.branches"
+          />
         </validate>
       </div>
     </div>
-
   </detail>
 </template>
 
 <script>
-  import ThisMixins from './mixins'
+import ThisMixins from './mixins'
 
-  export default {
-    mixins: [ThisMixins],
-    computed: {
-      imgSizeHint() {
-        const i = this.options.types.findIndex(t => t.id === this.data.type_id)
-        return i > -1 ? this.options.types[i].size_hint : ''
+export default {
+  mixins: [ThisMixins],
+  computed: {
+    imgSizeHint () {
+      const i = this.options.types.findIndex(t => t.id === this.data.type_id)
+      return i > -1 ? this.options.types[i].size_hint : ''
+    }
+  },
+  mounted () {
+    this.$bus.on('create.show', () => {
+      this.data = {
+        branches: [],
+        is_blank: 'N',
+        status: 'Y'
       }
-    },
-    methods: {
-      async doSubmit()
-      {
-        const data = _.cloneDeep(this.data)
-        await this.$thisApi.doCreate(data, {formData: true})
-        this.createSuccess()
-      },
-    },
-    mounted()
-    {
-      this.$bus.on('create.show', () =>
-      {
-        this.data = {
-          branches: [],
-          is_blank: 'N',
-          status: 'Y',
-        }
-        this.show()
-      })
-
-    },
-    destroyed()
-    {
-      this.$bus.off('create.show')
-    },
+      this.show()
+    })
+  },
+  destroyed () {
+    this.$bus.off('create.show')
+  },
+  methods: {
+    async doSubmit () {
+      const data = _.cloneDeep(this.data)
+      await this.$thisApi.doCreate(data, { formData: true })
+      this.createSuccess()
+    }
   }
+}
 </script>

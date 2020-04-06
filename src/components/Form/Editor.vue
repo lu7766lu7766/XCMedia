@@ -1,38 +1,36 @@
 <template>
-  <v-editor v-model="data"
-            useCustomImageHandler
-            @image-added="(d, e, c, r) => $emit('image-added', d, e, c, r)"></v-editor>
+  <v-editor
+    v-model="data"
+    use-custom-image-handler
+    @image-added="(d, e, c, r) => $emit('image-added', d, e, c, r)"
+  />
 </template>
 
 <script>
-  export default {
-    props: ['value', 'uploadPic'],
-    components: {
-      vEditor: require('vue2-editor').VueEditor,
-    },
-    data: () => ({
-      data: '',
-    }),
-    watch: {
-      value()
-      {
-        this.data = this.value
-      },
-      data()
-      {
-        this.$emit('input', this.data)
-      },
-    },
-    methods: {
-      handleImageUpload(file, Editor, cursorLocation, resetUploader, url)
-      {
-        Editor.insertEmbed(cursorLocation, 'image', url)
-        resetUploader()
-      },
-    },
-    mounted()
-    {
+export default {
+  components: {
+    vEditor: require('vue2-editor').VueEditor
+  },
+  props: ['value', 'uploadPic'],
+  data: () => ({
+    data: ''
+  }),
+  watch: {
+    value () {
       this.data = this.value
     },
+    data () {
+      this.$emit('input', this.data)
+    }
+  },
+  mounted () {
+    this.data = this.value
+  },
+  methods: {
+    handleImageUpload (file, Editor, cursorLocation, resetUploader, url) {
+      Editor.insertEmbed(cursorLocation, 'image', url)
+      resetUploader()
+    }
   }
+}
 </script>

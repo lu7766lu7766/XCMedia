@@ -1,7 +1,7 @@
 <template>
   <div class="dropzone-box">
     <div id="dropzone" @drop.prevent="onDrop" @dragover.prevent="dragOver = true" @dragleave.prevent="dragOver = false">
-      <form class="dropzone dz-clickable" id="my-awesome-dropzone">
+      <form id="my-awesome-dropzone" class="dropzone dz-clickable">
         <label for="avatar" style="width:100%">
           <div class="dz-default dz-message"><span>將檔案拖放到<b>此處</b>或<b>點擊</b>上傳。</span></div>
         </label>
@@ -12,7 +12,7 @@
           style="position: relative;"
         >
           <div class="dz-image">
-            <img :src="item.src" data-dz-thumbnail alt="" />
+            <img :src="item.src" data-dz-thumbnail alt="">
           </div>
           <div class="dz-details">
             <div class="dz-filename">
@@ -23,7 +23,7 @@
         </div>
       </form>
 
-      <input id="avatar" @change.prevent="onChoice" multiple style="display: none !important;" type="file" />
+      <input id="avatar" multiple style="display: none !important;" type="file" @change.prevent="onChoice">
     </div>
   </div>
 </template>
@@ -35,48 +35,45 @@ export default {
   props: {
     dataImageIds: {
       type: Array,
-      default: [],
+      default: () => []
     },
-    imageList: { type: Array, required: true },
+    imageList: { type: Array, required: true }
   },
-  computed: {
-    nextId: function() {
-      return (Math.random() + '').substring(2)
-    },
-    cls: function() {
-      return classes
-    },
-  },
-  data() {
+  data () {
     return {
-      dragOver: false,
+      dragOver: false
     }
   },
+  computed: {
+    nextId () {
+      return (Math.random() + '').substring(2)
+    }
+  },
+  destroyed () {
+    this.$emit('doDelImageList')
+  },
   methods: {
-    onDrop: function(event) {
-      let data = event.dataTransfer
+    onDrop (event) {
+      const data = event.dataTransfer
       if (data) {
         this.uploadImage(data.files)
       }
     },
-    onPaste: function(event) {
-      let data = event.clipboardData
+    onPaste (event) {
+      const data = event.clipboardData
       if (data) {
         this.uploadImage(data.items)
       }
     },
-    async onChoice(event) {
+    onChoice (event) {
       this.uploadImage(event.target.files)
     },
-    uploadImage: function(file) {
+    uploadImage (file) {
       this.$emit('onImageUpload', [...file])
     },
-    doDelete: function(id) {
+    doDelete (id) {
       this.$emit('onImageDelete', id)
-    },
-  },
-  async destroyed() {
-    this.$emit('doDelImageList')
-  },
+    }
+  }
 }
 </script>

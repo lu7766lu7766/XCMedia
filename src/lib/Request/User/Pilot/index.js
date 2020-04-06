@@ -1,31 +1,25 @@
 import BaseRequest from 'lib/Request/BaseRequest'
 import _config from './config'
 
-export default class Request extends BaseRequest
-{
-  get baseUrls()
-  {
+export default class Request extends BaseRequest {
+  get baseUrls () {
     return super.baseUrls.concat('/account/pilot')
   }
 
-  constructor()
-  {
+  constructor () {
     super()
     this.config = _config
   }
 
-  async getProfile(data, options)
-  {
+  async getProfile (data, options) {
     return await this.request('profile', data, options)
   }
 
-  async doUpdate(data, options)
-  {
+  async doUpdate (data, options) {
     return await this.request('update', data, options)
   }
 
-  async getNodes(data, options)
-  {
+  async getNodes (data, options) {
     return await this.request('nodes', data, options)
   }
 }

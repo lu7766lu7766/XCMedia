@@ -5,11 +5,11 @@
       <!-- begin brand -->
       <div class="login-header">
         <div class="brand">
-          <span class="logo"></span> <b>抖影管理系统</b>
+          <span class="logo" /> <b>抖影管理系统</b>
           <small>Doing System</small>
         </div>
         <div class="icon">
-          <i class="fa fa-lock"></i>
+          <i class="fa fa-lock" />
         </div>
       </div>
       <!-- end brand -->
@@ -19,19 +19,23 @@
           <validation v-slot="{valid}">
             <div class="form-group m-b-20">
               <validate rules="required">
-                <input type="text"
-                       class="form-control form-control-lg inverse-mode"
-                       placeholder="帐号"
-                       v-model="user.username" />
+                <input
+                  v-model="user.username"
+                  type="text"
+                  class="form-control form-control-lg inverse-mode"
+                  placeholder="帐号"
+                >
               </validate>
             </div>
             <div class="form-group m-b-20">
               <validate rules="required">
-                <input type="password"
-                       class="form-control form-control-lg inverse-mode"
-                       placeholder="密码"
-                       @keyup.13="doLogin()"
-                       v-model="user.password" />
+                <input
+                  v-model="user.password"
+                  type="password"
+                  class="form-control form-control-lg inverse-mode"
+                  placeholder="密码"
+                  @keyup.13="doLogin()"
+                >
               </validate>
             </div>
             <div class="login-buttons">
@@ -50,41 +54,37 @@
 </template>
 
 <script>
-  import API from 'lib/API'
-  import { LoginType } from 'module/login'
+import { LoginType } from 'module/login'
+import API from 'lib/API'
 
-  export default {
-    data: () => ({
-      user: {
-        username: '',
-        password: '',
-      },
-    }),
-    methods: {
-      async doLogin()
-      {
-        const passport = await API.getPassport()
-        var res = await this.$api.user.passport.doLogin(Object.assign({
-          grant_type: 'password',
-        }, passport, this.user), {
-          f: () =>
-          {
-            this.$alert.danger('登入失败')
-          },
-        })
-
-        this.$store.commit(LoginType.setAccessToken, res.data)
-        this.$router.push({
-          name: 'welcome',
-        })
-      },
-    },
-    mounted()
-    {
-      this.$nextTick(() =>
-      {
-        App.init()
+export default {
+  data: () => ({
+    user: {
+      username: '',
+      password: ''
+    }
+  }),
+  mounted () {
+    this.$nextTick(() => {
+      App.init()
+    })
+  },
+  methods: {
+    async doLogin () {
+      const passport = await API.getPassport()
+      const res = await this.$api.user.passport.doLogin(Object.assign({
+        grant_type: 'password'
+      }, passport, this.user), {
+        f: () => {
+          this.$alert.danger('登入失败')
+        }
       })
-    },
+
+      this.$store.commit(LoginType.setAccessToken, res.data)
+      this.$router.push({
+        name: 'welcome'
+      })
+    }
   }
+}
 </script>

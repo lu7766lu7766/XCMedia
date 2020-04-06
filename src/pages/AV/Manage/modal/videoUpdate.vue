@@ -11,11 +11,7 @@
                 id="videoupload"
                 class="imgupload"
                 type="file"
-                @change="
-                  e => {
-                    onFileChange(e, 'video','videoData')
-                  }
-                "
+                @change="e => onFileChange(e, 'video','videoData')"
               >
             </div>
             <div v-if="videoName && videoName !== ''" class="img-show">

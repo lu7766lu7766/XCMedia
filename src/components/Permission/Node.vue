@@ -1,86 +1,75 @@
 <template>
   <div class="tree-item">
-    <span><i :class="className"></i>{{ title }}</span>
+    <span><i :class="className" />{{ title }}</span>
     <span class="crud-box">
       <div class="checkboxcheckbox-inline">
-        <input type="checkbox" v-if="hasChild" v-model="isChecked" />
-        <input type="checkbox" v-else v-model="data" />
+        <input v-if="hasChild" v-model="isChecked" type="checkbox">
+        <input v-else v-model="data" type="checkbox">
       </div>
     </span>
   </div>
 </template>
-
 <script>
-  export default {
-    props: {
-      title: {
-        default: '',
-      },
-      className: {
-        default: 'fa fa-angle-right text-black-transparent-6',
-      },
-      value: {
-        default: [],
-      },
-      values: {
-        default: [],
-      },
-      hasChild: {
-        type: Boolean,
-        default: true,
-      },
+export default {
+  props: {
+    title: {
+      default: ''
     },
-    data: () => ({
-      data: false,
-    }),
-    watch: {
-      data()
-      {
-        if (!this.hasChild)
-        {
-          this.emitNewValue(this.data)
+    className: {
+      default: 'fa fa-angle-right text-black-transparent-6'
+    },
+    value: {
+      default: []
+    },
+    values: {
+      default: []
+    },
+    hasChild: {
+      type: Boolean,
+      default: true
+    }
+  },
+  data: () => ({
+    data: false
+  }),
+  computed: {
+    isAllInValue () {
+      for (const id of this.values) {
+        if (!this.value.includes(id)) {
+          return false
         }
-      },
-      value()
-      {
-        this.data = this.isAllInValue
-      },
+      }
+      return true
     },
-    methods: {
-      emitNewValue(value)
-      {
-        this.$emit('input', value
-          ? _.uniq(_.concat(this.values, this.value))
-          : _.filter(this.value, id => this.values.indexOf(id) === -1),
-        )
+    isChecked: {
+      get () {
+        return this.isAllInValue
       },
+      set (value) {
+        this.emitNewValue(value)
+      }
+    }
+  },
+  watch: {
+    data () {
+      if (!this.hasChild) {
+        this.emitNewValue(this.data)
+      }
     },
-    computed: {
-      isAllInValue()
-      {
-        for (let id of this.values)
-        {
-          if (this.value.indexOf(id) === -1)
-          {
-            return false
-          }
-        }
-        return true
-      },
-      isChecked: {
-        get()
-        {
-          return this.isAllInValue
-        },
-        set(value)
-        {
-          this.emitNewValue(value)
-        },
-      },
-    },
-    mounted()
-    {
+    value () {
       this.data = this.isAllInValue
-    },
+    }
+  },
+  mounted () {
+    this.data = this.isAllInValue
+  },
+  methods: {
+    emitNewValue (value) {
+      this.$emit('input', value
+        ? _.uniq(_.concat(this.values, this.value))
+        : _.filter(this.value, id => !this.values.includes(id))
+      )
+    }
   }
+}
 </script>

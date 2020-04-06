@@ -136,8 +136,8 @@
                   <td>{{ data.cup.title }}</td>
                   <td>
                     <span
-                      v-for="(item, index) in data.types"
-                      :key="index"
+                      v-for="(item, i) in data.types"
+                      :key="i"
                       class="label label-warning"
                       style="margin-right: 5px;"
                     >{{ item.title }}</span>

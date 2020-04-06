@@ -1,19 +1,25 @@
 <template>
-  <div id="page-container" class="fade page-sidebar-fixed page-header-fixed show"
-       :class="{'page-sidebar-minified': !isShowMenu}">
+  <div
+    id="page-container"
+    class="fade page-sidebar-fixed page-header-fixed show"
+    :class="{'page-sidebar-minified': !isShowMenu}"
+  >
     <!-- begin #header -->
     <div id="header" class="header navbar-default">
       <!-- begin navbar-header -->
       <div class="navbar-header">
-        <router-link :to="{
-  							name: 'welcome'
-  						}" class="navbar-brand">
-          <span class="navbar-logo"></span> <b>抖影管理系统</b>
+        <router-link
+          :to="{
+            name: 'welcome'
+          }"
+          class="navbar-brand"
+        >
+          <span class="navbar-logo" /> <b>抖影管理系统</b>
         </router-link>
         <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
+          <span class="icon-bar" />
+          <span class="icon-bar" />
+          <span class="icon-bar" />
         </button>
       </div>
       <!-- end navbar-header -->
@@ -23,18 +29,22 @@
         <li class="dropdown navbar-user">
           <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
 
-            <img v-if="account.cover" :src="account.cover.path" />
-            <img v-else src="/resource/assets/img/user/user-13.jpg" alt="" />
+            <img v-if="account.cover" :src="account.cover.path">
+            <img v-else src="/resource/assets/img/user/user-13.jpg" alt="">
 
-            <span class="d-none d-md-inline" v-if="account">{{ account.display_name }}</span>
-            <b class="caret"></b>
+            <span v-if="account" class="d-none d-md-inline">{{ account.display_name }}</span>
+            <b class="caret" />
           </a>
           <div class="dropdown-menu dropdown-menu-right">
-            <router-link class="dropdown-item" :to="{
-                    name: 'edit-profile'
-                }">个人资料
+            <router-link
+              class="dropdown-item"
+              :to="{
+                name: 'edit-profile'
+              }"
+            >
+              个人资料
             </router-link>
-            <div class="dropdown-divider"></div>
+            <div class="dropdown-divider" />
             <a href="javascript:;" class="dropdown-item" @click="doLogout()">登出</a>
           </div>
         </li>
@@ -51,94 +61,86 @@
         <ul class="nav">
           <li class="nav-profile">
             <a href="javascript:;" data-toggle="nav-profile">
-              <div class="cover with-shadow"></div>
+              <div class="cover with-shadow" />
               <div class="image">
 
-                <img v-if="account.cover" :src="account.cover.path" />
-                <img v-else src="/resource/assets/img/user/user-13.jpg" alt="" />
+                <img v-if="account.cover" :src="account.cover.path">
+                <img v-else src="/resource/assets/img/user/user-13.jpg" alt="">
 
               </div>
-              <div class="info" v-if="account">
+              <div v-if="account" class="info">
                 {{ account.display_name }}
               </div>
             </a>
           </li>
         </ul>
         <!---Menu--->
-            <MenuComponent :router="menuRoutes"></MenuComponent>
+        <MenuComponent :router="menuRoutes" />
         <!---Menu--->
       </div>
       <!-- end sidebar scrollbar -->
     </div>
-    <div class="sidebar-bg"></div>
+    <div class="sidebar-bg" />
     <!-- end #sidebar -->
 
     <!-- begin #content -->
-    <router-view></router-view>
+    <router-view />
     <!-- end #content -->
 
     <!-- begin scroll to top btn -->
     <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top">
-      <i class="fa fa-angle-up"></i>
+      <i class="fa fa-angle-up" />
     </a>
     <!-- end scroll to top btn -->
   </div>
 </template>
 
 <script>
-  import menuRoutes from 'router/menuRoutes.js'
-  import MenuComponent from '@/Menu/Menu.vue';
-  import CheckLoginMixins from 'mixins/CheckLogin'
-  import IndexMixins from 'mixins/Index'
-  import { LoginType } from 'module/login'
-  import Menu from 'constants/Menu'
+import { LoginType } from 'module/login'
+import Menu from 'constants/Menu'
+import menuRoutes from 'router/menuRoutes.js'
+import CheckLoginMixins from 'mixins/CheckLogin'
+import IndexMixins from 'mixins/Index'
+import MenuComponent from '@/Menu/Menu.vue'
 
-  export default {
-    mixins: [CheckLoginMixins, IndexMixins],
-    components: {
-      MenuComponent
-    },
-    data: () => ({
-      isShowMenu: true,
-      Menu,
-      menuRoutes
-    }),
-    methods: {
-      doLogout()
-      {
-        this.$store.commit(LoginType.clearAccessToken)
-        this.$router.push({
-          name: 'login',
-        })
-      },
-      dataInit()
-      {
-        axios.all([this.getNodes(), this.getAccount()]).then(() =>
-        {
-          this.$nextTick(() =>
-          {
-            App.init()
-          })
-        })
-      },
-      hasMenu(...codes)
-      {
-        return _.some(codes, code =>
-        {
-          const menu = _.find(this.menus, {code})
-          return menu && _.some(menu.nodes, x => _.endsWith(x.code, '_READ'))
-        })
-      },
-    },
-    mounted()
-    {
-      this.$bus.on('menu.show', data =>
-      {
-        this.isShowMenu = data
+export default {
+  components: {
+    MenuComponent
+  },
+  mixins: [CheckLoginMixins, IndexMixins],
+  data: () => ({
+    isShowMenu: true,
+    Menu,
+    menuRoutes
+  }),
+  mounted () {
+    this.$bus.on('menu.show', (data) => {
+      this.isShowMenu = data
+    })
+    this.dataInit()
+  },
+  methods: {
+    doLogout () {
+      this.$store.commit(LoginType.clearAccessToken)
+      this.$router.push({
+        name: 'login'
       })
-      this.dataInit()
     },
+    dataInit () {
+      axios.all([this.getNodes(), this.getAccount()]).then(() => {
+        this.$nextTick(() => {
+          App.init()
+        })
+      })
+    },
+    hasMenu (...codes) {
+      return _.some(codes, (code) => {
+        const menu = _.find(this.menus, { code })
+        return menu && _.some(menu.nodes, x => _.endsWith(x.code, '_READ'))
+      })
+    }
   }
+}
 </script>
 
 <style lang="stylus">

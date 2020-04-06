@@ -1,20 +1,20 @@
 <template>
-  <input-tag class="j-input-tag" :value="value" @input="data => $emit('input', data)" placeholder="enter送出" />
+  <input-tag class="j-input-tag" :value="value" placeholder="enter送出" @input="data => $emit('input', data)" />
 </template>
 
 <script>
-  import InputTag from 'vue-input-tag'
+import InputTag from 'vue-input-tag'
 
-  export default {
-    components: {
-      InputTag,
-    },
-    props: {
-      value: {
-        required: true,
-      },
-    },
+export default {
+  components: {
+    InputTag
+  },
+  props: {
+    value: {
+      required: true
+    }
   }
+}
 </script>
 
 <style lang="stylus" scoped>
