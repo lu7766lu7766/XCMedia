@@ -130,8 +130,9 @@
                     <span
                       v-for="(t, i) in data.girls"
                       :key="i"
-                      style="margin-right:5px"
-                    >{{ t.title }}</span>
+                    >
+                      <span v-if="i !==0">,</span>{{ t.title }}
+                    </span>
                   </td>
                   <td>{{ data.cup.title }}</td>
                   <td>
