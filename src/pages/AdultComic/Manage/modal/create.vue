@@ -87,7 +87,11 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label">描述 </label>
       <div class="col-md-10">
-        <j-editor v-model="data.description" @image-added="myUploadPic" />
+        <textarea
+          v-model="data.description"
+          rows="5"
+          class="form-control"
+        />
       </div>
     </div>
 
