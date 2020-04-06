@@ -4,7 +4,7 @@
       <label class="col-md-2 col-form-label required">名称 </label>
       <div class="col-md-10">
         <validate rules="required">
-          <input type="text" class="form-control" placeholder="请输入名称" v-model="data.title" />
+          <input v-model="data.title" type="text" class="form-control" placeholder="请输入名称">
         </validate>
       </div>
     </div>
@@ -13,28 +13,24 @@
       <label class="col-md-2 col-form-label ">图片 </label>
       <div class="col-md-10">
         <div class="upload-box">
-          <div class="custom-file" id="imgupload-box">
+          <div id="imgupload-box" class="custom-file">
             <div>
               <label for="imgupload" class="custom-file-upload">
                 选择档案
               </label>
               <input
+                id="imgupload"
                 class="imgupload"
                 type="file"
-                id="imgupload"
-                @change="
-                  e => {
-                    onFileChange(e, 'cover')
-                  }
-                "
-              />
+                @change="e => onFileChange(e, 'cover')"
+              >
             </div>
-            <div class="img-show" v-if="src">
-              <img class="OpenImgUpload" :src="src" />
+            <div v-if="src" class="img-show">
+              <img class="OpenImgUpload" :src="src">
             </div>
           </div>
           <div class="text-red">
-            上传图片限制尺寸为263 × 300
+            上传图片限制尺寸为263×300
           </div>
         </div>
       </div>
@@ -44,29 +40,25 @@
       <label class="col-md-2 col-form-label ">影片上传 </label>
       <div class="col-md-10">
         <div class="upload-box">
-          <div class="custom-file" id="imgupload-box">
+          <div id="imgupload-box" class="custom-file">
             <div>
               <label for="videoupload" class="custom-file-upload">
                 选择档案
               </label>
               <input
+                id="videoupload"
                 class="imgupload"
                 type="file"
-                id="videoupload"
-                @change="
-                  e => {
-                    onFileChange(e, 'video')
-                  }
-                "
-              />
+                @change="e => onFileChange(e, 'video')"
+              >
             </div>
-            <div class="img-show" v-if="videoName && videoName !== ''">
-              <span>{{ this.videoName }}</span>
+            <div v-if="videoName && videoName !== ''" class="img-show">
+              <span>{{ videoName }}</span>
             </div>
             <div v-else>
-              <div class="img-show" v-if="videoUrl">
+              <div v-if="videoUrl" class="img-show">
                 <video class="OpenImgUpload" width="250" controls>
-                  <source :src="videoUrl" />
+                  <source :src="videoUrl">
                 </video>
               </div>
             </div>
@@ -82,7 +74,7 @@
           <div class="input-group">
             <date-time-picker v-model="data.release_date" />
             <div class="input-group-append">
-              <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+              <span class="input-group-text"><i class="far fa-calendar-alt" /></span>
             </div>
           </div>
         </validate>
@@ -103,20 +95,13 @@ import DetailMixins from 'mixins/Detail'
 import ImageMixins from 'mixins/Image'
 
 export default {
-  mixins: [DetailMixins, ImageMixins],
   components: { DateTimePicker: require('@/DateTimePicker').default },
+  mixins: [DetailMixins, ImageMixins],
   data: () => ({
-    videoUrl: null,
+    videoUrl: null
   }),
-  methods: {
-    async doSubmit() {
-      const data = Object.assign({ selfie_schedule_id: this.$route.params.id }, this.data)
-      await this.$thisApi.doUpdate(data, { formData: true })
-      this.updateSuccess()
-    },
-  },
-  mounted() {
-    this.$bus.on('update.show', data => {
+  mounted () {
+    this.$bus.on('update.show', (data) => {
       this.data = _.cloneDeep(data)
       this.src = data.cover_url
       this.videoName = ''
@@ -125,8 +110,15 @@ export default {
       this.show()
     })
   },
-  destroyed() {
+  destroyed () {
     this.$bus.off('update.show')
   },
+  methods: {
+    async doSubmit () {
+      const data = Object.assign({ selfie_schedule_id: this.$route.params.id }, this.data)
+      await this.$thisApi.doUpdate(data, { formData: true })
+      this.updateSuccess()
+    }
+  }
 }
 </script>

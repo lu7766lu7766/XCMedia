@@ -1,0 +1,14 @@
+{
+  "list": {
+    "uri": "",
+    "method": "get"
+  },
+  "create": {
+    "uri": "",
+    "method": "post"
+  },
+  "delete": {
+    "uri": "",
+    "method": "delete"
+  }
+}

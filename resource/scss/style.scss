@@ -31,7 +31,7 @@ option{
     display: block;
     white-space: pre;
     min-height: 1.2em;
-   
+
 }
 //sweetalert
 .swal2-modal .swal2-spacer{
@@ -160,11 +160,11 @@ option{
                     margin-right: 0 !important;
                 }
             }
-            
+
         }
     }
 }
-.select2-container--default 
+.select2-container--default
 .select2-selection--multiple {
     border: 1px solid #d3d8de !important;
 }
@@ -282,7 +282,7 @@ option{
         color: #495057;
         flex-wrap: nowrap;
     }
-    
+
     .switcher {
         &-box{
             display: flex;
@@ -364,7 +364,7 @@ option{
                         }
                     }
                 }
-                
+
             }
             .dz-error-mark{
                 display: none;
@@ -395,7 +395,7 @@ option{
                         transform: scale(1);
                     }
                 }
-                
+
             }
         }
         @media(max-width:991px){
@@ -404,7 +404,7 @@ option{
             }
         }
     }
-   
+
 }
 //button
 .btn{
@@ -482,7 +482,7 @@ option{
             display: block;
             &:first-child{
                 min-width: 70px;
-            } 
+            }
         }
         .crud-box{
             width: calc(100% - 70px);
@@ -517,14 +517,14 @@ option{
                 padding: 3px;
                 &:hover{
                     background-color: #cad0d2;
-                }  
+                }
             }
             span{
                 display: inline-block;
                 vertical-align: middle;
                 &:first-child{
                     width: 145px;
-                }  
+                }
             }
         }
         .crud-box{
@@ -563,7 +563,7 @@ option{
                 position: absolute;
                 left: 7px;
             }
-            
+
         }
     }
     &-main, &-ssub{
@@ -586,7 +586,7 @@ option{
         padding-left:0;
         margin-left: -5px;
     }
-    
+
 }
 //table
 .table{
@@ -608,7 +608,7 @@ option{
                 >td{
                     vertical-align: middle;
                     padding: 5px 10px;
-                    
+
                 }
             }
         }
@@ -639,7 +639,7 @@ option{
                 }
             }
         }
-        
+
     }
 }
 //profile
@@ -691,7 +691,7 @@ option{
         border-radius: 2px;
         margin-bottom: 0;
     }
-   
+
 }
 .upload-info{
     td{
@@ -784,7 +784,7 @@ option{
             background: #49b6d6;
             border-color: #49b6d6;
         }
-        
+
     }
 }
 //rate-set
