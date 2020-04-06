@@ -23,14 +23,14 @@ export default {
       }
       return await files[0].name
     },
-    async onFileChange(e, key = 'image') {
+    async onFileChange(e, key = 'image', data = 'data') {
       if (key !== 'video') {
         this.src = await this.handleImageChange(e)
       } else {
         this.videoName = await this.handleVideoChange(e)
       }
 
-      this.data[key] = this.getFiles(e)[0]
+      this[data][key] = this.getFiles(e)[0]
     },
   },
 }

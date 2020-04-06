@@ -190,7 +190,7 @@ export default {
     search: {
       // is_censored: "",
       region_id: "",
-      av_actress: [],
+      av_actress_ids: [],
       cup_id: "",
       years_id: "",
       status: "",
@@ -209,11 +209,16 @@ export default {
   api: "av.manage",
   methods: {
     async doSubmit() {
-      this.search.av_actress_ids = [];
-      if (this.av_actress_id !== "") {
-        this.search.av_actress_ids.push(this.av_actress_id);
+      if (this.av_actress_id) {
+        if (this.search.av_actress_ids.length > 1) {
+          this.search.av_actress_ids = [];
+          this.search.av_actress_ids.push(this.av_actress_id);
+        } else {
+          this.search.av_actress_ids.push(this.av_actress_id);
+        }
+      } else {
+        this.search.av_actress_ids = [];
       }
-      this.av_actress_id = "";
       this.doSearch();
     },
     async getOptions() {
