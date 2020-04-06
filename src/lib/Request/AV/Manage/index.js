@@ -31,6 +31,10 @@ export default class Request extends BaseRequest {
     return await this.request('getVideo', data, options)
   }
 
+  async doCreateVideo(data, options) {
+    return await this.request('createVideo', data, options)
+  }
+
   async doUpdateVideo(data, options) {
     return await this.request('updateVideo', data, options)
   }

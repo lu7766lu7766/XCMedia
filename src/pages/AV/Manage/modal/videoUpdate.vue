@@ -1,5 +1,5 @@
 <template>
-  <detail title="编辑" @submit="doSubmit()">
+  <detail title="影片管理" @submit="doSubmit()">
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label">影片上传</label>
       <div class="col-md-10">
@@ -13,7 +13,7 @@
                 id="videoupload"
                 @change="
                   e => {
-                    onFileChange(e, 'video')
+                    onFileChange(e, 'video','videoData')
                   }
                 "
               />
@@ -38,7 +38,7 @@
       <div class="col-md-10">
         <validate rules="required">
           <div class="input-group">
-            <date-time-picker v-model="data.open_at" />
+            <date-time-picker v-model="videoData.release_time" />
             <div class="input-group-append">
               <span class="input-group-text">
                 <i class="far fa-calendar-alt"></i>
@@ -52,7 +52,7 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">状态</label>
       <div class="col-md-10">
-        <switcher v-model="data.status" />
+        <switcher v-model="videoData.status" />
       </div>
     </div>
   </detail>
@@ -66,29 +66,39 @@ export default {
   mixins: [DetailMixins, ImageMixins],
   components: { DateTimePicker: require("@/DateTimePicker").default },
   data: () => ({
-    videoUrl: null
+    videoUrl: null,
+    videoData: {
+      video: undefined,
+      release_time: "",
+      status: "Y"
+    }
   }),
   methods: {
     async doSubmit() {
-      if (this.data.id) {
-        await this.$thisApi.doGetVideo({ id: data.id });
+      const videoData = Object.assign(
+        { adult_video_id: this.data.id },
+        this.videoData
+      );
+      if (this.videoData.id) {
+        await this.$thisApi.doUpdateVideo(videoData, { formData: true });
       } else {
-        await this.$thisApi.doGetVideo({ id: data.id });
+        await this.$thisApi.doCreateVideo(videoData, { formData: true });
       }
-      const data = Object.assign({ id: this.$route.params.id }, this.data);
-      await this.$thisApi.doUpdateVideo(data, { formData: true });
+
       this.updateSuccess();
     }
   },
   mounted() {
     this.$bus.on("video_update.show", async data => {
-      this.data.id = data.bucket;
       if (data.bucket) {
-        await this.$thisApi.doGetVideo({ id: data.bucket });
+        this.videoData = data.bucket;
       } else {
-        // await this.$thisApi.doGetVideo({ id: data.id });
+        this.videoData = {
+          video: undefined,
+          release_time: "",
+          status: "Y"
+        };
       }
-      // debugger;
       this.data = _.cloneDeep(data);
       this.videoName = "";
       this.videoUrl = data.video_url;
