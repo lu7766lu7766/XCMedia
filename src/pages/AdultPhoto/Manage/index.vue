@@ -98,13 +98,9 @@
                   <th class="width-100">
                     地区
                   </th>
-                  <!-- <th>女优</th> -->
-                  <th class="width-100">
-                    罩杯
-                  </th>
-                  <th class="width-100">
-                    类型
-                  </th>
+                  <th>女优</th>
+                  <th>罩杯</th>
+                  <th>类型</th>
                   <th class="width-100">
                     年份
                   </th>
@@ -130,14 +126,18 @@
                   </td>
                   <td>{{ data.title }}</td>
                   <td>{{ data.area.title }}</td>
-                  <!-- <td>
-                    <span style="margin-right:5px" v-for="(i, index) in data.actress" :key="index">{{ i.name }}</span>
-                  </td> -->
+                  <td>
+                    <span
+                      v-for="(t, i) in data.girls"
+                      :key="i"
+                      style="margin-right:5px"
+                    >{{ t.title }}</span>
+                  </td>
                   <td>{{ data.cup.title }}</td>
                   <td>
                     <span
-                      v-for="(item, index) in data.types"
-                      :key="index"
+                      v-for="(item, i) in data.types"
+                      :key="i"
                       class="label label-warning"
                       style="margin-right: 5px;"
                     >{{ item.title }}</span>

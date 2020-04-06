@@ -191,7 +191,7 @@ export default {
         genres_ids: _d.types.map(t => t.id),
         years_id: _d.year,
         tags: _d.tags,
-        description: _d.desc,
+        description: _d.desc || undefined,
         status: _d.status
       }
       await this.$thisApi.doUpdate(data, { formData: true })
