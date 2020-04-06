@@ -1,5 +1,5 @@
 <template>
-  <detail title="编辑" @submit="doSubmit()">
+  <detail title="影片管理" @submit="doSubmit()">
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label">影片上传</label>
       <div class="col-md-10">
@@ -48,7 +48,7 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">状态</label>
       <div class="col-md-10">
-        <switcher v-model="data.status" />
+        <switcher v-model="data.video_status" />
       </div>
     </div>
   </detail>
@@ -66,6 +66,9 @@ export default {
   }),
   mounted () {
     this.$bus.on('video_update.show', (data) => {
+      if (!data.video_status) {
+        data.video_status = 'Y'
+      }
       this.data = _.cloneDeep(data)
       this.videoName = ''
       this.videoUrl = this.toResourceUrl(data.video_path)
