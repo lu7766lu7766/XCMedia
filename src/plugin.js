@@ -22,7 +22,7 @@ const install = (Vue, options) => {
   // Vue.component('ValidationProvider', ValidationProvider)
   Vue.component('Validate', require('@/Validate').default)
 
-  Vue.use(VueSweetalert2)
+  Vue.use(VueSweetalert2, { allowOutsideClick: false })
 
   Vue.prototype.$api = new API()
   Vue.prototype.$jaclib = JacLib
@@ -34,22 +34,22 @@ const install = (Vue, options) => {
 
   Vue.component('Alert', require('@/Alert').default)
 
-  Vue.prototype.$translate = function(key, value) {
+  Vue.prototype.$translate = function (key, value) {
     return _.getVal(this.translate, `${key}.${value}`)
   }
   Vue.prototype.$alert = {
     success: message => Vue.bus.emit('alert.success', message),
     danger: message => Vue.bus.emit('alert.danger', message),
-    warning: message => Vue.bus.emit('alert.warning', message),
+    warning: message => Vue.bus.emit('alert.warning', message)
   }
   Vue.prototype.$modal = {
     hide: () => {
       Vue.bus.emit('modal.hide')
-    },
+    }
   }
   Vue.prototype.console = console
 }
 
 export default {
-  install,
+  install
 }
