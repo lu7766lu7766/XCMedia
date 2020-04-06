@@ -126,7 +126,7 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label">描述 </label>
       <div class="col-md-10">
-        <j-editor v-model="data.desc" @image-added="myUploadPic" />
+        <textarea v-model="data.desc" class="form-control" rows="5" />
       </div>
     </div>
 
