@@ -121,7 +121,10 @@
                       style="margin-right:5px"
                       v-for="(i, index) in data.av_actress"
                       :key="index"
-                    >{{ i.name }}</span>
+                    >
+                    {{ i.name }}
+                  <span v-if="index!==data.av_actress.length-1">,</span>
+                    </span>
                   </td>
                   <td>{{ data.cup.size }}</td>
                   <td>
@@ -205,12 +208,8 @@ export default {
   methods: {
     async doSubmit() {
       if (this.av_actress_id) {
-        if (this.search.av_actress_ids.length > 1) {
           this.search.av_actress_ids = [];
           this.search.av_actress_ids.push(this.av_actress_id);
-        } else {
-          this.search.av_actress_ids.push(this.av_actress_id);
-        }
       } else {
         this.search.av_actress_ids = [];
       }

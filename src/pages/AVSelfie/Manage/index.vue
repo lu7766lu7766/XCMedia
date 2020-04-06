@@ -204,12 +204,8 @@ export default {
   methods: {
     async doSubmit() {
       if (this.av_actress_id) {
-        if (this.search.av_actress.length > 1) {
           this.search.av_actress = [];
           this.search.av_actress.push(this.av_actress_id);
-        } else {
-          this.search.av_actress.push(this.av_actress_id);
-        }
       } else {
         this.search.av_actress = [];
       }

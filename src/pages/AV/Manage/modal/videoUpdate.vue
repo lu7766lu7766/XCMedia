@@ -90,8 +90,11 @@ export default {
   },
   mounted() {
     this.$bus.on("video_update.show", async data => {
+      this.videoName = "";
+      this.videoUrl = "";
       if (data.bucket) {
         this.videoData = data.bucket;
+      this.videoUrl = data.bucket.file_url;
       } else {
         this.videoData = {
           video: undefined,
@@ -100,8 +103,7 @@ export default {
         };
       }
       this.data = _.cloneDeep(data);
-      this.videoName = "";
-      this.videoUrl = data.video_url;
+
       this.show();
     });
   },
