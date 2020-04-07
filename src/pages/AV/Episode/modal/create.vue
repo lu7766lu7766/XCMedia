@@ -4,7 +4,7 @@
       <label class="col-md-2 col-form-label required">名称 </label>
       <div class="col-md-10">
         <validate rules="required">
-          <input type="text" class="form-control" placeholder="请输入名称" v-model="data.title" />
+          <input v-model="data.title" type="text" class="form-control" placeholder="请输入名称">
         </validate>
       </div>
     </div>
@@ -13,28 +13,24 @@
       <label class="col-md-2 col-form-label ">图片 </label>
       <div class="col-md-10">
         <div class="upload-box">
-          <div class="custom-file" id="imgupload-box">
+          <div id="imgupload-box" class="custom-file">
             <div>
               <label for="imgupload" class="custom-file-upload">
                 选择档案
               </label>
               <input
+                id="imgupload"
                 class="imgupload"
                 type="file"
-                id="imgupload"
-                @change="
-                  e => {
-                    onFileChange(e, 'cover')
-                  }
-                "
-              />
+                @change="e => onFileChange(e, 'cover')"
+              >
             </div>
-            <div class="img-show" v-if="src">
-              <img class="OpenImgUpload" :src="src" />
+            <div v-if="src" class="img-show">
+              <img class="OpenImgUpload" :src="src">
             </div>
           </div>
           <div class="text-red">
-            上传图片限制尺寸为263 × 300
+            上传图片限制尺寸为263×300
           </div>
         </div>
       </div>
@@ -44,24 +40,20 @@
       <label class="col-md-2 col-form-label ">影片上传 </label>
       <div class="col-md-10">
         <div class="upload-box">
-          <div class="custom-file" id="imgupload-box">
+          <div id="imgupload-box" class="custom-file">
             <div>
               <label for="videoupload" class="custom-file-upload">
                 选择档案
               </label>
               <input
+                id="videoupload"
                 class="imgupload"
                 type="file"
-                id="videoupload"
-                @change="
-                  e => {
-                    onFileChange(e, 'video')
-                  }
-                "
-              />
+                @change="e => onFileChange(e, 'video')"
+              >
             </div>
-            <div class="img-show" v-if="videoName">
-              <span>{{ this.videoName }}</span>
+            <div v-if="videoName" class="img-show">
+              <span>{{ videoName }}</span>
             </div>
           </div>
         </div>
@@ -75,7 +67,7 @@
           <div class="input-group">
             <date-time-picker v-model="data.release_date" />
             <div class="input-group-append">
-              <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+              <span class="input-group-text"><i class="far fa-calendar-alt" /></span>
             </div>
           </div>
         </validate>
@@ -96,27 +88,27 @@ import DetailMixins from 'mixins/Detail'
 import ImageMixins from 'mixins/Image'
 
 export default {
-  mixins: [DetailMixins, ImageMixins],
   components: { DateTimePicker: require('@/DateTimePicker').default },
-  methods: {
-    async doSubmit() {
-      const data = Object.assign({ selfie_schedule_id: this.$route.params.id }, this.data)
-      await this.$thisApi.doCreate(data, { formData: true })
-      this.createSuccess()
-    },
-  },
-  mounted() {
+  mixins: [DetailMixins, ImageMixins],
+  mounted () {
     this.$bus.on('create.show', () => {
       this.data = {
-        status: 'Y',
+        status: 'Y'
       }
       this.src = ''
       this.videoName = ''
       this.show()
     })
   },
-  destroyed() {
+  destroyed () {
     this.$bus.off('create.show')
   },
+  methods: {
+    async doSubmit () {
+      const data = Object.assign({ selfie_schedule_id: this.$route.params.id }, this.data)
+      await this.$thisApi.doCreate(data, { formData: true })
+      this.createSuccess()
+    }
+  }
 }
 </script>

@@ -10,7 +10,7 @@ export default {
     }
   }),
   computed: {
-    lastPage() {
+    lastPage () {
       return Math.ceil(this.paginate.total / this.paginate.perpage)
     }
   }

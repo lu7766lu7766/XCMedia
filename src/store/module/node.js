@@ -1,3 +1,6 @@
+
+import RouteConstants from 'constants/Route'
+import MenuConstants from 'constants/Menu'
 const type = {
   // mutation
   setNodes: 'Node/setNodes',
@@ -9,13 +12,10 @@ const type = {
   canUpdate: 'Node/canUpdate',
   canUpdateVideo: 'Node/canUpdateVideo',
   canDelete: 'Node/canDelete',
-  canPermission: 'Node/canPermission',
+  canPermission: 'Node/canPermission'
 }
 
 export { type as NodeType }
-
-import RouteConstants from 'constants/Route'
-import MenuConstants from 'constants/Menu'
 
 const findNode = (nodes, route) => {
   const MenuCode = RouteConstants[route.name]
@@ -31,12 +31,12 @@ const DELETE_SUFFIX = '_DELETE'
 export default {
   namespaced: true,
   state: {
-    nodes: null,
+    nodes: null
   },
   mutations: {
-    setNodes(state, context) {
+    setNodes (state, context) {
       state.nodes = context
-    },
+    }
   },
   getters: {
     menus: state => _.filter(state.nodes, { display: 'Y', enable: 'Y' }),
@@ -59,6 +59,6 @@ export default {
     },
     canPermission: (state, getters) => {
       return getters.node ? _.some(getters.node.nodes, { code: 'ROLE_PUBLIC_AUTHORIZATION' }) : false
-    },
-  },
+    }
+  }
 }

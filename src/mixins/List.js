@@ -17,58 +17,59 @@ export default {
           confirmButtonColor: '#348fe2',
           cancelButtonColor: '#6c757d',
           cancelButtonText: '取消',
-          confirmButtonText: '删除',
-        },
-      },
-    },
+          confirmButtonText: '删除'
+        }
+      }
+    }
   }),
   methods: {
-    doSearch() {
+    async doSearch (data) {
       this.paginate.page = 1
-      this.getList()
-      this.getTotal()
+      await this.getList(data)
+      await this.getTotal(data)
     },
-    doRefresh() {
-      this.getList()
-      this.getTotal()
+    async doRefresh (data) {
+      await this.getList(data)
+      await this.getTotal(data)
     },
-    async getList() {
-      const res = await this.$thisApi.getList(this.reqBody)
+    async getList (data) {
+      const res = await this.$thisApi.getList(data || this.reqBody)
       this.datas = res.data
       // console.log(this.datas)
     },
-    async getTotal() {
-      const res = await this.$thisApi.getTotal(this.reqBody)
+    async getTotal (data) {
+      if (!this.$thisApi.getTotal) { return }
+      const res = await this.$thisApi.getTotal(data || this.reqBody)
       this.paginate.total = res.data
     },
-    doSuccess(msg) {
+    doSuccess (msg) {
       // alert(`${msg}成功`)
       this.$alert.success(`${msg}成功`)
       this.doRefresh()
     },
-    deleteSuccess() {
+    deleteSuccess () {
       this.doSuccess('删除')
     },
-    pageChange(page) {
+    pageChange (page) {
       this.paginate.page = page
       this.getList()
     },
-    async doDelete(id) {
+    async doDelete (id) {
       await this.doDeleteConfirm()
       await this.$thisApi.doDelete({ id })
       this.deleteSuccess()
     },
-    async doDeleteConfirm() {
+    async doDeleteConfirm () {
       const res = await this.$swal(this.config.swal.delete)
-      if (!res.value) throw 'delete cancel'
-    },
+      if (!res.value) { throw new Error('delete cancel') }
+    }
   },
   computed: {
-    startIndex() {
+    startIndex () {
       return (this.paginate.page - 1) * this.paginate.perpage + 1
     },
-    reqBody() {
+    reqBody () {
       return _.pickBy(Object.assign({}, this.paginate, this.search), x => x !== '')
-    },
-  },
+    }
+  }
 }

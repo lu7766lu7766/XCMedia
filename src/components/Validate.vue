@@ -1,28 +1,28 @@
 <template>
-  <validation-provider :rules="rules" v-slot="{errors, invalid, validate}" :vid="vid">
-    <slot :errors="errors" :invalid="invalid" :validate="validate"></slot>
-    <span v-if="showError && invalid" class="parsley-errors-list filled" v-show="errors[0]">{{ errors[0] }}</span>
+  <validation-provider v-slot="{errors, invalid, validate}" :rules="rules" :vid="vid">
+    <slot :errors="errors" :invalid="invalid" :validate="validate" />
+    <span v-if="showError && invalid" v-show="errors[0]" class="parsley-errors-list filled">{{ errors[0] }}</span>
   </validation-provider>
 </template>
 
 <script>
-  import { ValidationProvider } from 'vee-validate'
+import { ValidationProvider } from 'vee-validate'
 
-  export default {
-    props: {
-      rules: {
-        type: String | Object,
-        required: true,
-      },
-      vid: {
-        type: String,
-      },
-      showError: {
-        default: true,
-      },
+export default {
+  components: {
+    ValidationProvider
+  },
+  props: {
+    rules: {
+      type: String | Object,
+      required: true
     },
-    components: {
-      ValidationProvider,
+    vid: {
+      type: String
     },
+    showError: {
+      default: true
+    }
   }
+}
 </script>

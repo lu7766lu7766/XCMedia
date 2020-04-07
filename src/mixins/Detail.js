@@ -1,48 +1,40 @@
 export default {
   components: {
     Detail: require('@/Container/Detail').default,
-    Switcher: require('@/Form/Switcher').default,
+    Switcher: require('@/Form/Switcher').default
   },
   data: () => ({
-    data: {},
+    data: {}
   }),
   methods: {
-    show()
-    {
+    show () {
       this.$modal.show()
       // this.$refs.modal.show()
     },
-    createSuccess()
-    {
+    createSuccess () {
       this.doSuccess('新增')
     },
-    updateSuccess()
-    {
+    updateSuccess () {
       this.doSuccess('编辑')
     },
-    doSuccess(msg)
-    {
+    doSuccess (msg) {
       this.$alert.success(`${msg}成功`)
       this.$modal.hide()
       this.$parent.doRefresh()
-    },
+    }
   },
   computed: {
-    $modal()
-    {
+    $modal () {
       return this.$children[0]
     },
-    options()
-    {
+    options () {
       return this.$parent.options
     },
-    translate()
-    {
+    translate () {
       return this.$parent.translate
     },
-    $thisApi()
-    {
+    $thisApi () {
       return this.$parent.$thisApi
-    },
-  },
+    }
+  }
 }

@@ -2,44 +2,44 @@ import BaseRequest from 'lib/Request/BaseRequest'
 import _config from './config'
 
 export default class Request extends BaseRequest {
-  get baseUrls() {
+  get baseUrls () {
     return super.baseUrls.concat('comic/manage/episode')
   }
 
-  constructor() {
+  constructor () {
     super()
     this.config = _config
   }
 
-  async getList(data, options) {
+  async getList (data, options) {
     return await this.request('list', data, options)
   }
 
-  async getTotal(data, options) {
+  async getTotal (data, options) {
     return await this.request('total', data, options)
   }
 
-  async doCreate(data, options) {
+  async doCreate (data, options) {
     return await this.request('create', data, options)
   }
 
-  async doUpdate(data, options) {
+  async doUpdate (data, options) {
     return await this.request('update', data, options)
   }
 
-  async getEditItem(data, options) {
+  async getEditItem (data, options) {
     return await this.request('editItem', data, options)
   }
 
-  async doUploadPic(data, options) {
+  async doUploadPic (data, options) {
     return await this.request('uploadPic', data, options)
   }
 
-  async doDeletePic(data, options) {
+  async doDeletePic (data, options) {
     return await this.request('deletePic', data, options)
   }
 
-  async doDelete(data, options) {
+  async doDelete (data, options) {
     return await this.request('delete', data, options)
   }
 }

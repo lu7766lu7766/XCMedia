@@ -4,7 +4,7 @@
       <label class="col-md-2 col-form-label required">名称 </label>
       <div class="col-md-10">
         <validate rules="required">
-          <input type="text" class="form-control" v-model="data.title" />
+          <input v-model="data.title" type="text" class="form-control">
         </validate>
       </div>
     </div>
@@ -13,19 +13,19 @@
       <label class="col-md-2 col-form-label ">图片 </label>
       <div class="col-md-10">
         <div class="upload-box">
-          <div class="custom-file" id="imgupload-box">
+          <div id="imgupload-box" class="custom-file">
             <div>
               <label for="imgupload" class="custom-file-upload">
                 选择档案
               </label>
-              <input class="imgupload" type="file" id="imgupload" @change="onFileChange" />
+              <input id="imgupload" class="imgupload" type="file" @change="onFileChange">
             </div>
-            <div class="img-show" v-if="src">
-              <img class="OpenImgUpload" :src="src" />
+            <div v-if="src" class="img-show">
+              <img class="OpenImgUpload" :src="src">
             </div>
           </div>
           <div class="text-red">
-            上传图片限制尺寸为263 × 300
+            上传图片限制尺寸为263×300
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label ">別名 </label>
       <div class="col-md-10">
-        <input type="text" class="form-control" v-model="data.alias" />
+        <input v-model="data.alias" type="text" class="form-control">
       </div>
     </div>
 
@@ -42,7 +42,7 @@
       <label class="col-md-2 col-form-label required">集数状态 </label>
       <div class="col-md-10">
         <validate rules="required">
-          <j-radio :datas="options.episode" v-model="data.episode_status" />
+          <j-radio v-model="data.episode_status" :datas="options.episode" />
         </validate>
       </div>
     </div>
@@ -65,7 +65,7 @@
       <label class="col-md-2 col-form-label required">地区 </label>
       <div class="col-md-10">
         <validate rules="required">
-          <model-list-select :list="options.area" v-model="data.region_id" optionValue="id" optionText="name" />
+          <model-list-select v-model="data.region_id" :list="options.area" option-value="id" option-text="name" />
         </validate>
       </div>
     </div>
@@ -75,12 +75,12 @@
       <div class="col-md-10">
         <validate rules="required">
           <multi-list-select
-            :list="options.type"
-            optionValue="id"
-            optionText="title"
-            :selectedItems="data.genre_ids"
-            @select="item => (data.genre_ids = item)"
             v-model="data.genre_ids"
+            :list="options.type"
+            option-value="id"
+            option-text="title"
+            :selected-items="data.genre_ids"
+            @select="item => (data.genre_ids = item)"
           />
         </validate>
       </div>
@@ -90,7 +90,7 @@
       <label class="col-md-2 col-form-label required">年份 </label>
       <div class="col-md-10">
         <validate rules="required">
-          <model-list-select :list="options.year" v-model="data.years_id" optionValue="id" optionText="title" />
+          <model-list-select v-model="data.years_id" :list="options.year" option-value="id" option-text="title" />
         </validate>
       </div>
     </div>
@@ -99,7 +99,7 @@
       <label class="col-md-2 col-form-label required">语言 </label>
       <div class="col-md-10">
         <validate rules="required">
-          <model-list-select :list="options.lang" v-model="data.language_id" optionValue="id" optionText="title" />
+          <model-list-select v-model="data.language_id" :list="options.lang" option-value="id" option-text="title" />
         </validate>
       </div>
     </div>
@@ -107,7 +107,11 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label">描述 </label>
       <div class="col-md-10">
-        <j-editor v-model="data.description" @image-added="myUploadPic" />
+        <textarea
+          v-model="data.description"
+          rows="5"
+          class="form-control"
+        />
       </div>
     </div>
 
@@ -124,18 +128,38 @@
 import DetailMixins from 'mixins/Detail'
 import ImageMixins from 'mixins/Image'
 import EditorMixins from 'mixins/Editor'
-import JInputTag from '@/Form/InputTag'
 import { ModelListSelect, MultiListSelect } from 'vue-search-select'
+import JInputTag from '@/Form/InputTag'
 
 export default {
-  mixins: [DetailMixins, ImageMixins, EditorMixins],
   components: {
     JInputTag,
     ModelListSelect,
-    MultiListSelect,
+    MultiListSelect
+  },
+  mixins: [DetailMixins, ImageMixins, EditorMixins],
+  mounted () {
+    this.$bus.on('create.show', () => {
+      this.data = {
+        episode_status: 'serializing',
+        status: 'Y',
+        genre_ids: [],
+        region_id: '',
+        years_id: '',
+        language_id: '',
+        starring: [],
+        director: []
+      }
+
+      this.src = ''
+      this.show()
+    })
+  },
+  destroyed () {
+    this.$bus.off('create.show')
   },
   methods: {
-    async doSubmit() {
+    async doSubmit () {
       const data = _.cloneDeep(this.data)
       if (data.starring.length > 0) {
         data.starring = data.starring && data.starring.join(',')
@@ -147,29 +171,9 @@ export default {
       await this.$thisApi.doCreate(data, { formData: true })
       this.createSuccess()
     },
-    myUploadPic(...args) {
+    myUploadPic (...args) {
       this.doUploadPic(...args, 'editor_image_ids')
-    },
-  },
-  mounted() {
-    this.$bus.on('create.show', () => {
-      this.data = {
-        episode_status: 'serializing',
-        status: 'Y',
-        genre_ids: [],
-        region_id: '',
-        years_id: '',
-        language_id: '',
-        starring: [],
-        director: [],
-      }
-
-      this.src = ''
-      this.show()
-    })
-  },
-  destroyed() {
-    this.$bus.off('create.show')
-  },
+    }
+  }
 }
 </script>

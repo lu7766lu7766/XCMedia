@@ -1,11 +1,9 @@
-var path = require('path')
-var webpackConfig = require('./webpack.config')
+const path = require('path')
+const webpackConfig = require('./webpack.config')
 
-var resolve = (dir) =>
-{
+const resolve = (dir) => {
   return path.join(__dirname, dir)
 }
-
 // 設定請參考 https://github.com/vuejs/vue-cli/tree/dev/docs/config
 module.exports = {
   publicPath: '/',
@@ -15,8 +13,7 @@ module.exports = {
   // compiler: true,
   // 调整内部的 webpack 配置。
   // 查阅 https://github.com/vuejs/vue-docs-zh-cn/blob/master/vue-cli/webpack.md
-  chainWebpack: () =>
-  {
+  chainWebpack: () => {
   },
   configureWebpack: webpackConfig,
   devServer: {
@@ -26,10 +23,9 @@ module.exports = {
     port: 8088,
     https: false,
     hotOnly: false,
-    before: app =>
-    {
+    before: (app) => {
       // 加入靜態資源
-      var express = require('express') // vue-cli-service 自帶 express
+      const express = require('express') // vue-cli-service 自帶 express
       app.use('/resource', express.static(resolve('resource')))
     }
   }

@@ -181,6 +181,7 @@ option {
 #img-dialog {
   width: 100%;
   height: 100%;
+  text-align: center;
 }
 
 #img-dialog .close {
@@ -192,7 +193,7 @@ option {
 }
 
 #img-dialog img {
-  width: 100%;
+  max-width: 100%;
 }
 
 #img-dialog .modal-body {
@@ -594,11 +595,11 @@ option {
 }
 
 .limit-main li span:first-child, .limit-sub li span:first-child, .limit-ssub li span:first-child {
-  width: 115px;
+  width: 145px;
 }
 
 .limit-main .crud-box, .limit-sub .crud-box, .limit-ssub .crud-box {
-  width: calc(100% - 120px);
+  width: calc(100% - 145px);
   text-align: right;
 }
 
@@ -903,4 +904,58 @@ option {
 .rate-input .form-input input {
   width: 75px;
   padding: 6px;
+}
+
+.error h4 {
+  font-size: 1.6em;
+  text-shadow: 3px 5px 0px #c4ccd4;
+  color: #b11407;
+}
+
+.error h5 {
+  font-size: .5em;
+  color: #666;
+}
+
+.error img {
+  width: 110px;
+  margin-right: 10px;
+}
+
+.error-message {
+  color: #2b3033;
+  font-size: 40px;
+  line-height: 2.5;
+  font-weight: bold;
+  text-align: left;
+}
+
+.error-code {
+  padding: 15px;
+  position: relative;
+  line-height: 20px;
+  text-shadow: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+@media (max-width: 575px) {
+  .error h4 {
+    font-size: 1.1em;
+  }
+  .error h5 {
+    font-size: .3em;
+  }
+  .error-message {
+    text-align: center;
+  }
 }

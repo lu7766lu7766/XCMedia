@@ -1,36 +1,41 @@
+import { join } from 'path'
 import { JacLib } from 'jactools'
+import API from 'lib/API'
 
 export default {
   data: () => ({
     src: '',
-    videoName: '',
+    videoName: ''
   }),
   methods: {
-    getFiles(e) {
+    getFiles (e) {
       return e.target.files || e.dataTransfer.files
     },
-    async handleImageChange(e) {
-      var files = this.getFiles(e)
+    toResourceUrl (path) {
+      return path ? '//' + join(API.resourceUrl, path) : null
+    },
+    async handleImageChange (e) {
+      const files = this.getFiles(e)
       if (!files.length) {
         return
       }
       return await JacLib.readImage(files[0])
     },
-    async handleVideoChange(e) {
-      var files = this.getFiles(e)
+    async handleVideoChange (e) {
+      const files = this.getFiles(e)
       if (!files.length) {
         return
       }
       return await files[0].name
     },
-    async onFileChange(e, key = 'image') {
+    async onFileChange (e, key = 'image', data = 'data') {
       if (key !== 'video') {
         this.src = await this.handleImageChange(e)
       } else {
         this.videoName = await this.handleVideoChange(e)
       }
 
-      this.data[key] = this.getFiles(e)[0]
-    },
-  },
+      this[data][key] = this.getFiles(e)[0]
+    }
+  }
 }

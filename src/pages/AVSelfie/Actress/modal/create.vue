@@ -1,12 +1,14 @@
 <template>
   <detail title="新增" @submit="doSubmit()">
-
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">名称 </label>
       <div class="col-md-10">
         <validate rules="required">
-          <input type="text" class="form-control"
-                 v-model="data.name" />
+          <input
+            v-model="data.name"
+            type="text"
+            class="form-control"
+          >
         </validate>
       </div>
     </div>
@@ -15,8 +17,11 @@
       <label class="col-md-2 col-form-label ">別名 </label>
       <div class="col-md-10">
         <validate rules="required">
-          <input type="text" class="form-control"
-                 v-model="data.alias" />
+          <input
+            v-model="data.alias"
+            type="text"
+            class="form-control"
+          >
         </validate>
       </div>
     </div>
@@ -25,19 +30,19 @@
       <label class="col-md-2 col-form-label ">图片 </label>
       <div class="col-md-10">
         <div class="upload-box">
-          <div class="custom-file" id="imgupload-box">
+          <div id="imgupload-box" class="custom-file">
             <div>
               <label for="imgupload" class="custom-file-upload">
                 选择档案
               </label>
-              <input class="imgupload" type="file" id="imgupload" @change="onFileChange($event, 'cover')">
+              <input id="imgupload" class="imgupload" type="file" @change="onFileChange($event, 'cover')">
             </div>
-            <div class="img-show" v-if="src">
+            <div v-if="src" class="img-show">
               <img class="OpenImgUpload" :src="src">
             </div>
           </div>
           <div class="text-red">
-            上传图片限制尺寸为263 × 300
+            上传图片限制尺寸为263×300
           </div>
         </div>
       </div>
@@ -53,41 +58,36 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label ">备注 </label>
       <div class="col-md-10">
-        <textarea class="form-control" rows="5" v-model="data.note"></textarea>
+        <textarea v-model="data.note" class="form-control" rows="5" />
       </div>
     </div>
-
   </detail>
 </template>
 
 <script>
-  import DetailMixins from 'mixins/Detail'
-  import ImageMixins from 'mixins/Image'
+import DetailMixins from 'mixins/Detail'
+import ImageMixins from 'mixins/Image'
 
-  export default {
-    mixins: [DetailMixins, ImageMixins],
-    methods: {
-      async doSubmit()
-      {
-        const data = _.cloneDeep(this.data)
-        await this.$thisApi.doCreate(data, {formData: true})
-        this.createSuccess()
-      },
-    },
-    mounted()
-    {
-      this.$bus.on('create.show', () =>
-      {
-        this.data = {
-          status: 'Y',
-        }
-        this.src = ''
-        this.show()
-      })
-    },
-    destroyed()
-    {
-      this.$bus.off('create.show')
-    },
+export default {
+  mixins: [DetailMixins, ImageMixins],
+  mounted () {
+    this.$bus.on('create.show', () => {
+      this.data = {
+        status: 'Y'
+      }
+      this.src = ''
+      this.show()
+    })
+  },
+  destroyed () {
+    this.$bus.off('create.show')
+  },
+  methods: {
+    async doSubmit () {
+      const data = _.cloneDeep(this.data)
+      await this.$thisApi.doCreate(data, { formData: true })
+      this.createSuccess()
+    }
   }
+}
 </script>
