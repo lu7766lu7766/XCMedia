@@ -14,7 +14,6 @@
         自拍管理
       </li>
     </ol>
-
     <!-- begin row -->
     <div class>
       <div class="panel panel-inverse" style="clear:both;">
@@ -141,24 +140,22 @@
                   <td>{{ data.region.name }}</td>
                   <td>
                     <span
-                      v-for="(i, index) in data.actress"
-                      :key="index"
+                      v-for="(t, i) in data.actress"
+                      :key="i"
                       style="margin-right:5px"
-                    >{{ i.name }}
-                      <span v-if="index!==data.actress.length-1">,</span>
+                    >{{ t.name }}
+                      <span v-if="i!==data.actress.length-1">,</span>
                     </span>
                   </td>
                   <td>{{ data.cup.size }}</td>
                   <td>
                     <span
-                      v-for="(area, index) in data.genres"
-                      :key="index"
+                      v-for="(area, i) in data.genres"
+                      :key="i"
                       class="label label-warning"
                       style="margin-right:5px"
                     >
-                      {{
-                        area.title
-                      }}
+                      {{ area.title }}
                     </span>
                   </td>
 
@@ -201,12 +198,12 @@ import CensoredStatus from 'constants/CensoredStatus'
 import ListMixins from 'mixins/List'
 
 export default {
-  mixins: [ListMixins],
   components: {
     ImageContainer: require('@/Container/Image').default,
     Create: require('./modal/create').default,
     Update: require('./modal/update').default
   },
+  mixins: [ListMixins],
   data: () => ({
     av_actress_id: '',
     search: {
@@ -234,10 +231,14 @@ export default {
     this.doSearch()
   },
   methods: {
-    async doSubmit () {
+    doSubmit () {
       if (this.av_actress_id) {
-        this.search.av_actress = []
-        this.search.av_actress.push(this.av_actress_id)
+        if (this.search.av_actress.length > 1) {
+          this.search.av_actress = []
+          this.search.av_actress.push(this.av_actress_id)
+        } else {
+          this.search.av_actress.push(this.av_actress_id)
+        }
       } else {
         this.search.av_actress = []
       }

@@ -107,8 +107,8 @@
                   <td>{{ data.region.name }}</td>
                   <td>
                     <span
-                      v-for="(area, index) in data.genres"
-                      :key="index"
+                      v-for="(area, i) in data.genres"
+                      :key="i"
                       class="label label-warning"
                       style="margin-right:5px"
                     >

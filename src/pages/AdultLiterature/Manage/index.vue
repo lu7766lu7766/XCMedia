@@ -3,20 +3,25 @@
     <!-- begin breadcrumb -->
     <ol class="breadcrumb pull-right m-b-20">
       <li class="breadcrumb-item">
-        <router-link :to="{ name: 'welcome' }">首页</router-link>
+        <router-link :to="{ name: 'welcome' }">
+          首页
+        </router-link>
       </li>
       <li class="breadcrumb-item">
         <a href="javascript:;">成人文学</a>
       </li>
-      <li class="breadcrumb-item active">文学管理</li>
+      <li class="breadcrumb-item active">
+        文学管理
+      </li>
     </ol>
-
     <!-- begin row -->
     <div class>
       <div class="panel panel-inverse" style="clear:both;">
         <!-- begin panel-heading -->
         <div class="panel-heading p-t-10">
-          <h4 class="text-white m-b-0">文学管理</h4>
+          <h4 class="text-white m-b-0">
+            文学管理
+          </h4>
         </div>
         <!-- end panel-heading -->
         <!-- begin panel-body -->
@@ -24,33 +29,33 @@
           <alert />
           <div class="row m-b-20 justify-content-end panel-search-box">
             <div class="col-sm-2">
-              <j-button type="add" @click="$bus.emit('create.show')"></j-button>
+              <j-button type="add" @click="$bus.emit('create.show')" />
             </div>
             <div class="col-sm-10 form-inline justify-content-end panel-search">
               <div class="form-group width-100 m-r-10">
                 <j-select
+                  v-model="search.region_id"
                   title="地区"
                   :datas="options.area"
-                  valueKey="id"
-                  v-model="search.region_id"
+                  value-key="id"
                 />
               </div>
               <div class="form-group width-100 m-r-10">
                 <j-select
+                  v-model="search.year_id"
                   title="年份"
                   :datas="options.year"
-                  valueKey="id"
-                  displayKey="title"
-                  v-model="search.year_id"
+                  value-key="id"
+                  display-key="title"
                 />
               </div>
               <div class="form-group width-100 m-r-10">
-                <j-select title="状态" :datas="options.status" v-model="search.status" />
+                <j-select v-model="search.status" title="状态" :datas="options.status" />
               </div>
               <div class="form-group m-r-10">
-                <input type="text" class="form-control" placeholder="请输入名称" v-model="search.title" />
+                <input v-model="search.title" type="text" class="form-control" placeholder="请输入名称">
               </div>
-              <j-button type="search" @click="doSearch"></j-button>
+              <j-button type="search" @click="doSearch" />
             </div>
           </div>
           <!-- begin table-responsive -->
@@ -58,36 +63,52 @@
             <table class="table table-striped table-box text-center">
               <thead>
                 <tr>
-                  <th class="width-30">#</th>
-                  <th class="width-200">图片</th>
+                  <th class="width-30">
+                    #
+                  </th>
+                  <th class="width-200">
+                    图片
+                  </th>
                   <th>名称</th>
-                  <th class="width-100">地区</th>
+                  <th class="width-100">
+                    地区
+                  </th>
                   <th>类型</th>
-                  <th class="width-100">年份</th>
-                  <th class="width-100">浏览次数</th>
-                  <th class="width-100">状态</th>
-                  <th class="width-150">建立时间</th>
-                  <th class="width-100">操作</th>
+                  <th class="width-100">
+                    年份
+                  </th>
+                  <th class="width-100">
+                    浏览次数
+                  </th>
+                  <th class="width-100">
+                    状态
+                  </th>
+                  <th class="width-150">
+                    建立时间
+                  </th>
+                  <th class="width-100">
+                    操作
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="(data, index) in datas" :key="index">
                   <td>{{ startIndex + index }}</td>
                   <td class="td-img slider-img-td">
-                    <img :src="data.cover_url" @click="$bus.emit('image.show', data.cover_url)" />
+                    <img :src="data.cover_url" @click="$bus.emit('image.show', data.cover_url)">
                   </td>
                   <td>{{ data.title }}</td>
-                  <td>{{ data.region.name}}</td>
+                  <td>{{ data.region.name }}</td>
                   <!-- <td>{{ data.region.title }}</td> -->
                   <td>
                     <span
+                      v-for="(area, i) in data.genres"
+                      :key="i"
                       class="label label-warning"
                       style="margin-right:5px"
-                      v-for="(area, index) in data.genres"
-                      :key="index"
                     >
                       {{
-                      area.title
+                        area.title
                       }}
                     </span>
                   </td>
@@ -95,8 +116,8 @@
                   <td>{{ data.year.title }}</td>
                   <td>{{ data.views }}</td>
                   <td>
-                    <i class="fas fa-lg fa-check-circle text-green" v-if="data.status === 'Y'"></i>
-                    <i class="fas fa-lg fa-times-circle text-danger" v-else></i>
+                    <i v-if="data.status === 'Y'" class="fas fa-lg fa-check-circle text-green" />
+                    <i v-else class="fas fa-lg fa-times-circle text-danger" />
                   </td>
                   <td>{{ data.created_at }}</td>
                   <td class="text-left">
@@ -104,9 +125,9 @@
                       type="episode-book"
                       :action="true"
                       @click="$router.push({ name: 'adult-literature-episode', params: { id: data.id }, query: { name: data.title } })"
-                    ></j-button>
-                    <j-button type="edit" :action="true" @click="$bus.emit('update.show', data)"></j-button>
-                    <j-button type="delete" :action="true" @click="doDelete(data.id)"></j-button>
+                    />
+                    <j-button type="edit" :action="true" @click="$bus.emit('update.show', data)" />
+                    <j-button type="delete" :action="true" @click="doDelete(data.id)" />
                   </td>
                 </tr>
               </tbody>
@@ -114,7 +135,7 @@
           </div>
           <!-- end table-responsive -->
           <!-- pagination -->
-          <paginate :page="paginate.page" :lastPage="lastPage" @pageChange="pageChange" />
+          <paginate :page="paginate.page" :last-page="lastPage" @pageChange="pageChange" />
           <!-- end pagination -->
         </div>
       </div>
@@ -126,23 +147,22 @@
 </template>
 
 <script>
-import ListMixins from "mixins/List";
-import Enable from "constants/Enable";
-import EpisodeStatus from "constants/EpisodeStatus";
+import Enable from 'constants/Enable'
+import ListMixins from 'mixins/List'
 
 export default {
-  mixins: [ListMixins],
   components: {
-    ImageContainer: require("@/Container/Image").default,
-    Create: require("./modal/create").default,
-    Update: require("./modal/update").default
+    ImageContainer: require('@/Container/Image').default,
+    Create: require('./modal/create').default,
+    Update: require('./modal/update').default
   },
+  mixins: [ListMixins],
   data: () => ({
     search: {
-      status: "",
-      title: "",
-      region_id: "",
-      year_id: ""
+      status: '',
+      title: '',
+      region_id: '',
+      year_id: ''
     },
     options: {
       status: Enable,
@@ -151,24 +171,24 @@ export default {
       type: []
     }
   }),
-  api: "adult_literature.manage",
+  api: 'adult_literature.manage',
+  created () {
+    this.getOptions()
+    this.doSearch()
+  },
   methods: {
-    async getOptions() {
+    async getOptions () {
       const res = await axios.all([
         this.$thisApi.getAreas(),
         this.$thisApi.getYears(),
         this.$thisApi.getTypes()
-      ]);
+      ])
       this.options = Object.assign({}, this.options, {
         area: res[0].data,
         year: res[1].data,
         type: res[2].data
-      });
+      })
     }
-  },
-  created() {
-    this.getOptions();
-    this.doSearch();
   }
-};
+}
 </script>

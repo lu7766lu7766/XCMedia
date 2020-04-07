@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-named-as-default
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { ValidationObserver } from 'vee-validate'

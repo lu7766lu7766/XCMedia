@@ -1,9 +1,10 @@
 import menuRoutes from './menuRoutes'
+
 export default [
   {
     path: '/login',
     name: 'login',
-    component: () => import('pages/Login'),
+    component: () => import('pages/Login')
   },
   {
     path: '/',
@@ -12,18 +13,18 @@ export default [
       {
         path: '',
         name: 'welcome',
-        component: () => import('pages/Index/Welcome'),
+        component: () => import('pages/Index/Welcome')
       },
       {
         path: 'edit-profile',
         name: 'edit-profile',
-        component: () => import('pages/Index/Profile'),
+        component: () => import('pages/Index/Profile')
       },
-      ...menuRoutes,
-    ],
+      ...menuRoutes
+    ]
   },
   {
     path: '*',
-    redirect: '/login',
-  },
+    redirect: '/login'
+  }
 ]

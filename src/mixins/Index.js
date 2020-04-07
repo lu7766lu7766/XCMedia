@@ -3,20 +3,20 @@ import { NodeType } from 'module/node'
 
 export default {
   methods: {
-    async getNodes() {
+    async getNodes () {
       const res = await this.$api.user.pilot.getNodes()
       this.$store.commit(NodeType.setNodes, res.data)
     },
-    async getAccount() {
+    async getAccount () {
       const res = await this.$api.user.pilot.getProfile()
       this.$store.commit(LoginType.setAccount, res.data)
     }
   },
   computed: {
-    menus() {
+    menus () {
       return this.$store.getters[NodeType.menus]
     },
-    account() {
+    account () {
       return this.$store.state.Login.account
     }
   }

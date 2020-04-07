@@ -4,6 +4,6 @@ import ImageMixins from 'mixins/Image'
 export default {
   mixins: [DetailMixins, ImageMixins],
   components: {
-    jWebsite: require('@/Custom/Website').default,
-  },
+    jWebsite: require('@/Custom/Website').default
+  }
 }

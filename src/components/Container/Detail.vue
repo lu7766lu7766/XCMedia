@@ -32,7 +32,6 @@
 
 <script>
 export default {
-  // eslint-disable-next-line vue/require-prop-types
   props: ['title', 'hideFooter'],
   mounted () {
     this.$bus.on('modal.hide', () => {

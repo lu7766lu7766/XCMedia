@@ -2,77 +2,90 @@
   <section>
     <div>
       <div class="form-check-inline radio radio-css">
-        <input type="radio" name="status" id="r1" class="all-btn1" :value="true" v-model="isAll" @change="onChange">
+        <input
+          id="r1"
+          v-model="isAll"
+          type="radio"
+          name="status"
+          class="all-btn1"
+          :value="true"
+          @change="onChange"
+        >
         <label for="r1">全部</label>
       </div>
       <div class="form-check-inline radio radio-css">
-        <input type="radio" name="status" id="r2" class="all-btn1" :value="false" v-model="isAll" @change="onChange">
+        <input
+          id="r2"
+          v-model="isAll"
+          type="radio"
+          name="status"
+          class="all-btn1"
+          :value="false"
+          @change="onChange"
+        >
         <label for="r2">个别</label>
       </div>
     </div>
     <div class="push-app-box">
-      <j-listbox v-show="!isAll"
-                 :value="value"
-                 @input="val => $emit('input', val)"
-                 :options="options"
-                 placeholder="站台名稱" />
+      <j-listbox
+        v-show="!isAll"
+        :value="value"
+        :options="options"
+        placeholder="站台名稱"
+        @input="val => $emit('input', val)"
+      />
     </div>
   </section>
 </template>
 
 <script>
-  export default {
-    components: {
-      JListbox: require('@/Form/ListBox').default,
+export default {
+  components: {
+    JListbox: require('@/Form/ListBox').default
+  },
+  props: {
+    value: {
+      required: true
     },
-    props: {
-      value: {
-        required: true,
-      },
-      options: {
-        type: Array,
-        required: true,
-      },
-      valueKey: {
-        default: 'id',
-      },
-      defaultAll: '',
+    options: {
+      type: Array,
+      required: true
     },
-    data: () => ({
-      isAll: true,
-      tmpValue: [],
-    }),
-    methods: {
-      onChange()
-      {
-        this.isAll
-          ? this.change2All()
-          : this.change2Custom()
-      },
-      change2All()
-      {
-        this.tmpValue = this.value
-        this.$emit('input', _.map(this.options, this.valueKey))
-      },
-      change2Custom()
-      {
-        this.$emit('input', this.tmpValue)
-      },
+    valueKey: {
+      default: 'id'
     },
-    mounted()
-    {
-      // validate bug proccess
+    defaultAll: ''
+  },
+  data: () => ({
+    isAll: true,
+    tmpValue: []
+  }),
+  mounted () {
+    // validate bug proccess
+    this.tmpValue = this.value
+    this.change2Custom()
+    setTimeout(() => {
+      this.isAll = typeof this.defaultAll === 'undefined'
+        ? this.value.length === this.options.length
+        : this.defaultAll
+      this.onChange()
+    })
+  },
+  methods: {
+    onChange () {
+      this.isAll
+        ? this.change2All()
+        : this.change2Custom()
+    },
+    change2All () {
       this.tmpValue = this.value
-      this.change2Custom()
-      setTimeout(() =>
-      {
-        this.isAll = typeof this.defaultAll == 'undefined'
-          ? this.value.length === this.options.length
-          : this.defaultAll
-        this.onChange()
-      })
+      this.$emit('input', _.map(this.options, this.valueKey))
     },
+    change2Custom () {
+      this.$emit('input', this.tmpValue)
+    }
   }
+}
 </script>
 
 <style scoped>

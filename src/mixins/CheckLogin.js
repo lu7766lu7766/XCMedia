@@ -1,5 +1,5 @@
-import { mapGetters } from 'vuex'
 import { LoginType } from 'module/login'
+import { mapGetters } from 'vuex'
 
 export default {
   computed: {
@@ -7,7 +7,7 @@ export default {
       isLogin: LoginType.isLogin
     })
   },
-  created() {
+  created () {
     if (!this.isLogin) {
       this.$router.replace('login')
     }

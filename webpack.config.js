@@ -1,11 +1,9 @@
-var webpack = require('webpack')
-var path = require('path')
-var copy = require('copy-webpack-plugin')
-var resolve = (dir) =>
-{
+const path = require('path')
+const webpack = require('webpack')
+const copy = require('copy-webpack-plugin')
+const resolve = (dir) => {
   return path.join(__dirname, dir)
 }
-
 module.exports = {
   resolve: {
     extensions: ['.ts', '.js', '.vue', '.json'],
@@ -20,11 +18,11 @@ module.exports = {
       module: resolve('src/store/module'),
       resource: resolve('resource'),
       '@': resolve('src/components'),
-      'pages': resolve('src/pages')
+      pages: resolve('src/pages')
     }
   },
   plugins: [
-    new copy([{from:'resource', to:'resource'}]),
+    new copy([{ from: 'resource', to: 'resource' }]),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',

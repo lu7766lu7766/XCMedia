@@ -8,14 +8,13 @@
         </validate>
       </div>
     </div>
-    <template v-for="(source, index) in options.source">
-      <div :key="index" class="form-group row m-b-15">
+    <template v-if="data.sources_url">
+      <div v-for="(source, index) in options.source" :key="index" class="form-group row m-b-15">
         <label class="col-md-2 col-form-label">{{ source.title }} </label>
         <div class="col-md-10">
           <validate rules="url">
-            <input v-if="data.sources_url" v-model="data.sources_url[source.id]" type="text" class="form-control" placeholder="请输入网址">
+            <input v-model="data.sources_url[source.id]" type="text" class="form-control" placeholder="请输入网址">
           </validate>
-          <!-- <input type="text" class="form-control" placeholder="请输入网址" v-model="data.sources_url[source.id]" /> -->
         </div>
       </div>
     </template>
