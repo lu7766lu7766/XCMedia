@@ -61,10 +61,14 @@
                   <th class="width-200">
                     图片
                   </th>
-                  <th>类型</th>
-                  <th>标题</th>
+                  <th class="width-150">
+                    类型
+                  </th>
+                  <th class="width-400">
+                    标题
+                  </th>
                   <th>连结</th>
-                  <th class="">
+                  <th class="width-100">
                     发布站台
                   </th>
                   <th>点击次数</th>
@@ -89,7 +93,9 @@
                   <td class="text-left">
                     {{ data.title }}
                   </td>
-                  <td>{{ data.url }}</td>
+                  <td class="text-left">
+                    {{ data.url }}
+                  </td>
                   <td class="text-left">
                     {{ _.map(data.branches, 'name').join(', ') }}
                   </td>
