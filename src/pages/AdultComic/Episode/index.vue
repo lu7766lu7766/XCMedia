@@ -122,11 +122,6 @@ export default {
     this.doSearch()
   },
   methods: {
-    async doDelete (id) {
-      await this.doDeleteConfirm()
-      await this.$thisApi.doDelete({ id })
-      this.deleteSuccess()
-    }
   }
 }
 </script>

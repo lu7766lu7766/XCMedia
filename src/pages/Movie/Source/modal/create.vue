@@ -4,7 +4,7 @@
       <label class="col-md-2 col-form-label required">名称 </label>
       <div class="col-md-10">
         <validate rules="required">
-          <input type="text" class="form-control" v-model="data.title" />
+          <input v-model="data.title" type="text" class="form-control">
         </validate>
       </div>
     </div>
@@ -12,7 +12,7 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label">解析地址 </label>
       <div class="col-md-10">
-        <input type="text" class="form-control" v-model="data.analyze_address" />
+        <input v-model="data.analyze_address" type="text" class="form-control">
       </div>
     </div>
 
@@ -26,7 +26,7 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label ">备注 </label>
       <div class="col-md-10">
-        <textarea class="form-control" rows="5" v-model="data.remark"></textarea>
+        <textarea v-model="data.remark" class="form-control" rows="5" />
       </div>
     </div>
   </detail>
@@ -37,23 +37,23 @@ import DetailMixins from 'mixins/Detail'
 
 export default {
   mixins: [DetailMixins],
-  methods: {
-    async doSubmit() {
-      const data = _.cloneDeep(this.data)
-      await this.$thisApi.doCreate(data)
-      this.createSuccess()
-    },
-  },
-  mounted() {
+  mounted () {
     this.$bus.on('create.show', () => {
       this.data = {
-        status: 'Y',
+        status: 'Y'
       }
       this.show()
     })
   },
-  destroyed() {
+  destroyed () {
     this.$bus.off('create.show')
   },
+  methods: {
+    async doSubmit () {
+      const data = _.cloneDeep(this.data)
+      await this.$thisApi.doCreate(data)
+      this.createSuccess()
+    }
+  }
 }
 </script>

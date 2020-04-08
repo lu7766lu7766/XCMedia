@@ -601,6 +601,7 @@ option{
         >thead{
             >tr{
                 >th{
+                    white-space: nowrap;
                     border-top:1px solid #b6c2c9 !important;
                 }
             }
@@ -660,6 +661,22 @@ option{
         padding: 5px;
         border-radius: 3px;
         display: none;
+        position: relative;
+        i{
+            display: block;
+            font-weight: 900;
+            right: 0;
+            top: 0;
+            position: absolute;
+            padding: 5px;
+            background-color: #ff635f;
+            width: 24px;
+            height: 24px;
+            line-height: 16px;
+            text-align: center;
+            color: #fff;
+            border-top-right-radius: 2px;
+        }
         img{
             border-radius: 3px;
         }
