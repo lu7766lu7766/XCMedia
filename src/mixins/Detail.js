@@ -21,6 +21,18 @@ export default {
       this.$alert.success(`${msg}成功`)
       this.$modal.hide()
       this.$parent.doRefresh()
+    },
+    textAreaToArray (text) {
+      return text.split('\n')
+        .map((item) => {
+          return item.split('|').map(t => t.trim())
+        })
+    },
+    arrayToTextarea (arr) {
+      return arr.reduce((str, item) => {
+        str += `${item[0]}|${item[1] || ''}\n`
+        return str
+      }, '')
     }
   },
   computed: {
