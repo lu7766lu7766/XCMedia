@@ -152,7 +152,9 @@ export default {
         genre_ids: [],
         region_id: '',
         years_id: '',
-        language_id: ''
+        language_id: '',
+        host: [],
+        guest: []
       }
 
       this.src = ''
@@ -165,8 +167,12 @@ export default {
   methods: {
     async doSubmit () {
       const data = _.cloneDeep(this.data)
-      data.host = data.host && data.host.join(',')
-      data.guest = data.guest && data.guest.join(',')
+      if (data.host.length > 0) {
+        data.host = data.host && data.host.join(',')
+      }
+      if (data.guest.length > 0) {
+        data.guest = data.guest && data.guest.join(',')
+      }
       data.genre_ids = _.map(data.genre_ids, 'id')
       await this.$thisApi.doCreate(data, { formData: true })
       this.createSuccess()
