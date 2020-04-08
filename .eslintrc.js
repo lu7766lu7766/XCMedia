@@ -4,6 +4,7 @@ module.exports = {
     browser: true,
     node: true
   },
+  ignorePatterns: ['resource'],
   parserOptions: {
     parser: 'babel-eslint'
   },
