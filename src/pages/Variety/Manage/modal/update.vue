@@ -147,8 +147,8 @@ export default {
   mounted () {
     this.$bus.on('update.show', (data) => {
       this.data = Object.assign({ genre_ids: [] }, data)
-      this.data.host = (this.data.host || '').split(',')
-      this.data.guest = (this.data.guest || '').split(',')
+      this.data.host = this.data.host ? this.data.host.trim().split(',') : []
+      this.data.guest = this.data.guest ? this.data.guest.trim().split(',') : []
       this.data.genre_ids = this.data.genres
       this.src = data.image_url
       this.show()
@@ -160,8 +160,12 @@ export default {
   methods: {
     async doSubmit () {
       const data = _.cloneDeep(this.data)
-      data.host = data.host && data.host.join(',')
-      data.guest = data.guest && data.guest.join(',')
+      if (data.host.length > 0) {
+        data.host = data.host && data.host.join(',')
+      }
+      if (data.guest.length > 0) {
+        data.guest = data.guest && data.guest.join(',')
+      }
       data.genre_ids = _.map(data.genre_ids, 'id')
       await this.$thisApi.doUpdate(data, { formData: true })
       this.updateSuccess()
