@@ -32,7 +32,11 @@
     <div class="txt" style="position: relative;">
       <h5>{{ item.original_file_name }}</h5>
       <span class="" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="删除">
-        <a id="" class="text-danger delete-dialog" @click="doDelete(item.id)">
+        <a
+          id=""
+          class="text-danger delete-dialog"
+          @click="doDelete({ audio_id: item.id, storytelling_id: $route.params.id })"
+        >
           <i class="fas fa-trash-alt" />
         </a>
       </span>
@@ -42,7 +46,14 @@
 <script>
 export default {
   props: {
-    item: { type: Object, default: () => ({}) }
+    item: {
+      type: Object,
+      default: () => ({})
+    },
+    doDelete: {
+      type: Function,
+      default: () => {}
+    }
   },
 
   data () {
@@ -114,9 +125,6 @@ export default {
     },
     onPause () {
       this.audio.playing = false
-    },
-    doDelete (id) {
-      this.$emit('onDelete', id)
     }
   }
 }

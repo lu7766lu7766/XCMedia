@@ -41,7 +41,12 @@
           <!-- begin table-responsive -->
           <div class="dropzone-box page-dropzone-box">
             <div class="photo-list">
-              <audioItem v-for="(data, index) in datas" :key="index" :item="data" @onDelete="onDelete" />
+              <audioItem
+                v-for="(data, index) in datas"
+                :key="index"
+                :item="data"
+                :do-delete="doDelete"
+              />
             </div>
           </div>
           <!-- begin table-responsive -->
@@ -83,12 +88,6 @@ export default {
     this.doSearch()
   },
   methods: {
-    async onDelete (id) {
-      await this.doDeleteConfirm()
-      const data = { audio_id: id, storytelling_id: this.$route.params.id }
-      await this.$thisApi.doDelete(data)
-      this.deleteSuccess()
-    }
   }
 }
 </script>

@@ -1,26 +1,11 @@
 import PaginageMixins from 'mixins/Paginate'
 import ApiOptionMixins from 'mixins/ApiOption'
+import AlertMixins from 'mixins/Alert'
 
 export default {
-  mixins: [PaginageMixins, ApiOptionMixins],
+  mixins: [PaginageMixins, ApiOptionMixins, AlertMixins],
   data: () => ({
-    datas: [],
-    config: {
-      swal: {
-        delete: {
-          title: '删除',
-          text: '你确定要删除吗？',
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonClass: 'btn btn-success',
-          cancelButtonClass: 'm-l-10',
-          confirmButtonColor: '#348fe2',
-          cancelButtonColor: '#6c757d',
-          cancelButtonText: '取消',
-          confirmButtonText: '删除'
-        }
-      }
-    }
+    datas: []
   }),
   methods: {
     async doSearch (data) {
@@ -42,26 +27,20 @@ export default {
       const res = await this.$thisApi.getTotal(data || this.reqBody)
       this.paginate.total = res.data
     },
-    doSuccess (msg) {
-      // alert(`${msg}成功`)
-      this.$alert.success(`${msg}成功`)
-      this.doRefresh()
-    },
-    deleteSuccess () {
-      this.doSuccess('删除')
-    },
     pageChange (page) {
       this.paginate.page = page
       this.getList()
     },
-    async doDelete (id) {
-      await this.doDeleteConfirm()
-      await this.$thisApi.doDelete({ id })
-      this.deleteSuccess()
-    },
-    async doDeleteConfirm () {
-      const res = await this.$swal(this.config.swal.delete)
-      if (!res.value) { throw new Error('delete cancel') }
+    async doDelete (data, key = 'id') {
+      let _data = data
+      if (typeof data === 'string' || typeof data === 'number') {
+        _data = { [key]: data }
+      }
+      const confirm = await this.doConfirm('delete')
+      if (!confirm) { return }
+      await this.$thisApi.doDelete(_data)
+      this.$alert.success('刪除成功')
+      this.doRefresh()
     }
   },
   computed: {
