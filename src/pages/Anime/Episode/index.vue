@@ -77,7 +77,11 @@
                   <td>{{ data.created_at }}</td>
                   <td class="text-left">
                     <j-button type="edit" :action="true" @click="$bus.emit('update.show', data)" />
-                    <j-button type="delete" :action="true" @click="doDelete(data.id)" />
+                    <j-button
+                      type="delete"
+                      :action="true"
+                      @click="doDelete({ episode_owner_id: $route.params.id, episode_id: data.id })"
+                    />
                   </td>
                 </tr>
               </tbody>
@@ -126,11 +130,6 @@ export default {
     async getOptions () {
       const res = await this.$thisApi.getSources()
       this.options.source = res.data
-    },
-    async doDelete (id) {
-      await this.doDeleteConfirm()
-      await this.$thisApi.doDelete({ episode_owner_id: this.$route.params.id, episode_id: id })
-      this.deleteSuccess()
     }
   }
 }

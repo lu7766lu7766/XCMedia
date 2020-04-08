@@ -77,7 +77,14 @@
                   <td>{{ data.created_at }}</td>
                   <td class="text-left">
                     <j-button type="edit" :action="true" @click="$bus.emit('update.show', data)" />
-                    <j-button type="delete" :action="true" @click="doDelete(data.id)" />
+                    <j-button
+                      type="delete"
+                      :action="true"
+                      @click="doDelete({
+                        literature_id: $route.params.id,
+                        id: data.id
+                      })"
+                    />
                   </td>
                 </tr>
               </tbody>
@@ -122,14 +129,6 @@ export default {
     this.doSearch()
   },
   methods: {
-    async doDelete (id) {
-      await this.doDeleteConfirm()
-      await this.$thisApi.doDelete({
-        literature_id: this.$route.params.id,
-        id
-      })
-      this.deleteSuccess()
-    }
   }
 }
 </script>

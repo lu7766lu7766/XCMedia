@@ -56,7 +56,7 @@
                     data-trigger="hover"
                     data-container="body"
                     data-title="删除"
-                    @click="onDelete(item.id)"
+                    @click="doDelete(item.id)"
                   >
                     <a id="" class="text-danger delete-dialog">
                       <i class="fas fa-trash-alt" />
@@ -100,11 +100,6 @@ export default {
     await this.getList()
   },
   methods: {
-    async onDelete (id) {
-      await this.doDeleteConfirm()
-      await this.$thisApi.doDelete({ id })
-      this.deleteSuccess()
-    }
   }
 }
 </script>
