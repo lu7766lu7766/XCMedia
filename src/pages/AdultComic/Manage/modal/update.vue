@@ -22,6 +22,7 @@
               >
                 <input
                   id="imgupload"
+                  ref="fileInput"
                   class="imgupload"
                   type="file"
                   @change="e => validate(e) && onFileChange(e, 'cover')"
@@ -29,6 +30,7 @@
               </validate>
             </div>
             <div v-if="src" class="img-show">
+              <i class="fas fa-times" @click="doDeletePic" />
               <img class="OpenImgUpload" :src="src">
             </div>
           </div>
@@ -147,6 +149,10 @@ export default {
     async doSubmit () {
       const data = _.cloneDeep(this.data)
       data.genre_ids = _.map(data.genre_ids, 'id')
+      if (!this.src) {
+        // TODO: 無src則發刪除圖片API
+        // data.cover = null
+      }
       await this.$thisApi.doUpdate(data, { formData: true })
       this.updateSuccess()
     },

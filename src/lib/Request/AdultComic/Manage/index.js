@@ -54,4 +54,8 @@ export default class Request extends BaseRequest {
   async getTypes (data, options) {
     return await this.request('type', data, options)
   }
+
+  async doDeletePic (data, options) {
+    return await this.request('deletePic', data, options)
+  }
 }
