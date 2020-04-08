@@ -78,7 +78,7 @@ export default {
   mounted () {
     this.$bus.on('update.show', (data) => {
       this.data = _.cloneDeep(data)
-      this.src = data.image_url
+      this.src = this.toResourceUrl(data.image_path)
       this.show()
     })
   },

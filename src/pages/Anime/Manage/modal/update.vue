@@ -144,7 +144,7 @@ export default {
       this.data.starring = this.data.starring ? this.data.starring.trim().split(',') : []
       this.data.director = this.data.director ? this.data.director.trim().split(',') : []
       this.data.genre_ids = this.data.genres
-      this.src = data.image_url
+      this.src = this.toResourceUrl(data.image_path)
       this.show()
     })
   },

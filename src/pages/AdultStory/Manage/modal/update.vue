@@ -129,7 +129,7 @@ export default {
     this.$bus.on('update.show', (data) => {
       this.data = Object.assign({ genres_ids: [] }, data)
       this.data.genres_ids = this.data.genres
-      this.src = data.cover_url
+      this.src = this.toResourceUrl(data.cover_path)
       this.data.image_ids = data.editor_files.map(t => t.id)
       this.show()
     })

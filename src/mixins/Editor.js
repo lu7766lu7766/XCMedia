@@ -9,7 +9,7 @@ export default {
   methods: {
     async doUploadTinymcePic (image) {
       const res = await this.$thisApi.doUploadPic({ image }, { formData: true })
-      return res.data.file_url
+      return this.toResourceUrl(res.data.file_path)
     },
     async doUploadPic (image, Editor, cursorLocation, resetUploader, key = 'image_ids') {
       const res = await this.$thisApi.doUploadPic({ image }, { formData: true })

@@ -103,9 +103,9 @@ export default {
   mounted () {
     this.$bus.on('update.show', (data) => {
       this.data = _.cloneDeep(data)
-      this.src = data.cover_url
+      this.src = this.toResourceUrl(data.cover_path)
       this.videoName = ''
-      this.videoUrl = data.video_url
+      this.videoUrl = this.toResourceUrl(data.video_path)
 
       this.show()
     })

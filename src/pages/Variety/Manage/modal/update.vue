@@ -150,7 +150,7 @@ export default {
       this.data.host = this.data.host ? this.data.host.trim().split(',') : []
       this.data.guest = this.data.guest ? this.data.guest.trim().split(',') : []
       this.data.genre_ids = this.data.genres
-      this.src = data.image_url
+      this.src = this.toResourceUrl(data.image_path)
       this.show()
     })
   },

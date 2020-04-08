@@ -162,7 +162,7 @@ export default {
       this.data.genres_ids = data.genres
       this.data.av_actress_ids = data.actress
       this.data.tags = data.tags
-      this.src = data.cover_url
+      this.src = this.toResourceUrl(data.cover_path)
       this.show()
     })
   },

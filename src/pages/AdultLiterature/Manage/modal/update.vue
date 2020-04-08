@@ -135,7 +135,7 @@ export default {
       } else {
         this.data.tags = []
       }
-      this.src = data.cover_url
+      this.src = this.toResourceUrl(data.cover_path)
       this.show()
     })
   },
