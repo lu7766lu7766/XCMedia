@@ -196,7 +196,7 @@ export default {
       if (data.cover_path && !this.src) {
         data.remove_cover = 1
       }
-      await this.$thisApi.doUpdate(_.pickBy(data, x => x !== ''), { formData: true })
+      await this.$thisApi.doUpdate(data, { formData: true })
       this.updateSuccess()
     },
     myUploadPic (...args) {
