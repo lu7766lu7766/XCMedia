@@ -181,7 +181,6 @@ export default {
       if (data.tags.length > 0) {
         data.tags = data.tags && data.tags.join(',')
       }
-      // console.log(data)
       await this.$thisApi.doCreate(data, { formData: true })
       this.createSuccess()
     },

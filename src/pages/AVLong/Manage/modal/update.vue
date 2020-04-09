@@ -24,6 +24,7 @@
               >
             </div>
             <div v-if="src" class="img-show">
+              <i class="fas fa-times" @click="data.remove_cover = 1,src=''" />
               <img class="OpenImgUpload" :src="src">
             </div>
           </div>
@@ -176,6 +177,7 @@ export default {
         this.data.tags = []
       }
       this.src = this.toResourceUrl(data.cover_path)
+      this.data.remove_cover = 0
       this.show()
     })
   },
@@ -189,6 +191,10 @@ export default {
       data.av_actress_ids = _.map(data.av_actress_ids, 'id')
       if (data.tags.length > 0) {
         data.tags = data.tags && data.tags.join(',')
+      }
+      if (!data.cover_path && !this.src) {
+        delete data.remove_cover
+        delete data.cover
       }
       await this.$thisApi.doUpdate(data, { formData: true })
       this.updateSuccess()
