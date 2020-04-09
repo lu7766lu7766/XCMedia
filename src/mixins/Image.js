@@ -39,11 +39,12 @@ export default {
 
       this[data][key] = this.getFiles(e)[0]
     },
-    async doDeletePic () {
+    async doDeletePic (dataKey) {
       const confirm = await this.doConfirm('delete')
       if (!confirm) { return }
       this.src = ''
       this.$refs.fileInput.value = ''
+      this.data[dataKey] = null
     }
   }
 }

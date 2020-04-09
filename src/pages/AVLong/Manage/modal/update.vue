@@ -18,13 +18,14 @@
               <label for="imgupload" class="custom-file-upload">选择档案</label>
               <input
                 id="imgupload"
+                ref="fileInput"
                 class="imgupload"
                 type="file"
                 @change="e => onFileChange(e, 'cover')"
               >
             </div>
             <div v-if="src" class="img-show">
-              <i class="fas fa-times" @click="data.remove_cover = 1,src=''" />
+              <i class="fas fa-times" @click="doDeletePic('cover')" />
               <img class="OpenImgUpload" :src="src">
             </div>
           </div>
@@ -192,9 +193,8 @@ export default {
       if (data.tags.length > 0) {
         data.tags = data.tags && data.tags.join(',')
       }
-      if (!data.cover_path && !this.src) {
-        delete data.remove_cover
-        delete data.cover
+      if (data.cover_path && !this.src) {
+        data.remove_cover = 1
       }
       await this.$thisApi.doUpdate(data, { formData: true })
       this.updateSuccess()
