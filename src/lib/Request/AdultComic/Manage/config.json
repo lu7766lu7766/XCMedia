@@ -42,9 +42,5 @@
   "type": {
     "uri": "options/get_genres",
     "method": "get"
-  },
-  "deletePic": {
-    "uri": "image/delete",
-    "method": "delete"
   }
 }
