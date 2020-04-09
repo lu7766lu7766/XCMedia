@@ -446,6 +446,13 @@ export default [
             component: () => import('pages/AVLong/TopicType')
           }
         ]
+      },
+      {
+        path: 'manage',
+        name: 'av-long-manage',
+        label: '长片管理',
+        hasMenu: 'AV_LONG_MG',
+        component: () => import('pages/AVLong/Manage')
       }
     ]
   },

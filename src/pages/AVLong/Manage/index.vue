@@ -8,19 +8,20 @@
         </router-link>
       </li>
       <li class="breadcrumb-item">
-        <a href="javascript:;">成人自拍</a>
+        <a href="javascript:;">成人长片</a>
       </li>
       <li class="breadcrumb-item active">
-        自拍管理
+        长片管理
       </li>
     </ol>
+
     <!-- begin row -->
     <div class>
       <div class="panel panel-inverse" style="clear:both;">
         <!-- begin panel-heading -->
         <div class="panel-heading p-t-10">
           <h4 class="text-white m-b-0">
-            自拍管理
+            长片管理
           </h4>
         </div>
         <!-- end panel-heading -->
@@ -33,7 +34,7 @@
             </div>
             <div class="col-sm-10 form-inline justify-content-end panel-search">
               <div class="form-group width-100 m-r-10">
-                <j-select v-model="search.is_censored" title="片种" :datas="options.episode" />
+                <j-select v-model="search.mosaic_type" title="片种" :datas="options.episode" />
               </div>
               <div class="form-group width-100 m-r-10">
                 <j-select
@@ -63,7 +64,7 @@
               </div>
               <div class="form-group width-100 m-r-10">
                 <j-select
-                  v-model="search.years_id"
+                  v-model="search.year_id"
                   title="年份"
                   :datas="options.year"
                   value-key="id"
@@ -74,12 +75,7 @@
                 <j-select v-model="search.status" title="状态" :datas="options.status" />
               </div>
               <div class="form-group m-r-10">
-                <input
-                  v-model="search.keyword"
-                  type="text"
-                  class="form-control"
-                  placeholder="请输入名称"
-                >
+                <input v-model="search.title" type="text" class="form-control" placeholder="请输入名称">
               </div>
               <j-button type="search" @click="doSubmit" />
             </div>
@@ -104,7 +100,7 @@
                   <th class="width-100">
                     罩杯
                   </th>
-                  <th class="width-100">
+                  <th class="width-200">
                     类型
                   </th>
                   <th class="width-100">
@@ -113,7 +109,7 @@
                   <th class="width-100">
                     浏览次数
                   </th>
-                  <th class="width-100">
+                  <th class="width-80">
                     状态
                   </th>
                   <th class="width-150">
@@ -128,38 +124,44 @@
                 <tr v-for="(data, index) in datas" :key="index">
                   <td>{{ startIndex + index }}</td>
                   <td class="td-img slider-img-td">
-                    <img :src="toResourceUrl(data.cover_path)" @click="$bus.emit('image.show', toResourceUrl(data.cover_path))">
+                    <img
+                      :src="toResourceUrl(data.cover_path)"
+                      @click="$bus.emit('image.show', toResourceUrl(data.cover_path))"
+                    >
                   </td>
                   <td>{{ data.title }}</td>
                   <td>
                     <span
                       class="label"
-                      :class="data.is_censored === 'Y' ? 'text-green' : 'text-danger'"
-                    >{{ options.episode[data.is_censored] }}</span>
+                      :class="data.mosaic_type === 'WITH_MOSAIC' ? 'text-green' : 'text-danger'"
+                    >
+                      {{
+                        options.episode[data.mosaic_type]
+                      }}
+                    </span>
                   </td>
                   <td>{{ data.region.name }}</td>
                   <td>
                     <span
-                      v-for="(t, i) in data.actress"
+                      v-for="(t, i) in data.av_actress"
                       :key="i"
                       style="margin-right:5px"
-                    >{{ t.name }}
-                      <span v-if="i!==data.actress.length-1">,</span>
+                    >
+                      {{ t.name }}
+                      <span v-if="i!==data.av_actress.length-1">,</span>
                     </span>
                   </td>
                   <td>{{ data.cup.size }}</td>
                   <td>
                     <span
-                      v-for="(area, i) in data.genres"
-                      :key="i"
+                      v-for="(area, k) in data.genres"
+                      :key="k"
                       class="label label-warning"
                       style="margin-right:5px"
-                    >
-                      {{ area.title }}
-                    </span>
+                    >{{ area.title }}</span>
                   </td>
 
-                  <td>{{ data.years.title }}</td>
+                  <td>{{ data.year.title }}</td>
                   <td>{{ data.views }}</td>
                   <td>
                     <i v-if="data.status === 'Y'" class="fas fa-lg fa-check-circle text-green" />
@@ -168,9 +170,9 @@
                   <td>{{ data.created_at }}</td>
                   <td class="text-left">
                     <j-button
-                      type="episode"
+                      type="episode-video"
                       :action="true"
-                      @click="$router.push({ name: 'adult-selfie-episode', params: { id: data.id }, query: { name: data.title } })"
+                      @click="$bus.emit('video_update.show', data)"
                     />
                     <j-button type="edit" :action="true" @click="$bus.emit('update.show', data)" />
                     <j-button type="delete" :action="true" @click="doDelete(data.id)" />
@@ -189,12 +191,13 @@
     <image-container />
     <create />
     <update />
+    <VideoUpdate />
   </div>
 </template>
 
 <script>
 import Enable from 'constants/Enable'
-import CensoredStatus from 'constants/CensoredStatus'
+import CensoredStatus from 'constants/CensoredStatus2'
 import ListMixins from 'mixins/List'
 import ImageMixins from 'mixins/Image'
 
@@ -202,19 +205,20 @@ export default {
   components: {
     ImageContainer: require('@/Container/Image').default,
     Create: require('./modal/create').default,
-    Update: require('./modal/update').default
+    Update: require('./modal/update').default,
+    VideoUpdate: require('./modal/videoUpdate').default
   },
   mixins: [ListMixins, ImageMixins],
   data: () => ({
     av_actress_id: '',
     search: {
-      is_censored: '',
+      mosaic_type: '',
       region_id: '',
-      av_actress: [],
+      av_actress_ids: [],
       cup_id: '',
-      years_id: '',
+      year_id: '',
       status: '',
-      keyword: ''
+      title: ''
     },
     options: {
       episode: CensoredStatus,
@@ -226,7 +230,7 @@ export default {
       cup: []
     }
   }),
-  api: 'av_selfie.manage',
+  api: 'av_long.manage',
   created () {
     this.getOptions()
     this.doSearch()
@@ -234,10 +238,10 @@ export default {
   methods: {
     doSubmit () {
       if (this.av_actress_id) {
-        this.search.av_actress = []
-        this.search.av_actress.push(this.av_actress_id)
+        this.search.av_actress_ids = []
+        this.search.av_actress_ids.push(this.av_actress_id)
       } else {
-        this.search.av_actress = []
+        this.search.av_actress_ids = []
       }
       this.doSearch()
     },

@@ -1,7 +1,7 @@
 <template>
-  <detail title="新增" @submit="doSubmit()">
+  <detail title="编辑" @submit="doSubmit()">
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">名称 </label>
+      <label class="col-md-2 col-form-label required">名称</label>
       <div class="col-md-10">
         <validate rules="required">
           <input v-model="data.title" type="text" class="form-control">
@@ -10,14 +10,12 @@
     </div>
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label ">图片 </label>
+      <label class="col-md-2 col-form-label">图片</label>
       <div class="col-md-10">
         <div class="upload-box">
           <div id="imgupload-box" class="custom-file">
             <div>
-              <label for="imgupload" class="custom-file-upload">
-                选择档案
-              </label>
+              <label for="imgupload" class="custom-file-upload">选择档案</label>
               <input
                 id="imgupload"
                 class="imgupload"
@@ -30,21 +28,21 @@
             </div>
           </div>
           <div class="text-red">
-            上传图片限制尺寸为263×300
+            上传图片限制尺寸为263 × 300
           </div>
         </div>
       </div>
     </div>
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label ">別名 </label>
+      <label class="col-md-2 col-form-label">別名</label>
       <div class="col-md-10">
         <input v-model="data.alias" type="text" class="form-control">
       </div>
     </div>
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">片种 </label>
+      <label class="col-md-2 col-form-label required">片种</label>
       <div class="col-md-10">
         <validate rules="required">
           <j-radio v-model="data.mosaic_type" :datas="options.episode" />
@@ -53,16 +51,21 @@
     </div>
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">地区 </label>
+      <label class="col-md-2 col-form-label required">地区</label>
       <div class="col-md-10">
         <validate rules="required">
-          <model-list-select v-model="data.region_id" :list="options.area" option-value="id" option-text="name" />
+          <model-list-select
+            v-model="data.region_id"
+            :list="options.area"
+            option-value="id"
+            option-text="name"
+          />
         </validate>
       </div>
     </div>
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">女优 </label>
+      <label class="col-md-2 col-form-label required">女优</label>
       <div class="col-md-10">
         <validate rules="required">
           <multi-list-select
@@ -78,16 +81,21 @@
     </div>
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">罩杯 </label>
+      <label class="col-md-2 col-form-label required">罩杯</label>
       <div class="col-md-10">
         <validate rules="required">
-          <model-list-select v-model="data.cup_id" :list="options.cup" option-value="id" option-text="size" />
+          <model-list-select
+            v-model="data.cup_id"
+            :list="options.cup"
+            option-value="id"
+            option-text="size"
+          />
         </validate>
       </div>
     </div>
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">类型 </label>
+      <label class="col-md-2 col-form-label required">类型</label>
       <div class="col-md-10">
         <validate rules="required">
           <multi-list-select
@@ -103,23 +111,28 @@
     </div>
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">年份 </label>
+      <label class="col-md-2 col-form-label required">年份</label>
       <div class="col-md-10">
         <validate rules="required">
-          <model-list-select v-model="data.year_id" :list="options.year" option-value="id" option-text="title" />
+          <model-list-select
+            v-model="data.year_id"
+            :list="options.year"
+            option-value="id"
+            option-text="title"
+          />
         </validate>
       </div>
     </div>
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label ">标籤 </label>
+      <label class="col-md-2 col-form-label">标籤</label>
       <div class="col-md-10">
         <j-input-tag v-model="data.tags" />
       </div>
     </div>
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label">描述 </label>
+      <label class="col-md-2 col-form-label">描述</label>
       <div class="col-md-10">
         <textarea
           v-model="data.description"
@@ -130,7 +143,7 @@
     </div>
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">状态 </label>
+      <label class="col-md-2 col-form-label required">状态</label>
       <div class="col-md-10">
         <switcher v-model="data.status" />
       </div>
@@ -153,25 +166,21 @@ export default {
   },
   mixins: [DetailMixins, ImageMixins, EditorMixins],
   mounted () {
-    this.$bus.on('create.show', () => {
-      this.data = {
-        mosaic_type: 'WITH_MOSAIC',
-        // is_censored: 'Y',
-        status: 'Y',
-        av_actress_ids: [],
-        genres_ids: [],
-        region_id: '',
-        year_id: '',
-        cup_id: '',
-        tags: []
+    this.$bus.on('update.show', (data) => {
+      this.data = Object.assign({ genres_ids: [], av_actress_ids: [] }, data)
+      this.data.genres_ids = data.genres
+      this.data.av_actress_ids = data.av_actress
+      if (data.tags) {
+        this.data.tags = data.tags.split(',')
+      } else {
+        this.data.tags = []
       }
-
-      this.src = ''
+      this.src = this.toResourceUrl(data.cover_path)
       this.show()
     })
   },
   destroyed () {
-    this.$bus.off('create.show')
+    this.$bus.off('update.show')
   },
   methods: {
     async doSubmit () {
@@ -181,11 +190,11 @@ export default {
       if (data.tags.length > 0) {
         data.tags = data.tags && data.tags.join(',')
       }
-      await this.$thisApi.doCreate(data, { formData: true })
-      this.createSuccess()
+      await this.$thisApi.doUpdate(data, { formData: true })
+      this.updateSuccess()
     },
     myUploadPic (...args) {
-      this.doUploadPic(...args, 'editor_image_ids')
+      this.doUploadPic(...args, 'image_ids')
     }
   }
 }
