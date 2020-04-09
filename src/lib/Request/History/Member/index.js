@@ -12,14 +12,14 @@ export default class AccountManage extends BaseRequest {
   }
 
   async getList (data, options) {
-    return await this.request('list', data, options)
+    return await this.filterRequest('list', data, options)
   }
 
   async getTotal (data, options) {
-    return await this.request('total', data, options)
+    return await this.filterRequest('total', data, options)
   }
 
   async getBranches (data, options) {
-    return await this.request('branch', data, options)
+    return await this.filterRequest('branch', data, options)
   }
 }

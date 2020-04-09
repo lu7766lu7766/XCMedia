@@ -12,30 +12,30 @@ export default class Request extends BaseRequest {
   }
 
   async getList (data, options) {
-    return await this.request('list', data, options)
+    return await this.filterRequest('list', data, options)
   }
 
   async getTotal (data, options) {
-    return await this.request('total', data, options)
+    return await this.filterRequest('total', data, options)
   }
 
   async doCreate (data, options) {
-    return await this.request('create', data, options)
+    return await this.filterRequest('create', data, options)
   }
 
   async doUpdate (data, options) {
-    return await this.request('update', data, options)
+    return await this.filterRequest('update', data, options)
   }
 
   async doUploadPic (data, options) {
-    return await this.request('uploadPic', data, options)
+    return await this.filterRequest('uploadPic', data, options)
   }
 
   async doDelete (data, options) {
-    return await this.request('delete', data, options)
+    return await this.filterRequest('delete', data, options)
   }
 
   async getSources (data, options) {
-    return await this.request('source', data, options)
+    return await this.filterRequest('source', data, options)
   }
 }

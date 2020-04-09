@@ -12,50 +12,50 @@ export default class Request extends BaseRequest {
   }
 
   async getList (data, options) {
-    return await this.request('list', data, options)
+    return await this.filterRequest('list', data, options)
   }
 
   async getTotal (data, options) {
-    return await this.request('total', data, options)
+    return await this.filterRequest('total', data, options)
   }
 
   async doCreate (data, options) {
-    return await this.request('create', data, options)
+    return await this.filterRequest('create', data, options)
   }
 
   async doUpdate (data, options) {
-    return await this.request('update', data, options)
+    return await this.filterRequest('update', data, options)
   }
 
   async getInfo (data, options) {
-    return await this.request('info', data, options)
+    return await this.filterRequest('info', data, options)
   }
 
   async doDelete (data, options) {
-    return await this.request('delete', data, options)
+    return await this.filterRequest('delete', data, options)
   }
 
   async getAreas (data, options) {
-    return await this.request('area', data, options)
+    return await this.filterRequest('area', data, options)
   }
 
   async getYears (data, options) {
-    return await this.request('year', data, options)
+    return await this.filterRequest('year', data, options)
   }
 
   async getTypes (data, options) {
-    return await this.request('type', data, options)
+    return await this.filterRequest('type', data, options)
   }
 
   async getActress (data, options) {
-    return await this.request('actress', data, options)
+    return await this.filterRequest('actress', data, options)
   }
 
   async getCups (data, options) {
-    return await this.request('cup', data, options)
+    return await this.filterRequest('cup', data, options)
   }
 
   async getStatus (data, options) {
-    return await this.request('status', data, options)
+    return await this.filterRequest('status', data, options)
   }
 }

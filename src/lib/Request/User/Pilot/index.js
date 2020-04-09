@@ -12,14 +12,14 @@ export default class Request extends BaseRequest {
   }
 
   async getProfile (data, options) {
-    return await this.request('profile', data, options)
+    return await this.filterRequest('profile', data, options)
   }
 
   async doUpdate (data, options) {
-    return await this.request('update', data, options)
+    return await this.filterRequest('update', data, options)
   }
 
   async getNodes (data, options) {
-    return await this.request('nodes', data, options)
+    return await this.filterRequest('nodes', data, options)
   }
 }
