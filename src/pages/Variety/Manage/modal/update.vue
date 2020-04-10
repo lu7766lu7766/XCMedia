@@ -25,6 +25,7 @@
               <input id="imgupload" ref="fileInput" class="imgupload" type="file" @change="onFileChange">
             </div>
             <div v-if="src" class="img-show">
+              <i class="fas fa-times" @click="doDeletePic('image')" />
               <img class="OpenImgUpload" :src="src">
             </div>
           </div>
