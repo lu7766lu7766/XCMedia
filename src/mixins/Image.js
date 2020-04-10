@@ -45,6 +45,9 @@ export default {
       this.src = ''
       this.$refs.fileInput.value = ''
       this.data[dataKey] = null
+      if (this.data.image_path || this.data.cover_path) {
+        this.data[`remove_${dataKey}`] = 1
+      }
     }
   }
 }
