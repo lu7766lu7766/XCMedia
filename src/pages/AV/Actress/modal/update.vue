@@ -35,7 +35,7 @@
               <label for="imgupload" class="custom-file-upload">
                 选择档案
               </label>
-              <input id="imgupload" class="imgupload" type="file" @change="onFileChange($event, 'cover')">
+              <input id="imgupload" ref="fileInput" class="imgupload" type="file" @change="onFileChange($event, 'cover')">
             </div>
             <div v-if="src" class="img-show">
               <img class="OpenImgUpload" :src="src">

@@ -20,6 +20,7 @@
               </label>
               <input
                 id="imgupload"
+                ref="fileInput"
                 class="imgupload"
                 type="file"
                 @change="e => onFileChange(e, 'cover')"

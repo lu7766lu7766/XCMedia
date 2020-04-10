@@ -37,6 +37,7 @@
               </label>
               <input
                 id="imgupload"
+                ref="fileInput"
                 class="imgupload"
                 type="file"
                 @change="onFileChange($event, 'cover')"

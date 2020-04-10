@@ -178,7 +178,6 @@ export default {
         this.data.tags = []
       }
       this.src = this.toResourceUrl(data.cover_path)
-      this.data.remove_cover = 0
       this.show()
     })
   },
@@ -192,9 +191,6 @@ export default {
       data.av_actress_ids = _.map(data.av_actress_ids, 'id')
       if (data.tags.length > 0) {
         data.tags = data.tags && data.tags.join(',')
-      }
-      if (data.cover_path && !this.src) {
-        data.remove_cover = 1
       }
       await this.$thisApi.doUpdate(data, { formData: true })
       this.updateSuccess()
