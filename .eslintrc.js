@@ -21,6 +21,7 @@ module.exports = {
     'vue/require-prop-types': 'off',
     'vue/require-prop-type-constructor': 'off',
     'new-cap': 'off',
+    'camelcase': 'off',
   },
   globals: {
     '$': true,

@@ -32,7 +32,7 @@
             </div>
           </div>
           <div class="text-red">
-            上传图片限制尺寸为263x300
+            上传图片限制尺寸为263×300
           </div>
         </div>
       </div>
@@ -49,41 +49,36 @@
       <label class="col-md-2 col-form-label required">地区 </label>
       <div class="col-md-10">
         <validate rules="required">
-          <model-list-select
-            v-model="data.area"
-            :list="options.areas"
-            option-value="id"
-            option-text="title"
-          />
+          <model-list-select v-model="data.region_id" :list="options.area" option-value="id" option-text="name" />
         </validate>
       </div>
     </div>
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">女优 </label>
+      <label class="col-md-2 col-form-label required">女优</label>
       <div class="col-md-10">
         <validate rules="required">
           <multi-list-select
-            v-model="data.girls"
-            :list="options.girls"
+            v-model="data.av_actress_ids"
+            :list="options.actress"
             option-value="id"
-            option-text="title"
-            :selected-items="data.girls"
-            @select="t => data.girls = t"
+            option-text="name"
+            :selected-items="data.av_actress_ids"
+            @select="item => (data.av_actress_ids = item)"
           />
         </validate>
       </div>
     </div>
 
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">罩杯 </label>
+      <label class="col-md-2 col-form-label required">罩杯</label>
       <div class="col-md-10">
         <validate rules="required">
           <model-list-select
-            v-model="data.cup"
-            :list="options.cups"
+            v-model="data.cup_id"
+            :list="options.cup"
             option-value="id"
-            option-text="title"
+            option-text="size"
           />
         </validate>
       </div>
@@ -94,12 +89,12 @@
       <div class="col-md-10">
         <validate rules="required">
           <multi-list-select
-            v-model="data.types"
-            :list="options.types"
+            v-model="data.genres_ids"
+            :list="options.type"
             option-value="id"
             option-text="title"
-            :selected-items="data.types"
-            @select="t => data.types = t"
+            :selected-items="data.genres_ids"
+            @select="item => (data.genres_ids = item)"
           />
         </validate>
       </div>
@@ -109,12 +104,7 @@
       <label class="col-md-2 col-form-label required">年份 </label>
       <div class="col-md-10">
         <validate rules="required">
-          <model-list-select
-            v-model="data.year"
-            :list="options.years"
-            option-value="id"
-            option-text="title"
-          />
+          <model-list-select v-model="data.years_id" :list="options.year" option-value="id" option-text="title" />
         </validate>
       </div>
     </div>
@@ -129,7 +119,11 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label">描述 </label>
       <div class="col-md-10">
-        <textarea v-model="data.desc" class="form-control" rows="5" />
+        <textarea
+          v-model="data.description"
+          rows="5"
+          class="form-control"
+        />
       </div>
     </div>
 
@@ -156,23 +150,14 @@ export default {
     MultiListSelect
   },
   mixins: [DetailMixins, ImageMixins, EditorMixins],
-
   mounted () {
-    this.$bus.on('update.show', (_d) => {
+    this.$bus.on('update.show', (data) => {
       this.data = {
-        id: _d.id,
-        title: _d.title,
-        alias: _d.alias,
-        area: _d.area.id,
-        cup: _d.cup.id,
-        year: _d.year.id,
-        girls: _d.girls,
-        types: _d.types,
-        tags: _d.tags,
-        desc: _d.desc,
-        status: _d.status
+        ...data,
+        genres_ids: data.genres,
+        av_actress_ids: data.actress
       }
-      this.src = _d.imgUrl
+      this.src = this.toResourceUrl(data.cover_path)
       this.show()
     })
   },
@@ -181,26 +166,14 @@ export default {
   },
   methods: {
     async doSubmit () {
-      const _d = _.cloneDeep(this.data)
-      const data = {
-        id: _d.id,
-        title: _d.title,
-        cover: _d.cover || undefined,
-        alias: _d.alias || undefined,
-        region_id: _d.area,
-        av_actress_ids: _d.girls.map(t => t.id),
-        cup_id: _d.cup,
-        genres_ids: _d.types.map(t => t.id),
-        years_id: _d.year,
-        tags: _d.tags,
-        description: _d.desc || undefined,
-        status: _d.status
-      }
+      const data = _.cloneDeep(this.data)
+      data.genres_ids = _.map(data.genres_ids, 'id')
+      data.av_actress_ids = _.map(data.av_actress_ids, 'id')
       await this.$thisApi.doUpdate(data, { formData: true })
       this.updateSuccess()
     },
     myUploadPic (...args) {
-      this.doUploadPic(...args, 'editor_image_ids')
+      this.doUploadPic(...args, 'image_ids')
     }
   }
 }

@@ -16,8 +16,8 @@
     </ol>
 
     <!-- begin row -->
-    <div class="">
-      <div class="panel panel-inverse" style="clear: both;">
+    <div class>
+      <div class="panel panel-inverse" style="clear:both;">
         <!-- begin panel-heading -->
         <div class="panel-heading p-t-10">
           <h4 class="text-white m-b-0">
@@ -35,52 +35,45 @@
             <div class="col-sm-10 form-inline justify-content-end panel-search">
               <div class="form-group width-100 m-r-10">
                 <j-select
-                  v-model="search.area"
+                  v-model="search.region_id"
                   title="地区"
-                  :datas="options.areas"
+                  :datas="options.area"
                   value-key="id"
-                  display-key="title"
                 />
               </div>
               <div class="form-group width-100 m-r-10">
                 <j-select
-                  v-model="search.girl"
+                  v-model="search.av_actress_ids"
                   title="女优"
-                  :datas="options.girls"
+                  :datas="options.actress"
                   value-key="id"
-                  display-key="title"
                 />
               </div>
               <div class="form-group width-100 m-r-10">
                 <j-select
-                  v-model="search.cup"
+                  v-model="search.cup_id"
                   title="罩杯"
-                  :datas="options.cups"
+                  :datas="options.cup"
                   value-key="id"
-                  display-key="title"
+                  display-key="size"
                 />
               </div>
               <div class="form-group width-100 m-r-10">
                 <j-select
-                  v-model="search.year"
+                  v-model="search.years_id"
                   title="年份"
-                  :datas="options.years"
+                  :datas="options.year"
                   value-key="id"
                   display-key="title"
                 />
               </div>
               <div class="form-group width-100 m-r-10">
-                <j-select v-model="search.status" title="状态" :datas="options.statuses" />
+                <j-select v-model="search.status" title="状态" :datas="options.status" />
               </div>
               <div class="form-group m-r-10">
-                <input
-                  v-model="search.keyword"
-                  type="text"
-                  class="form-control"
-                  placeholder="请输入名称"
-                >
+                <input v-model="search.name" type="text" class="form-control" placeholder="请输入名称">
               </div>
-              <j-button type="search" @click="doSubmit" />
+              <j-button type="search" @click="handleSearch" />
             </div>
           </div>
           <!-- begin table-responsive -->
@@ -99,8 +92,12 @@
                     地区
                   </th>
                   <th>女优</th>
-                  <th>罩杯</th>
-                  <th>类型</th>
+                  <th class="width-100">
+                    罩杯
+                  </th>
+                  <th class="width-100">
+                    类型
+                  </th>
                   <th class="width-100">
                     年份
                   </th>
@@ -118,47 +115,53 @@
                   </th>
                 </tr>
               </thead>
+
               <tbody>
-                <tr v-for="(data, index) in list" :key="index">
+                <tr v-for="(data, index) in datas" :key="index">
                   <td>{{ startIndex + index }}</td>
                   <td class="td-img slider-img-td">
-                    <img :src="data.imgUrl" @click="$bus.emit('image.show', data.imgUrl)">
+                    <img
+                      v-if="data.cover_path"
+                      :src="toResourceUrl(data.cover_path)"
+                      @click="$bus.emit('image.show', toResourceUrl(data.cover_path))"
+                    >
                   </td>
                   <td>{{ data.title }}</td>
-                  <td>{{ data.area.title }}</td>
+                  <td>{{ data.region.name }}</td>
                   <td>
                     <span
-                      v-for="(t, i) in data.girls"
+                      v-for="(t, i) in data.actress"
                       :key="i"
-                    >
-                      <span v-if="i !==0">,</span>{{ t.title }}
-                    </span>
+                      style="margin-right:5px"
+                    >{{ t.name }}</span>
                   </td>
-                  <td>{{ data.cup.title }}</td>
+                  <td>{{ data.cup.size }}</td>
                   <td>
                     <span
-                      v-for="(item, i) in data.types"
+                      v-for="(area, i) in data.genres"
                       :key="i"
                       class="label label-warning"
-                      style="margin-right: 5px;"
-                    >{{ item.title }}</span>
+                      style="margin-right:5px"
+                    >
+                      {{ area.title }}
+                    </span>
                   </td>
 
-                  <td>{{ data.year.title }}</td>
+                  <td>{{ data.years.title }}</td>
                   <td>{{ data.views }}</td>
                   <td>
                     <i v-if="data.status === 'Y'" class="fas fa-lg fa-check-circle text-green" />
                     <i v-else class="fas fa-lg fa-times-circle text-danger" />
                   </td>
-                  <td>{{ data.createdAt }}</td>
+                  <td>{{ data.created_at }}</td>
                   <td class="text-left">
                     <j-button
-                      type="image"
+                      type="episode-img"
                       :action="true"
                       @click="$router.push({
                         name: 'adult-photo-photo',
                         params: { id: data.id },
-                        query: { name: data.title },
+                        query: { name: data.name }
                       })"
                     />
                     <j-button
@@ -199,120 +202,55 @@ export default {
   mixins: [ListMixins, ImageMixins],
   data: () => ({
     search: {
-      area: '',
-      girl: '',
-      cup: '',
-      year: '',
       status: '',
+      name: '',
+      region_id: '',
+      years_id: '',
+      av_actress_ids: '',
+      cup_id: '',
       keyword: ''
     },
     options: {
-      statuses: Enable,
-      areas: [],
-      years: [],
-      types: [],
-      girls: [],
-      cups: []
+      status: Enable,
+      area: [],
+      year: [],
+      lang: [],
+      type: [],
+      source: [],
+      cup: [],
+      actress: []
     }
   }),
-  computed: {
-    list () {
-      return this.datas.map(t => ({
-        id: t.id,
-        title: t.title,
-        imgUrl: this.toResourceUrl(t.cover_path),
-        alias: t.alias,
-        area: {
-          id: t.region.id,
-          title: t.region.name
-        },
-        girls: t.actress.map(t => ({
-          id: t.id,
-          title: t.name
-        })),
-        cup: {
-          id: t.cup.id,
-          title: t.cup.size
-        },
-        cupID: t.cup.id,
-        types: t.genres.map(t => ({
-          id: t.id,
-          title: t.title
-        })),
-        year: {
-          id: t.years.id,
-          title: t.years.title
-        },
-        tags: t.tags,
-        desc: t.description,
-        status: t.status,
-        views: t.views,
-        createdAt: t.created_at
-      }))
-    }
-  },
   api: 'adult_photo.manage',
-  async created () {
-    await this.getOptions()
-    await this.doSearch()
+  created () {
+    this.getOptions()
+    this.doSearch()
   },
   methods: {
-    doSubmit () {
-      const _d = this.search
+    handleSearch () {
+      const av_actress_ids = this.search.av_actress_ids
       const data = {
-        region_id: _d.area || undefined,
-        av_actress_ids: _d.girl ? [_d.girl] : undefined,
-        cup_id: _d.cup || undefined,
-        years_id: _d.year || undefined,
-        status: _d.status || undefined,
-        // genres_ids: _d.type ? [_d.type] : undefined,
-        keyword: _d.keyword || undefined
+        ...this.search,
+        av_actress_ids: av_actress_ids ? [av_actress_ids] : []
       }
-      this.doSearch({ ...data, ...this.paginate })
-    },
-    async getArea () {
-      const res = await this.$thisApi.getAreas()
-      this.options.areas = res.data.map(t => ({
-        id: t.id,
-        title: t.name
-      }))
-    },
-    async getYears () {
-      const res = await this.$thisApi.getYears()
-      this.options.years = res.data.map(t => ({
-        id: t.id,
-        title: t.title
-      }))
-    },
-    async getTypes () {
-      const res = await this.$thisApi.getTypes()
-      this.options.types = res.data.map(t => ({
-        id: t.id,
-        title: t.title
-      }))
-    },
-    async getActress () {
-      const res = await this.$thisApi.getActress()
-      this.options.girls = res.data.map(t => ({
-        id: t.id,
-        title: t.name
-      }))
-    },
-    async getCups () {
-      const res = await this.$thisApi.getCups()
-      this.options.cups = res.data.map(t => ({
-        id: t.id,
-        title: t.size
-      }))
+      this.doSearch(data)
     },
     async getOptions () {
-      await Promise.all([
-        this.getArea(),
-        this.getYears(),
-        this.getCups(),
-        this.getActress(),
-        this.getTypes()
+      const res = await axios.all([
+        this.$thisApi.getAreas(),
+        this.$thisApi.getYears(),
+        this.$thisApi.getTypes(),
+        this.$thisApi.getCups(),
+        this.$thisApi.getActress()
       ])
+
+      this.options = Object.assign({}, this.options, {
+        area: res[0].data,
+        year: res[1].data,
+        type: res[2].data,
+        cup: res[3].data,
+        actress: res[4].data
+      })
     }
   }
 }
