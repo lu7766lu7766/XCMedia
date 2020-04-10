@@ -21,14 +21,10 @@
               <validate v-slot="{ validate }" rules="image|img_width:263|img_height:300|img_size:1024">
                 <input
                   id="imgupload"
+                  ref="fileInput"
                   class="imgupload"
                   type="file"
-                  @change="
-                    e => {
-                      validate(e)
-                      onFileChange(e, 'cover')
-                    }
-                  "
+                  @change="e => validate(e) && onFileChange(e, 'cover')"
                 >
               </validate>
             </div>
