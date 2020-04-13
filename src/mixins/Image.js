@@ -1,8 +1,10 @@
 import { join } from 'path'
 import { JacLib } from 'jactools'
 import API from 'lib/API'
+import AlertMixins from 'mixins/Alert'
 
 export default {
+  mixins: [AlertMixins],
   data: () => ({
     src: '',
     videoName: ''
@@ -36,6 +38,16 @@ export default {
       }
 
       this[data][key] = this.getFiles(e)[0]
+    },
+    async doDeletePic (dataKey) {
+      const confirm = await this.doConfirm('delete')
+      if (!confirm) { return }
+      this.src = ''
+      this.$refs.fileInput.value = ''
+      this.data[dataKey] = null
+      if (this.data.image_path || this.data.cover_path) {
+        this.data[`remove_${dataKey}`] = 1
+      }
     }
   }
 }

@@ -27,6 +27,11 @@ export default class BaseRequest extends iBaseRequest {
     })
   }
 
+  filterRequest (action, data, options) {
+    const _data = _.pickBy(data, t => t !== '')
+    return this.request(action, _data, options)
+  }
+
   errorHandle (res, errorMessages) {
     const msg = errorMessages.join('\n')
     if (res.status === 401) {

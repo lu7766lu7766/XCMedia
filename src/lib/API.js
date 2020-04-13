@@ -63,7 +63,9 @@ export default class API {
       year: new (require('./Request/AVLong/Year').default)(),
       area: new (require('./Request/AVLong/Area').default)(),
       actress: new (require('./Request/AVLong/Actress').default)(),
-      topic_ype: new (require('./Request/AVLong/TopicType').default)()
+      topic_ype: new (require('./Request/AVLong/TopicType').default)(),
+      manage: new (require('./Request/AVLong/Manage').default)()
+
     }
     this.av_short = {
       type: new (require('./Request/AVShort/Type').default)(),

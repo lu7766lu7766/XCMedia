@@ -21,18 +21,15 @@
               <validate v-slot="{ validate }" rules="image|img_width:263|img_height:300|img_size:1024">
                 <input
                   id="imgupload"
+                  ref="fileInput"
                   class="imgupload"
                   type="file"
-                  @change="
-                    e => {
-                      validate(e)
-                      onFileChange(e, 'cover')
-                    }
-                  "
+                  @change="e => validate(e) && onFileChange(e, 'cover')"
                 >
               </validate>
             </div>
             <div v-if="src" class="img-show">
+              <i class="fas fa-times" @click="doDeletePic('cover')" />
               <img class="OpenImgUpload" :src="src">
             </div>
           </div>
@@ -129,7 +126,7 @@ export default {
     this.$bus.on('update.show', (data) => {
       this.data = Object.assign({ genres_ids: [] }, data)
       this.data.genres_ids = this.data.genres
-      this.src = data.cover_url
+      this.src = this.toResourceUrl(data.cover_path)
       this.data.image_ids = data.editor_files.map(t => t.id)
       this.show()
     })

@@ -82,7 +82,7 @@ export default {
       }
       this.data = _.cloneDeep(data)
       this.videoName = ''
-      this.videoUrl = data.video_url
+      this.videoUrl = this.toResourceUrl(data.video_path)
       this.show()
     })
   },
@@ -90,12 +90,12 @@ export default {
     this.$bus.off('video_update.show')
   },
   mounted () {
-    this.$bus.on('video_update.show', async (data) => {
+    this.$bus.on('video_update.show', (data) => {
       this.videoName = ''
       this.videoUrl = ''
       if (data.bucket) {
         this.videoData = data.bucket
-        this.videoUrl = data.bucket.file_url
+        this.videoUrl = this.toResourceUrl(data.bucket.file_path)
       } else {
         this.videoData = {
           video: undefined,

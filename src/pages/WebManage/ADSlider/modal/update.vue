@@ -98,7 +98,7 @@ export default {
   },
   methods: {
     async doSubmit () {
-      await this.$thisApi.doUpdate(_.pickBy(this.data, x => x !== ''), { formData: true })
+      await this.$thisApi.doUpdate(this.data, { formData: true })
       this.updateSuccess()
     }
   }

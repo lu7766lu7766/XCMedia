@@ -18,9 +18,10 @@
               <label for="imgupload" class="custom-file-upload">
                 选择档案
               </label>
-              <input id="imgupload" class="imgupload" type="file" @change="onFileChange">
+              <input id="imgupload" ref="fileInput" class="imgupload" type="file" @change="onFileChange">
             </div>
             <div v-if="src" class="img-show">
+              <i class="fas fa-times" @click="doDeletePic('image')" />
               <img class="OpenImgUpload" :src="src">
             </div>
           </div>
@@ -144,7 +145,7 @@ export default {
       this.data.starring = this.data.starring ? this.data.starring.trim().split(',') : []
       this.data.director = this.data.director ? this.data.director.trim().split(',') : []
       this.data.genre_ids = this.data.genres
-      this.src = data.image_url
+      this.src = this.toResourceUrl(data.image_path)
       this.show()
     })
   },

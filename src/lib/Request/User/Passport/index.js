@@ -12,10 +12,10 @@ export default class Request extends BaseRequest {
   }
 
   async doLogin (data, options) {
-    return await this.request('login', data, options)
+    return await this.filterRequest('login', data, options)
   }
 
   async doGenerate (data, options) {
-    return await this.request('generate', data, options)
+    return await this.filterRequest('generate', data, options)
   }
 }

@@ -48,7 +48,7 @@ export default {
       return (this.paginate.page - 1) * this.paginate.perpage + 1
     },
     reqBody () {
-      return _.pickBy(Object.assign({}, this.paginate, this.search), x => x !== '')
+      return Object.assign({}, this.paginate, this.search)
     }
   }
 }

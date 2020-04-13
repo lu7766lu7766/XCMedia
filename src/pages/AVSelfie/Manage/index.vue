@@ -128,7 +128,7 @@
                 <tr v-for="(data, index) in datas" :key="index">
                   <td>{{ startIndex + index }}</td>
                   <td class="td-img slider-img-td">
-                    <img :src="data.cover_url" @click="$bus.emit('image.show', data.cover_url)">
+                    <img :src="toResourceUrl(data.cover_path)" @click="$bus.emit('image.show', toResourceUrl(data.cover_path))">
                   </td>
                   <td>{{ data.title }}</td>
                   <td>
@@ -196,6 +196,7 @@
 import Enable from 'constants/Enable'
 import CensoredStatus from 'constants/CensoredStatus'
 import ListMixins from 'mixins/List'
+import ImageMixins from 'mixins/Image'
 
 export default {
   components: {
@@ -203,7 +204,7 @@ export default {
     Create: require('./modal/create').default,
     Update: require('./modal/update').default
   },
-  mixins: [ListMixins],
+  mixins: [ListMixins, ImageMixins],
   data: () => ({
     av_actress_id: '',
     search: {
@@ -233,12 +234,8 @@ export default {
   methods: {
     doSubmit () {
       if (this.av_actress_id) {
-        if (this.search.av_actress.length > 1) {
-          this.search.av_actress = []
-          this.search.av_actress.push(this.av_actress_id)
-        } else {
-          this.search.av_actress.push(this.av_actress_id)
-        }
+        this.search.av_actress = []
+        this.search.av_actress.push(this.av_actress_id)
       } else {
         this.search.av_actress = []
       }

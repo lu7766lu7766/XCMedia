@@ -20,12 +20,14 @@
               </label>
               <input
                 id="imgupload"
+                ref="fileInput"
                 class="imgupload"
                 type="file"
                 @change="e => onFileChange(e, 'cover')"
               >
             </div>
             <div v-if="src" class="img-show">
+              <i class="fas fa-times" @click="doDeletePic('cover')" />
               <img class="OpenImgUpload" :src="src">
             </div>
           </div>

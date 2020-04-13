@@ -72,7 +72,7 @@
                 <tr v-for="(data, index) in datas" :key="index">
                   <td>{{ startIndex + index }}</td>
                   <td class="td-img slider-img-td">
-                    <img :src="data.image_url" @click="$bus.emit('image.show', data.image_url)">
+                    <img :src="toResourceUrl(data.image_path)" @click="$bus.emit('image.show', toResourceUrl(data.image_path))">
                   </td>
                   <td>{{ data.title }}</td>
                   <td>
@@ -104,6 +104,7 @@
 <script>
 import Enable from 'constants/Enable'
 import ListMixins from 'mixins/List'
+import ImageMixins from 'mixins/Image'
 
 export default {
   components: {
@@ -111,7 +112,7 @@ export default {
     Create: require('./modal/create').default,
     Update: require('./modal/update').default
   },
-  mixins: [ListMixins],
+  mixins: [ListMixins, ImageMixins],
   data: () => ({
     search: {
       status: '',

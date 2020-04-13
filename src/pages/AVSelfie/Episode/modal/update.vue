@@ -20,12 +20,14 @@
               </label>
               <input
                 id="imgupload"
+                ref="fileInput"
                 class="imgupload"
                 type="file"
                 @change="e => onFileChange(e, 'cover')"
               >
             </div>
             <div v-if="src" class="img-show">
+              <i class="fas fa-times" @click="doDeletePic('cover')" />
               <img class="OpenImgUpload" :src="src">
             </div>
           </div>
@@ -103,9 +105,9 @@ export default {
   mounted () {
     this.$bus.on('update.show', (data) => {
       this.data = _.cloneDeep(data)
-      this.src = data.cover_url
+      this.src = this.toResourceUrl(data.cover_path)
       this.videoName = ''
-      this.videoUrl = data.video_url
+      this.videoUrl = this.toResourceUrl(data.video_path)
 
       this.show()
     })
