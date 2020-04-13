@@ -71,7 +71,7 @@
                 <j-select v-model="search.status" title="状态" :datas="options.status" />
               </div>
               <div class="form-group m-r-10">
-                <input v-model="search.name" type="text" class="form-control" placeholder="请输入名称">
+                <input v-model="search.keyword" type="text" class="form-control" placeholder="请输入名称">
               </div>
               <j-button type="search" @click="handleSearch" />
             </div>
@@ -132,8 +132,10 @@
                     <span
                       v-for="(t, i) in data.actress"
                       :key="i"
-                      style="margin-right:5px"
-                    >{{ t.name }}</span>
+                    >
+                      <span v-if="i !== 0">,</span>
+                      {{ t.name }}
+                    </span>
                   </td>
                   <td>{{ data.cup.size }}</td>
                   <td>
@@ -161,7 +163,7 @@
                       @click="$router.push({
                         name: 'adult-photo-photo',
                         params: { id: data.id },
-                        query: { name: data.name }
+                        query: { name: data.title }
                       })"
                     />
                     <j-button
