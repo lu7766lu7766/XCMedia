@@ -23,14 +23,16 @@ export default {
       this.$parent.doRefresh()
     },
     textAreaToArray (text) {
+      if (!text) { return '' }
       return text.split('\n')
         .map((item) => {
-          return item.split('|').map(t => t.trim())
+          const _t = item.split('||').map(t => t.trim())
+          return { name: _t[0], url: _t[1] }
         })
     },
     arrayToTextarea (arr) {
       return arr.reduce((str, item) => {
-        str += `${item[0]}|${item[1] || ''}\n`
+        str += `${item.name}||${item.url || ''}\n`
         return str
       }, '')
     }
