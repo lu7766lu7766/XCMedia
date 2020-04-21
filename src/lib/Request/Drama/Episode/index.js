@@ -34,4 +34,8 @@ export default class Request extends BaseRequest {
   async getSources (data, options) {
     return await this.request('source', data, options)
   }
+
+  async doBatchCreate (data, options) {
+    return await this.request('batchCreate', data, options)
+  }
 }
