@@ -3,27 +3,31 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">来源 </label>
       <div class="col-md-10">
-        <j-select
-          v-model="data.source_id"
-          title="请选择来源"
-          :datas="options.source"
-          display-key="title"
-          value-key="id"
-        />
+        <validate rules="required">
+          <j-select
+            v-model="data.source_id"
+            title="请选择来源"
+            :datas="options.source"
+            display-key="title"
+            value-key="id"
+          />
+        </validate>
       </div>
     </div>
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">对应资料 </label>
       <div class="col-md-10">
-        <textarea
-          id=""
-          v-model="data.data"
-          name=""
-          cols="30"
-          rows="5"
-          class="form-control"
-          placeholder="请输入对应格式，范例如下说明"
-        />
+        <validate rules="required">
+          <textarea
+            id=""
+            v-model="data.data"
+            name=""
+            cols="30"
+            rows="5"
+            class="form-control"
+            placeholder="请输入对应格式，范例如下说明"
+          />
+        </validate>
         <div class="m-t-1 form-txt text-red">
           填写说明：集数名称||影片网址
         </div>
