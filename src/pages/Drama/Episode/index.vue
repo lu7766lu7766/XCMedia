@@ -31,6 +31,7 @@
           <div class="row m-b-20 justify-content-end panel-search-box">
             <div class="col-sm-2">
               <j-button type="add" @click="$bus.emit('create.show')" />
+              <j-button type="batch-add" @click="$bus.emit('batchCreate.show')" />
             </div>
             <div class="col-sm-10 form-inline justify-content-end panel-search">
               <router-link class="btn btn-white" :to="{name: 'drama-manage'}">
@@ -98,6 +99,7 @@
     <image-container />
     <create />
     <update />
+    <batchCreate />
   </div>
 </template>
 
@@ -109,6 +111,7 @@ export default {
   components: {
     ImageContainer: require('@/Container/Image').default,
     Create: require('./modal/create').default,
+    BatchCreate: require('./modal/batchCreate').default,
     Update: require('./modal/update').default
   },
   mixins: [ListMixins],
