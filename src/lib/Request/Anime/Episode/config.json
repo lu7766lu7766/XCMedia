@@ -22,5 +22,9 @@
   "source": {
     "uri": "options/get_source",
     "method": "get"
+  },
+  "batchCreate": {
+    "uri": "batch",
+    "method": "post"
   }
 }
