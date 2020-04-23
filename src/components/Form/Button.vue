@@ -73,6 +73,13 @@ export default {
         this.btnIcon = this.iBtnIcon || 'fa-plus'
         this.hasPermission = this.canCreate
         break
+      case 'batch-add':
+        this.className = 'add-btn'
+        this.name = this.iName || '批次新增'
+        this.btnColor = this.iBtnColor || 'btn-success'
+        this.btnIcon = this.iBtnIcon || 'fa-list'
+        this.hasPermission = this.canCreate
+        break
       case 'permission':
         this.name = this.iName || '权限'
         this.btnColor = this.iBtnColor || 'btn-green'
@@ -125,6 +132,12 @@ export default {
         this.name = this.iName || '语音管理'
         this.btnColor = this.iBtnColor || 'btn-success'
         this.btnIcon = this.iBtnIcon || 'fas fa-file-code'
+        this.hasPermission = this.canRead
+        break
+      case 'episode-book':
+        this.name = this.iName || '集数设定'
+        this.btnColor = this.iBtnColor || 'btn-success'
+        this.btnIcon = this.iBtnIcon || 'fas fa-book'
         this.hasPermission = this.canRead
         break
       case 'log':
