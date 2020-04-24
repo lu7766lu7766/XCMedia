@@ -8,7 +8,7 @@
         </router-link>
       </li>
       <li class="breadcrumb-item">
-        <a href="javascript:;">影音戏剧</a>
+        <a href="javascript:;">影音电视</a>
       </li>
       <li class="breadcrumb-item">
         <a href="javascript:;">分类管理</a>
