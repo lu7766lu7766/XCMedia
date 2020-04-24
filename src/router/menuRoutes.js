@@ -74,7 +74,7 @@ export default [
   },
   {
     path: 'drama',
-    label: '影音戏剧',
+    label: '影音电视',
     icon: 'fa fa-television',
     component: () => import('pages/Drama'),
     children: [
@@ -137,7 +137,7 @@ export default [
       {
         path: 'manage',
         name: 'drama-manage',
-        label: '戏剧管理',
+        label: '电视管理',
         hasMenu: 'DRAMA_SOURCE_SET',
         component: () => import('pages/Drama/Manage')
       },

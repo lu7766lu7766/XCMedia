@@ -50,11 +50,11 @@
         :node="findNode(Menu.MEMBER_MG)"
       />
 
-      <!-- 影音戏剧' -->
+      <!-- 影音电视' -->
       <li v-if="inAllNodes(Menu.DRAMA_SOURCE_SET, Menu.DRAMA_AREA_SET, Menu.DRAMA_TYPE_SET, Menu.DRAMA_YEAR_SET, Menu.DRAMA_LANG_SET, Menu.DRAMA_TOPIC_TYPE, Menu.DRAMA_MG)">
         <permission-node
           v-model="data.nodes"
-          title="影音戏剧"
+          title="影音电视"
           class-name="fas fa-television text-black"
           :values="getAllSubNodeID([
             findNode(Menu.DRAMA_SOURCE_SET),
