@@ -29,6 +29,21 @@ export default [
     ]
   },
   {
+    path: 'collection',
+    label: '采集管理',
+    icon: 'fas fa-cog',
+    component: () => import('pages/Collection'),
+    children: [
+      {
+        path: 'setting',
+        name: 'collection-setting',
+        label: '采集设定',
+        hasMenu: 'COLLECTION_SET',
+        component: () => import('pages/Collection/Setting')
+      }
+    ]
+  },
+  {
     path: 'website-manage',
     label: '网站管理',
     icon: 'fas fa-globe',
