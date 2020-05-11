@@ -31,7 +31,7 @@ export default [
   {
     path: 'collection',
     label: '采集管理',
-    icon: 'fas fa-cog',
+    icon: 'fas fa-filter',
     component: () => import('pages/Collection'),
     children: [
       {
