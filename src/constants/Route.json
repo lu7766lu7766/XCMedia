@@ -96,5 +96,6 @@
   "adult-story-manage": "ADULT_STORY_MG",
   "adult-story-episode": "ADULT_STORY_EPISODE_MG",
   "account-login-history": "ACCOUNT_LOGIN_HISTORY",
-  "member-login-history": "MEMBER_LOGIN_HISTORY"
+  "member-login-history": "MEMBER_LOGIN_HISTORY",
+  "collection-setting": "COLLECTION_SET"
 }
