@@ -37,7 +37,7 @@
                 <j-select v-model="search.status" title="状态" :datas="options.status" />
               </div>
               <div class="form-group m-r-10">
-                <input v-model="search.name" type="text" class="form-control" placeholder="请输入名称">
+                <input v-model="search.keyword" type="text" class="form-control" placeholder="请输入名称">
               </div>
               <j-button type="search" @click="doSearch" />
             </div>
@@ -114,7 +114,7 @@ export default {
   mixins: [ListMixins, UtilsMixins],
   data: () => ({
     search: {
-      name: '',
+      keyword: '',
       status: ''
     },
     options: {
