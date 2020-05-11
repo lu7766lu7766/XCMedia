@@ -68,13 +68,13 @@
                 <tr v-for="(data, index) in datas" :key="index">
                   <td>{{ startIndex + index }}</td>
                   <td class="text-left">
-                    1717资源
+                    {{ transformByID(options.source, data.collector_source_id) }}
                   </td>
                   <td class="text-left">
-                    电视,电视剧,动漫,综艺
+                    {{ data.type.map(t => t.title).join(',') }}
                   </td>
                   <td class="text-left">
-                    爱奇艺,腾讯,芒果
+                    {{ data.platform.map(t => t.title).join(',') }}
                   </td>
                   <td>
                     <i v-if="data.status === 'Y'" class="fas fa-lg fa-check-circle text-green" />
@@ -104,26 +104,47 @@
 <script>
 import Enable from 'constants/Enable'
 import ListMixins from 'mixins/List'
+import UtilsMixins from 'mixins/Utils'
 
 export default {
   components: {
     Create: require('./modal/create').default,
     Update: require('./modal/update').default
   },
-  mixins: [ListMixins],
+  mixins: [ListMixins, UtilsMixins],
   data: () => ({
     search: {
       name: '',
       status: ''
     },
     options: {
-      status: Enable
+      status: Enable,
+      source: [],
+      type: [],
+      platform: []
     }
   }),
-  api: 'system.site',
+  api: 'collection.setting',
   created () {
+    this.getOptions()
     this.doSearch()
   },
-  methods: {}
+  methods: {
+    async getSource () {
+      const res = await this.$thisApi.getSource()
+      this.options.source = res.data
+    },
+    async getType () {
+      const res = await this.$thisApi.getType()
+      this.options.type = res.data
+    },
+    async getPlatform () {
+      const res = await this.$thisApi.getPlatform()
+      this.options.platform = res.data
+    },
+    async getOptions () {
+      await Promise.all([this.getSource(), this.getType(), this.getPlatform()])
+    }
+  }
 }
 </script>

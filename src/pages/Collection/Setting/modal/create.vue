@@ -1,52 +1,42 @@
 <template>
   <detail title="新增" @submit="doSubmit()">
     <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">帐号</label>
-      <div class="col-md-10">
-        <validate rules="required|min:4|max:32">
-          <input v-model="data.account" type="text" class="form-control">
-        </validate>
-      </div>
-    </div>
-    <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">昵称</label>
-      <div class="col-md-10">
-        <validate rules="required|min:4|max:32">
-          <input v-model="data.display_name" type="text" class="form-control">
-        </validate>
-      </div>
-    </div>
-    <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">密码</label>
-      <div class="col-md-10">
-        <validate rules="required|min:4|max:32" vid="password">
-          <input v-model="data.password" type="password" class="form-control">
-        </validate>
-        <!--<div class="m-t-1 form-txt text-red">需英数组合, 4~16字元</div>-->
-      </div>
-    </div>
-    <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">密码确认</label>
-      <div class="col-md-10">
-        <validate rules="required|confirmed:password">
-          <input v-model="data.password_confirmation" type="password" class="form-control">
-        </validate>
-        <!--<div class="m-t-1 form-txt text-red">需英数组合, 4~16字元</div>-->
-      </div>
-    </div>
-
-    <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label required">角色</label>
+      <label class="col-md-2 col-form-label required">资源名称</label>
       <div class="col-md-10">
         <validate rules="required">
-          <multi-list-select
-            v-model="data.role_id"
-            :list="options.roles"
-            option-value="id"
-            option-text="display_name"
-            :selected-items="data.role_id"
-            @select="item => (data.role_id = item)"
+          <j-select
+            v-model="data.source"
+            title="请选择资源"
+            :datas="options.source"
+            display-key="title"
+            value-key="id"
           />
+        </validate>
+      </div>
+    </div>
+    <div class="form-group row m-b-15">
+      <label class="col-md-2 col-form-label required">采集类型</label>
+      <div class="col-md-10">
+        <validate rules="required">
+          <div v-for="(t, i) in options.type" :key="i" class="form-check form-check-inline">
+            <label>
+              <input v-model="data.type" class="form-check-input" type="checkbox" :value="t.id">
+              {{ t.title }}
+            </label>
+          </div>
+        </validate>
+      </div>
+    </div>
+    <div class="form-group row m-b-15">
+      <label class="col-md-2 col-form-label required">采集平台</label>
+      <div class="col-md-10">
+        <validate rules="required">
+          <div v-for="(t, i) in options.platform" :key="i" class="form-check form-check-inline">
+            <label>
+              <input v-model="data.platform" class="form-check-input" type="checkbox" :value="t.id">
+              {{ t.title }}
+            </label>
+          </div>
         </validate>
       </div>
     </div>
@@ -54,32 +44,24 @@
     <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">状态</label>
       <div class="col-md-10">
-        <switcher v-model="data.status" enable="enable" disable="disable" />
-      </div>
-    </div>
-    <div class="form-group row m-b-15">
-      <label class="col-md-2 col-form-label">备注</label>
-      <div class="col-md-10">
-        <textarea v-model="data.remark" cols="30" rows="5" class="form-control" />
+        <switcher v-model="data.status" enable="Y" disable="N" />
       </div>
     </div>
   </detail>
 </template>
 
 <script>
-import { MultiListSelect } from 'vue-search-select'
 import DetailMixins from 'mixins/Detail'
 
 export default {
-  components: {
-    MultiListSelect
-  },
   mixins: [DetailMixins],
   mounted () {
     this.$bus.on('create.show', () => {
       this.data = {
-        role_id: [],
-        status: 'enable'
+        source: '',
+        type: [],
+        platform: [],
+        status: 'Y'
       }
       this.show()
     })
@@ -89,8 +71,13 @@ export default {
   },
   methods: {
     async doSubmit () {
-      const data = _.cloneDeep(this.data)
-      data.role_id = _.map(data.role_id, 'id')
+      const _d = this.data
+      const data = {
+        source_id: _d.source,
+        type_ids: _d.type,
+        platform_ids: _d.platform,
+        status: _d.status
+      }
       await this.$thisApi.doCreate(data)
       this.createSuccess()
     }

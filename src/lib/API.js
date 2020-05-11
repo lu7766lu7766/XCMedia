@@ -11,6 +11,9 @@ export default class API {
       role: new (require('./Request/System/Role').default)(),
       site: new (require('./Request/System/Site').default)()
     }
+    this.collection = {
+      setting: new (require('./Request/Collection/Setting').default)()
+    }
     this.website = {
       announce: new (require('./Request/Website/Announce').default)(),
       page: new (require('./Request/Website/Page').default)(),
