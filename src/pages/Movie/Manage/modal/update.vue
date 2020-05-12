@@ -116,6 +116,24 @@
     </div>
 
     <div class="form-group row m-b-15">
+      <label class="col-md-2 col-form-label ">人气 </label>
+      <div class="col-md-10">
+        <validate rules="numeric">
+          <input v-model="data.views" type="text" class="form-control">
+        </validate>
+      </div>
+    </div>
+
+    <div class="form-group row m-b-15">
+      <label class="col-md-2 col-form-label ">评分</label>
+      <div class="col-md-10">
+        <validate rules="limitedDecimal:1,10">
+          <input v-model="data.score" type="text" class="form-control" placeholder="0.0~10.0">
+        </validate>
+      </div>
+    </div>
+
+    <div class="form-group row m-b-15">
       <label class="col-md-2 col-form-label required">状态 </label>
       <div class="col-md-10">
         <switcher v-model="data.status" />
