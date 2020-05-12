@@ -109,7 +109,7 @@
                   </td>
                   <td>{{ data.region.name }}</td>
                   <td>{{ data.years.title }}</td>
-                  <td>{{ data.views }}</td>
+                  <td>{{ data.views | views }}</td>
                   <td>{{ data.score | score }}</td>
                   <td>
                     <i v-if="data.status === 'Y'" class="fas fa-lg fa-check-circle text-green" />
