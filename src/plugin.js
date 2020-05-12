@@ -19,6 +19,13 @@ const install = (Vue, options) => {
   const moneyFormat = val => (isNaN(parseFloat(val)) ? val : numFormat(numeral)(val, '0,0.0000'))
   Vue.filter('money', moneyFormat)
 
+  Vue.filter('numeral', (val, format) => {
+    return numeral(val).format(format)
+  })
+  Vue.filter('score', (val) => {
+    return numeral(val).format('0.0')
+  })
+
   Vue.component('Validation', ValidationObserver)
   // Vue.component('ValidationProvider', ValidationProvider)
   Vue.component('Validate', require('@/Validate').default)
