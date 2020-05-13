@@ -152,15 +152,6 @@
                     </span>
                   </td>
                   <td>{{ data.cup.size }}</td>
-                  <td>
-                    <span
-                      v-for="(area, k) in data.genres"
-                      :key="k"
-                      class="label label-warning"
-                      style="margin-right:5px"
-                    >{{ area.title }}</span>
-                  </td>
-
                   <td>{{ data.year.title }}</td>
                   <td>{{ data.views | views }}</td>
                   <td>{{ data.score | score }}</td>
