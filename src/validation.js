@@ -1,11 +1,14 @@
 /* eslint-disable camelcase */
 import { extend, localize } from 'vee-validate'
-import { required, min, max, min_value, max_value, confirmed, required_if } from 'vee-validate/dist/rules'
+import { required, min, max, min_value, max_value, confirmed, required_if, numeric } from 'vee-validate/dist/rules'
 import locale from 'vee-validate/dist/locale/zh_CN'
 import { JacLib } from 'jactools'
 
 extend('required', {
   ...required
+})
+extend('numeric', {
+  ...numeric
 })
 extend('min', {
   ...min
@@ -82,6 +85,14 @@ extend('decimal', {
   }
 })
 
+extend('limitedDecimal', {
+  params: ['len', 'max'],
+  validate: (value, { len, max }) => {
+    // return /^[0-9]+(.[0-9]{0,1})?$/.test(value) && parseFloat(value) <= max
+    return new RegExp(`^[0-9]+(.[0-9]{0,${len}})?$`).test(value) && parseFloat(value) <= max
+  }
+})
+
 locale.messages = Object.assign(locale.messages, {
   required: () => '必填欄位',
   max: (filed, value) => `字數需小於${value.length}字元`,
@@ -99,7 +110,8 @@ locale.messages = Object.assign(locale.messages, {
   image: () => '图片格式不符',
   img_width: (filed, value) => `图片宽度不符合规范，上限為${value.value}`,
   img_height: (filed, value) => `图片高度不符合规范，上限為${value.value}`,
-  img_size: (filed, value) => `图片大小不符合规范，上限為${value.value}${value.unit || 'KB'}`
+  img_size: (filed, value) => `图片大小不符合规范，上限為${value.value}${value.unit || 'KB'}`,
+  limitedDecimal: (field, params) => `須小於${params.max}, 且最多到小數第${params.len}位`
 })
 
 localize('cn', locale)

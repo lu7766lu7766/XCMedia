@@ -100,14 +100,14 @@
                   <th class="width-100">
                     罩杯
                   </th>
-                  <th class="width-200">
-                    类型
-                  </th>
                   <th class="width-100">
                     年份
                   </th>
                   <th class="width-100">
-                    浏览次数
+                    人气
+                  </th>
+                  <th class="width-100">
+                    评分
                   </th>
                   <th class="width-80">
                     状态
@@ -152,17 +152,9 @@
                     </span>
                   </td>
                   <td>{{ data.cup.size }}</td>
-                  <td>
-                    <span
-                      v-for="(area, k) in data.genres"
-                      :key="k"
-                      class="label label-warning"
-                      style="margin-right:5px"
-                    >{{ area.title }}</span>
-                  </td>
-
                   <td>{{ data.year.title }}</td>
-                  <td>{{ data.views }}</td>
+                  <td>{{ data.views | views }}</td>
+                  <td>{{ data.score | score }}</td>
                   <td>
                     <i v-if="data.status === 'Y'" class="fas fa-lg fa-check-circle text-green" />
                     <i v-else class="fas fa-lg fa-times-circle text-danger" />
