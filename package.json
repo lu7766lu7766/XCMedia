@@ -14,7 +14,7 @@
     "dual-listbox-vue": "^1.0.2",
     "jactools": "^3.4.0",
     "numeral": "^2.0.6",
-    "tinymce": "^5.2.0",
+    "tinymce": "^5.7.1",
     "vee-validate": "^3.2.5",
     "vue": "^2.6.10",
     "vue-bootstrap-datetimepicker": "^5.0.1",
